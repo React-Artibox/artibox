@@ -1,0 +1,86 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+		"es6": true,
+		"jest": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:prettier/recommended"
+	],
+	"plugins": [
+		"import",
+		"react-hooks"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true,
+			"legacyDecorators": true
+		}
+	},
+	"settings": {
+		"react": {
+			"pragma": "React",
+			"version": "detect"
+		}
+	},
+	"rules": {
+		"react/prop-types": 0
+	},
+	"overrides": [
+		{
+			"files": [
+				"./**/*{.js,.jsx}"
+			],
+			"rules": {
+				"no-unused-vars": [
+					2,
+					{
+						"varsIgnorePattern": "^_",
+						"argsIgnorePattern": "^_",
+						"ignoreRestSiblings": true
+					}
+				]
+			}
+		},
+		{
+			"files": [
+				"./**/*{.ts,.tsx}"
+			],
+			"extends": [
+				"prettier/@typescript-eslint",
+				"plugin:@typescript-eslint/recommended"
+			],
+			"plugins": [
+				"@typescript-eslint"
+			],
+			"parserOptions": {
+				"project": "./tsconfig.json"
+			},
+			"rules": {
+				"@typescript-eslint/explicit-function-return-type": 0,
+				"@typescript-eslint/no-unused-vars": [
+					2,
+					{
+						"varsIgnorePattern": "^_",
+						"argsIgnorePattern": "^_",
+						"ignoreRestSiblings": true
+					}
+				]
+			}
+		},
+		{
+			"files": [
+				"./**/*.test{.ts,.tsx}"
+			],
+			"rules": {
+				"@typescript-eslint/ban-ts-ignore": 0
+			}
+		}
+	]
+}

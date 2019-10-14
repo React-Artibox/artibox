@@ -1,0 +1,46 @@
+{
+  "name": "artibox",
+  "description": "Artibox",
+  "repository": "git@github.com:React-Artibox/artibox.git",
+  "author": "Rytass",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna run clean && lerna clean",
+    "build:clean": "lerna run build:clean --stream --parallel",
+    "build": "lerna run build --stream --sort",
+    "lint": "eslint . --config .eslintrc --ext .js,.ts,.tsx",
+    "test:clean": "lerna run test:clean --stream --parallel",
+    "test": "lerna run test --stream",
+    "commit": "git-cz",
+    "version": "lerna version --conventional-commits --no-push",
+    "publish": "lerna publish --from-git"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@types/jest": "^24.0.18",
+    "@typescript-eslint/eslint-plugin": "^2.3.3",
+    "@typescript-eslint/parser": "^2.3.3",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lerna": "^3.17.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
+    "rollup": "^1.23.1",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4"
+  }
+}
