@@ -10,7 +10,7 @@ export interface RenderTagMarkConfig {
 export function RenderTagMark(config: RenderTagMarkConfig) {
   const { component: Component, renderIf } = config;
 
-  const TagMark: Plugin['renderMark'] = (props, _, next) => {
+  const renderMark: Plugin['renderMark'] = (props, _, next) => {
     const { children, attributes } = props;
 
     if (!renderIf(config, props)) {
@@ -20,5 +20,5 @@ export function RenderTagMark(config: RenderTagMarkConfig) {
     return <Component {...attributes}>{children}</Component>;
   };
 
-  return TagMark;
+  return renderMark;
 }
