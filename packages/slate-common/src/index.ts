@@ -1,1 +1,1 @@
-export { RenderTagMarkConfig, RenderTagMark } from './renderer/tag-mark';
+export { RenderTagMarkConfig, RenderTagMark } from './renderers/tag-mark';
