@@ -5,7 +5,10 @@
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
   "license": "MIT",
-  "main": "lib/slate-renderer.js",
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "jsnext:main": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/React-Artibox/artibox.git"
