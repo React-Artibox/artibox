@@ -1,10 +1,8 @@
 import { isHotkey } from 'is-hotkey';
 import { Editor } from 'slate';
-import { EventHook } from 'slate-react';
+import { CommonPlugin } from '../types';
 
-export interface HotkeyPlugin {
-  onKeyDown: EventHook;
-}
+export type HotkeyPlugin = Pick<CommonPlugin, 'onKeyDown'>;
 
 export function HotkeyPlugin(
   hotkey: string | ReadonlyArray<string>,

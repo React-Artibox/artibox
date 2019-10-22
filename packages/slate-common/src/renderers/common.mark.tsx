@@ -1,5 +1,6 @@
 import React, { ReactHTML, ComponentType } from 'react';
-import { RenderAttributes, RenderMarkProps, Plugin } from 'slate-react';
+import { RenderAttributes, RenderMarkProps } from 'slate-react';
+import { MarkPlugin } from '../types';
 
 export interface RenderCommonMarkProps extends RenderAttributes {}
 
@@ -11,12 +12,10 @@ export interface RenderCommonMarkConfig {
   renderIf?: RenderCommonMarkConfigRenderIf;
 }
 
-export type RenderCommonMark = Pick<Plugin, 'renderMark'>;
-
 export const defaultCommonMarkRenderIf: RenderCommonMarkConfigRenderIf = (config, props) =>
   config.type === props.mark.type;
 
-export function RenderCommonMark(config: RenderCommonMarkConfig): RenderCommonMark {
+export function RenderCommonMark(config: RenderCommonMarkConfig): MarkPlugin {
   const { component: Component, renderIf = defaultCommonMarkRenderIf } = config;
 
   return {
