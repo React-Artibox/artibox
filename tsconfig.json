@@ -28,7 +28,7 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@jay-mono-ts/*": ["./packages/*/src"]
+      "@artibox/*": ["./packages/*/src"]
     }
   }
 }

@@ -16,16 +16,26 @@
     "lint": "eslint . --config .eslintrc --ext .js,.ts,.tsx",
     "test:clean": "lerna run test:clean --stream --parallel",
     "test": "lerna run test --stream",
+    "start-storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "commit": "git-cz",
     "version": "lerna version --conventional-commits --no-push",
     "publish": "lerna publish --from-git"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
+    "@storybook/addon-info": "^5.2.5",
+    "@storybook/cli": "^5.2.5",
+    "@storybook/react": "^5.2.5",
     "@types/jest": "^24.0.18",
+    "@types/slate": "^0.47.2",
+    "@types/slate-react": "^0.22.5",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
     "@typescript-eslint/parser": "^2.3.3",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.5.1",
@@ -39,8 +49,14 @@
     "lerna": "^3.17.0",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
+    "react": "^16.10.2",
+    "react-docgen-typescript-loader": "^3.3.0",
+    "react-dom": "^16.10.2",
     "rollup": "^1.23.1",
+    "slate": "^0.47.8",
+    "slate-react": "^0.22.9",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2"
   }
 }
