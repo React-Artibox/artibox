@@ -11,10 +11,12 @@ export interface RenderCommonMarkConfig {
   renderIf?: RenderCommonMarkConfigRenderIf;
 }
 
+export type RenderCommonMark = Pick<Plugin, 'renderMark'>;
+
 export const defaultCommonMarkRenderIf: RenderCommonMarkConfigRenderIf = (config, props) =>
   config.type === props.mark.type;
 
-export function RenderCommonMark(config: RenderCommonMarkConfig): Plugin {
+export function RenderCommonMark(config: RenderCommonMarkConfig): RenderCommonMark {
   const { component: Component, renderIf = defaultCommonMarkRenderIf } = config;
 
   return {
