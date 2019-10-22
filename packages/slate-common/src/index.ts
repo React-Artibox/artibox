@@ -1,7 +1,7 @@
 /**
  * types
  */
-export { RenderMethodNames, CommonPlugin, MarkPlugin, Plugin } from './types';
+export { RenderMethodNames, CommonPlugin, HelperPlugin, Renderer, MarkRenderer, MarkPlugin, Plugin } from './types';
 
 /**
  * renderers

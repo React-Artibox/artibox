@@ -1,13 +1,10 @@
 import { isHotkey } from 'is-hotkey';
-import { Editor } from 'slate';
-import { CommonPlugin } from '../types';
+import { CommandFunc } from 'slate';
+import { HelperPlugin } from '../types';
 
-export type HotkeyPlugin = Pick<CommonPlugin, 'onKeyDown'>;
+export type HotkeyPlugin = HelperPlugin<'onKeyDown'>;
 
-export function HotkeyPlugin(
-  hotkey: string | ReadonlyArray<string>,
-  fn: string | ((editor: Editor) => Editor)
-): HotkeyPlugin {
+export function HotkeyPlugin(hotkey: string | ReadonlyArray<string>, fn: CommandFunc): HotkeyPlugin {
   const isSaveHotkey = isHotkey(hotkey);
 
   return {
