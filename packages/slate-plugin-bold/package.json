@@ -1,0 +1,22 @@
+{
+  "name": "@artibox/slate-plugin-bold",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Rytass",
+  "homepage": "https://github.com/React-Artibox/artibox#readme",
+  "license": "MIT",
+  "main": "lib/slate-plugin-bold.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/React-Artibox/artibox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/React-Artibox/artibox/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@artibox/slate-common": "^1.0.0"
+  }
+}
