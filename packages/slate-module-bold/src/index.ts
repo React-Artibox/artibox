@@ -6,5 +6,5 @@ export {
   BOLD_COMMAND_ADD,
   BOLD_COMMAND_REMOVE,
   BOLD_COMMAND_TOGGLE
-} from './constants';
-export { BoldPlugin } from './plugin';
+} from './bold.constants';
+export { BoldModule } from './bold.module';
