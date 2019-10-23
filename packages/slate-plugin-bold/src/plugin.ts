@@ -1,25 +1,19 @@
-import { CommandFunc } from 'slate';
-import { mergePlugins, MarkPlugin, HotkeyPlugin, RenderCommonMark } from '@artibox/slate-common';
-import { BOLD_MARK_TYPE } from './constants';
+import { createToggleMarkPlugin } from '@artibox/slate-common';
+import {
+  BOLD_TYPE,
+  BOLD_COMPONENT,
+  BOLD_QUERY_HAS,
+  BOLD_COMMAND_ADD,
+  BOLD_COMMAND_REMOVE,
+  BOLD_COMMAND_TOGGLE
+} from './constants';
 
-/**
- * @todo
- * Add options on BoldPlugin.
- */
-export function BoldPlugin(): MarkPlugin {
-  const type = BOLD_MARK_TYPE;
-  const addBoldMark: CommandFunc = editor => editor.addMark(type);
-
-  return mergePlugins([
-    {
-      commands: {
-        addBoldMark
-      }
-    },
-    HotkeyPlugin('cmd+b', addBoldMark),
-    RenderCommonMark({
-      type: BOLD_MARK_TYPE,
-      component: 'strong'
-    })
-  ]);
-}
+export const BoldPlugin = createToggleMarkPlugin({
+  type: BOLD_TYPE,
+  component: BOLD_COMPONENT,
+  hotkey: 'cmd_b',
+  queryHas: BOLD_QUERY_HAS,
+  commandAdd: BOLD_COMMAND_ADD,
+  commandRemove: BOLD_COMMAND_REMOVE,
+  commandToggle: BOLD_COMMAND_TOGGLE
+});
