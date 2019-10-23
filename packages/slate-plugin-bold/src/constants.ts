@@ -4,6 +4,9 @@ export type BOLD_TYPE = typeof BOLD_TYPE;
 export const BOLD_COMPONENT = 'strong';
 export type BOLD_COMPONENT = typeof BOLD_COMPONENT;
 
+export const BOLD_HOTKEY = 'cmd+b';
+export type BOLD_HOTKEY = typeof BOLD_HOTKEY;
+
 export const BOLD_QUERY_HAS = 'hasBoldMark';
 export type BOLD_QUERY_HAS = typeof BOLD_QUERY_HAS;
 
