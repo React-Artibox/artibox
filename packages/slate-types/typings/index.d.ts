@@ -16,7 +16,7 @@ export {
 /**
  * plugin
  */
-export { Plugin, HelperPlugin, MarkPlugin } from './plugin';
+export { CommonPlugin, Plugin, HelperPlugin, MarkPlugin } from './plugin';
 
 /**
  * module

@@ -1,21 +1,19 @@
 import React, { ReactHTML, ComponentType } from 'react';
 import { RenderAttributes, RenderMarkProps } from 'slate-react';
-import { MarkRenderer } from '../types';
+import { MarkRenderer } from '@artibox/slate-types';
 
-export interface RenderCommonMarkProps extends RenderAttributes {}
+export type CommonMarkRendererConfigRenderIf = (config: CommonMarkRendererConfig, props: RenderMarkProps) => boolean;
 
-export type RenderCommonMarkConfigRenderIf = (config: RenderCommonMarkConfig, props: RenderMarkProps) => boolean;
-
-export interface RenderCommonMarkConfig {
+export interface CommonMarkRendererConfig {
   type: string;
-  component: keyof ReactHTML | ComponentType<RenderCommonMarkProps>;
-  renderIf?: RenderCommonMarkConfigRenderIf;
+  component: keyof ReactHTML | ComponentType<RenderAttributes>;
+  renderIf?: CommonMarkRendererConfigRenderIf;
 }
 
-export const defaultCommonMarkRenderIf: RenderCommonMarkConfigRenderIf = (config, props) =>
+export const defaultCommonMarkRenderIf: CommonMarkRendererConfigRenderIf = (config, props) =>
   config.type === props.mark.type;
 
-export function RenderCommonMark(config: RenderCommonMarkConfig): MarkRenderer {
+export function CommonMarkRenderer(config: CommonMarkRendererConfig): MarkRenderer {
   const { component: Component, renderIf = defaultCommonMarkRenderIf } = config;
 
   return {

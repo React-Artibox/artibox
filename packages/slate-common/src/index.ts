@@ -1,35 +1,24 @@
 /**
- * types
+ * merge
  */
-export { RenderMethodNames, CommonPlugin, HelperPlugin, Renderer, MarkRenderer, MarkPlugin, Plugin } from './types';
-
-/**
- * utils
- */
-export { mergePlugins } from './utils/merge-plugins';
-
-/**
- * hotkey
- */
-export { HotkeyPlugin } from './hotkey/hotkey.plugin';
+export { mergePlugins } from './merge';
 
 /**
  * common-mark
  */
 export {
-  RenderCommonMarkProps,
-  RenderCommonMarkConfigRenderIf,
-  RenderCommonMarkConfig,
-  RenderCommonMark,
+  CommonMarkRendererConfigRenderIf,
+  CommonMarkRendererConfig,
+  CommonMarkRenderer,
   defaultCommonMarkRenderIf
 } from './common-mark/common-mark.renderer';
 
 /**
  * toggle-mark
  */
+export { ToggleMarkPluginConfig, ToggleMarkPlugin } from './toggle-mark/toggle-mark.plugin';
 export {
-  ToggleMarkPluginDefaultConfig,
-  ToggleMarkPluginConfig,
-  ToggleMarkPlugin,
-  createToggleMarkPlugin
-} from './toggle-mark/toggle-mark.plugin';
+  ToggleMarkModuleDefaultConfig,
+  ToggleMarkModuleConfig,
+  createToggleMarkModule
+} from './toggle-mark/toggle-mark.module';
