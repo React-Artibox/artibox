@@ -4,7 +4,17 @@
 export { RenderMethodNames, CommonPlugin, HelperPlugin, Renderer, MarkRenderer, MarkPlugin, Plugin } from './types';
 
 /**
- * renderers
+ * utils
+ */
+export { mergePlugins } from './utils/merge-plugins';
+
+/**
+ * hotkey
+ */
+export { HotkeyPlugin } from './hotkey/hotkey.plugin';
+
+/**
+ * common-mark
  */
 export {
   RenderCommonMarkProps,
@@ -12,14 +22,14 @@ export {
   RenderCommonMarkConfig,
   RenderCommonMark,
   defaultCommonMarkRenderIf
-} from './renderers/common.mark';
+} from './common-mark/common-mark.renderer';
 
 /**
- * plugins
+ * toggle-mark
  */
-export { HotkeyPlugin } from './plugins/hotkey';
-
-/**
- * utils
- */
-export { mergePlugins } from './utils/merge-plugins';
+export {
+  ToggleMarkPluginDefaultConfig,
+  ToggleMarkPluginConfig,
+  ToggleMarkPlugin,
+  createToggleMarkPlugin
+} from './toggle-mark/toggle-mark.plugin';

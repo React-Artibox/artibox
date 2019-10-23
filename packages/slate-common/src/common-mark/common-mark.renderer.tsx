@@ -7,7 +7,7 @@ export interface RenderCommonMarkProps extends RenderAttributes {}
 export type RenderCommonMarkConfigRenderIf = (config: RenderCommonMarkConfig, props: RenderMarkProps) => boolean;
 
 export interface RenderCommonMarkConfig {
-  type: string | symbol;
+  type: string;
   component: keyof ReactHTML | ComponentType<RenderCommonMarkProps>;
   renderIf?: RenderCommonMarkConfigRenderIf;
 }
