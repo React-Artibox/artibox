@@ -7,7 +7,9 @@
     "composite": true
   },
   "references": [
-    { "path": "../slate-module-toggle-mark" }
+    { "path": "../slate-types" },
+    { "path": "../slate-common" },
+    { "path": "../slate-plugin-hotkey" }
   ],
   "include": [
 		"./src"

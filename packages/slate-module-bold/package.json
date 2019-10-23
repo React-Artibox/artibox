@@ -1,11 +1,14 @@
 {
-  "name": "@artibox/slate-plugin-bold",
+  "name": "@artibox/slate-module-bold",
   "version": "1.0.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
   "license": "MIT",
-  "main": "lib/slate-plugin-bold.js",
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "jsnext:main": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/React-Artibox/artibox.git"
@@ -14,9 +17,11 @@
     "url": "https://github.com/React-Artibox/artibox/issues"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "clean": "npm run build:clean",
+    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
+    "build": "tsc && rollup --config rollup.config.js"
   },
   "dependencies": {
-    "@artibox/slate-common": "^1.0.0"
+    "@artibox/slate-module-toggle-mark": "^1.0.0"
   }
 }

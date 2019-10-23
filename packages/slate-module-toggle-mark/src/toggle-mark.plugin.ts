@@ -1,7 +1,7 @@
 import { CommandFunc, QueryFunc } from 'slate';
 import { MarkPlugin } from '@artibox/slate-types';
 import { HotkeyPlugin } from '@artibox/slate-plugin-hotkey';
-import { mergePlugins } from '../merge';
+import { mergePlugins } from '@artibox/slate-common';
 
 export interface ToggleMarkPluginConfig<QS extends string, CA extends string, CR extends string, CT extends string> {
   type: string;

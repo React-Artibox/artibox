@@ -1,4 +1,4 @@
-import { createToggleMarkModule } from '@artibox/slate-common';
+import { createToggleMarkModule } from '@artibox/slate-module-toggle-mark';
 import {
   BOLD_TYPE,
   BOLD_COMPONENT,

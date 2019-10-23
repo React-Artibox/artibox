@@ -1,6 +1,6 @@
 import { MarkModule } from '@artibox/slate-types';
+import { CommonMarkRendererConfig, CommonMarkRenderer } from '@artibox/slate-common';
 import { ToggleMarkPluginConfig, ToggleMarkPlugin } from './toggle-mark.plugin';
-import { CommonMarkRendererConfig, CommonMarkRenderer } from '../common-mark/common-mark.renderer';
 
 export interface ToggleMarkModuleDefaultConfig<
   T extends string,

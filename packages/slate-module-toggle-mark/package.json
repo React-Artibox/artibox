@@ -1,5 +1,5 @@
 {
-  "name": "@artibox/slate-common",
+  "name": "@artibox/slate-module-toggle-mark",
   "version": "1.0.0",
   "description": "",
   "author": "Rytass",
@@ -22,6 +22,7 @@
     "build": "tsc && rollup --config rollup.config.js"
   },
   "dependencies": {
+    "@artibox/slate-plugin-hotkey": "^1.0.0",
     "@artibox/slate-types": "^1.0.0"
   },
   "peerDependencies": {
