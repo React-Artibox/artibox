@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "./typings",
+    "rootDir": "./typings",
+    "composite": true
+  },
+  "include": [
+		"./typings"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

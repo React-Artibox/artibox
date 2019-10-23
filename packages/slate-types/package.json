@@ -1,0 +1,20 @@
+{
+  "name": "@artibox/slate-types",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Rytass",
+  "homepage": "https://github.com/React-Artibox/artibox#readme",
+  "license": "MIT",
+  "typings": "./typings/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/React-Artibox/artibox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/React-Artibox/artibox/issues"
+  },
+  "devDependencies": {
+    "@types/slate": "^0.47.2",
+    "@types/slate-react": "^0.22.5"
+  }
+}
