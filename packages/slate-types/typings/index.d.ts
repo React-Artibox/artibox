@@ -1,4 +1,9 @@
 /**
+ * plugin
+ */
+export { Plugin, PickPluginProps, MarkPlugin } from './plugin';
+
+/**
  * renderer
  */
 export {
@@ -14,9 +19,14 @@ export {
 } from './renderer';
 
 /**
- * plugin
+ * queries
  */
-export { CommonPlugin, Plugin, HelperPlugin, MarkPlugin } from './plugin';
+export { Queries } from './queries';
+
+/**
+ * commands
+ */
+export { Commands } from './commands';
 
 /**
  * module

@@ -1,8 +1,8 @@
 import { isHotkey } from 'is-hotkey';
 import { CommandFunc } from 'slate';
-import { HelperPlugin } from '@artibox/slate-types';
+import { PickPluginProps } from '@artibox/slate-types';
 
-export type HotkeyPlugin = HelperPlugin<'', '', 'onKeyDown'>;
+export type HotkeyPlugin = PickPluginProps<'onKeyDown'>;
 
 export function HotkeyPlugin(hotkey: string | ReadonlyArray<string>, fn: CommandFunc): HotkeyPlugin {
   const isSaveHotkey = isHotkey(hotkey);

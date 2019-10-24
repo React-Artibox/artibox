@@ -2,7 +2,7 @@ import { Editor } from 'slate';
 import { useCallback, MouseEventHandler } from 'react';
 import { MarkModule } from '@artibox/slate-types';
 
-export type useToggleMarkModule = (
+export type UseToggleMarkModule = (
   editor: Editor
 ) => {
   active: boolean;
@@ -14,13 +14,13 @@ export function createUseToggleMarkModule<
   Q extends string,
   C extends string,
   M extends MarkModule<T, Q, C>
->(mod: M, commandToggle: C, queryHas: Q): useToggleMarkModule {
+>(mod: M, queryHas: Q, commandToggle: C): UseToggleMarkModule {
   return editor => {
-    const active = mod.plugin.queries[queryHas](editor);
+    const active = mod.queries[queryHas](editor);
     const onClick = useCallback<MouseEventHandler>(
       event => {
         event.preventDefault();
-        mod.plugin.commands[commandToggle](editor);
+        mod.commands[commandToggle](editor);
       },
       [editor]
     );

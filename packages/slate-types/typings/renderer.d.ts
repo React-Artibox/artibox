@@ -17,7 +17,7 @@ export type RenderMethodNames =
  * To pick the render method needed.
  */
 type PickRenderMethod<R extends RenderMethodNames> = {
-  [renderMethod in R]: Exclude<SlateReactPlugin[renderMethod], undefined>;
+  [renderMethod in R]: NonNullable<SlateReactPlugin[renderMethod]>;
 };
 
 export type AnnotationRenderer = PickRenderMethod<'renderAnnotation'>;

@@ -1,22 +1,20 @@
 import { Plugin, MarkPlugin } from './plugin';
 import { Renderer, MarkRenderer } from './renderer';
+import { Queries } from './queries';
+import { Commands } from './commands';
 
-export interface Module<
-  T extends string,
-  Q extends string,
-  C extends string,
-  P extends Plugin<Q, C>,
-  R extends Renderer
-> {
+export interface Module<T extends string, P extends Plugin, R extends Renderer, Q extends string, C extends string> {
   type: T;
   plugin: P;
   renderer: R;
+  queries: Queries<Q>;
+  commands: Commands<C>;
 }
 
 export type MarkModule<T extends string, Q extends string, C extends string> = Module<
   T,
+  MarkPlugin,
+  MarkRenderer,
   Q,
-  C,
-  MarkPlugin<Q, C>,
-  MarkRenderer
+  C
 >;
