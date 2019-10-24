@@ -1,4 +1,4 @@
-import { MarkModule } from '@artibox/slate-types';
+import { MarkModule } from '@artibox/slate-core';
 import { CommonMarkRendererConfig, CommonMarkRenderer } from '@artibox/slate-common';
 import { ToggleMarkPluginsConfig, ToggleMarkPlugins } from './toggle-mark.plugins';
 import { ToggleMarkQueriesConfig, ToggleMarkQueries } from './toggle-mark.queries';

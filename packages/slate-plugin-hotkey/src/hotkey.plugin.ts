@@ -1,6 +1,6 @@
 import { isHotkey } from 'is-hotkey';
 import { CommandFunc } from 'slate';
-import { PickPluginProps } from '@artibox/slate-types';
+import { PickPluginProps } from '@artibox/slate-core';
 
 export type HotkeyPlugin = PickPluginProps<'onKeyDown'>;
 

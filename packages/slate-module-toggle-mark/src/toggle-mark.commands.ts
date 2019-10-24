@@ -1,5 +1,5 @@
 import { CommandFunc } from 'slate';
-import { Commands } from '@artibox/slate-types';
+import { Commands } from '@artibox/slate-core';
 
 export interface ToggleMarkCommandsConfig<CA extends string, CR extends string, CT extends string> {
   type: string;

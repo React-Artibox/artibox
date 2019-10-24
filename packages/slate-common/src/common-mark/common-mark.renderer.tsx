@@ -1,6 +1,6 @@
 import React, { ReactHTML, ComponentType } from 'react';
 import { RenderAttributes, RenderMarkProps } from 'slate-react';
-import { MarkRenderer } from '@artibox/slate-types';
+import { MarkRenderer } from '@artibox/slate-core';
 
 export type CommonMarkRendererConfigRenderIf = (config: CommonMarkRendererConfig, props: RenderMarkProps) => boolean;
 
@@ -17,7 +17,8 @@ export function CommonMarkRenderer(config: CommonMarkRendererConfig): MarkRender
   const { component: Component, renderIf = defaultCommonMarkRenderIf } = config;
 
   return {
-    renderMark(props, _, next) {
+    object: 'mark',
+    render(props, _, next) {
       const { children, attributes } = props;
 
       if (!renderIf(config, props)) {

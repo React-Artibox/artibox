@@ -2,14 +2,17 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "module": "esnext",
-    "outDir": "./typings",
-    "rootDir": "./typings",
+    "outDir": "./esm",
+    "rootDir": "./src",
     "composite": true
   },
   "include": [
-		"./typings"
+		"./src"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "./esm",
+    "./lib",
+    "./**/*.test.*"
   ]
 }

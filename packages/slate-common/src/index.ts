@@ -1,9 +1,4 @@
 /**
- * merge
- */
-export { mergePlugins } from './merge';
-
-/**
  * common-mark
  */
 export {

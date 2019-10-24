@@ -26,7 +26,7 @@
     "@types/slate": "^0.47.2"
   },
   "dependencies": {
-    "@artibox/slate-types": "^1.0.0",
+    "@artibox/slate-core": "^1.0.0",
     "is-hotkey": "^0.1.6"
   }
 }

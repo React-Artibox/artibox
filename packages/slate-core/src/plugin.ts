@@ -1,7 +1,7 @@
 import { Plugin as SlateReactPlugin } from 'slate-react';
-import { RenderMethodNames } from './renderer';
+import { RendererRenderMethodNames } from './renderer';
 
-export type Plugin = Omit<SlateReactPlugin, RenderMethodNames | 'queries' | 'commands'>;
+export type Plugin = Omit<SlateReactPlugin, RendererRenderMethodNames | 'queries' | 'commands'>;
 
 export type PickPluginProps<K extends keyof Plugin> = {
   [key in K]: NonNullable<Plugin[key]>;

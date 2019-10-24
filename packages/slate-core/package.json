@@ -1,17 +1,25 @@
 {
-  "name": "@artibox/slate-types",
+  "name": "@artibox/slate-core",
   "version": "1.0.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
   "license": "MIT",
-  "typings": "./typings/index.d.ts",
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "jsnext:main": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/React-Artibox/artibox.git"
   },
   "bugs": {
     "url": "https://github.com/React-Artibox/artibox/issues"
+  },
+  "scripts": {
+    "clean": "npm run build:clean",
+    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
+    "build": "tsc && rollup --config rollup.config.js"
   },
   "devDependencies": {
     "@types/slate": "^0.47.2",

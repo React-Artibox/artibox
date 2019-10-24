@@ -1,6 +1,6 @@
 import { Editor } from 'slate';
 import { useCallback, MouseEventHandler } from 'react';
-import { MarkModule } from '@artibox/slate-types';
+import { MarkModule } from '@artibox/slate-core';
 
 export type UseToggleMarkModule = (
   editor: Editor

@@ -7,7 +7,7 @@
     "composite": true
   },
   "references": [
-    { "path": "../slate-types" }
+    { "path": "../slate-core" }
   ],
   "include": [
 		"./src"

@@ -1,5 +1,5 @@
 import { QueryFunc } from 'slate';
-import { Queries } from '@artibox/slate-types';
+import { Queries } from '@artibox/slate-core';
 
 export interface ToggleMarkQueriesConfig<QS extends string> {
   type: string;

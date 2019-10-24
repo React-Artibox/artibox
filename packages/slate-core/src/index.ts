@@ -7,7 +7,9 @@ export { Plugin, PickPluginProps, MarkPlugin } from './plugin';
  * renderer
  */
 export {
-  RenderMethodNames,
+  RendererObjectRenderMap,
+  RendererObject,
+  RendererRenderMethodNames,
   AnnotationRenderer,
   BlockRenderer,
   DecorationRender,
@@ -31,4 +33,4 @@ export { Commands } from './commands';
 /**
  * module
  */
-export { Module, MarkModule } from './module';
+export { Module, MarkModule, resolveModuleToSlateReactPlugins } from './module';

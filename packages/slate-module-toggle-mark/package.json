@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@artibox/slate-plugin-hotkey": "^1.0.0",
-    "@artibox/slate-types": "^1.0.0"
+    "@artibox/slate-core": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^16.10.2"
