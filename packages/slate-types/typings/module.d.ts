@@ -5,7 +5,7 @@ import { Commands } from './commands';
 
 export interface Module<T extends string, P extends Plugin, R extends Renderer, Q extends string, C extends string> {
   type: T;
-  plugin: P;
+  plugins: P[];
   renderer: R;
   queries: Queries<Q>;
   commands: Commands<C>;

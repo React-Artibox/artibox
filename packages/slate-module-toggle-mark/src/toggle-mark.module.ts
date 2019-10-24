@@ -1,6 +1,6 @@
 import { MarkModule } from '@artibox/slate-types';
 import { CommonMarkRendererConfig, CommonMarkRenderer } from '@artibox/slate-common';
-import { ToggleMarkPluginConfig, ToggleMarkPlugin } from './toggle-mark.plugin';
+import { ToggleMarkPluginsConfig, ToggleMarkPlugins } from './toggle-mark.plugins';
 import { ToggleMarkQueriesConfig, ToggleMarkQueries } from './toggle-mark.queries';
 import { ToggleMarkCommandsConfig, ToggleMarkCommands } from './toggle-mark.commands';
 
@@ -12,7 +12,7 @@ export interface ToggleMarkModuleDefaultConfig<
   CT extends string
 >
   extends CommonMarkRendererConfig,
-    Omit<ToggleMarkPluginConfig, 'commandToggle'>,
+    Omit<ToggleMarkPluginsConfig, 'commandToggle'>,
     ToggleMarkQueriesConfig<QS>,
     ToggleMarkCommandsConfig<CA, CR, CT> {
   type: T;
@@ -39,12 +39,12 @@ export function createToggleMarkModule<
 
     const queries = ToggleMarkQueries({ type, queryHas });
     const commands = ToggleMarkCommands({ type, commandAdd, commandRemove, commandToggle });
-    const plugin = ToggleMarkPlugin({ hotkey, commandToggle: commands[commandToggle] });
+    const plugins = ToggleMarkPlugins({ hotkey, commandToggle: commands[commandToggle] });
     const renderer = CommonMarkRenderer({ type, component });
 
     return {
       type,
-      plugin,
+      plugins,
       renderer,
       queries,
       commands
