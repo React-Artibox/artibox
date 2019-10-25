@@ -1,1 +1,1 @@
-# `@artibox/slate-plugin-bold`
+# `@artibox/slate-module-bold`
