@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { Value } from 'slate';
-import { Editor, OnChangeFn } from 'slate-react';
-import { BoldPlugin } from '@artibox/slate-plugin-bold/src';
+import { OnChangeFn } from 'slate-react';
+import { resolveModules } from '@artibox/slate-core';
+import { ArtiboxSlateEditor } from '@artibox/slate-editor';
+import { BoldModule } from '@artibox/slate-module-bold';
 
 const style = {
   border: 'solid 1px black',
@@ -26,11 +28,11 @@ const initialValue = Value.fromJSON({
   }
 });
 
-const plugins = [BoldPlugin()];
+const resolvedModules = resolveModules([BoldModule()]);
 
 export function SimpleEditor() {
   const [value, setValue] = useState(initialValue);
   const onChange = useCallback<OnChangeFn>(change => setValue(change.value), []);
 
-  return <Editor style={style} value={value} onChange={onChange} plugins={plugins} />;
+  return <ArtiboxSlateEditor style={style} value={value} onChange={onChange} resolvedModules={resolvedModules} />;
 }
