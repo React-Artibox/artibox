@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-plugin-hotkey",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -25,10 +25,10 @@
     "is-hotkey": "^0.1.6"
   },
   "peerDependencies": {
-    "@artibox/slate-core": "^1.0.0"
+    "@artibox/slate-core": "^0.0.0"
   },
   "devDependencies": {
-    "@artibox/slate-core": "^1.0.0",
+    "@artibox/slate-core": "^0.0.0",
     "@types/is-hotkey": "^0.1.1",
     "@types/slate": "^0.47.3"
   }

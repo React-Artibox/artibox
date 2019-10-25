@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-core",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -21,13 +21,16 @@
     "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
     "build": "tsc && rollup --config rollup.config.js"
   },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  },
   "peerDependencies": {
     "react": "^16.8.6"
   },
   "devDependencies": {
-    "@types/react": "^16.9.10",
-    "@types/slate": "^0.47.2",
-    "@types/slate-react": "^0.22.5",
+    "@types/react": "^16.9.11",
+    "@types/slate": "^0.47.3",
+    "@types/slate-react": "^0.22.6",
     "react": "^16.11.0"
   }
 }

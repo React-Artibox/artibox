@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-module-toggle-mark",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -21,17 +21,18 @@
     "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
     "build": "tsc && rollup --config rollup.config.js"
   },
+  "dependencies": {
+    "@artibox/slate-plugin-hotkey": "^0.0.0"
+  },
   "peerDependencies": {
-    "@artibox/slate-core": "^1.0.0",
-    "@artibox/slate-plugin-hotkey": "^1.0.0",
-    "@artibox/slate-react": "^1.0.0",
+    "@artibox/slate-core": "^0.0.0",
+    "@artibox/slate-editor": "^0.0.0",
     "react": "^16.8.6"
   },
   "devDependencies": {
-    "@artibox/slate-core": "^1.0.0",
-    "@artibox/slate-plugin-hotkey": "^1.0.0",
-    "@artibox/slate-react": "^1.0.0",
-    "@types/react": "^16.9.9",
+    "@artibox/slate-core": "^0.0.0",
+    "@artibox/slate-editor": "^0.0.0",
+    "@types/react": "^16.9.11",
     "@types/slate": "^0.47.2",
     "@types/slate-react": "^0.22.6",
     "react": "^16.11.0"

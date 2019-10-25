@@ -8,7 +8,7 @@
   },
   "references": [
     { "path": "../slate-core" },
-    { "path": "../slate-react" },
+    { "path": "../slate-editor" },
     { "path": "../slate-plugin-hotkey" }
   ],
   "include": [

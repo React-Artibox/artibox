@@ -1,7 +1,7 @@
 import { Editor } from 'slate';
 import { useCallback, MouseEventHandler } from 'react';
 import { MarkModule } from '@artibox/slate-core';
-import { useQueries, useCommands } from '@artibox/slate-react';
+import { useQueries, useCommands } from '@artibox/slate-editor';
 
 export type UseToggleMarkIsActive = (editor: Editor) => boolean;
 
