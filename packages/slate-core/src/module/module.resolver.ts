@@ -19,7 +19,7 @@ export function resolveModules<Q extends string, C extends string>(modules: Modu
     plugins.push(...mod.plugins, {
       queries: mod.queries,
       commands: mod.commands,
-      [RendererObjectRenderMap[mod.renderer.object]]: mod.renderer
+      [RendererObjectRenderMap[mod.renderer.object]]: mod.renderer.render
     });
 
     Object.assign(queries, mod.queries);
