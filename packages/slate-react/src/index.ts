@@ -6,5 +6,5 @@ export { ArtiboxSlateEditorProps, ArtiboxSlateEditor } from './editor';
 /**
  * hooks
  */
-export { createUseQueries } from './hooks/use-queries';
-export { createUseCommands } from './hooks/use-commands';
+export { UseQueries, useQueries } from './hooks/use-queries';
+export { UseCommands, useCommands } from './hooks/use-commands';
