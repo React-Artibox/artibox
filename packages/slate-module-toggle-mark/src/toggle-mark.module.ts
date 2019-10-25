@@ -1,39 +1,28 @@
-import { MarkModule } from '@artibox/slate-core';
-import { CommonMarkRendererConfig, CommonMarkRenderer } from '@artibox/slate-common';
+import { MarkModule, CommonMarkRendererConfig, CommonMarkRenderer } from '@artibox/slate-core';
 import { ToggleMarkPluginsConfig, ToggleMarkPlugins } from './toggle-mark.plugins';
 import { ToggleMarkQueriesConfig, ToggleMarkQueries } from './toggle-mark.queries';
 import { ToggleMarkCommandsConfig, ToggleMarkCommands } from './toggle-mark.commands';
 
-export interface ToggleMarkModuleDefaultConfig<
-  T extends string,
+export type ToggleMarkModuleDefaultConfig<
   QS extends string,
   CA extends string,
   CR extends string,
   CT extends string
->
-  extends CommonMarkRendererConfig,
-    Omit<ToggleMarkPluginsConfig, 'commandToggle'>,
-    ToggleMarkQueriesConfig<QS>,
-    ToggleMarkCommandsConfig<CA, CR, CT> {
-  type: T;
-}
+> = Omit<CommonMarkRendererConfig, 'renderIf'> &
+  Omit<ToggleMarkPluginsConfig, 'commandToggle'> &
+  ToggleMarkQueriesConfig<QS> &
+  ToggleMarkCommandsConfig<CA, CR, CT>;
 
-export interface ToggleMarkModuleConfig<T extends string> {
-  type?: T;
+export interface ToggleMarkModuleConfig {
+  type?: string;
   hotkey?: string;
 }
 
-export function createToggleMarkModule<
-  DT extends string,
-  QS extends string,
-  CA extends string,
-  CR extends string,
-  CT extends string
->(defaults: ToggleMarkModuleDefaultConfig<DT, QS, CA, CR, CT>) {
-  function ToggleMarkModule<T extends string = DT>(
-    config?: ToggleMarkModuleConfig<T>
-  ): MarkModule<T, QS, CA | CR | CT> {
-    const type = ((config && config.type) || defaults.type) as T;
+export function createToggleMarkModule<QS extends string, CA extends string, CR extends string, CT extends string>(
+  defaults: ToggleMarkModuleDefaultConfig<QS, CA, CR, CT>
+) {
+  function ToggleMarkModule(config?: ToggleMarkModuleConfig): MarkModule<QS, CA | CR | CT> {
+    const type = (config && config.type) || defaults.type;
     const hotkey = (config && config.hotkey) || defaults.hotkey;
     const { component, queryHas, commandAdd, commandRemove, commandToggle } = defaults;
 
@@ -48,7 +37,7 @@ export function createToggleMarkModule<
       renderer,
       queries,
       commands
-    } as MarkModule<T, QS, CA | CR | CT>;
+    };
   }
 
   return ToggleMarkModule;

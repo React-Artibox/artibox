@@ -21,17 +21,19 @@
     "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
     "build": "tsc && rollup --config rollup.config.js"
   },
-  "dependencies": {
-    "@artibox/slate-plugin-hotkey": "^1.0.0",
-    "@artibox/slate-core": "^1.0.0"
-  },
   "peerDependencies": {
-    "react": "^16.10.2"
+    "@artibox/slate-core": "^1.0.0",
+    "@artibox/slate-plugin-hotkey": "^1.0.0",
+    "@artibox/slate-react": "^1.0.0",
+    "react": "^16.8.6"
   },
   "devDependencies": {
+    "@artibox/slate-core": "^1.0.0",
+    "@artibox/slate-plugin-hotkey": "^1.0.0",
+    "@artibox/slate-react": "^1.0.0",
     "@types/react": "^16.9.9",
     "@types/slate": "^0.47.2",
     "@types/slate-react": "^0.22.6",
-    "react": "^16.10.2"
+    "react": "^16.11.0"
   }
 }
