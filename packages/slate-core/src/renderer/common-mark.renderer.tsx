@@ -1,6 +1,6 @@
 import React, { ReactHTML, ComponentType } from 'react';
 import { RenderAttributes, RenderMarkProps } from 'slate-react';
-import { MarkRenderer } from '@artibox/slate-core';
+import { MarkRenderer } from './renderer.types';
 
 export type CommonMarkRendererConfigRenderIf = (config: CommonMarkRendererConfig, props: RenderMarkProps) => boolean;
 

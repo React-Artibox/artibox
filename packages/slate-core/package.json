@@ -21,8 +21,13 @@
     "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
     "build": "tsc && rollup --config rollup.config.js"
   },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
   "devDependencies": {
+    "@types/react": "^16.9.10",
     "@types/slate": "^0.47.2",
-    "@types/slate-react": "^0.22.5"
+    "@types/slate-react": "^0.22.5",
+    "react": "^16.11.0"
   }
 }

@@ -1,13 +1,13 @@
 /**
  * plugin
  */
-export { Plugin, PickPluginProps, MarkPlugin } from './plugin';
+export { Plugin, PickPluginProps } from './plugin';
 
 /**
  * renderer
  */
+export { RendererObjectRenderMap } from './renderer/renderer.constants';
 export {
-  RendererObjectRenderMap,
   RendererObject,
   RendererRenderMethodNames,
   AnnotationRenderer,
@@ -18,7 +18,13 @@ export {
   InlineRenderer,
   MarkRenderer,
   Renderer
-} from './renderer';
+} from './renderer/renderer.types';
+export {
+  CommonMarkRendererConfigRenderIf,
+  CommonMarkRendererConfig,
+  CommonMarkRenderer,
+  defaultCommonMarkRenderIf
+} from './renderer/common-mark.renderer';
 
 /**
  * queries
@@ -33,4 +39,5 @@ export { Commands } from './commands';
 /**
  * module
  */
-export { Module, MarkModule, resolveModuleToSlateReactPlugins } from './module';
+export { Module, MarkModule } from './module/module.types';
+export { ResolvedModules, resolveModules } from './module/module.resolver';
