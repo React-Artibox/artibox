@@ -9,7 +9,6 @@ export function HotkeyPlugin(hotkey: string | ReadonlyArray<string>, fn: Command
 
   return {
     onKeyDown(event, editor, next) {
-      //  eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (isSaveHotkey(event as any)) {
         editor.command(fn);
       } else {
