@@ -8,4 +8,4 @@ export {
   BOLD_COMMAND_TOGGLE
 } from './bold.constants';
 export { BoldModule } from './bold.module';
-export { createUseBoldIsActive, useBoldIsActive, createUseBoldOnClick, useBoldOnClick } from './bold.hooks';
+export { useBoldIsActive, useBoldOnClick } from './bold.hooks';
