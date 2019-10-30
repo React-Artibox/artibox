@@ -4,7 +4,7 @@ const ROOT_PATH = path.resolve(__dirname, '..');
 const PACKAGES_PATH = path.resolve(ROOT_PATH, 'packages');
 const STORIES_PATH = path.resolve(ROOT_PATH, 'stories');
 
-const packages = ['slate-core', 'slate-editor', 'slate-plugin-hotkey', 'slate-module-toggle-mark', 'slate-module-bold'];
+const packages = ['slate-core', 'slate-editor', 'slate-plugin-hotkey', 'slate-plugin-toggle-mark', 'slate-plugin-bold'];
 const packagesAlias = packages.reduce((acc, package) => {
   acc[`@artibox/${package}`] = path.resolve(PACKAGES_PATH, package, 'src');
   return acc;

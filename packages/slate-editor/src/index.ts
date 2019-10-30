@@ -1,10 +1,10 @@
 /**
+ * container
+ */
+export { ContainerContext } from './container/container.context';
+export { UseContainer, useContainer } from './container/use-container';
+
+/**
  * editor
  */
 export { ArtiboxSlateEditorProps, ArtiboxSlateEditor } from './editor';
-
-/**
- * hooks
- */
-export { UseQueries, useQueries } from './hooks/use-queries';
-export { UseCommands, useCommands } from './hooks/use-commands';

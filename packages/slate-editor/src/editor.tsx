@@ -1,24 +1,15 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { BasicEditorProps, Editor } from 'slate-react';
-import { ResolvedModules } from '@artibox/slate-core';
-import { QueriesContext } from './contexts/queries.context';
-import { CommandsContext } from './contexts/commands.context';
+import { Plugin, Container } from '@artibox/slate-core';
+import { ContainerContext } from './container/container.context';
 
-export interface ArtiboxSlateEditorProps<Q extends string, C extends string> extends Omit<BasicEditorProps, 'plugins'> {
-  resolvedModules: ResolvedModules<Q, C>;
+export interface ArtiboxSlateEditorProps<Q = any, C = any> extends Omit<BasicEditorProps, 'plugins'> {
+  container: Container<Q, C>;
+  plugins?: Plugin[];
 }
 
-export function ArtiboxSlateEditor<Q extends string, C extends string>({
-  resolvedModules,
-  ...props
-}: ArtiboxSlateEditorProps<Q, C>) {
-  const { plugins, queries, commands } = resolvedModules;
-
-  return (
-    <QueriesContext.Provider value={queries}>
-      <CommandsContext.Provider value={commands}>
-        <Editor {...props} plugins={plugins} />
-      </CommandsContext.Provider>
-    </QueriesContext.Provider>
-  );
-}
+export const ArtiboxSlateEditor = forwardRef<Editor, ArtiboxSlateEditorProps>(({ container, ...props }, ref) => (
+  <ContainerContext.Provider value={container}>
+    <Editor ref={ref} {...props} />
+  </ContainerContext.Provider>
+));

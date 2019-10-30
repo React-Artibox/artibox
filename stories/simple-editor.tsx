@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import { Value } from 'slate';
+import { Value, Editor } from 'slate';
 import { OnChangeFn } from 'slate-react';
-import { resolveModules } from '@artibox/slate-core';
-import { ArtiboxSlateEditor } from '@artibox/slate-editor';
-import { BoldModule } from '@artibox/slate-module-bold';
+import { Container } from '@artibox/slate-core';
+import { ArtiboxSlateEditor, useContainer } from '@artibox/slate-editor';
+import { BoldPlugin, useBoldIsActive, useBoldOnClick } from '@artibox/slate-plugin-bold';
 
 const style = {
   border: 'solid 1px black',
@@ -28,11 +28,40 @@ const initialValue = Value.fromJSON({
   }
 });
 
-const resolvedModules = resolveModules([BoldModule()]);
+const BoldButton = ({ editor }: { editor: Editor }) => {
+  const container = useContainer();
+  const active = useBoldIsActive(editor, container);
+  const onClick = useBoldOnClick(editor, container);
+
+  return (
+    <button
+      style={{
+        fontWeight: active ? 700 : 400
+      }}
+      onClick={onClick}
+    >
+      bold
+    </button>
+  );
+};
+
+const { plugins, container } = Container.resolvePluginsAndCreate([
+  BoldPlugin(),
+  {
+    renderEditor: (_, editor, next) => {
+      return (
+        <>
+          <BoldButton editor={editor} />
+          {next()}
+        </>
+      );
+    }
+  }
+]);
 
 export function SimpleEditor() {
   const [value, setValue] = useState(initialValue);
   const onChange = useCallback<OnChangeFn>(change => setValue(change.value), []);
 
-  return <ArtiboxSlateEditor style={style} value={value} onChange={onChange} resolvedModules={resolvedModules} />;
+  return <ArtiboxSlateEditor style={style} value={value} onChange={onChange} plugins={plugins} container={container} />;
 }

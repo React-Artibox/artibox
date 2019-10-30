@@ -1,4 +1,4 @@
-import { createToggleMarkModule } from '@artibox/slate-module-toggle-mark';
+import { createToggleMarkPlugin } from '@artibox/slate-plugin-toggle-mark';
 import {
   BOLD_TYPE,
   BOLD_COMPONENT,
@@ -9,7 +9,7 @@ import {
   BOLD_COMMAND_TOGGLE
 } from './bold.constants';
 
-export const BoldModule = createToggleMarkModule({
+export const BoldPlugin = createToggleMarkPlugin({
   type: BOLD_TYPE,
   component: BOLD_COMPONENT,
   hotkey: BOLD_HOTKEY,

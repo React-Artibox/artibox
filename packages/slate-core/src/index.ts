@@ -1,43 +1,29 @@
 /**
- * plugin
- */
-export { Plugin, PickPluginProps } from './plugin';
-
-/**
- * renderer
- */
-export { RendererObjectRenderMap } from './renderer/renderer.constants';
-export {
-  RendererObject,
-  RendererRenderMethodNames,
-  AnnotationRenderer,
-  BlockRenderer,
-  DecorationRender,
-  DocumentRenderer,
-  EditorRenderer,
-  InlineRenderer,
-  MarkRenderer,
-  Renderer
-} from './renderer/renderer.types';
-export {
-  CommonMarkRendererConfigRenderIf,
-  CommonMarkRendererConfig,
-  CommonMarkRenderer,
-  defaultCommonMarkRenderIf
-} from './renderer/common-mark.renderer';
-
-/**
  * queries
  */
-export { Queries } from './queries';
+export { QueryIterable, Queries } from './queries';
 
 /**
  * commands
  */
-export { Commands } from './commands';
+export { CommandIterable, Commands } from './commands';
 
 /**
- * module
+ * provider
  */
-export { Module, MarkModule } from './module/module.types';
-export { ResolvedModules, resolveModules } from './module/module.resolver';
+export { DefinedProvider, Provider } from './provider.types';
+
+/**
+ * plugin
+ */
+export { Plugin, PluginWithProvider, PickPluginProps } from './plugin.types';
+
+/**
+ * container
+ */
+export { Container } from './container';
+
+/**
+ * renderer
+ */
+export { CommonMarkRendererConfig, CommonMarkRenderer } from './renderer/common-mark.renderer';

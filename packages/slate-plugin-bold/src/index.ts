@@ -7,5 +7,5 @@ export {
   BOLD_COMMAND_REMOVE,
   BOLD_COMMAND_TOGGLE
 } from './bold.constants';
-export { BoldModule } from './bold.module';
+export { BoldPlugin } from './bold.plugin';
 export { useBoldIsActive, useBoldOnClick } from './bold.hooks';

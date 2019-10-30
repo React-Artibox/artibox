@@ -1,27 +1,22 @@
 import React, { ReactHTML, ComponentType } from 'react';
-import { RenderAttributes, RenderMarkProps } from 'slate-react';
-import { MarkRenderer } from './renderer.types';
-
-export type CommonMarkRendererConfigRenderIf = (config: CommonMarkRendererConfig, props: RenderMarkProps) => boolean;
+import { RenderAttributes } from 'slate-react';
+import { PickPluginProps } from '../plugin.types';
 
 export interface CommonMarkRendererConfig {
   type: string;
   component: keyof ReactHTML | ComponentType<RenderAttributes>;
-  renderIf?: CommonMarkRendererConfigRenderIf;
 }
 
-export const defaultCommonMarkRenderIf: CommonMarkRendererConfigRenderIf = (config, props) =>
-  config.type === props.mark.type;
+export type CommonMarkRenderer = PickPluginProps<'renderMark'>;
 
-export function CommonMarkRenderer(config: CommonMarkRendererConfig): MarkRenderer {
-  const { component: Component, renderIf = defaultCommonMarkRenderIf } = config;
+export function CommonMarkRenderer(config: CommonMarkRendererConfig): CommonMarkRenderer {
+  const { component: Component } = config;
 
   return {
-    object: 'mark',
-    render(props, _, next) {
+    renderMark(props, _, next) {
       const { children, attributes } = props;
 
-      if (!renderIf(config, props)) {
+      if (config.type !== props.mark.type) {
         return next();
       }
 

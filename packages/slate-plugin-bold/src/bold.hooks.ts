@@ -1,4 +1,4 @@
-import { createUseToggleMarkIsActive, createUseToggleMarkOnClick } from '@artibox/slate-module-toggle-mark';
+import { createUseToggleMarkIsActive, createUseToggleMarkOnClick } from '@artibox/slate-plugin-toggle-mark';
 import { BOLD_QUERY_HAS, BOLD_COMMAND_TOGGLE } from './bold.constants';
 
 export const useBoldIsActive = createUseToggleMarkIsActive(BOLD_QUERY_HAS);
