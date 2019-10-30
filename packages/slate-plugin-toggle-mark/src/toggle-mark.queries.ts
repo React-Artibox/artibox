@@ -1,11 +1,19 @@
-import { Queries } from '@artibox/slate-core';
+import { QueryFunc } from 'slate';
 
-export interface ToggleMarkQueriesConfig<QS> {
+export interface ToggleMarkQueriesConfig<QS extends string> {
   type: string;
   queryHas: QS;
 }
 
-export function ToggleMarkQueries<QS>(config: ToggleMarkQueriesConfig<QS>): Queries<QS> {
+export type ToggleMarkQueries<QS extends string> = {
+  [q in QS]: QueryFunc;
+};
+
+export function ToggleMarkQueries<QS extends string>(config: ToggleMarkQueriesConfig<QS>): ToggleMarkQueries<QS> {
   const { type, queryHas } = config;
-  return new Queries<QS>([[queryHas, editor => editor.value.activeMarks.some(mark => (mark && mark.type) === type)]]);
+  const queries = {} as ToggleMarkQueries<QS>;
+
+  queries[queryHas] = editor => editor.value.activeMarks.some(mark => (mark && mark.type) === type);
+
+  return queries;
 }

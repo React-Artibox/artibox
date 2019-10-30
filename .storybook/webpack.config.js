@@ -1,10 +1,11 @@
 const path = require('path');
+const fs = require('fs');
 
 const ROOT_PATH = path.resolve(__dirname, '..');
 const PACKAGES_PATH = path.resolve(ROOT_PATH, 'packages');
 const STORIES_PATH = path.resolve(ROOT_PATH, 'stories');
 
-const packages = ['slate-core', 'slate-editor', 'slate-plugin-hotkey', 'slate-plugin-toggle-mark', 'slate-plugin-bold'];
+const packages = fs.readdirSync(PACKAGES_PATH);
 const packagesAlias = packages.reduce((acc, package) => {
   acc[`@artibox/${package}`] = path.resolve(PACKAGES_PATH, package, 'src');
   return acc;

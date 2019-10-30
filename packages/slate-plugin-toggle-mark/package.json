@@ -22,16 +22,14 @@
     "build": "tsc && rollup --config rollup.config.js"
   },
   "dependencies": {
-    "@artibox/slate-plugin-hotkey": "^0.0.0"
+    "@artibox/slate-plugin-hotkey": "^0.0.0",
+    "@artibox/slate-renderer": "^0.0.0",
+    "@artibox/slate-utils": "^0.0.0"
   },
   "peerDependencies": {
-    "@artibox/slate-core": "^0.0.0",
-    "@artibox/slate-editor": "^0.0.0",
     "react": "^16.8.6"
   },
   "devDependencies": {
-    "@artibox/slate-core": "^0.0.0",
-    "@artibox/slate-editor": "^0.0.0",
     "@types/react": "^16.9.11",
     "@types/slate": "^0.47.2",
     "@types/slate-react": "^0.22.6",

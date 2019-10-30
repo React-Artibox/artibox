@@ -1,5 +1,5 @@
 {
-  "name": "@artibox/slate-editor",
+  "name": "@artibox/slate-renderer",
   "version": "0.0.0",
   "description": "",
   "author": "Rytass",
@@ -22,19 +22,16 @@
     "build": "tsc && rollup --config rollup.config.js"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^1.10.0",
+    "utility-types": "^3.9.0"
   },
   "peerDependencies": {
-    "@artibox/slate-core": "^0.0.0",
-    "react": "^16.8.6",
-    "slate-react": "^0.22.9"
+    "react": "^16.8.6"
   },
   "devDependencies": {
-    "@artibox/slate-core": "^0.0.0",
     "@types/react": "^16.9.11",
     "@types/slate": "^0.47.3",
     "@types/slate-react": "^0.22.6",
-    "react": "^16.11.0",
-    "slate-react": "^0.22.9"
+    "react": "^16.11.0"
   }
 }

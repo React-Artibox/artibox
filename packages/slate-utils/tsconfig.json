@@ -6,9 +6,6 @@
     "rootDir": "./src",
     "composite": true
   },
-  "references": [
-    { "path": "../slate-core" }
-  ],
   "include": [
 		"./src"
   ],

@@ -22,14 +22,12 @@
     "build": "tsc && rollup --config rollup.config.js"
   },
   "dependencies": {
-    "is-hotkey": "^0.1.6"
-  },
-  "peerDependencies": {
-    "@artibox/slate-core": "^0.0.0"
+    "is-hotkey": "^0.1.6",
+    "utility-types": "^3.9.0"
   },
   "devDependencies": {
-    "@artibox/slate-core": "^0.0.0",
     "@types/is-hotkey": "^0.1.1",
-    "@types/slate": "^0.47.3"
+    "@types/slate": "^0.47.3",
+    "@types/slate-react": "^0.22.6"
   }
 }

@@ -1,30 +1,22 @@
 import { Editor } from 'slate';
 import { useCallback, MouseEventHandler } from 'react';
-import { Container } from '@artibox/slate-core';
+import { getQuery, getCommand } from '@artibox/slate-utils';
 
-export type UseToggleMarkIsActive<Q> = (editor: Editor, container: Container<Q, any>) => boolean;
+export type UseToggleMarkIsActive = (editor: Editor) => boolean;
 
-export function createUseToggleMarkIsActive<Q>(queryHas: Q): UseToggleMarkIsActive<Q> {
-  return (editor, container) => {
-    const query = container.getQuery(queryHas);
-    return query ? query(editor) : false;
-  };
+export function createUseToggleMarkIsActive<Q extends string>(queryHas: Q): UseToggleMarkIsActive {
+  return editor => getQuery(editor, queryHas)();
 }
 
-export type UseToggleMarkOnClick<C> = (editor: Editor, container: Container<any, C>) => MouseEventHandler;
+export type UseToggleMarkOnClick = (editor: Editor) => MouseEventHandler;
 
-export function createUseToggleMarkOnClick<C>(commandToggle: C): UseToggleMarkOnClick<C> {
-  return (editor, container) =>
+export function createUseToggleMarkOnClick<C extends string>(commandToggle: C): UseToggleMarkOnClick {
+  return editor =>
     useCallback<MouseEventHandler>(
       event => {
         event.preventDefault();
-
-        const command = container.getCommand(commandToggle);
-
-        if (command) {
-          command(editor);
-        }
+        getCommand(editor, commandToggle)();
       },
-      [editor, container]
+      [editor]
     );
 }

@@ -1,13 +1,13 @@
 import React, { ReactHTML, ComponentType } from 'react';
-import { RenderAttributes } from 'slate-react';
-import { PickPluginProps } from '../plugin.types';
+import { RenderAttributes, Plugin } from 'slate-react';
+import { Required } from 'utility-types';
 
 export interface CommonMarkRendererConfig {
   type: string;
   component: keyof ReactHTML | ComponentType<RenderAttributes>;
 }
 
-export type CommonMarkRenderer = PickPluginProps<'renderMark'>;
+export type CommonMarkRenderer = Required<Plugin, 'renderMark'>;
 
 export function CommonMarkRenderer(config: CommonMarkRendererConfig): CommonMarkRenderer {
   const { component: Component } = config;

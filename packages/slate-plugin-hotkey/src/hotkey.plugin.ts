@@ -1,16 +1,22 @@
 import { isHotkey } from 'is-hotkey';
 import { CommandFunc } from 'slate';
-import { PickPluginProps } from '@artibox/slate-core';
+import { Plugin } from 'slate-react';
+import { Required } from 'utility-types';
 
-export type HotkeyPlugin = PickPluginProps<'onKeyDown'>;
+export type HotkeyPlugin = Required<Plugin, 'onKeyDown'>;
 
-export function HotkeyPlugin(hotkey: string | ReadonlyArray<string>, fn: CommandFunc): HotkeyPlugin {
+export interface HotkeyPluginConfig {
+  hotkey: string | ReadonlyArray<string>;
+  command: string | CommandFunc;
+}
+
+export function HotkeyPlugin({ hotkey, command }: HotkeyPluginConfig): HotkeyPlugin {
   const isSaveHotkey = isHotkey(hotkey);
 
   return {
     onKeyDown(event, editor, next) {
       if (isSaveHotkey(event as any)) {
-        editor.command(fn);
+        editor.command(command);
       } else {
         return next();
       }

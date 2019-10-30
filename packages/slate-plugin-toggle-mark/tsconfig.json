@@ -7,9 +7,9 @@
     "composite": true
   },
   "references": [
-    { "path": "../slate-core" },
-    { "path": "../slate-editor" },
-    { "path": "../slate-plugin-hotkey" }
+    { "path": "../slate-plugin-hotkey" },
+    { "path": "../slate-renderer" },
+    { "path": "../slate-utils" }
   ],
   "include": [
 		"./src"

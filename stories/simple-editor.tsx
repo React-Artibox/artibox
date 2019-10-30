@@ -1,9 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { Value, Editor } from 'slate';
-import { OnChangeFn } from 'slate-react';
-import { Container } from '@artibox/slate-core';
-import { ArtiboxSlateEditor, useContainer } from '@artibox/slate-editor';
+import { Value, Editor as CoreEditor } from 'slate';
+import { OnChangeFn, Plugin, Editor } from 'slate-react';
 import { BoldPlugin, useBoldIsActive, useBoldOnClick } from '@artibox/slate-plugin-bold';
+import { ItalicPlugin, useItalicIsActive, useItalicOnClick } from '@artibox/slate-plugin-italic';
 
 const style = {
   border: 'solid 1px black',
@@ -28,10 +27,9 @@ const initialValue = Value.fromJSON({
   }
 });
 
-const BoldButton = ({ editor }: { editor: Editor }) => {
-  const container = useContainer();
-  const active = useBoldIsActive(editor, container);
-  const onClick = useBoldOnClick(editor, container);
+const BoldButton = ({ editor }: { editor: CoreEditor }) => {
+  const active = useBoldIsActive(editor);
+  const onClick = useBoldOnClick(editor);
 
   return (
     <button
@@ -45,23 +43,41 @@ const BoldButton = ({ editor }: { editor: Editor }) => {
   );
 };
 
-const { plugins, container } = Container.resolvePluginsAndCreate([
+const ItalicButton = ({ editor }: { editor: CoreEditor }) => {
+  const active = useItalicIsActive(editor);
+  const onClick = useItalicOnClick(editor);
+
+  return (
+    <button
+      style={{
+        fontWeight: active ? 700 : 400
+      }}
+      onClick={onClick}
+    >
+      italic
+    </button>
+  );
+};
+
+const plugins: Plugin[] = [
   BoldPlugin(),
+  ItalicPlugin(),
   {
     renderEditor: (_, editor, next) => {
       return (
         <>
           <BoldButton editor={editor} />
+          <ItalicButton editor={editor} />
           {next()}
         </>
       );
     }
   }
-]);
+];
 
 export function SimpleEditor() {
   const [value, setValue] = useState(initialValue);
   const onChange = useCallback<OnChangeFn>(change => setValue(change.value), []);
 
-  return <ArtiboxSlateEditor style={style} value={value} onChange={onChange} plugins={plugins} container={container} />;
+  return <Editor style={style} value={value} onChange={onChange} plugins={plugins} />;
 }
