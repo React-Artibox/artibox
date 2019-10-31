@@ -10,6 +10,17 @@ import {
   useStrikethroughOnClick
 } from '@artibox/slate-plugin-strikethrough';
 import { UnderlinePlugin, useUnderlineIsActive, useUnderlineOnClick } from '@artibox/slate-plugin-underline';
+import {
+  Heading1Plugin,
+  useHeading1IsActive,
+  useHeading1OnClick,
+  Heading2Plugin,
+  useHeading2IsActive,
+  useHeading2OnClick,
+  Heading3Plugin,
+  useHeading3IsActive,
+  useHeading3OnClick
+} from '@artibox/slate-plugin-heading';
 
 interface EditorPassable {
   editor: Editor;
@@ -39,12 +50,18 @@ const BoldButton = createToggleButton(useBoldIsActive, useBoldOnClick, 'bold');
 const ItalicButton = createToggleButton(useItalicIsActive, useItalicOnClick, 'italic');
 const StrikethroughButton = createToggleButton(useStrikethroughIsActive, useStrikethroughOnClick, 'strikethrough');
 const UnderlineButton = createToggleButton(useUnderlineIsActive, useUnderlineOnClick, 'underline');
+const Heading1Button = createToggleButton(useHeading1IsActive, useHeading1OnClick, 'heading 1');
+const Heading2Button = createToggleButton(useHeading2IsActive, useHeading2OnClick, 'heading 2');
+const Heading3Button = createToggleButton(useHeading3IsActive, useHeading3OnClick, 'heading 3');
 
 export const plugins: Plugin[] = [
   BoldPlugin(),
   ItalicPlugin(),
   StrikethroughPlugin(),
   UnderlinePlugin(),
+  Heading1Plugin(),
+  Heading2Plugin(),
+  Heading3Plugin(),
   {
     renderEditor: (_, editor, next) => {
       return (
@@ -53,6 +70,9 @@ export const plugins: Plugin[] = [
           <ItalicButton editor={editor} />
           <StrikethroughButton editor={editor} />
           <UnderlineButton editor={editor} />
+          <Heading1Button editor={editor} />
+          <Heading2Button editor={editor} />
+          <Heading3Button editor={editor} />
           {next()}
         </>
       );

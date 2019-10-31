@@ -1,0 +1,88 @@
+import { createHeadingPlugin } from './heading-plugin.factory';
+import {
+  HEADING_1_TYPE,
+  HEADING_1_HOTKEY,
+  HEADING_1_COMPONENT,
+  HEADING_1_QUERY_HAS,
+  HEADING_1_COMMAND_END,
+  HEADING_1_COMMAND_TOGGLE,
+  HEADING_2_TYPE,
+  HEADING_2_HOTKEY,
+  HEADING_2_COMPONENT,
+  HEADING_2_QUERY_HAS,
+  HEADING_2_COMMAND_END,
+  HEADING_2_COMMAND_TOGGLE,
+  HEADING_3_TYPE,
+  HEADING_3_HOTKEY,
+  HEADING_3_COMPONENT,
+  HEADING_3_QUERY_HAS,
+  HEADING_3_COMMAND_END,
+  HEADING_3_COMMAND_TOGGLE,
+  HEADING_4_TYPE,
+  HEADING_4_HOTKEY,
+  HEADING_4_COMPONENT,
+  HEADING_4_QUERY_HAS,
+  HEADING_4_COMMAND_END,
+  HEADING_4_COMMAND_TOGGLE,
+  HEADING_5_TYPE,
+  HEADING_5_HOTKEY,
+  HEADING_5_COMPONENT,
+  HEADING_5_QUERY_HAS,
+  HEADING_5_COMMAND_END,
+  HEADING_5_COMMAND_TOGGLE,
+  HEADING_6_TYPE,
+  HEADING_6_HOTKEY,
+  HEADING_6_COMPONENT,
+  HEADING_6_QUERY_HAS,
+  HEADING_6_COMMAND_END,
+  HEADING_6_COMMAND_TOGGLE
+} from './heading.constants';
+
+export const Heading1Plugin = createHeadingPlugin({
+  type: HEADING_1_TYPE,
+  hotkey: HEADING_1_HOTKEY,
+  component: HEADING_1_COMPONENT,
+  queryHas: HEADING_1_QUERY_HAS,
+  commandEnd: HEADING_1_COMMAND_END,
+  commandToggle: HEADING_1_COMMAND_TOGGLE
+});
+export const Heading2Plugin = createHeadingPlugin({
+  type: HEADING_2_TYPE,
+  hotkey: HEADING_2_HOTKEY,
+  component: HEADING_2_COMPONENT,
+  queryHas: HEADING_2_QUERY_HAS,
+  commandEnd: HEADING_2_COMMAND_END,
+  commandToggle: HEADING_2_COMMAND_TOGGLE
+});
+export const Heading3Plugin = createHeadingPlugin({
+  type: HEADING_3_TYPE,
+  hotkey: HEADING_3_HOTKEY,
+  component: HEADING_3_COMPONENT,
+  queryHas: HEADING_3_QUERY_HAS,
+  commandEnd: HEADING_3_COMMAND_END,
+  commandToggle: HEADING_3_COMMAND_TOGGLE
+});
+export const Heading4Plugin = createHeadingPlugin({
+  type: HEADING_4_TYPE,
+  hotkey: HEADING_4_HOTKEY,
+  component: HEADING_4_COMPONENT,
+  queryHas: HEADING_4_QUERY_HAS,
+  commandEnd: HEADING_4_COMMAND_END,
+  commandToggle: HEADING_4_COMMAND_TOGGLE
+});
+export const Heading5Plugin = createHeadingPlugin({
+  type: HEADING_5_TYPE,
+  hotkey: HEADING_5_HOTKEY,
+  component: HEADING_5_COMPONENT,
+  queryHas: HEADING_5_QUERY_HAS,
+  commandEnd: HEADING_5_COMMAND_END,
+  commandToggle: HEADING_5_COMMAND_TOGGLE
+});
+export const Heading6Plugin = createHeadingPlugin({
+  type: HEADING_6_TYPE,
+  hotkey: HEADING_6_HOTKEY,
+  component: HEADING_6_COMPONENT,
+  queryHas: HEADING_6_QUERY_HAS,
+  commandEnd: HEADING_6_COMMAND_END,
+  commandToggle: HEADING_6_COMMAND_TOGGLE
+});
