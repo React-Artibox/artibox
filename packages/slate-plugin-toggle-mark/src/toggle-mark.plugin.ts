@@ -29,6 +29,10 @@ export function createToggleMarkPlugin<QS extends string, CA extends string, CR 
   defaults: ToggleMarkPluginDefaultConfig<QS, CA, CR, CT>
 ) {
   function ToggleMarkPlugin(config?: ToggleMarkPluginConfig): ToggleMarkPlugin<QS, CA | CR | CT> {
+    /**
+     * @todo
+     * Refactor to `optional chaning` and `nullish coalescing operator` while `typescript@3.7.1` released.
+     */
     const type = (config && config.type) || defaults.type;
     const hotkey = (config && config.hotkey) || defaults.hotkey;
     const { component, queryHas, commandAdd, commandRemove, commandToggle } = defaults;
