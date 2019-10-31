@@ -13,21 +13,28 @@ const packagesAlias = packages.reduce((acc, package) => {
 const alias = { ...packagesAlias };
 
 module.exports = ({ config }) => {
-  config.module.rules.push({
-    test: /\.(ts|tsx)$/,
-    include: [PACKAGES_PATH, STORIES_PATH],
-    use: [
-      {
-        loader: require.resolve('awesome-typescript-loader'),
-        options: {
-          configFileName: './.storybook/tsconfig.json'
+  config.module.rules.push(
+    {
+      test: /\.(ts|tsx)$/,
+      include: [PACKAGES_PATH, STORIES_PATH],
+      use: [
+        {
+          loader: 'awesome-typescript-loader',
+          options: {
+            configFileName: './.storybook/tsconfig.json'
+          }
+        },
+        {
+          loader: 'react-docgen-typescript-loader'
         }
-      },
-      {
-        loader: require.resolve('react-docgen-typescript-loader')
-      }
-    ]
-  });
+      ]
+    },
+    {
+      test: /\.s[ac]ss$/,
+      include: [STORIES_PATH],
+      use: ['style-loader', 'css-loader', 'sass-loader']
+    }
+  );
 
   config.resolve.extensions.push('.ts', '.tsx');
   config.resolve.alias = alias;
