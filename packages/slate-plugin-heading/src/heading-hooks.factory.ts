@@ -1,6 +1,6 @@
 import { Editor } from 'slate';
 import { useCallback, MouseEventHandler } from 'react';
-import { getQuery, getCommand } from '@artibox/slate-utils';
+import { getQuery, getCommand } from '@artibox/slate-core';
 
 export type UseHeadingIsActive = (editor: Editor) => boolean;
 
