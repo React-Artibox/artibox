@@ -1,6 +1,6 @@
 import React from 'react';
-import { SimpleEditor } from './simple-editor';
+import { RichEditor } from './rich-editor';
 
 export default { title: 'Artibox' };
 
-export const Simple = () => <SimpleEditor />;
+export const Rich = () => <RichEditor />;
