@@ -1,2 +1,2 @@
-export { getQuery } from './get-query';
-export { getCommand } from './get-command';
+export { hasQuery, getQuery } from './query';
+export { hasCommand, getCommand } from './command';
