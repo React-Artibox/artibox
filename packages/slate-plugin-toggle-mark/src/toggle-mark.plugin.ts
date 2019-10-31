@@ -39,16 +39,14 @@ export function createToggleMarkPlugin<QS extends string, CA extends string, CR 
 
     const queries = ToggleMarkQueries({ type, queryHas });
     const commands = ToggleMarkCommands({ type, commandAdd, commandRemove, commandToggle });
-    const hotkeyPlugin = HotkeyPlugin({ hotkey, command: commands[commandToggle] });
+    const hotkeyPlugin = HotkeyPlugin({ hotkey, command: commandToggle });
     const renderer = CommonMarkRenderer({ type, component });
-    const plugin = {
+    return {
       queries,
       commands,
       onKeyDown: hotkeyPlugin.onKeyDown,
       renderMark: renderer.renderMark
     };
-
-    return plugin;
   }
 
   return ToggleMarkPlugin;
