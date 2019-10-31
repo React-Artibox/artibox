@@ -1,11 +1,11 @@
 import { Editor, CommandFunc } from 'slate';
 
-export function getCommand(editor: Editor, commandName: string) {
+export function getCommand<F extends (...args: any[]) => Editor>(editor: Editor, commandName: string) {
   const command: CommandFunc | undefined = (editor as any)[commandName];
 
   if (!command) {
     throw new Error(`Command ${commandName} is not registered.`);
   }
 
-  return <A extends any[]>(...args: A) => editor.command(command, ...args);
+  return (...args: Parameters<F>): Editor => editor.command(command, ...args);
 }
