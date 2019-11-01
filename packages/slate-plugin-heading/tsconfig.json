@@ -7,8 +7,7 @@
     "composite": true
   },
   "references": [
-    { "path": "../slate-core" },
-    { "path": "../slate-renderer" }
+    { "path": "../slate-core" }
   ],
   "include": [
 		"./src"
