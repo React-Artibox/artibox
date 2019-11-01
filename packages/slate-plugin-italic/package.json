@@ -5,6 +5,7 @@
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
   "license": "MIT",
+  "sideEffects": false,
   "main": "./lib/index.js",
   "module": "./esm/index.js",
   "jsnext:main": "./esm/index.js",
