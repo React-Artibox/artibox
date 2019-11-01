@@ -22,6 +22,7 @@
     "build": "tsc && rollup --config rollup.config.js"
   },
   "dependencies": {
+    "@artibox/slate-core": "^0.0.0",
     "tslib": "^1.10.0",
     "utility-types": "^3.9.0"
   },
