@@ -13,7 +13,6 @@
     "noEmitHelpers": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": true,
     "strict": true,
     "sourceMap": true,
     "composite": true,
