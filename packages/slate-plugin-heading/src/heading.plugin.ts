@@ -15,7 +15,14 @@ import { HeadingRenderer } from './heading.renderer';
 
 export interface HeadingPluginConfig {
   type?: string;
+  /**
+   * If the hotkey is `ctrl+opt`, the level 1 hotkey will be `ctrl+opt+1`, and so on.
+   */
   hotkey?: string;
+  /**
+   * The blacklist of heading levels.
+   * If no pass, all levels will be enabled.
+   */
   disabled?: HEADING_LEVELS[];
 }
 
