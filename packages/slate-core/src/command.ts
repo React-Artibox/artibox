@@ -7,6 +7,14 @@ export function hasCommand(editor: Editor, commandName: string) {
   return commandName in editor && typeof (editor as any)[commandName] === 'function';
 }
 
+/**
+ * @example
+ *
+ * type CommandAdd = (editor: Editor, data: object) => Editor;
+ *
+ * const command = getCommand<CommandAdd>(editor, 'commandAdd');
+ * return command({ value: 123 });
+ */
 export function getCommand<C extends (...args: any[]) => Editor>(
   editor: Editor,
   command: string | CommandFunc
