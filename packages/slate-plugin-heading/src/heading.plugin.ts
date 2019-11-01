@@ -5,7 +5,6 @@ import {
   HEADING_TYPE,
   HEADING_LEVELS,
   HEADING_HOTKEY,
-  HEADING_HOTKEYS_MAP,
   HEADING_COMMAND_TOGGLE,
   HEADING_COMMAND_END
 } from './heading.constants';
@@ -40,13 +39,7 @@ export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
   const enabled = HEADING_LEVELS.filter(level => !disabled.includes(level));
   const type = (config && config.type) || HEADING_TYPE;
   const hotkey = (config && config.hotkey) || HEADING_HOTKEY;
-  const hotkeys = enabled.reduce(
-    (acc, level) => {
-      acc.push([level, isHotkey(`${hotkey}+${level}`)]);
-      return acc;
-    },
-    [] as HEADING_HOTKEYS_MAP
-  );
+  const isSaveHotkey = isHotkey(hotkey);
   const queries = HeadingQueries(type);
   const commands = HeadingCommands(type);
   const renderer = HeadingRenderer(type);
@@ -57,19 +50,29 @@ export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
     renderBlock: renderer.renderBlock,
     onKeyDown: (event, editor, next) => {
       if (event.key === 'Enter') {
+        /**
+         * If press enter on the block not heading, continue.
+         */
         if (editor.value.startBlock.type !== type) {
           return next();
         }
 
         commands[HEADING_COMMAND_END](editor);
+
         return;
       }
 
-      const [level] = hotkeys.find(([, isSaveHotkey]) => isSaveHotkey(event as any)) || [];
+      /**
+       * Only toggle if the hotkey is fired and the key is the same as level.
+       */
+      const numKey = +event.key;
 
-      if (level !== undefined) {
+      if (isSaveHotkey(event as any) && enabled.includes(numKey as HEADING_LEVELS)) {
+        const level = numKey as HEADING_LEVELS;
+
         event.preventDefault();
         commands[HEADING_COMMAND_TOGGLE](editor, level);
+
         return;
       }
 
