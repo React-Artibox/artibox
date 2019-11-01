@@ -1,7 +1,7 @@
 import { Editor, CommandFunc } from 'slate';
 
 export function hasCommand(editor: Editor, commandName: string) {
-  return commandName in editor;
+  return commandName in editor && typeof (editor as any)[commandName] === 'function';
 }
 
 export function getCommand<F extends (...args: any[]) => Editor>(editor: Editor, command: string | CommandFunc) {

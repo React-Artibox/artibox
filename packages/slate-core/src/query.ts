@@ -1,7 +1,7 @@
 import { Editor, QueryFunc } from 'slate';
 
 export function hasQuery(editor: Editor, queryName: string) {
-  return queryName in editor;
+  return queryName in editor && typeof (editor as any)[queryName] === 'function';
 }
 
 export function getQuery<F extends (...args: any[]) => any>(editor: Editor, query: string | QueryFunc) {
