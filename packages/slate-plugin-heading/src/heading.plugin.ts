@@ -50,8 +50,12 @@ export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
     renderBlock: renderer.renderBlock,
     onKeyDown: (event, editor, next) => {
       if (event.key === 'Enter') {
+        if (editor.value.startBlock.type !== type) {
+          return next();
+        }
+
         commands[HEADING_COMMAND_END](editor);
-        return next();
+        return;
       }
 
       const [level] = hotkeys.find(([, isSaveHotkey]) => isSaveHotkey(event as any)) || [];
