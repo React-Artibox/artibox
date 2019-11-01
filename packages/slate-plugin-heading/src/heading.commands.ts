@@ -1,5 +1,5 @@
 import { Editor, Plugin, CommandFunc } from 'slate';
-import { getQuery, ComposeCommandFunc } from '@artibox/slate-core';
+import { ComposeCommandFunc, PARAGRAPH_TYPE, getQuery } from '@artibox/slate-core';
 import { HEADING_LEVELS, HEADING_QUERY_LEVEL, HEADING_COMMAND_END, HEADING_COMMAND_TOGGLE } from './heading.constants';
 import { HeadingQueryLevel } from './heading.queries';
 import { createHeadingBlock } from './heading.utils';
@@ -23,12 +23,12 @@ export function HeadingCommands(type: string): HeadingCommands {
 
     return editor
       .splitBlock()
-      .setBlocks('paragraph')
+      .setBlocks(PARAGRAPH_TYPE)
       .focus();
   };
   commands[HEADING_COMMAND_TOGGLE] = (editor, level) => {
     const currentLevel = getQuery<HeadingQueryLevel>(editor, HEADING_QUERY_LEVEL)();
-    const block = currentLevel !== level ? createHeadingBlock(type, level) : 'paragraph';
+    const block = currentLevel !== level ? createHeadingBlock(type, level) : PARAGRAPH_TYPE;
     return editor.setBlocks(block).focus();
   };
 
