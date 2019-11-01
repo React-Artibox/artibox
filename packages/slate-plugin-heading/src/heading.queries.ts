@@ -1,14 +1,13 @@
-import { Plugin } from 'slate';
-import { ComposeQueryFunc } from '@artibox/slate-core';
+import { Editor, Plugin } from 'slate';
 import { HEADING_LEVELS, HEADING_QUERY_HAS, HEADING_QUERY_LEVEL } from './heading.constants';
 import { getLevelFromBlock } from './heading.utils';
 
-export type HeadingQueryHas = (level: HEADING_LEVELS) => boolean;
-export type HeadingQueryLevel = () => HEADING_LEVELS | undefined;
+export type HeadingQueryHas = (editor: Editor, level: HEADING_LEVELS) => boolean;
+export type HeadingQueryLevel = (editor: Editor) => HEADING_LEVELS | undefined;
 
 export type HeadingQueries = Plugin['queries'] & {
-  [HEADING_QUERY_HAS]: ComposeQueryFunc<HeadingQueryHas>;
-  [HEADING_QUERY_LEVEL]: ComposeQueryFunc<HeadingQueryLevel>;
+  [HEADING_QUERY_HAS]: HeadingQueryHas;
+  [HEADING_QUERY_LEVEL]: HeadingQueryLevel;
 };
 
 export function HeadingQueries(type: string): HeadingQueries {
