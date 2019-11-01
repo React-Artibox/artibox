@@ -1,22 +1,23 @@
-import { QueryFunc } from 'slate';
+import { Editor } from 'slate';
 
-export interface ToggleMarkQueriesConfig<QS extends string> {
+export type ToggleMarkQueryHas = (editor: Editor) => boolean;
+
+export interface ToggleMarkQueriesConfig {
   type: string;
-  queryHas: QS;
+  queryHas: string;
 }
 
-export type ToggleMarkQueries<QS extends string> = {
-  [q in QS]: QueryFunc;
-};
+export interface ToggleMarkQueries {
+  [q: string]: ToggleMarkQueryHas;
+}
 
-export function ToggleMarkQueries<QS extends string>(config: ToggleMarkQueriesConfig<QS>): ToggleMarkQueries<QS> {
+export function ToggleMarkQueries(config: ToggleMarkQueriesConfig): ToggleMarkQueries {
   const { type, queryHas } = config;
-  const queries = {} as ToggleMarkQueries<QS>;
   /**
    * @todo
    * Refactor to `optional chaning` and `nullish coalescing operator` while `typescript@3.7.1` released.
    */
-  queries[queryHas] = editor => editor.value.activeMarks.some(mark => (mark && mark.type) === type);
-
-  return queries;
+  return {
+    [queryHas]: editor => editor.value.activeMarks.some(mark => (mark && mark.type) === type)
+  };
 }

@@ -5,12 +5,10 @@ import { HotkeyPlugin } from '@artibox/slate-plugin-hotkey';
 import { ToggleMarkQueriesConfig, ToggleMarkQueries } from './toggle-mark.queries';
 import { ToggleMarkCommandsConfig, ToggleMarkCommands } from './toggle-mark.commands';
 
-export interface ToggleMarkPluginDefaultConfig<
-  QS extends string,
-  CA extends string,
-  CR extends string,
-  CT extends string
-> extends CommonMarkRendererConfig, ToggleMarkQueriesConfig<QS>, ToggleMarkCommandsConfig<CA, CR, CT> {
+export interface ToggleMarkPluginDefaultConfig
+  extends CommonMarkRendererConfig,
+    ToggleMarkQueriesConfig,
+    ToggleMarkCommandsConfig {
   hotkey: string;
 }
 
@@ -19,16 +17,13 @@ export interface ToggleMarkPluginConfig {
   hotkey?: string;
 }
 
-export interface ToggleMarkPlugin<Q extends string, C extends string>
-  extends Required<Plugin, 'onKeyDown' | 'renderMark'> {
-  queries: ToggleMarkQueries<Q>;
-  commands: ToggleMarkCommands<C>;
+export interface ToggleMarkPlugin extends Required<Plugin, 'onKeyDown' | 'renderMark'> {
+  queries: ToggleMarkQueries;
+  commands: ToggleMarkCommands;
 }
 
-export function createToggleMarkPlugin<QS extends string, CA extends string, CR extends string, CT extends string>(
-  defaults: ToggleMarkPluginDefaultConfig<QS, CA, CR, CT>
-) {
-  function ToggleMarkPlugin(config?: ToggleMarkPluginConfig): ToggleMarkPlugin<QS, CA | CR | CT> {
+export function createToggleMarkPlugin(defaults: ToggleMarkPluginDefaultConfig) {
+  function ToggleMarkPlugin(config?: ToggleMarkPluginConfig): ToggleMarkPlugin {
     /**
      * @todo
      * Refactor to `optional chaning` and `nullish coalescing operator` while `typescript@3.7.1` released.

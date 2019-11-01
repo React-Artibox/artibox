@@ -1,5 +1,11 @@
-export { ToggleMarkQueriesConfig, ToggleMarkQueries } from './toggle-mark.queries';
-export { ToggleMarkCommandsConfig, ToggleMarkCommands } from './toggle-mark.commands';
+export { ToggleMarkQueryHas, ToggleMarkQueriesConfig, ToggleMarkQueries } from './toggle-mark.queries';
+export {
+  ToggleMarkCommandAdd,
+  ToggleMarkCommandRemove,
+  ToggleMarkCommandToggle,
+  ToggleMarkCommandsConfig,
+  ToggleMarkCommands
+} from './toggle-mark.commands';
 export {
   ToggleMarkPluginDefaultConfig,
   ToggleMarkPluginConfig,
