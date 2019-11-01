@@ -1,24 +1,20 @@
-import { CommandFunc } from 'slate';
-import { HeadingQueryHas } from './heading.queries';
+import { Editor, Plugin, CommandFunc } from 'slate';
+import { getQuery, ComposeCommandFunc } from '@artibox/slate-core';
+import { HEADING_LEVELS, HEADING_QUERY_LEVEL, HEADING_COMMAND_END, HEADING_COMMAND_TOGGLE } from './heading.constants';
+import { HeadingQueryLevel } from './heading.queries';
+import { createHeadingBlock } from './heading.utils';
 
-export interface HeadingCommandsConfig<CE extends string, CT extends string> {
-  type: string;
-  queryHas: HeadingQueryHas;
-  commandEnd: CE;
-  commandToggle: CT;
-}
+export type HeadingCommandToggle = (level: HEADING_LEVELS) => Editor;
 
-export type HeadingCommands<C extends string> = {
-  [c in C]: CommandFunc;
+export type HeadingCommands = Plugin['commands'] & {
+  [HEADING_COMMAND_END]: CommandFunc;
+  [HEADING_COMMAND_TOGGLE]: ComposeCommandFunc<HeadingCommandToggle>;
 };
 
-export function HeadingCommands<CE extends string, CT extends string>(
-  config: HeadingCommandsConfig<CE, CT>
-): HeadingCommands<CE | CT> {
-  const { type, queryHas, commandEnd, commandToggle } = config;
-  const commands = {} as HeadingCommands<CE | CT>;
+export function HeadingCommands(type: string): HeadingCommands {
+  const commands = {} as HeadingCommands;
 
-  commands[commandEnd] = editor => {
+  commands[HEADING_COMMAND_END] = editor => {
     const currentBlock = editor.value.startBlock;
 
     if (currentBlock.type !== type) {
@@ -30,7 +26,11 @@ export function HeadingCommands<CE extends string, CT extends string>(
       .setBlocks('paragraph')
       .focus();
   };
-  commands[commandToggle] = editor => editor.setBlocks(queryHas(editor) ? 'paragraph' : type).focus();
+  commands[HEADING_COMMAND_TOGGLE] = (editor, level) => {
+    const currentLevel = getQuery<HeadingQueryLevel>(editor, HEADING_QUERY_LEVEL)();
+    const block = currentLevel !== level ? createHeadingBlock(type, level) : 'paragraph';
+    return editor.setBlocks(block).focus();
+  };
 
   return commands;
 }

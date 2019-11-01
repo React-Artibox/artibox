@@ -1,88 +1,68 @@
-import { createHeadingPlugin } from './heading-plugin.factory';
+import { Plugin } from 'slate-react';
+import { Required } from 'utility-types';
+import { isHotkey } from 'is-hotkey';
 import {
-  HEADING_1_TYPE,
-  HEADING_1_HOTKEY,
-  HEADING_1_COMPONENT,
-  HEADING_1_QUERY_HAS,
-  HEADING_1_COMMAND_END,
-  HEADING_1_COMMAND_TOGGLE,
-  HEADING_2_TYPE,
-  HEADING_2_HOTKEY,
-  HEADING_2_COMPONENT,
-  HEADING_2_QUERY_HAS,
-  HEADING_2_COMMAND_END,
-  HEADING_2_COMMAND_TOGGLE,
-  HEADING_3_TYPE,
-  HEADING_3_HOTKEY,
-  HEADING_3_COMPONENT,
-  HEADING_3_QUERY_HAS,
-  HEADING_3_COMMAND_END,
-  HEADING_3_COMMAND_TOGGLE,
-  HEADING_4_TYPE,
-  HEADING_4_HOTKEY,
-  HEADING_4_COMPONENT,
-  HEADING_4_QUERY_HAS,
-  HEADING_4_COMMAND_END,
-  HEADING_4_COMMAND_TOGGLE,
-  HEADING_5_TYPE,
-  HEADING_5_HOTKEY,
-  HEADING_5_COMPONENT,
-  HEADING_5_QUERY_HAS,
-  HEADING_5_COMMAND_END,
-  HEADING_5_COMMAND_TOGGLE,
-  HEADING_6_TYPE,
-  HEADING_6_HOTKEY,
-  HEADING_6_COMPONENT,
-  HEADING_6_QUERY_HAS,
-  HEADING_6_COMMAND_END,
-  HEADING_6_COMMAND_TOGGLE
+  HEADING_TYPE,
+  HEADING_LEVELS,
+  HEADING_HOTKEY,
+  HEADING_HOTKEYS_MAP,
+  HEADING_COMMAND_TOGGLE,
+  HEADING_COMMAND_END
 } from './heading.constants';
+import { HeadingQueries } from './heading.queries';
+import { HeadingCommands } from './heading.commands';
+import { HeadingRenderer } from './heading.renderer';
 
-export const Heading1Plugin = createHeadingPlugin({
-  type: HEADING_1_TYPE,
-  hotkey: HEADING_1_HOTKEY,
-  component: HEADING_1_COMPONENT,
-  queryHas: HEADING_1_QUERY_HAS,
-  commandEnd: HEADING_1_COMMAND_END,
-  commandToggle: HEADING_1_COMMAND_TOGGLE
-});
-export const Heading2Plugin = createHeadingPlugin({
-  type: HEADING_2_TYPE,
-  hotkey: HEADING_2_HOTKEY,
-  component: HEADING_2_COMPONENT,
-  queryHas: HEADING_2_QUERY_HAS,
-  commandEnd: HEADING_2_COMMAND_END,
-  commandToggle: HEADING_2_COMMAND_TOGGLE
-});
-export const Heading3Plugin = createHeadingPlugin({
-  type: HEADING_3_TYPE,
-  hotkey: HEADING_3_HOTKEY,
-  component: HEADING_3_COMPONENT,
-  queryHas: HEADING_3_QUERY_HAS,
-  commandEnd: HEADING_3_COMMAND_END,
-  commandToggle: HEADING_3_COMMAND_TOGGLE
-});
-export const Heading4Plugin = createHeadingPlugin({
-  type: HEADING_4_TYPE,
-  hotkey: HEADING_4_HOTKEY,
-  component: HEADING_4_COMPONENT,
-  queryHas: HEADING_4_QUERY_HAS,
-  commandEnd: HEADING_4_COMMAND_END,
-  commandToggle: HEADING_4_COMMAND_TOGGLE
-});
-export const Heading5Plugin = createHeadingPlugin({
-  type: HEADING_5_TYPE,
-  hotkey: HEADING_5_HOTKEY,
-  component: HEADING_5_COMPONENT,
-  queryHas: HEADING_5_QUERY_HAS,
-  commandEnd: HEADING_5_COMMAND_END,
-  commandToggle: HEADING_5_COMMAND_TOGGLE
-});
-export const Heading6Plugin = createHeadingPlugin({
-  type: HEADING_6_TYPE,
-  hotkey: HEADING_6_HOTKEY,
-  component: HEADING_6_COMPONENT,
-  queryHas: HEADING_6_QUERY_HAS,
-  commandEnd: HEADING_6_COMMAND_END,
-  commandToggle: HEADING_6_COMMAND_TOGGLE
-});
+export interface HeadingPluginConfig {
+  type?: string;
+  hotkey?: string;
+  disabled?: HEADING_LEVELS[];
+}
+
+export interface HeadingPlugin extends Required<Plugin, 'onKeyDown' | 'renderBlock'> {
+  queries: HeadingQueries;
+  commands: HeadingCommands;
+}
+
+export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
+  /**
+   * @todo
+   * Refactor to `optional chaning` and `nullish coalescing operator` while `typescript@3.7.1` released.
+   */
+  const disabled = (config && config.disabled) || [];
+  const enabled = HEADING_LEVELS.filter(level => !disabled.includes(level));
+  const type = (config && config.type) || HEADING_TYPE;
+  const hotkey = (config && config.hotkey) || HEADING_HOTKEY;
+  const hotkeys = enabled.reduce(
+    (acc, level) => {
+      acc.push([level, isHotkey(`${hotkey}+${level}`)]);
+      return acc;
+    },
+    [] as HEADING_HOTKEYS_MAP
+  );
+  const queries = HeadingQueries(type);
+  const commands = HeadingCommands(type);
+  const renderer = HeadingRenderer(type);
+
+  return {
+    queries,
+    commands,
+    renderBlock: renderer.renderBlock,
+    onKeyDown: (event, editor, next) => {
+      if (event.key === 'Enter') {
+        commands[HEADING_COMMAND_END](editor);
+        return next();
+      }
+
+      const [level] = hotkeys.find(([, isSaveHotkey]) => isSaveHotkey(event as any)) || [];
+
+      if (level !== undefined) {
+        event.preventDefault();
+        commands[HEADING_COMMAND_TOGGLE](editor, level);
+        return;
+      }
+
+      return next();
+    }
+  };
+}

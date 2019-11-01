@@ -1,60 +1,14 @@
 export {
-  HEADING_1_TYPE,
-  HEADING_1_HOTKEY,
-  HEADING_1_COMPONENT,
-  HEADING_1_QUERY_HAS,
-  HEADING_1_COMMAND_END,
-  HEADING_1_COMMAND_TOGGLE,
-  HEADING_2_TYPE,
-  HEADING_2_HOTKEY,
-  HEADING_2_COMPONENT,
-  HEADING_2_QUERY_HAS,
-  HEADING_2_COMMAND_END,
-  HEADING_2_COMMAND_TOGGLE,
-  HEADING_3_TYPE,
-  HEADING_3_HOTKEY,
-  HEADING_3_COMPONENT,
-  HEADING_3_QUERY_HAS,
-  HEADING_3_COMMAND_END,
-  HEADING_3_COMMAND_TOGGLE,
-  HEADING_4_TYPE,
-  HEADING_4_HOTKEY,
-  HEADING_4_COMPONENT,
-  HEADING_4_QUERY_HAS,
-  HEADING_4_COMMAND_END,
-  HEADING_4_COMMAND_TOGGLE,
-  HEADING_5_TYPE,
-  HEADING_5_HOTKEY,
-  HEADING_5_COMPONENT,
-  HEADING_5_QUERY_HAS,
-  HEADING_5_COMMAND_END,
-  HEADING_5_COMMAND_TOGGLE,
-  HEADING_6_TYPE,
-  HEADING_6_HOTKEY,
-  HEADING_6_COMPONENT,
-  HEADING_6_QUERY_HAS,
-  HEADING_6_COMMAND_END,
-  HEADING_6_COMMAND_TOGGLE
+  HEADING_TYPE,
+  HEADING_COMPONENTS,
+  HEADING_LEVELS,
+  HEADING_HOTKEY,
+  HEADING_HOTKEYS_MAP,
+  HEADING_DATA_KEY_LEVEL,
+  HEADING_COMMAND_END,
+  HEADING_COMMAND_TOGGLE
 } from './heading.constants';
-export {
-  Heading1Plugin,
-  Heading2Plugin,
-  Heading3Plugin,
-  Heading4Plugin,
-  Heading5Plugin,
-  Heading6Plugin
-} from './heading.plugin';
-export {
-  useHeading1IsActive,
-  useHeading1OnClick,
-  useHeading2IsActive,
-  useHeading2OnClick,
-  useHeading3IsActive,
-  useHeading3OnClick,
-  useHeading4IsActive,
-  useHeading4OnClick,
-  useHeading5IsActive,
-  useHeading5OnClick,
-  useHeading6IsActive,
-  useHeading6OnClick
-} from './heading.hooks';
+export { HeadingQueryHas, HeadingQueryLevel, HeadingQueries } from './heading.queries';
+export { HeadingCommandToggle, HeadingCommands } from './heading.commands';
+export { HeadingPluginConfig, HeadingPlugin } from './heading.plugin';
+export { useHeadingIsActive, useHeadingOnClick } from './heading.hooks';
