@@ -5,12 +5,13 @@ import { Required } from 'utility-types';
 export interface CommonBlockRendererConfig {
   type: string;
   component: keyof ReactHTML | ComponentType<RenderAttributes>;
+  isVoid?: boolean;
 }
 
 export type CommonBlockRenderer = Required<Plugin, 'renderBlock'>;
 
 export function CommonBlockRenderer(config: CommonBlockRendererConfig): CommonBlockRenderer {
-  const { type, component: Component } = config;
+  const { type, component: Component, isVoid = false } = config;
 
   return {
     renderBlock(props, _, next) {
@@ -20,7 +21,8 @@ export function CommonBlockRenderer(config: CommonBlockRendererConfig): CommonBl
         return next();
       }
 
-      return <Component {...attributes}>{children}</Component>;
+      //  eslint-disable-next-line react/no-children-prop
+      return <Component {...attributes} children={isVoid ? undefined : children} />;
     }
   };
 }
