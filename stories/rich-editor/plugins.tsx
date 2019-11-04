@@ -11,6 +11,7 @@ import {
 } from '@artibox/slate-plugin-strikethrough';
 import { UnderlinePlugin, useUnderlineIsActive, useUnderlineOnClick } from '@artibox/slate-plugin-underline';
 import { HeadingPlugin, useHeadingIsActive, useHeadingOnClick } from '@artibox/slate-plugin-heading';
+import { SeparationLinePlugin, useSeparationLineOnClick } from '@artibox/slate-plugin-separation-line';
 
 interface EditorPassable {
   editor: Editor;
@@ -55,6 +56,10 @@ const Heading3Button = createToggleButton(
   editor => useHeadingOnClick(editor, 3),
   'heading 3'
 );
+const SeparationLineButton = ({ editor }: EditorPassable) => {
+  const onClick = useSeparationLineOnClick(editor);
+  return <button onClick={onClick}>separation line</button>;
+};
 
 export const plugins: Plugin[] = [
   BoldPlugin(),
@@ -64,6 +69,7 @@ export const plugins: Plugin[] = [
   HeadingPlugin({
     disabled: [4, 5, 6]
   }),
+  SeparationLinePlugin(),
   {
     renderEditor: (_, editor, next) => {
       return (
@@ -75,6 +81,7 @@ export const plugins: Plugin[] = [
           <Heading1Button editor={editor} />
           <Heading2Button editor={editor} />
           <Heading3Button editor={editor} />
+          <SeparationLineButton editor={editor} />
           {next()}
         </>
       );
