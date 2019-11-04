@@ -10,6 +10,7 @@ import {
   useStrikethroughOnClick
 } from '@artibox/slate-plugin-strikethrough';
 import { UnderlinePlugin, useUnderlineIsActive, useUnderlineOnClick } from '@artibox/slate-plugin-underline';
+import { HighlightPlugin, useHighlightIsActive, useHighlightOnClick } from '@artibox/slate-plugin-highlight';
 import { HeadingPlugin, useHeadingIsActive, useHeadingOnClick } from '@artibox/slate-plugin-heading';
 import { SeparationLinePlugin, useSeparationLineOnClick } from '@artibox/slate-plugin-separation-line';
 import { BlockquotePlugin, useBlockquoteIsActive, useBlockquoteOnClick } from '@artibox/slate-plugin-blockquote';
@@ -42,6 +43,7 @@ const BoldButton = createToggleButton(useBoldIsActive, useBoldOnClick, 'bold');
 const ItalicButton = createToggleButton(useItalicIsActive, useItalicOnClick, 'italic');
 const StrikethroughButton = createToggleButton(useStrikethroughIsActive, useStrikethroughOnClick, 'strikethrough');
 const UnderlineButton = createToggleButton(useUnderlineIsActive, useUnderlineOnClick, 'underline');
+const HighlightButton = createToggleButton(useHighlightIsActive, useHighlightOnClick, 'highlight');
 const Heading1Button = createToggleButton(
   editor => useHeadingIsActive(editor, 1),
   editor => useHeadingOnClick(editor, 1),
@@ -68,6 +70,7 @@ export const plugins: Plugin[] = [
   ItalicPlugin(),
   StrikethroughPlugin(),
   UnderlinePlugin(),
+  HighlightPlugin(),
   HeadingPlugin({
     disabled: [4, 5, 6]
   }),
@@ -81,6 +84,7 @@ export const plugins: Plugin[] = [
           <ItalicButton editor={editor} />
           <StrikethroughButton editor={editor} />
           <UnderlineButton editor={editor} />
+          <HighlightButton editor={editor} />
           <Heading1Button editor={editor} />
           <Heading2Button editor={editor} />
           <Heading3Button editor={editor} />
