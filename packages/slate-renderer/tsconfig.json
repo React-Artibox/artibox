@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "./esm",
+    "rootDir": "./src",
+    "composite": true
+  },
+  "references": [
+    { "path": "../slate-core" }
+  ],
+  "include": [
+		"./src"
+  ],
+  "exclude": [
+    "node_modules",
+    "./esm",
+    "./lib",
+    "./**/*.test.*"
+  ]
+}

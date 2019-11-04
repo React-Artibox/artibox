@@ -1,0 +1,39 @@
+{
+  "name": "@artibox/slate-renderer",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Rytass",
+  "homepage": "https://github.com/React-Artibox/artibox#readme",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "jsnext:main": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/React-Artibox/artibox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/React-Artibox/artibox/issues"
+  },
+  "scripts": {
+    "clean": "npm run build:clean",
+    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
+    "build": "tsc && rollup --config rollup.config.js"
+  },
+  "dependencies": {
+    "@artibox/slate-core": "^0.0.0",
+    "tslib": "^1.10.0",
+    "utility-types": "^3.9.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/slate": "^0.47.3",
+    "@types/slate-react": "^0.22.6",
+    "react": "^16.11.0"
+  }
+}

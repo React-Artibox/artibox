@@ -5,6 +5,7 @@
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "downlevelIteration": true,
     "importHelpers": true,
     "target": "es5",
     "module": "commonjs",
@@ -12,7 +13,6 @@
     "noEmitHelpers": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": true,
     "strict": true,
     "sourceMap": true,
     "composite": true,
@@ -28,7 +28,7 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@jay-mono-ts/*": ["./packages/*/src"]
+      "@artibox/*": ["./packages/*/src"]
     }
   }
 }
