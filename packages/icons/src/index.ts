@@ -1,0 +1,21 @@
+export { IconDefinition } from './types';
+export { default as Icon, IconProps } from './icon';
+
+export { AlighLeft } from './icons/align-left';
+export { AlighCenter } from './icons/align-center';
+export { AlighRight } from './icons/align-right';
+export { Blockquote } from './icons/blockquote';
+export { Bold } from './icons/bold';
+export { Erase } from './icons/erase';
+export { Facebook } from './icons/facebook';
+export { Heading1 } from './icons/heading1';
+export { Heading2 } from './icons/heading2';
+export { Highlight } from './icons/highlight';
+export { Image } from './icons/image';
+export { Instagram } from './icons/instagram';
+export { Italic } from './icons/italic';
+export { Link } from './icons/link';
+export { SeparationLine } from './icons/separation-line';
+export { Strikethrough } from './icons/strikethrough';
+export { Underline } from './icons/underline';
+export { Video } from './icons/video';

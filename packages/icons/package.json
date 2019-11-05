@@ -1,0 +1,34 @@
+{
+  "name": "@artibox/icons",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Rytass",
+  "homepage": "https://github.com/React-Artibox/artibox#readme",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "jsnext:main": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/React-Artibox/artibox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/React-Artibox/artibox/issues"
+  },
+  "scripts": {
+    "clean": "npm run build:clean",
+    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
+    "build": "tsc && rollup --config rollup.config.js"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "react": "^16.11.0"
+  }
+}
