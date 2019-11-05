@@ -47,7 +47,12 @@ export function Icons() {
   return (
     <div className="icons">
       {icons.map(icon => (
-        <Icon key={icon.name} icon={icon} />
+        <div key={icon.name} className="icon-container">
+          <div>
+            <Icon icon={icon} />
+          </div>
+          {icon.name}
+        </div>
       ))}
     </div>
   );
