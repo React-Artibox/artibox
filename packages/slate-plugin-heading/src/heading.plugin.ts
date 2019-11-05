@@ -5,11 +5,13 @@ import {
   HEADING_TYPE,
   HEADING_LEVELS,
   HEADING_HOTKEY,
+  HEADING_QUERY_LEVEL,
   HEADING_COMMAND_TOGGLE,
   HEADING_COMMAND_END
 } from './heading.constants';
 import { HeadingQueries } from './heading.queries';
 import { HeadingCommands } from './heading.commands';
+import { HeadingSchema } from './heading.schema';
 import { HeadingRenderer } from './heading.renderer';
 
 export interface HeadingPluginConfig {
@@ -25,7 +27,7 @@ export interface HeadingPluginConfig {
   disabled?: HEADING_LEVELS[];
 }
 
-export interface HeadingPlugin extends Required<Plugin, 'onKeyDown' | 'renderBlock'> {
+export interface HeadingPlugin extends Required<Plugin, 'onKeyDown' | 'renderBlock' | 'schema'> {
   queries: HeadingQueries;
   commands: HeadingCommands;
 }
@@ -41,12 +43,14 @@ export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
   const hotkey = (config && config.hotkey) || HEADING_HOTKEY;
   const isSaveHotkey = isHotkey(hotkey);
   const queries = HeadingQueries(type);
-  const commands = HeadingCommands(type);
+  const commands = HeadingCommands({ type, queryLevel: queries[HEADING_QUERY_LEVEL] });
+  const schema = HeadingSchema({ type, enabled });
   const renderer = HeadingRenderer(type);
 
   return {
     queries,
     commands,
+    schema,
     renderBlock: renderer.renderBlock,
     onKeyDown: (event, editor, next) => {
       if (event.key === 'Enter') {
