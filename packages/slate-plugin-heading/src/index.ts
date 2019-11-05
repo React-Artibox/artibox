@@ -10,6 +10,6 @@ export {
   HEADING_COMMAND_TOGGLE
 } from './heading.constants';
 export { HeadingQueryHas, HeadingQueryLevel, HeadingQueries } from './heading.queries';
-export { HeadingCommandEnd, HeadingCommandToggle, HeadingCommands } from './heading.commands';
+export { HeadingCommandsConfig, HeadingCommandEnd, HeadingCommandToggle, HeadingCommands } from './heading.commands';
 export { HeadingPluginConfig, HeadingPlugin } from './heading.plugin';
 export { useHeadingIsActive, useHeadingOnClick } from './heading.hooks';

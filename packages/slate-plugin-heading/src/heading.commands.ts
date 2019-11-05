@@ -1,8 +1,13 @@
 import { Editor, Plugin } from 'slate';
-import { PARAGRAPH_TYPE, getQuery } from '@artibox/slate-core';
-import { HEADING_LEVELS, HEADING_QUERY_LEVEL, HEADING_COMMAND_END, HEADING_COMMAND_TOGGLE } from './heading.constants';
+import { PARAGRAPH_TYPE } from '@artibox/slate-core';
+import { HEADING_LEVELS, HEADING_COMMAND_END, HEADING_COMMAND_TOGGLE } from './heading.constants';
 import { HeadingQueryLevel } from './heading.queries';
 import { createHeadingBlock } from './heading.utils';
+
+export interface HeadingCommandsConfig {
+  type: string;
+  queryLevel: HeadingQueryLevel;
+}
 
 /**
  * To end the heading block and add one paragraph block below the heading.
@@ -19,7 +24,9 @@ export type HeadingCommands = Plugin['commands'] & {
   [HEADING_COMMAND_TOGGLE]: HeadingCommandToggle;
 };
 
-export function HeadingCommands(type: string): HeadingCommands {
+export function HeadingCommands(config: HeadingCommandsConfig): HeadingCommands {
+  const { type, queryLevel } = config;
+
   return {
     [HEADING_COMMAND_END]: editor => {
       const currentBlock = editor.value.startBlock;
@@ -34,7 +41,7 @@ export function HeadingCommands(type: string): HeadingCommands {
         .focus();
     },
     [HEADING_COMMAND_TOGGLE]: (editor, level) => {
-      const currentLevel = getQuery<HeadingQueryLevel>(editor, HEADING_QUERY_LEVEL)();
+      const currentLevel = queryLevel(editor);
       const block = currentLevel !== level ? createHeadingBlock(type, level) : PARAGRAPH_TYPE;
       return editor.setBlocks(block).focus();
     }

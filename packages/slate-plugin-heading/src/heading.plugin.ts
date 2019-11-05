@@ -5,6 +5,7 @@ import {
   HEADING_TYPE,
   HEADING_LEVELS,
   HEADING_HOTKEY,
+  HEADING_QUERY_LEVEL,
   HEADING_COMMAND_TOGGLE,
   HEADING_COMMAND_END
 } from './heading.constants';
@@ -41,7 +42,7 @@ export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
   const hotkey = (config && config.hotkey) || HEADING_HOTKEY;
   const isSaveHotkey = isHotkey(hotkey);
   const queries = HeadingQueries(type);
-  const commands = HeadingCommands(type);
+  const commands = HeadingCommands({ type, queryLevel: queries[HEADING_QUERY_LEVEL] });
   const renderer = HeadingRenderer(type);
 
   return {
