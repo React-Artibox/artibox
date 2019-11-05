@@ -22,7 +22,7 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
   /**
    * The handler of soft break.
    */
-  const onModEnter: NonNullable<Plugin['onKeyDown']> = (event, editor, next) => {
+  const onSoftBreak: NonNullable<Plugin['onKeyDown']> = (event, editor, next) => {
     const blockquoteBlock = queryCurrentBlock(editor);
 
     if (!blockquoteBlock) {
@@ -69,8 +69,8 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
   return {
     onKeyDown: (event, editor, next) => {
       if (event.key === 'Enter') {
-        if (event.metaKey) {
-          return onModEnter(event, editor, next);
+        if (event.shiftKey) {
+          return onSoftBreak(event, editor, next);
         }
 
         return onEnter(event, editor, next);
