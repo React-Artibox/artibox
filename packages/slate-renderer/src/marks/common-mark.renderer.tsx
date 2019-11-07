@@ -1,13 +1,13 @@
 import React, { ReactHTML, ComponentType } from 'react';
-import { RenderAttributes, Plugin } from 'slate-react';
-import { Required } from 'utility-types';
+import { RenderAttributes } from 'slate-react';
+import { PickPluginAndRequired } from '@artibox/slate-core';
 
 export interface CommonMarkRendererConfig {
   type: string;
   component: keyof ReactHTML | ComponentType<RenderAttributes>;
 }
 
-export type CommonMarkRenderer = Required<Plugin, 'renderMark'>;
+export type CommonMarkRenderer = PickPluginAndRequired<'renderMark'>;
 
 export function CommonMarkRenderer(config: CommonMarkRendererConfig): CommonMarkRenderer {
   const { component: Component } = config;
