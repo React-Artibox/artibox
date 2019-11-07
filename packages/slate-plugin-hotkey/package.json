@@ -24,12 +24,10 @@
   },
   "dependencies": {
     "@artibox/slate-core": "^0.0.0",
-    "is-hotkey": "^0.1.6",
-    "utility-types": "^3.9.0"
+    "is-hotkey": "^0.1.6"
   },
   "devDependencies": {
     "@types/is-hotkey": "^0.1.1",
-    "@types/slate": "^0.47.3",
-    "@types/slate-react": "^0.22.6"
+    "@types/slate": "^0.47.3"
   }
 }

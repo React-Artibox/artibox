@@ -1,10 +1,8 @@
 import { isHotkey } from 'is-hotkey';
 import { CommandFunc } from 'slate';
-import { Plugin } from 'slate-react';
-import { Required } from 'utility-types';
-import { getCommand } from '@artibox/slate-core';
+import { getCommand, PickPluginAndRequired } from '@artibox/slate-core';
 
-export type HotkeyPlugin = Required<Plugin, 'onKeyDown'>;
+export type HotkeyPlugin = PickPluginAndRequired<'onKeyDown'>;
 
 export interface HotkeyPluginConfig {
   hotkey: string | ReadonlyArray<string>;
