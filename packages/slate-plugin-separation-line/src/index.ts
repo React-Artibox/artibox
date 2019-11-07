@@ -5,4 +5,4 @@ export {
 } from './separation-line.constants';
 export { SeparationLineCommandAdd, SeparationLineCommands } from './separation-line.commands';
 export { SeparationLinePluginConfig, SeparationLinePlugin } from './separation-line.plugin';
-export { useSeparationLineOnClick } from './separation-line.hooks';
+export { useSeparationLineOnMouseDown } from './separation-line.hooks';

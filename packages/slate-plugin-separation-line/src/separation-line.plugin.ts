@@ -1,5 +1,4 @@
-import { Plugin } from 'slate-react';
-import { Required } from 'utility-types';
+import { PickPluginAndRequired } from '@artibox/slate-core';
 import { CommonBlockRenderer } from '@artibox/slate-renderer';
 import { SEPARATION_LINE_TYPE, SEPARATION_LINE_COMPONENT } from './separation-line.constants';
 import { SeparationLineCommands } from './separation-line.commands';
@@ -9,7 +8,7 @@ export interface SeparationLinePluginConfig {
   type?: string;
 }
 
-export interface SeparationLinePlugin extends Required<Plugin, 'renderBlock' | 'schema'> {
+export interface SeparationLinePlugin extends PickPluginAndRequired<'renderBlock' | 'schema'> {
   commands: SeparationLineCommands;
 }
 
