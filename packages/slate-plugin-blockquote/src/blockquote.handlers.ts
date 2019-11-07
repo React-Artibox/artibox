@@ -1,4 +1,4 @@
-import { Plugin } from 'slate-react';
+import { PickPluginAndRequired } from '@artibox/slate-core';
 import { isHotkey } from 'is-hotkey';
 import { BlockquoteQueryCurrentBlock } from './blockquote.queries';
 import { BlockquoteCommandSoftBreak, BlockquoteCommandUnwrap, BlockquoteCommandToggle } from './blockquote.commands';
@@ -11,9 +11,7 @@ export interface BlockquoteHandlersConfig {
   commandToggle: BlockquoteCommandToggle;
 }
 
-export interface BlockquoteHandlers {
-  onKeyDown: NonNullable<Plugin['onKeyDown']>;
-}
+export type BlockquoteHandlers = PickPluginAndRequired<'onKeyDown'>;
 
 export function BlockquoteHandlers(config: BlockquoteHandlersConfig): BlockquoteHandlers {
   const { hotkey, queryCurrentBlock, commandSoftBreak, commandUnwrap, commandToggle } = config;
@@ -22,7 +20,7 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
   /**
    * The handler of soft break.
    */
-  const onSoftBreak: NonNullable<Plugin['onKeyDown']> = (event, editor, next) => {
+  const onSoftBreak: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
     const blockquoteBlock = queryCurrentBlock(editor);
 
     if (!blockquoteBlock) {
@@ -37,7 +35,7 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
   /**
    * If the focused block inside blockquote is w/o any texts, unwrap the focused block.
    */
-  const onEnter: NonNullable<Plugin['onKeyDown']> = (event, editor, next) => {
+  const onEnter: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
     const blockquoteBlock = queryCurrentBlock(editor);
     const currentBlock = editor.value.startBlock;
 
@@ -53,7 +51,7 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
   /**
    * If the focused block inside blockquote and the selection is not expanded, unwrap the focused block.
    */
-  const onBackSpace: NonNullable<Plugin['onKeyDown']> = (event, editor, next) => {
+  const onBackSpace: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
     const blockquoteBlock = queryCurrentBlock(editor);
     const { isExpanded, start } = editor.value.selection;
 
