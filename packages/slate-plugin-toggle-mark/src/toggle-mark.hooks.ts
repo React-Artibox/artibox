@@ -13,9 +13,9 @@ export function createUseToggleMarkIsActive(queryHas: string): UseToggleMarkIsAc
   };
 }
 
-export type UseToggleMarkOnClick = (editor: Editor) => MouseEventHandler;
+export type UseToggleMarkOnMouseDown = (editor: Editor) => MouseEventHandler;
 
-export function createUseToggleMarkOnClick(commandToggle: string): UseToggleMarkOnClick {
+export function createUseToggleMarkOnMouseDown(commandToggle: string): UseToggleMarkOnMouseDown {
   return editor =>
     useMemo<MouseEventHandler>(() => {
       const command = getCommand<ToggleMarkCommandToggle>(editor, commandToggle);

@@ -1,5 +1,4 @@
-import { Plugin } from 'slate-react';
-import { Required } from 'utility-types';
+import { PickPluginAndRequired } from '@artibox/slate-core';
 import { CommonMarkRendererConfig, CommonMarkRenderer } from '@artibox/slate-renderer';
 import { HotkeyPlugin } from '@artibox/slate-plugin-hotkey';
 import { ToggleMarkQueriesConfig, ToggleMarkQueries } from './toggle-mark.queries';
@@ -17,7 +16,7 @@ export interface ToggleMarkPluginConfig {
   hotkey?: string;
 }
 
-export interface ToggleMarkPlugin extends Required<Plugin, 'onKeyDown' | 'renderMark'> {
+export interface ToggleMarkPlugin extends PickPluginAndRequired<'onKeyDown' | 'renderMark'> {
   queries: ToggleMarkQueries;
   commands: ToggleMarkCommands;
 }
