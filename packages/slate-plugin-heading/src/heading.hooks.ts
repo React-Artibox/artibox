@@ -10,7 +10,7 @@ export function useHeadingIsActive(editor: Editor, level: HEADING_LEVELS) {
   return query(level);
 }
 
-export function useHeadingOnClick(editor: Editor, level: HEADING_LEVELS) {
+export function useHeadingOnMouseDown(editor: Editor, level: HEADING_LEVELS) {
   return useMemo<MouseEventHandler>(() => {
     const command = getCommand<HeadingCommandToggle>(editor, HEADING_COMMAND_TOGGLE);
     return event => {

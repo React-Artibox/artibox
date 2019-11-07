@@ -1,10 +1,9 @@
 import React from 'react';
-import { Plugin } from 'slate-react';
-import { Required } from 'utility-types';
+import { PickPluginAndRequired } from '@artibox/slate-core';
 import { HEADING_COMPONENTS } from './heading.constants';
 import { getLevelFromBlock } from './heading.utils';
 
-export type HeadingRenderer = Required<Plugin, 'renderBlock'>;
+export type HeadingRenderer = PickPluginAndRequired<'renderBlock'>;
 
 export function HeadingRenderer(type: string): HeadingRenderer {
   return {
