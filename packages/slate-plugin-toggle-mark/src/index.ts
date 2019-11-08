@@ -15,6 +15,6 @@ export {
 export {
   UseToggleMarkIsActive,
   createUseToggleMarkIsActive,
-  UseToggleMarkOnClick,
-  createUseToggleMarkOnClick
+  UseToggleMarkOnMouseDown,
+  createUseToggleMarkOnMouseDown
 } from './toggle-mark.hooks';

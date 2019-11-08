@@ -1,4 +1,9 @@
 /**
+ * types
+ */
+export { EditorPassable } from './types';
+
+/**
  * marks
  */
 export { CommonMarkRendererConfig, CommonMarkRenderer } from './marks/common-mark.renderer';

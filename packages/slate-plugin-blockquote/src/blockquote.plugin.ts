@@ -1,5 +1,4 @@
-import { Plugin } from 'slate-react';
-import { Required } from 'utility-types';
+import { PickPluginAndRequired } from '@artibox/slate-core';
 import { CommonBlockRenderer } from '@artibox/slate-renderer';
 import {
   BLOCKQUOTE_TYPE,
@@ -20,7 +19,7 @@ export interface BlockquotePluginConfig {
   hotkey?: string;
 }
 
-export interface BlockquotePlugin extends Required<Plugin, 'onKeyDown' | 'renderBlock'> {
+export interface BlockquotePlugin extends PickPluginAndRequired<'onKeyDown' | 'renderBlock'> {
   queries: BlockquoteQueries;
   commands: BlockquoteCommands;
 }

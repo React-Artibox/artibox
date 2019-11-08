@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "./src",
+  },
+  "references": [
+    { "path": "../icons" },
+    { "path": "../slate-core" },
+    { "path": "../slate-editor" },
+    { "path": "../slate-renderer" }
+  ],
+  "include": [
+		"./src"
+  ],
+  "exclude": [
+    "node_modules",
+    "./esm",
+    "./lib",
+    "./**/*.test.*"
+  ]
+}

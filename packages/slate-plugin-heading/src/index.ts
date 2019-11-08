@@ -12,4 +12,4 @@ export {
 export { HeadingQueryHas, HeadingQueryLevel, HeadingQueries } from './heading.queries';
 export { HeadingCommandsConfig, HeadingCommandEnd, HeadingCommandToggle, HeadingCommands } from './heading.commands';
 export { HeadingPluginConfig, HeadingPlugin } from './heading.plugin';
-export { useHeadingIsActive, useHeadingOnClick } from './heading.hooks';
+export { useHeadingIsActive, useHeadingOnMouseDown } from './heading.hooks';

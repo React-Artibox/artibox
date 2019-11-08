@@ -10,7 +10,7 @@ export function useBlockquoteIsActive(editor: Editor) {
   return query();
 }
 
-export function useBlockquoteOnClick(editor: Editor) {
+export function useBlockquoteOnMouseDown(editor: Editor) {
   return useMemo<MouseEventHandler>(() => {
     const command = getCommand<BlockquoteCommandWrap>(editor, BLOCKQUOTE_COMMAND_TOGGLE);
     return event => {

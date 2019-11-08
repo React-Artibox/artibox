@@ -1,6 +1,8 @@
 node_modules/
 coverage/
 esm/
+cjs/
 lib/
+dist/
 
-tsconfig.tsbuildinfo
+*.tsbuildinfo

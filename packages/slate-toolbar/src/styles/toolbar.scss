@@ -1,0 +1,46 @@
+.artibox {
+  &-toolbar {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    margin-top: -6px;
+    padding: 7px;
+    background-color: var(--artibox-toolbar-icon-background);
+    border: 1px solid var(--artibox-toolbar-icon-color);
+    border-radius: 4px;
+
+    &__divider {
+      width: 1px;
+      height: 20px;
+      background-color: var(--artibox-toolbar-icon-color);
+      margin: 0 8px;
+    }
+
+    &__icon {
+      position: relative;
+      color: var(--artibox-toolbar-icon-color);
+      font-size: 24px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 9px;
+      border: 0;
+      background-color: transparent;
+      padding: 0;
+      outline: none;
+      box-shadow: none;
+      border-radius: 0;
+      transition: color 0.2s ease-out;
+      cursor: pointer;
+
+      &:hover:not(&--active) {
+        color: var(--artibox-toolbar-icon-hover);
+      }
+
+      &--active {
+        color: var(--artibox-primary);
+      }
+    }
+  }
+}

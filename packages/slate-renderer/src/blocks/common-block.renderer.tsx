@@ -1,6 +1,6 @@
 import React, { ReactHTML, ComponentType } from 'react';
-import { RenderAttributes, Plugin } from 'slate-react';
-import { Required } from 'utility-types';
+import { RenderAttributes } from 'slate-react';
+import { PickPluginAndRequired } from '@artibox/slate-core';
 
 export interface CommonBlockRendererConfig {
   type: string;
@@ -8,7 +8,7 @@ export interface CommonBlockRendererConfig {
   isVoid?: boolean;
 }
 
-export type CommonBlockRenderer = Required<Plugin, 'renderBlock'>;
+export type CommonBlockRenderer = PickPluginAndRequired<'renderBlock'>;
 
 export function CommonBlockRenderer(config: CommonBlockRendererConfig): CommonBlockRenderer {
   const { type, component: Component, isVoid = false } = config;

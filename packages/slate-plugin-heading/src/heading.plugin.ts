@@ -1,6 +1,5 @@
-import { Plugin } from 'slate-react';
-import { Required } from 'utility-types';
 import { isHotkey } from 'is-hotkey';
+import { PickPluginAndRequired } from '@artibox/slate-core';
 import {
   HEADING_TYPE,
   HEADING_LEVELS,
@@ -27,7 +26,7 @@ export interface HeadingPluginConfig {
   disabled?: HEADING_LEVELS[];
 }
 
-export interface HeadingPlugin extends Required<Plugin, 'onKeyDown' | 'renderBlock' | 'schema'> {
+export interface HeadingPlugin extends PickPluginAndRequired<'onKeyDown' | 'renderBlock' | 'schema'> {
   queries: HeadingQueries;
   commands: HeadingCommands;
 }

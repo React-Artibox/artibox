@@ -8,7 +8,6 @@
   "sideEffects": false,
   "main": "./lib/index.js",
   "module": "./esm/index.js",
-  "jsnext:main": "./esm/index.js",
   "typings": "./esm/index.d.ts",
   "repository": {
     "type": "git",
@@ -19,8 +18,8 @@
   },
   "scripts": {
     "clean": "npm run build:clean",
-    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
-    "build": "tsc && rollup --config rollup.config.js"
+    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./*.tsbuildinfo",
+    "build": "tsc && tsc -m esnext -outDir esm"
   },
   "dependencies": {
     "@artibox/slate-core": "^0.0.0",
@@ -30,6 +29,7 @@
     "react": "16.8.6"
   },
   "devDependencies": {
+    "@types/slate": "^0.47.3",
     "react": "^16.11.0"
   }
 }
