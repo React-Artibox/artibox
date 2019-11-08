@@ -31,7 +31,7 @@ module.exports = ({ config }) => {
     },
     {
       test: /\.s[ac]ss$/,
-      include: [STORIES_PATH],
+      include: [PACKAGES_PATH, STORIES_PATH],
       use: ['style-loader', 'css-loader', 'sass-loader']
     }
   );

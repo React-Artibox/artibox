@@ -1,0 +1,42 @@
+{
+  "name": "@artibox/slate-toolbar",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Rytass",
+  "homepage": "https://github.com/React-Artibox/artibox#readme",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "jsnext:main": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/React-Artibox/artibox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/React-Artibox/artibox/issues"
+  },
+  "scripts": {
+    "clean": "npm run build:clean",
+    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./tsconfig.tsbuildinfo",
+    "build": "tsc && rollup --config rollup.config.js"
+  },
+  "dependencies": {
+    "@artibox/icons": "^0.0.0",
+    "@artibox/slate-core": "^0.0.0",
+    "@artibox/slate-editor": "^0.0.0",
+    "@artibox/slate-renderer": "^0.0.0",
+    "classnames": "^2.2.6",
+    "tslib": "^1.10.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.3",
+    "react": "^16.11.0"
+  }
+}
