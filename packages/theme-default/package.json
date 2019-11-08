@@ -7,9 +7,7 @@
   "license": "MIT",
   "sideEffects": false,
   "main": "./lib/index.js",
-  "module": "./esm/index.js",
-  "jsnext:main": "./esm/index.js",
-  "typings": "./esm/index.d.ts",
+  "module": "./lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/React-Artibox/artibox.git"

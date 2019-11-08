@@ -2,7 +2,7 @@ import React from 'react';
 import { PickPluginAndRequired } from '@artibox/slate-core';
 import { Tool } from './toolbar.types';
 import Toolbar from './components/toolbar';
-import './toolbar.scss';
+import './styles';
 
 export interface ToolbarPluginConfig {
   collapsedTools?: Tool[];

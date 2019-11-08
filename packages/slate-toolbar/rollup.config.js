@@ -1,15 +1,18 @@
-import pkg from './package.json';
-import { getExternalFromPackages } from '../../tools/rollup/getExternalFromPackages';
+import { plugins } from '../../tools/rollup/css-config';
 
 export default [
   {
-    input: './esm/index.js',
+    input: './src/styles/index.ts',
     output: [
       {
-        file: './lib/index.js',
+        file: './lib/styles/index.js',
         format: 'cjs'
+      },
+      {
+        file: './esm/styles/index.js',
+        format: 'esm'
       }
     ],
-    external: getExternalFromPackages(pkg)
+    plugins
   }
 ];

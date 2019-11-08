@@ -10,15 +10,5 @@ export default [
       }
     ],
     plugins
-  },
-  {
-    input: './src/index.ts',
-    output: [
-      {
-        file: './esm/index.js',
-        format: 'es'
-      }
-    ],
-    plugins
   }
 ];
