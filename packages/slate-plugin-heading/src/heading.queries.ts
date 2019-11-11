@@ -20,14 +20,9 @@ export type HeadingQueries = Plugin['queries'] & {
 };
 
 export function HeadingQueries(type: string): HeadingQueries {
-  /**
-   * @todo
-   * Refactor to `optional chaning` and `nullish coalescing operator` while `typescript@3.7.1` released.
-   * Be type friendly to `immutable`.
-   */
   return {
     [HEADING_QUERY_HAS]: (editor, level) =>
-      editor.value.blocks.some(block => !!block && block.type === type && getLevelFromBlock(block) === level),
+      editor.value.blocks.some(block => block?.type === type && getLevelFromBlock(block) === level),
     [HEADING_QUERY_LEVEL]: editor => {
       const currentBlock = editor.value.startBlock;
 

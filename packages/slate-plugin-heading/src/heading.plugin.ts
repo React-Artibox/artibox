@@ -34,12 +34,17 @@ export interface HeadingPlugin extends PickPluginAndRequired<'onKeyDown' | 'rend
 export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
   /**
    * @todo
-   * Refactor to `optional chaning` and `nullish coalescing operator` while `typescript@3.7.1` released.
+   * remove the eslint disable.
+   * @see
+   * https://github.com/typescript-eslint/typescript-eslint/issues/1104
    */
-  const disabled = (config && config.disabled) || [];
+  //  eslint-disable-next-line @typescript-eslint/no-use-before-define
+  const disabled = config?.disabled ?? [];
   const enabled = HEADING_LEVELS.filter(level => !disabled.includes(level));
-  const type = (config && config.type) || HEADING_TYPE;
-  const hotkey = (config && config.hotkey) || HEADING_HOTKEY;
+  //  eslint-disable-next-line @typescript-eslint/no-use-before-define
+  const type = config?.type ?? HEADING_TYPE;
+  //  eslint-disable-next-line @typescript-eslint/no-use-before-define
+  const hotkey = config?.hotkey ?? HEADING_HOTKEY;
   const isSaveHotkey = isHotkey(hotkey);
   const queries = HeadingQueries(type);
   const commands = HeadingCommands({ type, queryLevel: queries[HEADING_QUERY_LEVEL] });
@@ -60,9 +65,7 @@ export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
           return next();
         }
 
-        commands[HEADING_COMMAND_END](editor);
-
-        return;
+        return commands[HEADING_COMMAND_END](editor);
       }
 
       /**
@@ -74,9 +77,7 @@ export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
         const level = numKey as HEADING_LEVELS;
 
         event.preventDefault();
-        commands[HEADING_COMMAND_TOGGLE](editor, level);
-
-        return;
+        return commands[HEADING_COMMAND_TOGGLE](editor, level);
       }
 
       return next();
