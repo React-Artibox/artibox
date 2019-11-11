@@ -12,7 +12,7 @@ export interface ToolbarIconProps extends EditorPassable {
 
 function ToolbarIcon({ icon, hooks, editor }: ToolbarIconProps) {
   const [useOnMouseDown, useActive] = hooks;
-  const active = useActive && useActive(editor);
+  const active = useActive?.(editor) ?? false;
   const onMouseDown = useOnMouseDown(editor);
 
   return (

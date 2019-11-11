@@ -10,7 +10,7 @@ export interface ArtiboxEditorProps extends EditorProps {
 
 function ArtiboxEditor({ theme, className, ...props }: ArtiboxEditorProps) {
   const result = useMemo(() => {
-    const themeName = `artibox-theme-${theme || 'default'}`;
+    const themeName = `artibox-theme-${theme ?? 'default'}`;
     return { className: cx(className, themeName), theme: themeName };
   }, [theme, className]);
 

@@ -27,7 +27,7 @@ export function BlockquoteQueries(type: string): BlockquoteQueries {
     }
 
     const parent = editor.value.document.getParent(currentBlock.key) as Block | null;
-    return parent && parent.type === type ? parent : null;
+    return parent?.type === type ? parent : null;
   };
   const queryHas: BlockquoteQueryHas = editor => !!queryCurrentBlock(editor);
 

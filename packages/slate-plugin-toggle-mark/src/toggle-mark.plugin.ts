@@ -25,10 +25,14 @@ export function createToggleMarkPlugin(defaults: ToggleMarkPluginDefaultConfig) 
   function ToggleMarkPlugin(config?: ToggleMarkPluginConfig): ToggleMarkPlugin {
     /**
      * @todo
-     * Refactor to `optional chaning` and `nullish coalescing operator` while `typescript@3.7.1` released.
+     * remove the eslint disable.
+     * @see
+     * https://github.com/typescript-eslint/typescript-eslint/issues/1104
      */
-    const type = (config && config.type) || defaults.type;
-    const hotkey = (config && config.hotkey) || defaults.hotkey;
+    //  eslint-disable-next-line @typescript-eslint/no-use-before-define
+    const type = config?.type ?? defaults.type;
+    //  eslint-disable-next-line @typescript-eslint/no-use-before-define
+    const hotkey = config?.hotkey ?? defaults.hotkey;
     const { component, queryHas, commandAdd, commandRemove, commandToggle } = defaults;
 
     const queries = ToggleMarkQueries({ type, queryHas });

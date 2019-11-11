@@ -13,11 +13,7 @@ export interface ToggleMarkQueries {
 
 export function ToggleMarkQueries(config: ToggleMarkQueriesConfig): ToggleMarkQueries {
   const { type, queryHas } = config;
-  /**
-   * @todo
-   * Refactor to `optional chaning` and `nullish coalescing operator` while `typescript@3.7.1` released.
-   */
   return {
-    [queryHas]: editor => editor.value.activeMarks.some(mark => (mark && mark.type) === type)
+    [queryHas]: editor => editor.value.activeMarks.some(mark => mark?.type === type)
   };
 }
