@@ -1,9 +1,9 @@
 import React, { useRef, useLayoutEffect } from 'react';
-import ReactDOM from 'react-dom';
 import { Editor } from 'slate-react';
 import cx from 'classnames';
 import { EditorPassable } from '@artibox/slate-renderer';
 import { useTheme } from '@artibox/slate-editor';
+import { Portal } from '@artibox/components';
 import { TOOLBAR_DIVIDER } from '../toolbar.constants';
 import { Tool } from '../toolbar.types';
 import Divider from './divider';
@@ -70,19 +70,20 @@ function Toolbar({ tools, editor, expanded }: ToolbarProps) {
     }
   });
 
-  return ReactDOM.createPortal(
-    <div ref={ref} className={cx('artibox-toolbar', theme)}>
-      {tools.map((tool, index) => {
-        if (tool === TOOLBAR_DIVIDER) {
-          return <Divider key={index} />;
-        }
+  return (
+    <Portal>
+      <div ref={ref} className={cx('artibox-toolbar', theme)}>
+        {tools.map((tool, index) => {
+          if (tool === TOOLBAR_DIVIDER) {
+            return <Divider key={index} />;
+          }
 
-        const [icon, hooks] = tool;
+          const [icon, hooks] = tool;
 
-        return <ToolbarIcon key={icon.name} icon={icon} hooks={hooks} editor={editor} />;
-      })}
-    </div>,
-    document.body
+          return <ToolbarIcon key={icon.name} icon={icon} hooks={hooks} editor={editor} />;
+        })}
+      </div>
+    </Portal>
   );
 }
 

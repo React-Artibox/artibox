@@ -5,6 +5,7 @@
     "rootDir": "./src",
   },
   "references": [
+    { "path": "../components" },
     { "path": "../icons" },
     { "path": "../slate-core" },
     { "path": "../slate-editor" },
