@@ -18,4 +18,5 @@ export { Link } from './icons/link';
 export { SeparationLine } from './icons/separation-line';
 export { Strikethrough } from './icons/strikethrough';
 export { Underline } from './icons/underline';
+export { Unlink } from './icons/unlink';
 export { Video } from './icons/video';
