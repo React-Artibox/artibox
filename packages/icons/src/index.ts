@@ -1,5 +1,4 @@
 export { IconDefinition } from './types';
-export { default as Icon, IconProps } from './icon';
 
 export { AlighLeft } from './icons/align-left';
 export { AlighCenter } from './icons/align-center';
