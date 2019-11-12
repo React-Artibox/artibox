@@ -6,6 +6,7 @@ import {
   Underline,
   Highlight,
   Link,
+  Unlink,
   Heading1,
   Heading2,
   SeparationLine,
@@ -20,7 +21,7 @@ import {
 } from '@artibox/slate-plugin-strikethrough';
 import { UnderlinePlugin, useUnderlineIsActive, useUnderlineOnMouseDown } from '@artibox/slate-plugin-underline';
 import { HighlightPlugin, useHighlightIsActive, useHighlightOnMouseDown } from '@artibox/slate-plugin-highlight';
-import { LinkPlugin, useLinkModalOpenModal, useLinkIsActive } from '@artibox/slate-plugin-link';
+import { LinkPlugin, useLinkModalOpenModal, useLinkIsActive, useLinkRemove } from '@artibox/slate-plugin-link';
 import { HeadingPlugin, useHeadingIsActive, useHeadingOnMouseDown } from '@artibox/slate-plugin-heading';
 import { SeparationLinePlugin, useSeparationLineOnMouseDown } from '@artibox/slate-plugin-separation-line';
 import { BlockquotePlugin, useBlockquoteIsActive, useBlockquoteOnMouseDown } from '@artibox/slate-plugin-blockquote';
@@ -53,7 +54,8 @@ export const plugins: Plugin[] = [
       [Strikethrough, [useStrikethroughOnMouseDown, useStrikethroughIsActive]],
       [Underline, [useUnderlineOnMouseDown, useUnderlineIsActive]],
       [Highlight, [useHighlightOnMouseDown, useHighlightIsActive]],
-      [Link, [useLinkModalOpenModal, useLinkIsActive]]
+      [Link, [useLinkModalOpenModal, useLinkIsActive]],
+      [Unlink, [useLinkRemove]]
     ]
   })
 ];

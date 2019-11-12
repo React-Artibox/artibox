@@ -20,4 +20,4 @@ export {
 export { LinkQueryUrl, LinkQueryHas, LinkQueries } from './link.queries';
 export { LinkCommandsConfig, LinkCommandSet, LinkCommands } from './link.commands';
 export { LinkPluginConfig, LinkPlugin } from './link.plugin';
-export { useLinkIsActive, useLinkSet } from './link.hooks';
+export { useLinkIsActive, useLinkRemove, useLinkSet } from './link.hooks';
