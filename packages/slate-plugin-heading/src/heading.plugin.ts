@@ -32,18 +32,9 @@ export interface HeadingPlugin extends PickPluginAndRequired<'onKeyDown' | 'rend
 }
 
 export function HeadingPlugin(config?: HeadingPluginConfig): HeadingPlugin {
-  /**
-   * @todo
-   * remove the eslint disable.
-   * @see
-   * https://github.com/typescript-eslint/typescript-eslint/issues/1104
-   */
-  //  eslint-disable-next-line @typescript-eslint/no-use-before-define
   const disabled = config?.disabled ?? [];
   const enabled = HEADING_LEVELS.filter(level => !disabled.includes(level));
-  //  eslint-disable-next-line @typescript-eslint/no-use-before-define
   const type = config?.type ?? HEADING_TYPE;
-  //  eslint-disable-next-line @typescript-eslint/no-use-before-define
   const hotkey = config?.hotkey ?? HEADING_HOTKEY;
   const isSaveHotkey = isHotkey(hotkey);
   const queries = HeadingQueries(type);

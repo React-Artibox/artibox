@@ -25,15 +25,7 @@ export interface BlockquotePlugin extends PickPluginAndRequired<'onKeyDown' | 'r
 }
 
 export function BlockquotePlugin(config?: BlockquotePluginConfig): BlockquotePlugin {
-  /**
-   * @todo
-   * remove the eslint disable.
-   * @see
-   * https://github.com/typescript-eslint/typescript-eslint/issues/1104
-   */
-  //  eslint-disable-next-line @typescript-eslint/no-use-before-define
   const type = config?.type ?? BLOCKQUOTE_TYPE;
-  //  eslint-disable-next-line @typescript-eslint/no-use-before-define
   const hotkey = config?.hotkey ?? BLOCKQUOTE_HOTKEY;
   const queries = BlockquoteQueries(type);
   const commands = BlockquoteCommands({ type, queryHas: queries[BLOCKQUOTE_QUERY_HAS] });
