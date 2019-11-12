@@ -1,5 +1,5 @@
 import React, { SVGProps, forwardRef } from 'react';
-import { IconDefinition } from './types';
+import { IconDefinition } from '@artibox/icons';
 
 const svgBaseProps = {
   width: '1em',

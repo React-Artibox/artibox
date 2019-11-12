@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Icon } from '@artibox/icons';
+import { Icon } from '@artibox/components';
 import { EditorPassable } from '@artibox/slate-renderer';
 import { TOOLBAR_DIVIDER } from '../toolbar.constants';
 import { Tool } from '../toolbar.types';
