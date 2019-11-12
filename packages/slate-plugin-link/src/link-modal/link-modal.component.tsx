@@ -18,7 +18,10 @@ export interface LinkModalProps {
  * Provide i18n.
  */
 function LinkModal({ open, setOpen, editor }: LinkModalProps) {
-  const onClose = useCallback(() => setOpen(false), [setOpen]);
+  const onClose = useCallback(() => {
+    setOpen(false);
+    editor.focus();
+  }, [setOpen, editor]);
   const [url, setUrl] = useState('');
   const [text, setText] = useState('');
   const { isExpanded } = editor.value.selection;
@@ -36,8 +39,6 @@ function LinkModal({ open, setOpen, editor }: LinkModalProps) {
     if (open) {
       setUrl(getQuery<LinkQueryUrl>(editor, LINK_QUERY_URL)() ?? '');
       setText(isExpanded ? editor.value.fragment.text : '');
-    } else {
-      editor.focus();
     }
   }, [open]);
 
