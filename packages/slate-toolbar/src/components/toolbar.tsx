@@ -50,7 +50,7 @@ function Toolbar({ tools, editor, expanded }: ToolbarProps) {
   const theme = useTheme();
 
   useLayoutEffect(() => {
-    window.requestAnimationFrame(() => {
+    function handler() {
       const el = ref.current;
 
       if (!el) {
@@ -61,7 +61,13 @@ function Toolbar({ tools, editor, expanded }: ToolbarProps) {
 
       el.style.top = `${top}px`;
       el.style.left = `${left}px`;
-    });
+    }
+
+    if (expanded) {
+      handler();
+    } else {
+      window.requestAnimationFrame(handler);
+    }
   });
 
   return ReactDOM.createPortal(

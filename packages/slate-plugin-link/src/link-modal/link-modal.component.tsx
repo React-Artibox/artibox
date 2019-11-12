@@ -25,17 +25,19 @@ function LinkModal({ open, setOpen, editor }: LinkModalProps) {
   const onConfirm = () => {
     const command = getCommand<LinkCommandSet>(editor, LINK_COMMAND_SET);
 
+    onClose();
+
     if (url) {
       command(url, isExpanded ? undefined : text);
     }
-
-    onClose();
   };
 
   useLayoutEffect(() => {
     if (open) {
       setUrl(getQuery<LinkQueryUrl>(editor, LINK_QUERY_URL)() ?? '');
       setText(isExpanded ? editor.value.fragment.text : '');
+    } else {
+      editor.focus();
     }
   }, [open]);
 
