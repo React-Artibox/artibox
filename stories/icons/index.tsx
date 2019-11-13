@@ -1,6 +1,6 @@
 import React from 'react';
+import { Icon } from '@artibox/components';
 import {
-  Icon,
   AlighLeft,
   AlighCenter,
   AlighRight,
@@ -15,9 +15,12 @@ import {
   Instagram,
   Italic,
   Link,
+  OrderedList,
   SeparationLine,
   Strikethrough,
   Underline,
+  Unlink,
+  UnorderedList,
   Video
 } from '@artibox/icons';
 import './icons.scss';
@@ -37,9 +40,12 @@ const icons = [
   Instagram,
   Italic,
   Link,
+  OrderedList,
   SeparationLine,
   Strikethrough,
   Underline,
+  Unlink,
+  UnorderedList,
   Video
 ];
 
