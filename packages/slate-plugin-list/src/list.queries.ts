@@ -55,16 +55,14 @@ export function ListQueries(types: LIST_TYPES): ListQueries {
       return null;
     }
 
-    const item = editor.value.document.getParent(node.key);
-    return isListItem(types, item) ? item : null;
+    return editor.value.document.getClosest(node.key, n => isListItem(types, n)) as Block | null;
   };
   const queryList: ListQueryList = (editor, node) => {
     if (!node) {
       return null;
     }
 
-    const list = editor.value.document.getParent(node.key);
-    return isList(types, list) ? list : null;
+    return editor.value.document.getClosest(node.key, n => isList(types, n)) as Block | null;
   };
   const queryPreviousItem: ListQueryPreviousItem = (editor, item) => {
     if (!isListItem(types, item)) {
