@@ -39,12 +39,10 @@ export function ListHandlers(config: ListHandlersConfig): ListHandlers {
 
     const item = queryCurrentItem(editor);
 
-    if (selection.start.offset === 0 && startBlock.text === '' && item?.nodes.size! <= 1) {
-      return commandDecreaseItemDepthOrUnwrapIfNeed(editor);
-    }
-
     if (!item) {
       return next();
+    } else if (selection.start.offset === 0 && startBlock.text === '' && item.nodes.size! <= 1) {
+      return commandDecreaseItemDepthOrUnwrapIfNeed(editor);
     }
 
     /**
@@ -56,7 +54,7 @@ export function ListHandlers(config: ListHandlersConfig): ListHandlers {
   const onBackspace: ListHandlers['onKeyDown'] = (event, editor, next) => {
     const { selection } = editor.value;
 
-    if (selection.isExpanded || selection.start.offset !== 0) {
+    if (selection.isExpanded || selection.start.offset !== 0 || queryCurrentItem(editor)?.nodes.size! > 1) {
       return next();
     }
 
