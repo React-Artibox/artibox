@@ -1,11 +1,13 @@
 import {
   LIST_TYPES,
+  LIST_QUERY_ITEM,
   LIST_QUERY_LIST,
-  LIST_QUERY_LIST_ITEM,
-  LIST_QUERY_IN_LIST,
-  LIST_COMMAND_UNWRAP,
+  LIST_QUERY_PREVIOUS_ITEM,
+  LIST_QUERY_CURRENT_ITEM,
+  LIST_QUERY_IS_SELECTION_IN_LIST,
   LIST_COMMAND_INCREASE_ITEM_DEPTH,
-  LIST_COMMAND_DECREASE_ITEM_DEPTH
+  LIST_COMMAND_DECREASE_ITEM_DEPTH,
+  LIST_COMMAND_DECREASE_ITEM_DEPTH_OR_UNWRAP_IF_NEED
 } from './list.constants';
 import { ListQueries } from './list.queries';
 import { ListCommands } from './list.commands';
@@ -24,14 +26,22 @@ export interface ListPlugin extends ListHandlers, ListRenderer {
 export function ListPlugin(config?: ListPluginConfig): ListPlugin {
   const types = { ...LIST_TYPES, ...config?.types };
   const queries = ListQueries(types);
-  const commands = ListCommands({ types });
+  const queryItem = queries[LIST_QUERY_ITEM];
+  const queryList = queries[LIST_QUERY_LIST];
+  const queryCurrentItem = queries[LIST_QUERY_CURRENT_ITEM];
+  const commands = ListCommands({
+    types,
+    queryItem,
+    queryList,
+    queryPreviousItem: queries[LIST_QUERY_PREVIOUS_ITEM],
+    queryCurrentItem
+  });
   const handlers = ListHandlers({
-    queryList: queries[LIST_QUERY_LIST],
-    queryListItem: queries[LIST_QUERY_LIST_ITEM],
-    queryInList: queries[LIST_QUERY_IN_LIST],
-    commandUnwrap: commands[LIST_COMMAND_UNWRAP],
+    queryCurrentItem,
+    queryIsSelectionInList: queries[LIST_QUERY_IS_SELECTION_IN_LIST],
     commandIncreaseItemDepth: commands[LIST_COMMAND_INCREASE_ITEM_DEPTH],
-    commandDecreaseItemDepth: commands[LIST_COMMAND_DECREASE_ITEM_DEPTH]
+    commandDecreaseItemDepth: commands[LIST_COMMAND_DECREASE_ITEM_DEPTH],
+    commandDecreaseItemDepthOrUnwrapIfNeed: commands[LIST_COMMAND_DECREASE_ITEM_DEPTH_OR_UNWRAP_IF_NEED]
   });
   const renderer = ListRenderer(types);
 

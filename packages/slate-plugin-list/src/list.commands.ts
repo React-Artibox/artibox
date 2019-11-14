@@ -7,12 +7,18 @@ import {
   LIST_COMMAND_UNWRAP,
   LIST_COMMAND_TOGGLE,
   LIST_COMMAND_INCREASE_ITEM_DEPTH,
-  LIST_COMMAND_DECREASE_ITEM_DEPTH
+  LIST_COMMAND_DECREASE_ITEM_DEPTH,
+  LIST_COMMAND_DECREASE_ITEM_DEPTH_OR_UNWRAP_IF_NEED
 } from './list.constants';
-import { isList, isListItem } from './list.utils';
+import { isList, isListItem, getLastListInNode } from './list.utils';
+import { ListQueryItem, ListQueryList, ListQueryPreviousItem, ListQueryCurrentItem } from './list.queries';
 
 export interface ListCommandsConfig {
   types: LIST_TYPES;
+  queryItem: ListQueryItem;
+  queryList: ListQueryList;
+  queryPreviousItem: ListQueryPreviousItem;
+  queryCurrentItem: ListQueryCurrentItem;
 }
 
 export type ListCommandWrap = (editor: Editor, orderedType: LIST_ORDERED_TYPES) => Editor;
@@ -20,6 +26,7 @@ export type ListCommandUnwrap = (editor: Editor) => Editor;
 export type ListCommandToggle = (editor: Editor, orderedType: LIST_ORDERED_TYPES) => Editor;
 export type ListCommandIncreaseItemDepth = (editor: Editor) => Editor;
 export type ListCommandDecreaseItemDepth = (editor: Editor) => Editor;
+export type ListCommandDecreaseItemDepthOrUnwrapIfNeed = (editor: Editor) => Editor;
 
 export type ListCommands = Plugin['commands'] & {
   [LIST_COMMAND_WRAP]: ListCommandWrap;
@@ -27,10 +34,11 @@ export type ListCommands = Plugin['commands'] & {
   [LIST_COMMAND_TOGGLE]: ListCommandToggle;
   [LIST_COMMAND_INCREASE_ITEM_DEPTH]: ListCommandIncreaseItemDepth;
   [LIST_COMMAND_DECREASE_ITEM_DEPTH]: ListCommandDecreaseItemDepth;
+  [LIST_COMMAND_DECREASE_ITEM_DEPTH_OR_UNWRAP_IF_NEED]: ListCommandDecreaseItemDepthOrUnwrapIfNeed;
 };
 
 export function ListCommands(config: ListCommandsConfig): ListCommands {
-  const { types } = config;
+  const { types, queryItem, queryList, queryPreviousItem, queryCurrentItem } = config;
   const commandWrap: ListCommandWrap = (editor, orderedType) =>
     editor.withoutNormalizing(() => {
       const type = types[orderedType];
@@ -77,15 +85,15 @@ export function ListCommands(config: ListCommandsConfig): ListCommands {
     });
   const commandToggle: ListCommandToggle = (editor, orderedType) =>
     editor.withoutNormalizing(() => {
-      const item = editor.value.document.getParent(editor.value.startBlock.key);
+      const item = queryCurrentItem(editor);
 
-      if (!isListItem(types, item)) {
+      if (!item) {
         return commandWrap(editor, orderedType);
       }
 
-      const list = editor.value.document.getParent(item.key);
+      const list = queryList(editor, item);
 
-      if (!isList(types, list)) {
+      if (!list) {
         return editor;
       }
 
@@ -98,29 +106,27 @@ export function ListCommands(config: ListCommandsConfig): ListCommands {
       }
     });
   const commandIncreaseItemDepth: ListCommandIncreaseItemDepth = editor => {
-    const item = editor.value.document.getParent(editor.value.startBlock.key);
+    const item = queryCurrentItem(editor);
 
-    if (!isListItem(types, item)) {
+    if (!item) {
       return editor;
     }
 
-    const previousItem = editor.value.document.getPreviousSibling(item.key);
+    const previousItem = queryPreviousItem(editor, item);
 
-    if (!isListItem(types, previousItem)) {
+    if (!previousItem) {
       return editor;
     }
 
-    const existingList = previousItem.nodes.last() as Block | undefined;
+    const lastListInPreviousItem = getLastListInNode(types, previousItem);
 
-    if (isList(types, existingList)) {
-      return editor.withoutNormalizing(() => {
-        editor.moveNodeByKey(item.key, existingList.key, existingList.nodes.size);
-      });
+    if (lastListInPreviousItem) {
+      return editor.moveNodeByKey(item.key, lastListInPreviousItem.key, lastListInPreviousItem.nodes.size);
     }
 
-    const list = editor.value.document.getParent(item.key);
+    const list = queryList(editor, item);
 
-    if (!isList(types, list)) {
+    if (!list) {
       return editor;
     }
 
@@ -133,27 +139,27 @@ export function ListCommands(config: ListCommandsConfig): ListCommands {
     });
   };
   const commandDecreaseItemDepth: ListCommandDecreaseItemDepth = editor => {
-    const item = editor.value.document.getParent(editor.value.startBlock.key);
+    const item = queryCurrentItem(editor);
 
-    if (!isListItem(types, item)) {
+    if (!item) {
       return editor;
     }
 
-    const list = editor.value.document.getParent(item.key);
+    const list = queryList(editor, item);
 
-    if (!isList(types, list)) {
+    if (!list) {
       return editor;
     }
 
-    const parentItem = editor.value.document.getParent(list.key);
+    const parentItem = queryItem(editor, list);
 
-    if (!isListItem(types, parentItem)) {
+    if (!parentItem) {
       return editor;
     }
 
-    const parentList = editor.value.document.getParent(parentItem.key);
+    const parentList = queryList(editor, parentItem);
 
-    if (!isList(types, parentList)) {
+    if (!parentList) {
       return editor;
     }
 
@@ -180,12 +186,18 @@ export function ListCommands(config: ListCommandsConfig): ListCommands {
       }
     });
   };
+  const commandDecreaseItemDepthOrUnwrapIfNeed: ListCommandDecreaseItemDepthOrUnwrapIfNeed = editor => {
+    const parentItem = queryItem(editor, queryList(editor, queryCurrentItem(editor)));
+    const command = parentItem ? commandDecreaseItemDepth : commandUnwrap;
+    return command(editor);
+  };
 
   return {
     [LIST_COMMAND_WRAP]: commandWrap,
     [LIST_COMMAND_UNWRAP]: commandUnwrap,
     [LIST_COMMAND_TOGGLE]: commandToggle,
     [LIST_COMMAND_INCREASE_ITEM_DEPTH]: commandIncreaseItemDepth,
-    [LIST_COMMAND_DECREASE_ITEM_DEPTH]: commandDecreaseItemDepth
+    [LIST_COMMAND_DECREASE_ITEM_DEPTH]: commandDecreaseItemDepth,
+    [LIST_COMMAND_DECREASE_ITEM_DEPTH_OR_UNWRAP_IF_NEED]: commandDecreaseItemDepthOrUnwrapIfNeed
   };
 }

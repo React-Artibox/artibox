@@ -1,26 +1,28 @@
 import { PickPluginAndRequired } from '@artibox/slate-core';
-import { ListQueryList, ListQueryListItem, ListQueryInList } from './list.queries';
-import { ListCommandUnwrap, ListCommandIncreaseItemDepth, ListCommandDecreaseItemDepth } from './list.commands';
+import { ListQueryCurrentItem, ListQueryIsSelectionInList } from './list.queries';
+import {
+  ListCommandIncreaseItemDepth,
+  ListCommandDecreaseItemDepth,
+  ListCommandDecreaseItemDepthOrUnwrapIfNeed
+} from './list.commands';
 
 export interface ListHandlersConfig {
-  queryList: ListQueryList;
-  queryListItem: ListQueryListItem;
-  queryInList: ListQueryInList;
-  commandUnwrap: ListCommandUnwrap;
+  queryCurrentItem: ListQueryCurrentItem;
+  queryIsSelectionInList: ListQueryIsSelectionInList;
   commandIncreaseItemDepth: ListCommandIncreaseItemDepth;
   commandDecreaseItemDepth: ListCommandDecreaseItemDepth;
+  commandDecreaseItemDepthOrUnwrapIfNeed: ListCommandDecreaseItemDepthOrUnwrapIfNeed;
 }
 
 export type ListHandlers = PickPluginAndRequired<'onKeyDown'>;
 
 export function ListHandlers(config: ListHandlersConfig): ListHandlers {
   const {
-    queryList,
-    queryListItem,
-    queryInList,
-    commandUnwrap,
+    queryCurrentItem,
+    queryIsSelectionInList,
     commandIncreaseItemDepth,
-    commandDecreaseItemDepth
+    commandDecreaseItemDepth,
+    commandDecreaseItemDepthOrUnwrapIfNeed
   } = config;
 
   const onEnter: ListHandlers['onKeyDown'] = (event, editor, next) => {
@@ -33,15 +35,10 @@ export function ListHandlers(config: ListHandlersConfig): ListHandlers {
     }
 
     if (selection.start.offset === 0 && startBlock.text === '') {
-      const item = queryListItem(editor, editor.value.startBlock);
-      const list = queryList(editor, item);
-      const parentItem = queryListItem(editor, list);
-      const command = parentItem ? commandDecreaseItemDepth : commandUnwrap;
-
-      return command(editor);
+      return commandDecreaseItemDepthOrUnwrapIfNeed(editor);
     }
 
-    const item = queryListItem(editor, editor.value.startBlock);
+    const item = queryCurrentItem(editor);
 
     if (!item) {
       return next();
@@ -58,13 +55,7 @@ export function ListHandlers(config: ListHandlersConfig): ListHandlers {
     }
 
     event.preventDefault();
-
-    const listItem = queryListItem(editor, editor.value.startBlock);
-    const list = queryList(editor, listItem);
-    const parentListItem = queryListItem(editor, list);
-    const command = parentListItem ? commandDecreaseItemDepth : commandUnwrap;
-
-    return command(editor);
+    return commandDecreaseItemDepthOrUnwrapIfNeed(editor);
   };
 
   const onTab: ListHandlers['onKeyDown'] = (event, editor) => {
@@ -75,7 +66,7 @@ export function ListHandlers(config: ListHandlersConfig): ListHandlers {
 
   return {
     onKeyDown: (event, editor, next) => {
-      if (!queryInList(editor)) {
+      if (!queryIsSelectionInList(editor)) {
         return next();
       } else if (event.key === 'Enter' && !event.shiftKey) {
         return onEnter(event, editor, next);
