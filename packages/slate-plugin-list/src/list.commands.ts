@@ -21,11 +21,34 @@ export interface ListCommandsConfig {
   queryCurrentItem: ListQueryCurrentItem;
 }
 
+/**
+ * To wrap the root blocks in current selection with list.
+ */
 export type ListCommandWrap = (editor: Editor, orderedType: LIST_ORDERED_TYPES) => Editor;
+
+/**
+ * To unwrap the root blocks in current selection from list.
+ */
 export type ListCommandUnwrap = (editor: Editor) => Editor;
+
+/**
+ * To toggle the root blocks in current selection between being list.
+ */
 export type ListCommandToggle = (editor: Editor, orderedType: LIST_ORDERED_TYPES) => Editor;
+
+/**
+ * To increase the depth of the first item in current selection if increasable.
+ */
 export type ListCommandIncreaseItemDepth = (editor: Editor) => Editor;
+
+/**
+ * To decrease the depth of the first item in current selection if decreasable.
+ */
 export type ListCommandDecreaseItemDepth = (editor: Editor) => Editor;
+
+/**
+ * If not decreasable, unwrap the list, or decrease the depth of item.
+ */
 export type ListCommandDecreaseItemDepthOrUnwrapIfNeed = (editor: Editor) => Editor;
 
 export type ListCommands = Plugin['commands'] & {
@@ -59,10 +82,10 @@ export function ListCommands(config: ListCommandsConfig): ListCommands {
   const commandUnwrap: ListCommandUnwrap = editor =>
     editor.withoutNormalizing(() => {
       editor.value.blocks
-        .map(block => editor.value.document.getFurthest(block!.key, node => isListItem(types, node)))
+        .map(block => editor.value.document.getClosest(block!.key, node => isListItem(types, node)))
         .filter(Boolean)
-        .forEach(furthestItem => {
-          const item = furthestItem as Block;
+        .forEach(closestItem => {
+          const item = closestItem as Block;
 
           editor.unwrapNodeByKey(item.key);
 
@@ -77,6 +100,9 @@ export function ListCommands(config: ListCommandsConfig): ListCommands {
 
           const itemIndex = parent.nodes.findIndex(node => node!.key === item.key);
 
+          /**
+           * Move all blocks in item to parent and remove the item.
+           */
           item.nodes.forEach((itemChild, index) => {
             editor.moveNodeByKey(itemChild!.key, parent.key, index! + itemIndex);
           });
@@ -120,6 +146,9 @@ export function ListCommands(config: ListCommandsConfig): ListCommands {
 
     const lastListInPreviousItem = getLastListInNode(types, previousItem);
 
+    /**
+     * If there is a list in the previous item, move item to the list.
+     */
     if (lastListInPreviousItem) {
       return editor.moveNodeByKey(item.key, lastListInPreviousItem.key, lastListInPreviousItem.nodes.size);
     }
@@ -130,6 +159,9 @@ export function ListCommands(config: ListCommandsConfig): ListCommands {
       return editor;
     }
 
+    /**
+     * Or create a new list in previous item and move item to the new list.
+     */
     return editor.withoutNormalizing(() => {
       const newList = Block.fromJSON({ type: list.type });
 
@@ -165,28 +197,39 @@ export function ListCommands(config: ListCommandsConfig): ListCommands {
 
     return editor.withoutNormalizing(() => {
       const insertIndex = parentList.nodes.indexOf(parentItem) + 1;
-      const otherItems = list.nodes.skipUntil(eachItem => eachItem === item).rest();
-      const otherItemsIsEmpty = otherItems.isEmpty();
-      const prevItemsIsEmpty = list.nodes.size - otherItems.size - 1 <= 0;
+      const nextItems = list.nodes.skipUntil(eachItem => eachItem === item).rest();
+      const nextItemsIsEmpty = nextItems.isEmpty();
+      const prevItemsIsEmpty = list.nodes.size - nextItems.size - 1 <= 0;
 
       editor.moveNodeByKey(item.key, parentList.key, insertIndex);
 
-      if (!otherItemsIsEmpty) {
+      /**
+       * After item moved to parent list.
+       *
+       * If there are some sibling items next to item, move them to a new list in item.
+       */
+      if (!nextItemsIsEmpty) {
         const newList = Block.create({ type: list.type });
 
         editor.insertNodeByKey(item.key, item.nodes.size, newList);
 
-        otherItems.forEach((otherItem, index) => {
-          editor.moveNodeByKey(otherItem!.key, newList.key, newList.nodes.size + index!);
+        nextItems.forEach((nextItem, index) => {
+          editor.moveNodeByKey(nextItem!.key, newList.key, newList.nodes.size + index!);
         });
       }
 
+      /**
+       * If there is no any sibling item previous to item, remove the origin list.
+       */
       if (prevItemsIsEmpty) {
         editor.removeNodeByKey(list.key);
       }
     });
   };
   const commandDecreaseItemDepthOrUnwrapIfNeed: ListCommandDecreaseItemDepthOrUnwrapIfNeed = editor => {
+    /**
+     * Be decreasable if parent item exist.
+     */
     const parentItem = queryItem(editor, queryList(editor, queryCurrentItem(editor)));
     const command = parentItem ? commandDecreaseItemDepth : commandUnwrap;
     return command(editor);

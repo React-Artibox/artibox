@@ -10,11 +10,34 @@ import {
 } from './list.constants';
 import { isList, isListItem } from './list.utils';
 
+/**
+ * To query the item wrapping the node from parameter.
+ */
 export type ListQueryItem = (editor: Editor, node?: Node | null) => Block | null;
+
+/**
+ * To query the list wrapping the node from parameter.
+ */
 export type ListQueryList = (editor: Editor, node?: Node | null) => Block | null;
+
+/**
+ * To query the previous sibling item.
+ */
 export type ListQueryPreviousItem = (editor: Editor, item: Block) => Block | null;
+
+/**
+ * To query the item wrapping the start block of current selection.
+ */
 export type ListQueryCurrentItem = (editor: Editor) => Block | null;
+
+/**
+ * To query the list wrapping the start block of current selection.
+ */
 export type ListQueryCurrentList = (editor: Editor) => Block | null;
+
+/**
+ * To query if current selection is in list.
+ */
 export type ListQueryIsSelectionInList = (editor: Editor) => boolean;
 
 export type ListQueries = Plugin['queries'] & {

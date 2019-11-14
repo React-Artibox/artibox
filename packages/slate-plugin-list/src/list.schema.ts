@@ -4,15 +4,61 @@ import { LIST_TYPES } from './list.constants';
 
 export function ListSchema(types: LIST_TYPES): SchemaProperties {
   const listRules: Rules = {
+    /**
+     * There must be at least one item in each list.
+     */
     nodes: [
       {
         match: { object: 'block', type: types.item },
         min: 1
       }
     ],
+
     normalize(editor, error) {
+      /**
+       * If there is no any item, remove the list.
+       */
       if (error.code === 'child_min_invalid') {
         editor.removeNodeByKey(error.node.key);
+      }
+    }
+  };
+  const itemRules: Rules = {
+    /**
+     * The item must be wrapped by list.
+     */
+    parent: [{ type: types.unordered }, { type: types.ordered }],
+    /**
+     * There must be at least one `block` in each item.
+     * The amount of list in the children of item must be no more than 1.
+     */
+    nodes: [
+      {
+        match: [{ object: 'block' }],
+        min: 1
+      },
+      {
+        match: [{ type: types.unordered }, { type: types.ordered }],
+        max: 1
+      }
+    ],
+    normalize(editor, error) {
+      /**
+       * If there is no any `block` in item, add default paragraph block on it.
+       */
+      if (error.code === 'child_min_invalid') {
+        const paragraph = Block.fromJSON({ type: PARAGRAPH_TYPE });
+        editor.insertNodeByKey(error.node.key, 0, paragraph);
+        /**
+         * If any children is not `block`, wrap it in default paragraph block.
+         */
+      } else if (error.code === 'child_object_invalid') {
+        editor.wrapBlockByKey(error.child.key, { type: PARAGRAPH_TYPE });
+        /**
+         * If parent is not list, wrap it in unordered list.
+         */
+      } else if (error.code === 'parent_type_invalid') {
+        editor.wrapBlockByKey(error.node.key, types.unordered);
       }
     }
   };
@@ -21,29 +67,7 @@ export function ListSchema(types: LIST_TYPES): SchemaProperties {
     blocks: {
       [types.unordered]: listRules,
       [types.ordered]: listRules,
-      [types.item]: {
-        parent: [{ type: types.unordered }, { type: types.ordered }],
-        nodes: [
-          {
-            match: [{ object: 'block' }],
-            min: 1
-          },
-          {
-            match: [{ type: types.unordered }, { type: types.ordered }],
-            max: 1
-          }
-        ],
-        normalize(editor, error) {
-          if (error.code === 'child_min_invalid') {
-            const paragraph = Block.fromJSON({ type: PARAGRAPH_TYPE });
-            editor.insertNodeByKey(error.node.key, 0, paragraph);
-          } else if (error.code === 'child_object_invalid') {
-            editor.wrapBlockByKey(error.child.key, { type: PARAGRAPH_TYPE });
-          } else if (error.code === 'parent_type_invalid') {
-            editor.wrapBlockByKey(error.node.key, types.unordered);
-          }
-        }
-      }
+      [types.item]: itemRules
     }
   };
 }
