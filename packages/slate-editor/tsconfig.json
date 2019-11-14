@@ -4,16 +4,7 @@
     "outDir": "./lib",
     "rootDir": "./src"
   },
-  "references": [
-    { "path": "../theme-default" }
-  ],
-  "include": [
-		"./src"
-  ],
-  "exclude": [
-    "node_modules",
-    "./esm",
-    "./lib",
-    "./**/*.test.*"
-  ]
+  "references": [{ "path": "../theme-default" }],
+  "include": ["./src"],
+  "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
 }

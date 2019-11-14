@@ -8,7 +8,7 @@
     "stylelint-scss"
   ],
   "rules": {
-    "color-hex-case": "upper",
+    "color-hex-case": "lower",
 		"indentation": 2,
 		"at-rule-no-vendor-prefix": true,
 		"media-feature-name-no-vendor-prefix": true,
