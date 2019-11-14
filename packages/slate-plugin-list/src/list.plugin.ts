@@ -1,3 +1,4 @@
+import { PickPluginAndRequired } from '@artibox/slate-core';
 import {
   LIST_TYPES,
   LIST_QUERY_ITEM,
@@ -13,12 +14,13 @@ import { ListQueries } from './list.queries';
 import { ListCommands } from './list.commands';
 import { ListRenderer } from './list.renderer';
 import { ListHandlers } from './list.handlers';
+import { ListSchema } from './list.schema';
 
 export interface ListPluginConfig {
   types?: Partial<LIST_TYPES>;
 }
 
-export interface ListPlugin extends ListHandlers, ListRenderer {
+export interface ListPlugin extends ListHandlers, ListRenderer, PickPluginAndRequired<'schema'> {
   queries: ListQueries;
   commands: ListCommands;
 }
@@ -44,11 +46,13 @@ export function ListPlugin(config?: ListPluginConfig): ListPlugin {
     commandDecreaseItemDepthOrUnwrapIfNeed: commands[LIST_COMMAND_DECREASE_ITEM_DEPTH_OR_UNWRAP_IF_NEED]
   });
   const renderer = ListRenderer(types);
+  const schema = ListSchema(types);
 
   return {
     queries,
     commands,
     ...handlers,
-    ...renderer
+    ...renderer,
+    schema
   };
 }
