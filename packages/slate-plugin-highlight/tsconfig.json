@@ -4,16 +4,7 @@
     "outDir": "./lib",
     "rootDir": "./src"
   },
-  "references": [
-    { "path": "../slate-plugin-toggle-mark" }
-  ],
-  "include": [
-		"./src"
-  ],
-  "exclude": [
-    "node_modules",
-    "./esm",
-    "./lib",
-    "./**/*.test.*"
-  ]
+  "references": [{ "path": "../slate-plugin-toggle-mark" }],
+  "include": ["./src"],
+  "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
 }

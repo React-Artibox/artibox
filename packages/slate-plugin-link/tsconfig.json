@@ -4,18 +4,7 @@
     "outDir": "./lib",
     "rootDir": "./src"
   },
-  "references": [
-    { "path": "../components" },
-    { "path": "../slate-core" },
-    { "path": "../slate-renderer" }
-  ],
-  "include": [
-		"./src"
-  ],
-  "exclude": [
-    "node_modules",
-    "./esm",
-    "./lib",
-    "./**/*.test.*"
-  ]
+  "references": [{ "path": "../components" }, { "path": "../slate-core" }, { "path": "../slate-renderer" }],
+  "include": ["./src"],
+  "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
 }

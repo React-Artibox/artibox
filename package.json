@@ -13,6 +13,7 @@
     "clean": "lerna run clean && lerna clean",
     "build:clean": "lerna run build:clean --stream --parallel",
     "build": "lerna run build --stream --sort",
+    "format": "prettier './**/*.{js,ts,tsx,json,scss,md}' --write",
     "lint:css": "stylelint ./**/*.scss --config .stylelintrc",
     "lint:ts": "eslint . --config .eslintrc --ext .js,.ts,.tsx",
     "lint": "npm run lint:ts && npm run lint:css",
