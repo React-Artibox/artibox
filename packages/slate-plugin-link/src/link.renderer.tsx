@@ -1,7 +1,6 @@
 import { Editor } from 'slate';
 import React, { ReactNode } from 'react';
-import { PickPluginAndRequired } from '@artibox/slate-core';
-import { CommonInlineRenderer } from '@artibox/slate-renderer';
+import { CommonInlineRenderer, CommonEditorRenderer } from '@artibox/slate-renderer';
 import { LINK_COMPONENT } from './link.constants';
 import { getUrlFromInline } from './link.utils';
 import LinkModalProvider, { LinkModalProviderProps } from './link-modal/link-modal.provider';
@@ -12,34 +11,30 @@ export interface LinkRendererConfig {
   renderLinkModal?: (editor: Editor, ...args: Parameters<LinkModalProviderProps['children']>) => ReactNode;
 }
 
-export type LinkRenderer = PickPluginAndRequired<'renderInline' | 'renderEditor'>;
+export type LinkRenderer = CommonInlineRenderer & CommonEditorRenderer;
 
 export function LinkRenderer(config: LinkRendererConfig): LinkRenderer {
   const { type, renderLinkModal } = config;
   const inlineRenderer = CommonInlineRenderer({
     type,
     component: LINK_COMPONENT,
-    dataResolver: node => ({
-      href: getUrlFromInline(node),
+    getProps: props => ({
+      href: getUrlFromInline(props.node),
       target: '_blank'
     })
   });
+  const editorRenderer = CommonEditorRenderer({
+    render: (editor, el) => (
+      <LinkModalProvider>
+        {(open, setOpen) => (
+          <>
+            {renderLinkModal?.(editor, open, setOpen) ?? <LinkModal editor={editor} open={open} setOpen={setOpen} />}
+            {el}
+          </>
+        )}
+      </LinkModalProvider>
+    )
+  });
 
-  return {
-    renderInline: inlineRenderer.renderInline,
-    renderEditor(_, editor, next) {
-      const editorEl = next();
-
-      return (
-        <LinkModalProvider>
-          {(open, setOpen) => (
-            <>
-              {renderLinkModal?.(editor, open, setOpen) ?? <LinkModal editor={editor} open={open} setOpen={setOpen} />}
-              {editorEl}
-            </>
-          )}
-        </LinkModalProvider>
-      );
-    }
-  };
+  return { ...inlineRenderer, ...editorRenderer };
 }
