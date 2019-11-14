@@ -18,6 +18,9 @@ export function isListItem(types: LIST_TYPES, node?: Node | null): node is Block
   return types.item === node.type;
 }
 
+/**
+ * @returns Return the last node if the last node in the node from parameter is list, or null.
+ */
 export function getLastListInNode(types: LIST_TYPES, node?: Node | null): Block | null {
   if (!isNodeExcludeText(node)) {
     return null;
