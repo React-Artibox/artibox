@@ -17,3 +17,12 @@ export function isListItem(types: LIST_TYPES, node?: Node | null): node is Block
 
   return types.item === node.type;
 }
+
+export function getLastListInNode(types: LIST_TYPES, node?: Node | null): Block | null {
+  if (!isNodeExcludeText(node)) {
+    return null;
+  }
+
+  const lastList = node.nodes.last() as Block | undefined;
+  return isList(types, lastList) ? lastList : null;
+}
