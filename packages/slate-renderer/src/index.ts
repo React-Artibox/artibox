@@ -1,20 +1,8 @@
-/**
- * types
- */
 export { EditorPassable } from './types';
 
-/**
- * marks
- */
-export { CommonMarkRendererConfig, CommonMarkRenderer } from './marks/common-mark.renderer';
+export { CommonMarkRendererConfig, CommonMarkRenderer } from './common-mark.renderer';
+export { CommonInlineRendererConfig, CommonInlineRenderer } from './common-inline.renderer';
+export { CommonBlockRendererConfig, CommonBlockRenderer } from './common-block.renderer';
+export { CommonEditorRendererConfig, CommonEditorRenderer } from './common-editor.renderer';
 
-/**
- * inlines
- */
-export { CommonInlineRendererConfig, CommonInlineRenderer } from './inlines/common-inline.renderer';
-
-/**
- * blocks
- */
-export { CommonBlockRendererConfig, CommonBlockRenderer } from './blocks/common-block.renderer';
-export { ParagraphRenderer } from './blocks/paragraph.renderer';
+export { ParagraphRenderer } from './paragraph.renderer';

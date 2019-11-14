@@ -1,29 +1,28 @@
-import { Inline } from 'slate';
-import React, { ReactHTML, ComponentType } from 'react';
-import { RenderAttributes } from 'slate-react';
+import React from 'react';
+import { RenderInlineProps } from 'slate-react';
 import { PickPluginAndRequired } from '@artibox/slate-core';
+import { RendererBaseComponent } from './types';
 
 export interface CommonInlineRendererConfig {
   type: string;
-  component: keyof ReactHTML | ComponentType<RenderAttributes>;
-  dataResolver?: (node: Inline) => object;
+  component: RendererBaseComponent;
+  getProps?: (props: RenderInlineProps) => object;
   isVoid?: boolean;
 }
 
 export type CommonInlineRenderer = PickPluginAndRequired<'renderInline'>;
 
 export function CommonInlineRenderer(config: CommonInlineRendererConfig): CommonInlineRenderer {
-  const { type, component: Component, dataResolver, isVoid = false } = config;
+  const { type, component: Component, getProps, isVoid = false } = config;
 
   return {
     renderInline(props, _, next) {
-      const { children, attributes } = props;
-
-      if (type !== props.node.type) {
+      if (props.node.type !== type) {
         return next();
       }
 
-      const data = dataResolver?.(props.node);
+      const { children, attributes } = props;
+      const data = getProps?.(props);
 
       return (
         <Component {...attributes} {...data}>
