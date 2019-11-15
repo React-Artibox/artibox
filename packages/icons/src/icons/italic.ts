@@ -1,19 +1,14 @@
 import { IconDefinition } from '../types';
 
-/**
- * @todo
- * Currently fork from fontawesome.
- */
 export const Italic: IconDefinition = {
   name: 'italic',
   definition: {
     svg: {
-      viewBox: '0 0 320 512'
+      viewBox: '0 0 24 24'
     },
     path: {
       fill: 'currentColor',
-      d:
-        'M320 40v16a8 8 0 0 1-8 8h-87.5l-96 384H216a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8v-16a8 8 0 0 1 8-8h87.5l96-384H104a8 8 0 0 1-8-8V40a8 8 0 0 1 8-8h208a8 8 0 0 1 8 8z'
+      d: 'M17 4v1.4h-2.376l-3.03 13.2H14V20H7v-1.4h2.424l3.03-13.2H10V4h7z'
     }
   }
 };
