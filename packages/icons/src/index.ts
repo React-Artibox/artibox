@@ -9,6 +9,7 @@ export { Erase } from './icons/erase';
 export { Facebook } from './icons/facebook';
 export { Heading1 } from './icons/heading1';
 export { Heading2 } from './icons/heading2';
+export { Heading3 } from './icons/heading3';
 export { Highlight } from './icons/highlight';
 export { Image } from './icons/image';
 export { Instagram } from './icons/instagram';

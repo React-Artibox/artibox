@@ -7,10 +7,8 @@ export const SeparationLine: IconDefinition = {
       viewBox: '0 0 24 24'
     },
     path: {
-      fillRule: 'evenodd',
-      stroke: 'currentColor',
-      strokeWidth: 2,
-      d: 'M3.224,12 L20.816,12'
+      fill: 'currentColor',
+      d: 'M2 11h20v2H2z'
     }
   }
 };
