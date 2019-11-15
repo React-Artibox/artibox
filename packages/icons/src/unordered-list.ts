@@ -1,4 +1,4 @@
-import { IconDefinition } from '../types';
+import { IconDefinition } from './types';
 
 export const UnorderedList: IconDefinition = {
   name: 'unordered list',

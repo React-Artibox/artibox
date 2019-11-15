@@ -1,24 +1,27 @@
 export { IconDefinition } from './types';
 
-export { AlighLeft } from './icons/align-left';
-export { AlighCenter } from './icons/align-center';
-export { AlighRight } from './icons/align-right';
-export { Blockquote } from './icons/blockquote';
-export { Bold } from './icons/bold';
-export { Erase } from './icons/erase';
-export { Facebook } from './icons/facebook';
-export { Heading1 } from './icons/heading1';
-export { Heading2 } from './icons/heading2';
-export { Heading3 } from './icons/heading3';
-export { Highlight } from './icons/highlight';
-export { Image } from './icons/image';
-export { Instagram } from './icons/instagram';
-export { Italic } from './icons/italic';
-export { Link } from './icons/link';
-export { OrderedList } from './icons/ordered-list';
-export { SeparationLine } from './icons/separation-line';
-export { Strikethrough } from './icons/strikethrough';
-export { Underline } from './icons/underline';
-export { Unlink } from './icons/unlink';
-export { UnorderedList } from './icons/unordered-list';
-export { Video } from './icons/video';
+/**
+ * icons
+ */
+export { AlighLeft } from './align-left';
+export { AlighCenter } from './align-center';
+export { AlighRight } from './align-right';
+export { Blockquote } from './blockquote';
+export { Bold } from './bold';
+export { Erase } from './erase';
+export { Facebook } from './facebook';
+export { Heading1 } from './heading1';
+export { Heading2 } from './heading2';
+export { Heading3 } from './heading3';
+export { Highlight } from './highlight';
+export { Image } from './image';
+export { Instagram } from './instagram';
+export { Italic } from './italic';
+export { Link } from './link';
+export { OrderedList } from './ordered-list';
+export { SeparationLine } from './separation-line';
+export { Strikethrough } from './strikethrough';
+export { Underline } from './underline';
+export { Unlink } from './unlink';
+export { UnorderedList } from './unordered-list';
+export { Video } from './video';
