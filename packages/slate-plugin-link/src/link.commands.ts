@@ -28,13 +28,7 @@ export function LinkCommands(config: LinkCommandsConfig): LinkCommands {
 
     return editor.value.inlines
       .filter(inline => inline?.type === type)
-      .reduce((prev, inline) => {
-        if (prev && inline) {
-          return prev.unwrapInline(inline.type);
-        }
-
-        return prev as Editor;
-      }, editor);
+      .reduce((prev, inline) => prev!.unwrapInline(inline!.type), editor);
   };
   const commandSet: LinkCommandSet = (editor, url, text) => {
     const { isExpanded } = editor.value.selection;
