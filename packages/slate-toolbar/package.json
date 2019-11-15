@@ -26,7 +26,6 @@
     "@artibox/components": "^0.0.0",
     "@artibox/icons": "^0.0.0",
     "@artibox/slate-core": "^0.0.0",
-    "@artibox/slate-editor": "^0.0.0",
     "@artibox/slate-renderer": "^0.0.0",
     "classnames": "^2.2.6",
     "tslib": "^1.10.0"
