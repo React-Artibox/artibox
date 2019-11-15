@@ -4,7 +4,7 @@
     "outDir": "./lib",
     "rootDir": "./src"
   },
-  "references": [{ "path": "../theme-default" }],
+  "references": [{ "path": "../components" }, { "path": "../theme-default" }],
   "include": ["./src"],
   "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
 }
