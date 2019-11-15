@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "@artibox/components": "^0.0.0",
-    "@artibox/theme-default": "^0.0.0",
     "classnames": "^2.2.6",
     "tslib": "^1.10.0"
   },

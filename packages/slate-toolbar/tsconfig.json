@@ -8,7 +8,6 @@
     { "path": "../components" },
     { "path": "../icons" },
     { "path": "../slate-core" },
-    { "path": "../slate-editor" },
     { "path": "../slate-renderer" }
   ],
   "include": ["./src"],
