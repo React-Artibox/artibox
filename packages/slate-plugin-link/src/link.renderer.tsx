@@ -6,15 +6,20 @@ import { getUrlFromInline } from './link.utils';
 import LinkModalProvider, { LinkModalProviderProps } from './link-modal/link-modal.provider';
 import LinkModal from './link-modal/link-modal.component';
 
+export type LinkRendererRenderModal = (
+  editor: Editor,
+  ...args: Parameters<LinkModalProviderProps['children']>
+) => ReactNode;
+
 export interface LinkRendererConfig {
   type: string;
-  renderLinkModal?: (editor: Editor, ...args: Parameters<LinkModalProviderProps['children']>) => ReactNode;
+  modal?: boolean | LinkRendererRenderModal;
 }
 
-export type LinkRenderer = CommonInlineRenderer & CommonEditorRenderer;
+export type LinkRenderer = CommonInlineRenderer | (CommonInlineRenderer & CommonEditorRenderer);
 
 export function LinkRenderer(config: LinkRendererConfig): LinkRenderer {
-  const { type, renderLinkModal } = config;
+  const { type, modal = false } = config;
   const inlineRenderer = CommonInlineRenderer({
     type,
     component: LINK_COMPONENT,
@@ -23,12 +28,22 @@ export function LinkRenderer(config: LinkRendererConfig): LinkRenderer {
       target: '_blank'
     })
   });
+
+  if (!modal) {
+    return inlineRenderer;
+  }
+
+  const renderModal: LinkRendererRenderModal =
+    typeof modal !== 'function'
+      ? (editor, open, setOpen) => <LinkModal editor={editor} open={open} setOpen={setOpen} />
+      : modal;
+
   const editorRenderer = CommonEditorRenderer({
     render: (editor, el) => (
       <LinkModalProvider>
         {(open, setOpen) => (
           <>
-            {renderLinkModal?.(editor, open, setOpen) ?? <LinkModal editor={editor} open={open} setOpen={setOpen} />}
+            {renderModal(editor, open, setOpen)}
             {el}
           </>
         )}
