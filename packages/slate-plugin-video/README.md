@@ -1,0 +1,1 @@
+# `@artibox/slate-plugin-video`
