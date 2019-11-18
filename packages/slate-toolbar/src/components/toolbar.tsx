@@ -53,7 +53,7 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const { isFocused, isExpanded } = selection;
   const focusTextEmpty = fragment.text === '';
   const expanded = !!((isExpanded || inputableTool) && !focusTextEmpty && expandedTools);
-  const collapsed = !expanded && collapsedTools;
+  const collapsed = !expanded && isFocused && collapsedTools;
   let tools: Tool[] | undefined;
 
   if (expanded) {
@@ -94,7 +94,7 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   return (
     <Portal>
       <div ref={ref} className={cx('artibox-toolbar', theme)}>
-        {tools?.map((tool, index) => {
+        {tools.map((tool, index) => {
           if (tool === TOOLBAR_DIVIDER) {
             return <Divider key={index} />;
           }
