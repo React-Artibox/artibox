@@ -6,4 +6,4 @@ export interface EditorPassable {
   editor: Editor;
 }
 
-export type RendererBaseComponent = keyof ReactHTML | ComponentType<RenderAttributes>;
+export type RendererBaseComponent<P extends RenderAttributes = RenderAttributes> = keyof ReactHTML | ComponentType<P>;

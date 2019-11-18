@@ -1,18 +1,21 @@
 import React from 'react';
-import { RenderMarkProps } from 'slate-react';
+import { RenderMarkProps, RenderAttributes } from 'slate-react';
 import { PickPluginAndRequired } from '@artibox/slate-core';
 import { RendererBaseComponent } from './types';
 
-export interface CommonMarkRendererConfig {
+export interface CommonMarkRendererConfig<P extends RenderAttributes = RenderAttributes> {
   type: string;
-  component: RendererBaseComponent;
+  component: RendererBaseComponent<P>;
   getProps?: (props: RenderMarkProps) => object;
 }
 
 export type CommonMarkRenderer = PickPluginAndRequired<'renderMark'>;
 
-export function CommonMarkRenderer(config: CommonMarkRendererConfig): CommonMarkRenderer {
-  const { type, component: Component, getProps } = config;
+export function CommonMarkRenderer<P extends RenderAttributes = RenderAttributes>(
+  config: CommonMarkRendererConfig<P>
+): CommonMarkRenderer {
+  const { type, component, getProps } = config;
+  const Component = component as any;
 
   return {
     renderMark(props, _, next) {

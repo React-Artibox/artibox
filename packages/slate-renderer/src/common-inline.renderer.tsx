@@ -1,19 +1,22 @@
 import React from 'react';
-import { RenderInlineProps } from 'slate-react';
+import { RenderInlineProps, RenderAttributes } from 'slate-react';
 import { PickPluginAndRequired } from '@artibox/slate-core';
 import { RendererBaseComponent } from './types';
 
-export interface CommonInlineRendererConfig {
+export interface CommonInlineRendererConfig<P extends RenderAttributes = RenderAttributes> {
   type: string;
-  component: RendererBaseComponent;
+  component: RendererBaseComponent<P>;
   getProps?: (props: RenderInlineProps) => object;
   isVoid?: boolean;
 }
 
 export type CommonInlineRenderer = PickPluginAndRequired<'renderInline'>;
 
-export function CommonInlineRenderer(config: CommonInlineRendererConfig): CommonInlineRenderer {
-  const { type, component: Component, getProps, isVoid = false } = config;
+export function CommonInlineRenderer<P extends RenderAttributes = RenderAttributes>(
+  config: CommonInlineRendererConfig<P>
+): CommonInlineRenderer {
+  const { type, component, getProps, isVoid = false } = config;
+  const Component = component as any;
 
   return {
     renderInline(props, _, next) {
