@@ -111,7 +111,7 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
             />
           );
         })}
-        {inputableTool && (
+        {expanded && inputableTool && (
           <ToolbarInput editor={editor} inputableTool={inputableTool} setInputableTool={setInputableTool} />
         )}
       </div>
