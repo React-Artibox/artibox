@@ -8,4 +8,4 @@ export {
   UNDERLINE_COMMAND_TOGGLE
 } from './underline.constants';
 export { UnderlinePlugin } from './underline.plugin';
-export { useUnderlineIsActive, useUnderlineOnMouseDown } from './underline.hooks';
+export { isUnderlineActive, underlineToggle } from './underline.utils';

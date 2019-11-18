@@ -8,4 +8,4 @@ export {
   STRIKETHROUGH_COMMAND_TOGGLE
 } from './strikethrough.constants';
 export { StrikethroughPlugin } from './strikethrough.plugin';
-export { useStrikethroughIsActive, useStrikethroughOnMouseDown } from './strikethrough.hooks';
+export { isStrikethroughActive, strikethroughToggle } from './strikethrough.utils';

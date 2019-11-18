@@ -15,7 +15,7 @@ export {
   LIST_COMMAND_DECREASE_ITEM_DEPTH,
   LIST_COMMAND_DECREASE_ITEM_DEPTH_OR_UNWRAP_IF_NEED
 } from './list.constants';
-export { isList, isListItem, getLastListInNode } from './list.utils';
+export { isList, isListItem, getLastListInNode, listToggle } from './list.utils';
 export {
   ListQueryList,
   ListQueryItem,
@@ -36,4 +36,3 @@ export {
   ListCommands
 } from './list.commands';
 export { ListPluginConfig, ListPlugin } from './list.plugin';
-export { useListOnMouseDown } from './list.hooks';

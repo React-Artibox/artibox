@@ -8,4 +8,4 @@ export {
   ITALIC_COMMAND_TOGGLE
 } from './italic.constants';
 export { ItalicPlugin } from './italic.plugin';
-export { useItalicIsActive, useItalicOnMouseDown } from './italic.hooks';
+export { isItalicActive, italicToggle } from './italic.utils';

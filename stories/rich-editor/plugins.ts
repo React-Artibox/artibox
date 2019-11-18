@@ -2,66 +2,70 @@ import { Plugin } from 'slate-react';
 import {
   Bold,
   Italic,
-  Strikethrough,
   Underline,
+  Strikethrough,
   Highlight,
   Link,
   Unlink,
   Heading1,
   Heading2,
-  SeparationLine,
+  Heading3,
   Blockquote,
   UnorderedList,
-  OrderedList
+  OrderedList,
+  SeparationLine
 } from '@artibox/icons';
-import { BoldPlugin, useBoldIsActive, useBoldOnMouseDown } from '@artibox/slate-plugin-bold';
-import { ItalicPlugin, useItalicIsActive, useItalicOnMouseDown } from '@artibox/slate-plugin-italic';
-import {
-  StrikethroughPlugin,
-  useStrikethroughIsActive,
-  useStrikethroughOnMouseDown
-} from '@artibox/slate-plugin-strikethrough';
-import { UnderlinePlugin, useUnderlineIsActive, useUnderlineOnMouseDown } from '@artibox/slate-plugin-underline';
-import { HighlightPlugin, useHighlightIsActive, useHighlightOnMouseDown } from '@artibox/slate-plugin-highlight';
-import { LinkPlugin, useLinkModalOpenModal, useLinkIsActive, useLinkRemove } from '@artibox/slate-plugin-link';
-import { HeadingPlugin, useHeadingIsActive, useHeadingOnMouseDown } from '@artibox/slate-plugin-heading';
-import { SeparationLinePlugin, useSeparationLineOnMouseDown } from '@artibox/slate-plugin-separation-line';
-import { BlockquotePlugin, useBlockquoteIsActive, useBlockquoteOnMouseDown } from '@artibox/slate-plugin-blockquote';
-import { ListPlugin, useListOnMouseDown } from '@artibox/slate-plugin-list';
+import { BoldPlugin, isBoldActive, boldToggle } from '@artibox/slate-plugin-bold';
+import { ItalicPlugin, isItalicActive, italicToggle } from '@artibox/slate-plugin-italic';
+import { UnderlinePlugin, isUnderlineActive, underlineToggle } from '@artibox/slate-plugin-underline';
+import { StrikethroughPlugin, isStrikethroughActive, strikethroughToggle } from '@artibox/slate-plugin-strikethrough';
+import { HighlightPlugin, isHighlightActive, highlightToggle } from '@artibox/slate-plugin-highlight';
+import { LinkPlugin, linkIsActive, linkSet, linkRemove } from '@artibox/slate-plugin-link';
+import { HeadingPlugin, isHeadingActive, headingToggle } from '@artibox/slate-plugin-heading';
+import { BlockquotePlugin, isBlockquoteActive, blockquoteToggle } from '@artibox/slate-plugin-blockquote';
+import { ListPlugin, listToggle } from '@artibox/slate-plugin-list';
+import { SeparationLinePlugin, separationLineAdd } from '@artibox/slate-plugin-separation-line';
 import { ToolbarPlugin, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
 export const plugins: Plugin[] = [
   BoldPlugin(),
   ItalicPlugin(),
-  StrikethroughPlugin(),
   UnderlinePlugin(),
+  StrikethroughPlugin(),
   HighlightPlugin(),
   LinkPlugin(),
-  HeadingPlugin({
-    disabled: [3, 4, 5, 6]
-  }),
-  SeparationLinePlugin(),
+  HeadingPlugin({ disabled: [4, 5, 6] }),
   BlockquotePlugin(),
   ListPlugin(),
+  SeparationLinePlugin(),
   ToolbarPlugin({
-    collapsedTools: [
-      [Heading1, [editor => useHeadingOnMouseDown(editor, 1), editor => useHeadingIsActive(editor, 1)]],
-      [Heading2, [editor => useHeadingOnMouseDown(editor, 2), editor => useHeadingIsActive(editor, 2)]],
-      [Blockquote, [useBlockquoteOnMouseDown, useBlockquoteIsActive]],
-      [UnorderedList, [editor => useListOnMouseDown(editor, 'unordered')]],
-      [OrderedList, [editor => useListOnMouseDown(editor, 'ordered')]],
-      TOOLBAR_DIVIDER,
-      [SeparationLine, [useSeparationLineOnMouseDown]],
-      [Link, [useLinkModalOpenModal, useLinkIsActive]]
-    ],
     expandedTools: [
-      [Bold, [useBoldOnMouseDown, useBoldIsActive]],
-      [Italic, [useItalicOnMouseDown, useItalicIsActive]],
-      [Strikethrough, [useStrikethroughOnMouseDown, useStrikethroughIsActive]],
-      [Underline, [useUnderlineOnMouseDown, useUnderlineIsActive]],
-      [Highlight, [useHighlightOnMouseDown, useHighlightIsActive]],
-      [Link, [useLinkModalOpenModal, useLinkIsActive]],
-      [Unlink, [useLinkRemove]]
+      [Bold, { isActive: isBoldActive, onMouseDown: boldToggle }],
+      [Italic, { isActive: isItalicActive, onMouseDown: italicToggle }],
+      [Underline, { isActive: isUnderlineActive, onMouseDown: underlineToggle }],
+      [Strikethrough, { isActive: isStrikethroughActive, onMouseDown: strikethroughToggle }],
+      TOOLBAR_DIVIDER,
+      [Highlight, { isActive: isHighlightActive, onMouseDown: highlightToggle }],
+      [
+        Link,
+        {
+          isActive: linkIsActive,
+          inputable: {
+            onConfirm: linkSet
+          }
+        }
+      ],
+      [Unlink, { onMouseDown: linkRemove }]
+    ],
+    collapsedTools: [
+      [Heading1, { isActive: editor => isHeadingActive(editor, 1), onMouseDown: editor => headingToggle(editor, 1) }],
+      [Heading2, { isActive: editor => isHeadingActive(editor, 2), onMouseDown: editor => headingToggle(editor, 2) }],
+      [Heading3, { isActive: editor => isHeadingActive(editor, 3), onMouseDown: editor => headingToggle(editor, 3) }],
+      [Blockquote, { isActive: isBlockquoteActive, onMouseDown: blockquoteToggle }],
+      [UnorderedList, { onMouseDown: editor => listToggle(editor, 'unordered') }],
+      [OrderedList, { onMouseDown: editor => listToggle(editor, 'ordered') }],
+      TOOLBAR_DIVIDER,
+      [SeparationLine, { onMouseDown: separationLineAdd }]
     ]
   })
 ];

@@ -8,4 +8,4 @@ export {
   HIGHLIGHT_COMMAND_TOGGLE
 } from './highlight.constants';
 export { HighlightPlugin } from './highlight.plugin';
-export { useHighlightIsActive, useHighlightOnMouseDown } from './highlight.hooks';
+export { isHighlightActive, highlightToggle } from './highlight.utils';
