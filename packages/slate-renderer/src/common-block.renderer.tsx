@@ -1,19 +1,22 @@
 import React from 'react';
-import { RenderBlockProps } from 'slate-react';
+import { RenderBlockProps, RenderAttributes } from 'slate-react';
 import { PickPluginAndRequired } from '@artibox/slate-core';
 import { RendererBaseComponent } from './types';
 
-export interface CommonBlockRendererConfig {
+export interface CommonBlockRendererConfig<P extends RenderAttributes = RenderAttributes> {
   type: string;
-  component: RendererBaseComponent;
+  component: RendererBaseComponent<P>;
   getProps?: (props: RenderBlockProps) => object;
   isVoid?: boolean;
 }
 
 export type CommonBlockRenderer = PickPluginAndRequired<'renderBlock'>;
 
-export function CommonBlockRenderer(config: CommonBlockRendererConfig): CommonBlockRenderer {
-  const { type, component: Component, getProps, isVoid = false } = config;
+export function CommonBlockRenderer<P extends RenderAttributes = RenderAttributes>(
+  config: CommonBlockRendererConfig<P>
+): CommonBlockRenderer {
+  const { type, component, getProps, isVoid = false } = config;
+  const Component = component as any;
 
   return {
     renderBlock(props, _, next) {
