@@ -1,14 +1,20 @@
+$toolbar-height: 40px;
+$toolbar-padding-vertical: 8px;
+$toolbar-padding-horizontal: 10px;
+
 .artibox {
   &-toolbar {
     position: absolute;
     z-index: 1;
     display: flex;
     align-items: center;
+    height: $toolbar-height;
     margin-top: -6px;
-    padding: 7px;
+    padding: $toolbar-padding-vertical $toolbar-padding-horizontal;
     background-color: var(--artibox-toolbar-icon-background);
     border: 1px solid var(--artibox-toolbar-icon-color);
     border-radius: 4px;
+    box-sizing: border-box;
 
     &__divider {
       width: 1px;
@@ -41,6 +47,17 @@
       &--active {
         color: var(--artibox-primary);
       }
+    }
+
+    &__input {
+      position: absolute;
+      top: $toolbar-padding-vertical;
+      left: $toolbar-padding-horizontal;
+      width: calc(100% - #{$toolbar-padding-horizontal} * 2);
+      height: calc(100% - #{$toolbar-padding-vertical} * 2);
+      border: none;
+      outline: none;
+      box-sizing: border-box;
     }
   }
 }

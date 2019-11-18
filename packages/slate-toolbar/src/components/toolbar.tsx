@@ -1,12 +1,13 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Editor } from 'slate-react';
 import cx from 'classnames';
 import { EditorPassable } from '@artibox/slate-renderer';
 import { Portal, useTheme } from '@artibox/components';
 import { TOOLBAR_DIVIDER } from '../toolbar.constants';
-import { Tool } from '../toolbar.types';
+import { Tool, ToolInputable } from '../toolbar.types';
 import Divider from './divider';
 import ToolbarIcon from './toolbar-icon';
+import ToolbarInput from './toolbar-input';
 
 function roundNumber(value: number, min: number, max: number) {
   if (value < min) {
@@ -40,15 +41,32 @@ function calculatePosition(el: HTMLElement, editor: Editor, expanded?: boolean) 
 }
 
 export interface ToolbarProps extends EditorPassable {
-  tools: Tool[];
-  expanded?: boolean;
+  collapsedTools?: Tool[];
+  expandedTools?: Tool[];
 }
 
-function Toolbar({ tools, editor, expanded }: ToolbarProps) {
+function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
+  const [inputableTool, setInputableTool] = useState<ToolInputable | null>(null);
+  const { fragment, selection } = editor.value;
+  const { isFocused, isExpanded } = selection;
+  const focusTextEmpty = fragment.text === '';
+  const expanded = !!((isExpanded || inputableTool) && !focusTextEmpty && expandedTools);
+  const collapsed = !expanded && collapsedTools;
+  let tools: Tool[] | undefined;
+
+  if (expanded) {
+    tools = expandedTools;
+  } else if (collapsed) {
+    tools = collapsedTools;
+  }
 
   useLayoutEffect(() => {
+    if (!isFocused || inputableTool) {
+      return;
+    }
+
     function handler() {
       const el = ref.current;
 
@@ -69,18 +87,33 @@ function Toolbar({ tools, editor, expanded }: ToolbarProps) {
     }
   });
 
+  if (!tools) {
+    return null;
+  }
+
   return (
     <Portal>
       <div ref={ref} className={cx('artibox-toolbar', theme)}>
-        {tools.map((tool, index) => {
+        {tools?.map((tool, index) => {
           if (tool === TOOLBAR_DIVIDER) {
             return <Divider key={index} />;
           }
 
-          const [icon, hooks] = tool;
+          const [icon, config] = tool;
 
-          return <ToolbarIcon key={icon.name} icon={icon} hooks={hooks} editor={editor} />;
+          return (
+            <ToolbarIcon
+              key={icon.name}
+              icon={icon}
+              config={config}
+              editor={editor}
+              setInputableTool={setInputableTool}
+            />
+          );
         })}
+        {inputableTool && (
+          <ToolbarInput editor={editor} inputableTool={inputableTool} setInputableTool={setInputableTool} />
+        )}
       </div>
     </Portal>
   );

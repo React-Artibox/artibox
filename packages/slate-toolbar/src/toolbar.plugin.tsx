@@ -15,32 +15,11 @@ export function ToolbarPlugin(config: ToolbarPluginConfig): ToolbarPlugin {
   const { collapsedTools, expandedTools } = config;
 
   return CommonEditorRenderer({
-    render: (editor, el) => {
-      const { fragment, selection } = editor.value;
-      const { isFocused, isExpanded } = selection;
-      const focusTextEmpty = fragment.text === '';
-
-      if (!isFocused) {
-        return el;
-      }
-
-      if (isExpanded && !focusTextEmpty && expandedTools) {
-        return (
-          <>
-            {el}
-            <Toolbar tools={expandedTools} editor={editor} expanded />
-          </>
-        );
-      } else if (!isExpanded && collapsedTools) {
-        return (
-          <>
-            {el}
-            <Toolbar tools={collapsedTools} editor={editor} />
-          </>
-        );
-      }
-
-      return el;
-    }
+    render: (editor, el) => (
+      <>
+        {el}
+        <Toolbar collapsedTools={collapsedTools} expandedTools={expandedTools} editor={editor} />
+      </>
+    )
   });
 }
