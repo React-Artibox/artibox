@@ -40,10 +40,7 @@ $toolbar-padding-horizontal: 10px;
       transition: color 0.2s ease-out;
       cursor: pointer;
 
-      &:hover:not(&--active) {
-        color: var(--artibox-toolbar-icon-hover);
-      }
-
+      &:hover,
       &--active {
         color: var(--artibox-primary);
       }
