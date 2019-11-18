@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 function Divider() {
   return <span className="artibox-toolbar__divider" />;
 }
 
-export default Divider;
+export default memo(Divider, () => true);
