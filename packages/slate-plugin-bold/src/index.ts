@@ -8,4 +8,4 @@ export {
   BOLD_COMMAND_TOGGLE
 } from './bold.constants';
 export { BoldPlugin } from './bold.plugin';
-export { useBoldIsActive, useBoldOnMouseDown } from './bold.hooks';
+export { isBoldActive, boldToggle } from './bold.utils';

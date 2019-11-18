@@ -12,9 +12,4 @@ export {
   ToggleMarkPlugin,
   createToggleMarkPlugin
 } from './toggle-mark.plugin';
-export {
-  UseToggleMarkIsActive,
-  createUseToggleMarkIsActive,
-  UseToggleMarkOnMouseDown,
-  createUseToggleMarkOnMouseDown
-} from './toggle-mark.hooks';
+export { createToggleMarkIsActive, createToggleMarkToggle } from './toggle-mark.utils';

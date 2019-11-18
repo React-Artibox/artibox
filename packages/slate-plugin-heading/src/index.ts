@@ -9,7 +9,7 @@ export {
   HEADING_COMMAND_END,
   HEADING_COMMAND_TOGGLE
 } from './heading.constants';
+export { isHeadingActive, headingToggle } from './heading.utils';
 export { HeadingQueryHas, HeadingQueryLevel, HeadingQueries } from './heading.queries';
 export { HeadingCommandsConfig, HeadingCommandEnd, HeadingCommandToggle, HeadingCommands } from './heading.commands';
 export { HeadingPluginConfig, HeadingPlugin } from './heading.plugin';
-export { useHeadingIsActive, useHeadingOnMouseDown } from './heading.hooks';

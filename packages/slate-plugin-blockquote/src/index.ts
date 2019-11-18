@@ -19,4 +19,4 @@ export {
   BlockquoteCommands
 } from './blockquote.commands';
 export { BlockquotePluginConfig, BlockquotePlugin } from './blockquote.plugin';
-export { useBlockquoteIsActive, useBlockquoteOnMouseDown } from './blockquote.hooks';
+export { isBlockquoteActive, blockquoteToggle } from './blockquote.utils';

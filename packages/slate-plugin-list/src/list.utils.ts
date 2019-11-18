@@ -1,6 +1,7 @@
 import { Node, Block } from 'slate';
-import { isNodeExcludeText } from '@artibox/slate-core';
-import { LIST_TYPES } from './list.constants';
+import { isNodeExcludeText, getCommand } from '@artibox/slate-core';
+import { LIST_TYPES, LIST_COMMAND_TOGGLE } from './list.constants';
+import { ListCommandToggle } from './list.commands';
 
 export function isList(types: LIST_TYPES, node?: Node | null): node is Block {
   if (!isNodeExcludeText(node)) {
@@ -29,3 +30,9 @@ export function getLastListInNode(types: LIST_TYPES, node?: Node | null): Block 
   const lastList = node.nodes.last() as Block | undefined;
   return isList(types, lastList) ? lastList : null;
 }
+
+/**
+ * @public
+ */
+export const listToggle: ListCommandToggle = (editor, orderType) =>
+  getCommand<ListCommandToggle>(editor, LIST_COMMAND_TOGGLE)(orderType);

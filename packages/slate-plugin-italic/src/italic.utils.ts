@@ -1,0 +1,6 @@
+import { createToggleMarkIsActive, createToggleMarkToggle } from '@artibox/slate-plugin-toggle-mark';
+import { ITALIC_QUERY_HAS, ITALIC_COMMAND_TOGGLE } from './italic.constants';
+
+export const isItalicActive = createToggleMarkIsActive(ITALIC_QUERY_HAS);
+
+export const italicToggle = createToggleMarkToggle(ITALIC_COMMAND_TOGGLE);
