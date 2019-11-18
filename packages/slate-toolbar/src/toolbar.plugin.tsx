@@ -1,5 +1,5 @@
 import React from 'react';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { CommonEditorRenderer } from '@artibox/slate-renderer';
 import { Tool } from './toolbar.types';
 import Toolbar from './components/toolbar';
 import './styles';
@@ -9,38 +9,38 @@ export interface ToolbarPluginConfig {
   expandedTools?: Tool[];
 }
 
-export type ToolbarPlugin = PickPluginAndRequired<'renderEditor'>;
+export type ToolbarPlugin = CommonEditorRenderer;
 
 export function ToolbarPlugin(config: ToolbarPluginConfig): ToolbarPlugin {
   const { collapsedTools, expandedTools } = config;
 
-  return {
-    renderEditor: (_, editor, next) => {
+  return CommonEditorRenderer({
+    render: (editor, el) => {
       const { fragment, selection } = editor.value;
       const { isFocused, isExpanded } = selection;
       const focusTextEmpty = fragment.text === '';
 
       if (!isFocused) {
-        return next();
+        return el;
       }
 
       if (isExpanded && !focusTextEmpty && expandedTools) {
         return (
           <>
-            {next()}
+            {el}
             <Toolbar tools={expandedTools} editor={editor} expanded />
           </>
         );
       } else if (!isExpanded && collapsedTools) {
         return (
           <>
-            {next()}
+            {el}
             <Toolbar tools={collapsedTools} editor={editor} />
           </>
         );
       }
 
-      return next();
+      return el;
     }
-  };
+  });
 }
