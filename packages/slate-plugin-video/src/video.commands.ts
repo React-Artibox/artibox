@@ -1,12 +1,13 @@
 import { Editor, Plugin } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-core';
-import { VIDEO_COMMAND_ADD, VIDEO_PROVIDERS } from './video.constants';
+import { VIDEO_COMMAND_ADD } from './video.constants';
+import { serializeVideoSource } from './video.serializers';
 import { createVideoBlock } from './video.utils';
 
 /**
  * To add the video block and add one paragraph block below it.
  */
-export type VideoCommandAdd = (editor: Editor, source: string, provider: VIDEO_PROVIDERS) => Editor;
+export type VideoCommandAdd = (editor: Editor, source: string) => Editor;
 
 export type VideoCommands = Plugin['commands'] & {
   [VIDEO_COMMAND_ADD]: VideoCommandAdd;
@@ -14,8 +15,14 @@ export type VideoCommands = Plugin['commands'] & {
 
 export function VideoCommands(type: string): VideoCommands {
   return {
-    [VIDEO_COMMAND_ADD]: (editor, source, provider) => {
-      return editor.insertBlock(createVideoBlock(type, source, provider)).insertBlock(PARAGRAPH_TYPE);
+    [VIDEO_COMMAND_ADD]: (editor, source) => {
+      const result = serializeVideoSource(source);
+
+      if (!result) {
+        return editor;
+      }
+
+      return editor.insertBlock(createVideoBlock(type, result)).insertBlock(PARAGRAPH_TYPE);
     }
   };
 }
