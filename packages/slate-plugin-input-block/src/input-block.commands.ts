@@ -6,11 +6,11 @@ import {
   INPUT_BLOCK_COMMAND_CONFIRM
 } from './input-block.constants';
 import { InputBlockData } from './input-block.types';
-import { InputBlockQuerieCurrentBlock } from './input-block.queries';
+import { InputBlockQueryCurrentBlock } from './input-block.queries';
 
 export interface InputBlockCommandsConfig {
   type: string;
-  queryCurrentBlock: InputBlockQuerieCurrentBlock;
+  queryCurrentBlock: InputBlockQueryCurrentBlock;
 }
 
 export type InputBlockCommandStart = (editor: Editor, data: InputBlockData) => Editor;

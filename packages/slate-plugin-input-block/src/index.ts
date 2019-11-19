@@ -10,7 +10,7 @@ export {
 export { InputBlockData } from './input-block.types';
 export { inputBlockStart } from './input-block.utils';
 export {
-  InputBlockQuerieCurrentBlock,
+  InputBlockQueryCurrentBlock,
   InputBlockQueryIsSelectionInInputBlock,
   InputBlockQueries
 } from './input-block.queries';

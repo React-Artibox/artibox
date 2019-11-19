@@ -5,6 +5,12 @@ export interface InputBlockProps extends RenderAttributes {
   isEmpty: boolean;
 }
 
+const inputBlockStyle: CSSProperties = {
+  width: '100%',
+  overflow: 'auto',
+  whiteSpace: 'nowrap'
+};
+
 const placeholderStyle: CSSProperties = {
   pointerEvents: 'none',
   display: 'inline-block',
@@ -17,7 +23,7 @@ const placeholderStyle: CSSProperties = {
 
 const InputBlock = forwardRef<HTMLDivElement, InputBlockProps>(({ children, isEmpty, ...props }, ref) => {
   return (
-    <div ref={ref} {...props}>
+    <div ref={ref} style={inputBlockStyle} {...props}>
       {isEmpty && (
         <span contentEditable={false} style={placeholderStyle}>
           placeholder!!!!
