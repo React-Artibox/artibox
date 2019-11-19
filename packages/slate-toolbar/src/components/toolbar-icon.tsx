@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, MouseEventHandler, memo, useCallback }
 import cx from 'classnames';
 import { IconDefinition } from '@artibox/icons';
 import { Icon } from '@artibox/components';
+import { inputBlockStart } from '@artibox/slate-plugin-input-block';
 import { EditorPassable } from '@artibox/slate-renderer';
 import { TOOLBAR_DIVIDER } from '../toolbar.constants';
 import { Tool, ToolInputable } from '../toolbar.types';
@@ -28,9 +29,10 @@ export interface ToolbarIconProps extends EditorPassable {
   icon: Exclude<Tool, TOOLBAR_DIVIDER>[0];
   config: Exclude<Tool, TOOLBAR_DIVIDER>[1];
   setInputableTool: Dispatch<SetStateAction<ToolInputable | null>>;
+  expanded: boolean;
 }
 
-function ToolbarIcon({ icon, config, editor, setInputableTool }: ToolbarIconProps) {
+function ToolbarIcon({ icon, config, editor, setInputableTool, expanded }: ToolbarIconProps) {
   const { isActive, onMouseDown: onMouseDownFromConfig, inputable } = config;
   const active = isActive?.(editor) ?? false;
   const onMouseDown = useCallback<MouseEventHandler>(
@@ -38,12 +40,16 @@ function ToolbarIcon({ icon, config, editor, setInputableTool }: ToolbarIconProp
       event.preventDefault();
 
       if (inputable) {
-        setInputableTool(inputable);
+        if (expanded) {
+          setInputableTool(inputable);
+        } else {
+          inputBlockStart(editor, inputable);
+        }
       } else {
         onMouseDownFromConfig?.(editor, event);
       }
     },
-    [onMouseDownFromConfig, inputable, editor, setInputableTool]
+    [onMouseDownFromConfig, inputable, editor, setInputableTool, expanded]
   );
 
   return <ToolbarIconInner active={active} onMouseDown={onMouseDown} icon={icon} />;
