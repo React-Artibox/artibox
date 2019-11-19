@@ -25,11 +25,10 @@ export interface InputBlockPlugin extends CommonBlockRenderer, InputBlockHandler
 export function InputBlockPlugin(config?: InputBlockPluginConfig): InputBlockPlugin {
   const type = config?.type ?? INPUT_BLOCK_TYPE;
   const queries = InputBlockQueries(type);
-  const commands = InputBlockCommands({
-    type,
-    queryCurrentBlock: queries[INPUT_BLOCK_QUERY_CURRENT_BLOCK]
-  });
+  const queryCurrentBlock = queries[INPUT_BLOCK_QUERY_CURRENT_BLOCK];
+  const commands = InputBlockCommands({ type, queryCurrentBlock });
   const handlers = InputBlockHandlers({
+    queryCurrentBlock,
     queryIsSelectionInInputBlock: queries[INPUT_BLOCK_QUERY_IS_SELECTION_IN_INPUT_BLOCK],
     commandCancel: commands[INPUT_BLOCK_COMMAND_CANCEL],
     commandConfirm: commands[INPUT_BLOCK_COMMAND_CONFIRM]
