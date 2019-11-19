@@ -30,9 +30,7 @@ export function InputBlockCommands(config: InputBlockCommandsConfig): InputBlock
     const block = Block.fromJSON({ type, data });
 
     if (isExpanded) {
-      return editor.delete().insertBlock(block);
-    } else if (editor.value.startBlock.text === '') {
-      return editor.setBlocks(block);
+      editor.delete();
     }
 
     return editor.insertBlock(block);
