@@ -14,6 +14,7 @@ export function VideoRenderer(config: VideoRendererConfig): VideoRenderer {
   return CommonBlockRenderer({
     type,
     component,
+    isVoid: true,
     getProps: props => ({ src: getSourceFromBlock(props.node) || '' })
   });
 }
