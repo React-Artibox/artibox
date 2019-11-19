@@ -108,6 +108,7 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
               config={config}
               editor={editor}
               setInputableTool={setInputableTool}
+              expanded={expanded}
             />
           );
         })}

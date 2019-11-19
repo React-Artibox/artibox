@@ -13,7 +13,8 @@ import {
   Blockquote,
   UnorderedList,
   OrderedList,
-  SeparationLine
+  SeparationLine,
+  Video
 } from '@artibox/icons';
 import { BoldPlugin, isBoldActive, boldToggle } from '@artibox/slate-plugin-bold';
 import { ItalicPlugin, isItalicActive, italicToggle } from '@artibox/slate-plugin-italic';
@@ -25,6 +26,8 @@ import { HeadingPlugin, isHeadingActive, headingToggle } from '@artibox/slate-pl
 import { BlockquotePlugin, isBlockquoteActive, blockquoteToggle } from '@artibox/slate-plugin-blockquote';
 import { ListPlugin, listToggle } from '@artibox/slate-plugin-list';
 import { SeparationLinePlugin, separationLineAdd } from '@artibox/slate-plugin-separation-line';
+import { VideoPlugin, videoAdd } from '@artibox/slate-plugin-video';
+import { InputBlockPlugin, INPUT_BLOCK_TYPE } from '@artibox/slate-plugin-input-block';
 import { ToolbarPlugin, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
 export const plugins: Plugin[] = [
@@ -38,7 +41,10 @@ export const plugins: Plugin[] = [
   BlockquotePlugin(),
   ListPlugin(),
   SeparationLinePlugin(),
+  VideoPlugin(),
+  InputBlockPlugin(),
   ToolbarPlugin({
+    disabledBlocks: [INPUT_BLOCK_TYPE],
     expandedTools: [
       [Bold, { isActive: isBoldActive, onMouseDown: boldToggle }],
       [Italic, { isActive: isItalicActive, onMouseDown: italicToggle }],
@@ -65,7 +71,8 @@ export const plugins: Plugin[] = [
       [UnorderedList, { onMouseDown: editor => listToggle(editor, 'unordered') }],
       [OrderedList, { onMouseDown: editor => listToggle(editor, 'ordered') }],
       TOOLBAR_DIVIDER,
-      [SeparationLine, { onMouseDown: separationLineAdd }]
+      [SeparationLine, { onMouseDown: separationLineAdd }],
+      [Video, { inputable: { onConfirm: (editor, value) => videoAdd(editor, value, 'youtube') } }]
     ]
   })
 ];
