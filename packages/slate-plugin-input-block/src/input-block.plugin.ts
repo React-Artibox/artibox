@@ -4,7 +4,8 @@ import {
   INPUT_BLOCK_TYPE,
   INPUT_BLOCK_QUERY_CURRENT_BLOCK,
   INPUT_BLOCK_QUERY_IS_SELECTION_IN_INPUT_BLOCK,
-  INPUT_BLOCK_COMMAND_END
+  INPUT_BLOCK_COMMAND_CANCEL,
+  INPUT_BLOCK_COMMAND_CONFIRM
 } from './input-block.constants';
 import { InputBlockQueries } from './input-block.queries';
 import { InputBlockCommands } from './input-block.commands';
@@ -30,7 +31,8 @@ export function InputBlockPlugin(config?: InputBlockPluginConfig): InputBlockPlu
   });
   const handlers = InputBlockHandlers({
     queryIsSelectionInInputBlock: queries[INPUT_BLOCK_QUERY_IS_SELECTION_IN_INPUT_BLOCK],
-    commandEnd: commands[INPUT_BLOCK_COMMAND_END]
+    commandCancel: commands[INPUT_BLOCK_COMMAND_CANCEL],
+    commandConfirm: commands[INPUT_BLOCK_COMMAND_CONFIRM]
   });
   const renderer = CommonBlockRenderer({
     type,
