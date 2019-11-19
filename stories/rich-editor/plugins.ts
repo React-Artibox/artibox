@@ -72,7 +72,7 @@ export const plugins: Plugin[] = [
       [OrderedList, { onMouseDown: editor => listToggle(editor, 'ordered') }],
       TOOLBAR_DIVIDER,
       [SeparationLine, { onMouseDown: separationLineAdd }],
-      [Video, { inputable: { onConfirm: (editor, value) => videoAdd(editor, value, 'youtube') } }]
+      [Video, { inputable: { onConfirm: videoAdd } }]
     ]
   })
 ];

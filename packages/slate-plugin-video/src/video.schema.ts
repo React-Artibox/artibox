@@ -1,15 +1,24 @@
 import { SchemaProperties } from 'slate';
-import { VIDEO_PROVIDERS, youtubeEmbedReg } from './video.constants';
+import { VIDEO_PROVIDERS } from './video.constants';
+import { VideoSerializer, videoSerializers } from './video.serializers';
+
+type VideoSchemaRulesDataValidator = (src?: string) => boolean;
+
+function createVideoSchemaRulesDataValidator(serializer: VideoSerializer): VideoSchemaRulesDataValidator {
+  const { reg } = serializer.deserialize;
+  return src => typeof src === 'undefined' || reg.test(src);
+}
 
 export type VideoSchemaRulesData = {
-  [p in VIDEO_PROVIDERS]: (src: string) => boolean;
+  [p in VIDEO_PROVIDERS]: VideoSchemaRulesDataValidator;
+};
+
+const data: VideoSchemaRulesData = {
+  youtube: createVideoSchemaRulesDataValidator(videoSerializers.youtube),
+  vimeo: createVideoSchemaRulesDataValidator(videoSerializers.vimeo)
 };
 
 export function VideoSchema(type: string): SchemaProperties {
-  const data: VideoSchemaRulesData = {
-    youtube: src => youtubeEmbedReg.test(src)
-  };
-
   return {
     blocks: {
       [type]: {
