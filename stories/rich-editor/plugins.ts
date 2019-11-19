@@ -14,7 +14,8 @@ import {
   UnorderedList,
   OrderedList,
   SeparationLine,
-  Video
+  Video,
+  Facebook
 } from '@artibox/icons';
 import { BoldPlugin, isBoldActive, boldToggle } from '@artibox/slate-plugin-bold';
 import { ItalicPlugin, isItalicActive, italicToggle } from '@artibox/slate-plugin-italic';
@@ -27,6 +28,7 @@ import { BlockquotePlugin, isBlockquoteActive, blockquoteToggle } from '@artibox
 import { ListPlugin, listToggle } from '@artibox/slate-plugin-list';
 import { SeparationLinePlugin, separationLineAdd } from '@artibox/slate-plugin-separation-line';
 import { VideoPlugin, videoAdd } from '@artibox/slate-plugin-video';
+import { FacebookPlugin, facebookAdd } from '@artibox/slate-plugin-facebook';
 import { InputBlockPlugin, INPUT_BLOCK_TYPE } from '@artibox/slate-plugin-input-block';
 import { ToolbarPlugin, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
@@ -42,6 +44,7 @@ export const plugins: Plugin[] = [
   ListPlugin(),
   SeparationLinePlugin(),
   VideoPlugin(),
+  FacebookPlugin(),
   InputBlockPlugin(),
   ToolbarPlugin({
     disabledBlocks: [INPUT_BLOCK_TYPE],
@@ -72,7 +75,8 @@ export const plugins: Plugin[] = [
       [OrderedList, { onMouseDown: editor => listToggle(editor, 'ordered') }],
       TOOLBAR_DIVIDER,
       [SeparationLine, { onMouseDown: separationLineAdd }],
-      [Video, { inputable: { onConfirm: videoAdd } }]
+      [Video, { inputable: { onConfirm: videoAdd } }],
+      [Facebook, { inputable: { onConfirm: facebookAdd } }]
     ]
   })
 ];
