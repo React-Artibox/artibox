@@ -1,27 +1,15 @@
-import { PickPluginAndRequired } from '@artibox/slate-core';
-import { isHotkey } from 'is-hotkey';
-import { BlockquoteQueryCurrentBlock } from './blockquote.queries';
-import { BlockquoteCommandSoftBreak, BlockquoteCommandUnwrap, BlockquoteCommandToggle } from './blockquote.commands';
-
-export interface BlockquoteHandlersConfig {
-  hotkey: string;
-  queryCurrentBlock: BlockquoteQueryCurrentBlock;
-  commandSoftBreak: BlockquoteCommandSoftBreak;
-  commandUnwrap: BlockquoteCommandUnwrap;
-  commandToggle: BlockquoteCommandToggle;
-}
+import { PickPluginAndRequired, PARAGRAPH_TYPE } from '@artibox/slate-core';
+import { isKeyHotkey } from 'is-hotkey';
+import { BlockquoteUtils } from './blockquote.utils';
 
 export type BlockquoteHandlers = PickPluginAndRequired<'onKeyDown'>;
 
-export function BlockquoteHandlers(config: BlockquoteHandlersConfig): BlockquoteHandlers {
-  const { hotkey, queryCurrentBlock, commandSoftBreak, commandUnwrap, commandToggle } = config;
-  const isSaveHotkey = isHotkey(hotkey);
-
+export function BlockquoteHandlers(hotkey: string, utils: BlockquoteUtils): BlockquoteHandlers {
   /**
    * The handler of soft break.
    */
   const onSoftBreak: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
-    const blockquoteBlock = queryCurrentBlock(editor);
+    const blockquoteBlock = utils.getCurrentBlockquote(editor);
 
     if (!blockquoteBlock) {
       return next();
@@ -29,14 +17,14 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
 
     event.preventDefault();
 
-    return commandSoftBreak(editor);
+    return editor.splitBlock().setBlocks(PARAGRAPH_TYPE);
   };
 
   /**
    * If the focused block inside blockquote is w/o any texts, unwrap the focused block.
    */
   const onEnter: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
-    const blockquoteBlock = queryCurrentBlock(editor);
+    const blockquoteBlock = utils.getCurrentBlockquote(editor);
     const currentBlock = editor.value.startBlock;
 
     if (!blockquoteBlock || currentBlock.text.length !== 0) {
@@ -45,14 +33,14 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
 
     event.preventDefault();
 
-    return commandUnwrap(editor);
+    return utils.unwrapBlockquote(editor);
   };
 
   /**
    * If the focused block inside blockquote and the selection is not expanded, unwrap the focused block.
    */
   const onBackSpace: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
-    const blockquoteBlock = queryCurrentBlock(editor);
+    const blockquoteBlock = utils.getCurrentBlockquote(editor);
     const { isExpanded, start } = editor.value.selection;
 
     if (!blockquoteBlock || isExpanded || start.offset !== 0) {
@@ -61,11 +49,11 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
 
     event.preventDefault();
 
-    return commandUnwrap(editor);
+    return utils.unwrapBlockquote(editor);
   };
 
   return {
-    onKeyDown: (event, editor, next) => {
+    onKeyDown(event, editor, next) {
       if (event.key === 'Enter') {
         if (event.shiftKey) {
           return onSoftBreak(event, editor, next);
@@ -74,8 +62,8 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
         return onEnter(event, editor, next);
       } else if (event.key === 'Backspace') {
         return onBackSpace(event, editor, next);
-      } else if (isSaveHotkey(event as any)) {
-        return commandToggle(editor);
+      } else if (isKeyHotkey(hotkey, event as any)) {
+        return utils.toggleBlockquote(editor);
       }
 
       return next();
