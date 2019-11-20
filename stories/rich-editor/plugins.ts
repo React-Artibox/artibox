@@ -13,7 +13,7 @@ import {
   Blockquote as BlockquoteIcon,
   UnorderedList,
   OrderedList,
-  SeparationLine,
+  SeparationLine as SeparationLineIcon,
   Video,
   Facebook,
   Instagram
@@ -27,7 +27,7 @@ import { LinkPlugin, linkIsActive, linkSet, linkRemove } from '@artibox/slate-pl
 import { HeadingPlugin, isHeadingActive, headingToggle } from '@artibox/slate-plugin-heading';
 import { Blockquote } from '@artibox/slate-blockquote';
 import { ListPlugin, listToggle } from '@artibox/slate-plugin-list';
-import { SeparationLinePlugin, separationLineAdd } from '@artibox/slate-plugin-separation-line';
+import { SeparationLine } from '@artibox/slate-separation-line';
 import { VideoPlugin, videoAdd } from '@artibox/slate-plugin-video';
 import { FacebookPlugin, facebookAdd } from '@artibox/slate-plugin-facebook';
 import { InstagramPlugin, instagramAdd } from '@artibox/slate-plugin-instagram';
@@ -40,6 +40,7 @@ const underline = Underline.create();
 const strikethrough = Strikethrough.create();
 const highlight = Highlight.create();
 const blockquote = Blockquote.create();
+const separationLine = SeparationLine.create();
 
 export const plugins: Plugin[] = [
   bold.plugin,
@@ -51,7 +52,7 @@ export const plugins: Plugin[] = [
   HeadingPlugin({ disabled: [4, 5, 6] }),
   blockquote.plugin,
   ListPlugin(),
-  SeparationLinePlugin(),
+  separationLine.plugin,
   VideoPlugin(),
   InstagramPlugin(),
   FacebookPlugin(),
@@ -102,7 +103,7 @@ export const plugins: Plugin[] = [
       [UnorderedList, { onMouseDown: editor => listToggle(editor, 'unordered') }],
       [OrderedList, { onMouseDown: editor => listToggle(editor, 'ordered') }],
       TOOLBAR_DIVIDER,
-      [SeparationLine, { onMouseDown: separationLineAdd }],
+      [SeparationLineIcon, { onMouseDown: separationLine.utils.addSeparationLine }],
       [Video, { inputable: { onConfirm: videoAdd } }],
       [Instagram, { inputable: { onConfirm: instagramAdd } }],
       [Facebook, { inputable: { onConfirm: facebookAdd } }]
