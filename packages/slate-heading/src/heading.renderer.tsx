@@ -1,11 +1,11 @@
 import React from 'react';
 import { PickPluginAndRequired } from '@artibox/slate-core';
 import { HEADING_COMPONENTS } from './heading.constants';
-import { getLevelFromBlock } from './heading.utils';
+import { HeadingUtils } from './heading.utils';
 
 export type HeadingRenderer = PickPluginAndRequired<'renderBlock'>;
 
-export function HeadingRenderer(type: string): HeadingRenderer {
+export function HeadingRenderer(type: string, utils: HeadingUtils): HeadingRenderer {
   return {
     renderBlock(props, _, next) {
       const { children, attributes } = props;
@@ -14,7 +14,7 @@ export function HeadingRenderer(type: string): HeadingRenderer {
         return next();
       }
 
-      const level = getLevelFromBlock(props.node);
+      const level = utils.getLevelFromBlock(props.node);
 
       if (level === undefined) {
         return next();
