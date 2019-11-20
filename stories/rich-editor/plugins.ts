@@ -124,7 +124,7 @@ export const plugins: Plugin[] = [
       [UnorderedList, { onMouseDown: editor => listToggle(editor, 'unordered') }],
       [OrderedList, { onMouseDown: editor => listToggle(editor, 'ordered') }],
       TOOLBAR_DIVIDER,
-      [SeparationLineIcon, { onMouseDown: separationLine.utils.addSeparationLine }],
+      [SeparationLineIcon, { onMouseDown: separationLine.addSeparationLine }],
       [Video, { inputable: { onConfirm: videoAdd } }],
       [InstagramIcon, { inputable: { onConfirm: instagram.utils.addInstagramBlock } }],
       [FacebookIcon, { inputable: { onConfirm: facebook.addFacebookBlock } }]
