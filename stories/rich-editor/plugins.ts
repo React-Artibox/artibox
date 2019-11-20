@@ -1,10 +1,10 @@
 import { Plugin } from 'slate-react';
 import {
-  Bold,
-  Italic,
-  Underline,
-  Strikethrough,
-  Highlight,
+  Bold as BoldIcon,
+  Italic as ItalicIcon,
+  Underline as UnderlineIcon,
+  Strikethrough as StrikethroughIcon,
+  Highlight as HighlightIcon,
   Link,
   Unlink,
   Heading1,
@@ -18,11 +18,11 @@ import {
   Facebook,
   Instagram
 } from '@artibox/icons';
-import { BoldPlugin, isBoldActive, boldToggle } from '@artibox/slate-plugin-bold';
-import { ItalicPlugin, isItalicActive, italicToggle } from '@artibox/slate-plugin-italic';
-import { UnderlinePlugin, isUnderlineActive, underlineToggle } from '@artibox/slate-plugin-underline';
-import { StrikethroughPlugin, isStrikethroughActive, strikethroughToggle } from '@artibox/slate-plugin-strikethrough';
-import { HighlightPlugin, isHighlightActive, highlightToggle } from '@artibox/slate-plugin-highlight';
+import { Bold } from '@artibox/slate-bold';
+import { Italic } from '@artibox/slate-italic';
+import { Underline } from '@artibox/slate-underline';
+import { Strikethrough } from '@artibox/slate-strikethrough';
+import { Highlight } from '@artibox/slate-highlight';
 import { LinkPlugin, linkIsActive, linkSet, linkRemove } from '@artibox/slate-plugin-link';
 import { HeadingPlugin, isHeadingActive, headingToggle } from '@artibox/slate-plugin-heading';
 import { Blockquote } from '@artibox/slate-blockquote';
@@ -34,14 +34,19 @@ import { InstagramPlugin, instagramAdd } from '@artibox/slate-plugin-instagram';
 import { InputBlockPlugin, INPUT_BLOCK_TYPE } from '@artibox/slate-plugin-input-block';
 import { ToolbarPlugin, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
+const bold = Bold.create();
+const italic = Italic.create();
+const underline = Underline.create();
+const strikethrough = Strikethrough.create();
+const highlight = Highlight.create();
 const blockquote = Blockquote.create();
 
 export const plugins: Plugin[] = [
-  BoldPlugin(),
-  ItalicPlugin(),
-  UnderlinePlugin(),
-  StrikethroughPlugin(),
-  HighlightPlugin(),
+  bold.plugin,
+  italic.plugin,
+  underline.plugin,
+  strikethrough.plugin,
+  highlight.plugin,
   LinkPlugin(),
   HeadingPlugin({ disabled: [4, 5, 6] }),
   blockquote.plugin,
@@ -54,12 +59,24 @@ export const plugins: Plugin[] = [
   ToolbarPlugin({
     disabledBlocks: [INPUT_BLOCK_TYPE],
     expandedTools: [
-      [Bold, { isActive: isBoldActive, onMouseDown: boldToggle }],
-      [Italic, { isActive: isItalicActive, onMouseDown: italicToggle }],
-      [Underline, { isActive: isUnderlineActive, onMouseDown: underlineToggle }],
-      [Strikethrough, { isActive: isStrikethroughActive, onMouseDown: strikethroughToggle }],
+      [BoldIcon, { isActive: bold.utils.isBoldActive, onMouseDown: bold.utils.toggleBoldMark }],
+      [ItalicIcon, { isActive: italic.utils.isItalicIsActive, onMouseDown: italic.utils.toggleItalicMark }],
+      [
+        UnderlineIcon,
+        { isActive: underline.utils.isUnderlineActive, onMouseDown: underline.utils.toggleUnderlineMark }
+      ],
+      [
+        StrikethroughIcon,
+        {
+          isActive: strikethrough.utils.isStrikethroughActive,
+          onMouseDown: strikethrough.utils.toggleStrikethroughMark
+        }
+      ],
       TOOLBAR_DIVIDER,
-      [Highlight, { isActive: isHighlightActive, onMouseDown: highlightToggle }],
+      [
+        HighlightIcon,
+        { isActive: highlight.utils.isHighlightActive, onMouseDown: highlight.utils.toggleHighlightMark }
+      ],
       [
         Link,
         {
@@ -78,8 +95,8 @@ export const plugins: Plugin[] = [
       [
         BlockquoteIcon,
         {
-          isActive: editor => blockquote.utils.isSelectionInBlockquote(editor),
-          onMouseDown: editor => blockquote.utils.toggleBlockquote(editor)
+          isActive: blockquote.utils.isSelectionInBlockquote,
+          onMouseDown: blockquote.utils.toggleBlockquote
         }
       ],
       [UnorderedList, { onMouseDown: editor => listToggle(editor, 'unordered') }],

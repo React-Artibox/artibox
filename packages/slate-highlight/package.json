@@ -1,0 +1,27 @@
+{
+  "name": "@artibox/slate-highlight",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Rytass",
+  "homepage": "https://github.com/React-Artibox/artibox#readme",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/React-Artibox/artibox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/React-Artibox/artibox/issues"
+  },
+  "scripts": {
+    "clean": "npm run build:clean",
+    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./*.tsbuildinfo",
+    "build": "tsc && tsc -m esnext -outDir esm"
+  },
+  "dependencies": {
+    "@artibox/slate-toggle-mark": "^0.0.0"
+  }
+}
