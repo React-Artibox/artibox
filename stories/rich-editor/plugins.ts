@@ -16,7 +16,7 @@ import {
   SeparationLine as SeparationLineIcon,
   Video,
   Facebook,
-  Instagram
+  Instagram as InstagramIcon
 } from '@artibox/icons';
 import { Bold } from '@artibox/slate-bold';
 import { Italic } from '@artibox/slate-italic';
@@ -30,7 +30,7 @@ import { ListPlugin, listToggle } from '@artibox/slate-plugin-list';
 import { SeparationLine } from '@artibox/slate-separation-line';
 import { VideoPlugin, videoAdd } from '@artibox/slate-plugin-video';
 import { FacebookPlugin, facebookAdd } from '@artibox/slate-plugin-facebook';
-import { InstagramPlugin, instagramAdd } from '@artibox/slate-plugin-instagram';
+import { Instagram } from '@artibox/slate-instagram';
 import { InputBlockPlugin, INPUT_BLOCK_TYPE } from '@artibox/slate-plugin-input-block';
 import { ToolbarPlugin, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
@@ -42,6 +42,7 @@ const highlight = Highlight.create();
 const heading = Heading.create({ disabled: [4, 5, 6] });
 const blockquote = Blockquote.create();
 const separationLine = SeparationLine.create();
+const instagram = Instagram.create();
 
 export const plugins: Plugin[] = [
   bold.plugin,
@@ -55,7 +56,7 @@ export const plugins: Plugin[] = [
   ListPlugin(),
   separationLine.plugin,
   VideoPlugin(),
-  InstagramPlugin(),
+  instagram.plugin,
   FacebookPlugin(),
   InputBlockPlugin(),
   ToolbarPlugin({
@@ -124,7 +125,7 @@ export const plugins: Plugin[] = [
       TOOLBAR_DIVIDER,
       [SeparationLineIcon, { onMouseDown: separationLine.utils.addSeparationLine }],
       [Video, { inputable: { onConfirm: videoAdd } }],
-      [Instagram, { inputable: { onConfirm: instagramAdd } }],
+      [InstagramIcon, { inputable: { onConfirm: instagram.utils.addInstagramBlock } }],
       [Facebook, { inputable: { onConfirm: facebookAdd } }]
     ]
   })

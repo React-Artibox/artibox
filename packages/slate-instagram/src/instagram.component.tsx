@@ -1,9 +1,10 @@
 import React, { CSSProperties, memo, forwardRef, useEffect } from 'react';
 import { RenderAttributes } from 'slate-react';
 import { InstagramEmbedApi } from './instagram.types';
+import { INSTAGRAM_DATA_KEY_URL } from './instagram.constants';
 
 export interface InstagramProps extends RenderAttributes {
-  url: string;
+  [INSTAGRAM_DATA_KEY_URL]: string;
 }
 
 const instagramStyle: CSSProperties = {
