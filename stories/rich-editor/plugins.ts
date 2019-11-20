@@ -24,7 +24,7 @@ import { Underline } from '@artibox/slate-underline';
 import { Strikethrough } from '@artibox/slate-strikethrough';
 import { Highlight } from '@artibox/slate-highlight';
 import { LinkPlugin, linkIsActive, linkSet, linkRemove } from '@artibox/slate-plugin-link';
-import { HeadingPlugin, isHeadingActive, headingToggle } from '@artibox/slate-plugin-heading';
+import { Heading } from '@artibox/slate-heading';
 import { Blockquote } from '@artibox/slate-blockquote';
 import { ListPlugin, listToggle } from '@artibox/slate-plugin-list';
 import { SeparationLine } from '@artibox/slate-separation-line';
@@ -39,6 +39,7 @@ const italic = Italic.create();
 const underline = Underline.create();
 const strikethrough = Strikethrough.create();
 const highlight = Highlight.create();
+const heading = Heading.create({ disabled: [4, 5, 6] });
 const blockquote = Blockquote.create();
 const separationLine = SeparationLine.create();
 
@@ -49,7 +50,7 @@ export const plugins: Plugin[] = [
   strikethrough.plugin,
   highlight.plugin,
   LinkPlugin(),
-  HeadingPlugin({ disabled: [4, 5, 6] }),
+  heading.plugin,
   blockquote.plugin,
   ListPlugin(),
   separationLine.plugin,
@@ -90,9 +91,27 @@ export const plugins: Plugin[] = [
       [Unlink, { onMouseDown: linkRemove }]
     ],
     collapsedTools: [
-      [Heading1, { isActive: editor => isHeadingActive(editor, 1), onMouseDown: editor => headingToggle(editor, 1) }],
-      [Heading2, { isActive: editor => isHeadingActive(editor, 2), onMouseDown: editor => headingToggle(editor, 2) }],
-      [Heading3, { isActive: editor => isHeadingActive(editor, 3), onMouseDown: editor => headingToggle(editor, 3) }],
+      [
+        Heading1,
+        {
+          isActive: editor => heading.utils.isSelectionInHeading(editor, 1),
+          onMouseDown: editor => heading.utils.toggleHeadingBlock(editor, 1)
+        }
+      ],
+      [
+        Heading2,
+        {
+          isActive: editor => heading.utils.isSelectionInHeading(editor, 2),
+          onMouseDown: editor => heading.utils.toggleHeadingBlock(editor, 2)
+        }
+      ],
+      [
+        Heading3,
+        {
+          isActive: editor => heading.utils.isSelectionInHeading(editor, 3),
+          onMouseDown: editor => heading.utils.toggleHeadingBlock(editor, 3)
+        }
+      ],
       [
         BlockquoteIcon,
         {
