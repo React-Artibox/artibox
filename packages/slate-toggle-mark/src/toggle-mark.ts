@@ -1,61 +1,38 @@
 import { RendererBaseComponent, CommonMarkRenderer } from '@artibox/slate-renderer';
-import { ToggleMarkUtilsFactory, ToggleMarkUtils } from './toggle-mark.utils';
-import { ToggleMarkHandlersFactory, ToggleMarkHandlers } from './toggle-mark.handlers';
+import { ToggleMarkController } from './toggle-mark.interfaces';
+import { ToggleMarkHandlers } from './toggle-mark.handlers';
 
-export interface CreateToggleMarkPluginConfig<IA extends string, A extends string, R extends string, T extends string> {
-  Utils: ToggleMarkUtilsFactory<IA, A, R, T>;
-  Handlers: ToggleMarkHandlersFactory<IA, A, R, T>;
+export interface ToggleMarkConfig {
   type: string;
   hotkey: string;
   component: RendererBaseComponent;
 }
 
-export interface ToggleMarkConfig {
-  type?: string;
-  hotkey?: string;
-  component?: RendererBaseComponent;
-}
+export class ToggleMark implements ToggleMarkController {
+  static Handlers = ToggleMarkHandlers;
+  static Renderer = CommonMarkRenderer;
 
-export interface ToggleMark<IA extends string, A extends string, R extends string, T extends string> {
-  utils: ToggleMarkUtils<IA, A, R, T>;
-  plugin: ToggleMarkHandlers & CommonMarkRenderer;
-}
+  static create({ type, hotkey, component }: ToggleMarkConfig) {
+    return new this(type, toggleMark => this.Handlers(hotkey, toggleMark), this.Renderer({ type, component }));
+  }
 
-export interface ToggleMarkFactory<IA extends string, A extends string, R extends string, T extends string> {
-  new (utils: ToggleMarkUtils<IA, A, R, T>, handlers: ToggleMarkHandlers, renderer: CommonMarkRenderer): ToggleMark<
-    IA,
-    A,
-    R,
-    T
-  >;
-  create(config?: ToggleMarkConfig): ToggleMark<IA, A, R, T>;
-}
+  plugin = {
+    ...this.handlersFactory(this),
+    ...this.renderer
+  } as const;
 
-export function createToggleMark<IA extends string, A extends string, R extends string, T extends string>(
-  defaults: CreateToggleMarkPluginConfig<IA, A, R, T>
-): ToggleMarkFactory<IA, A, R, T> {
-  const { Utils, Handlers, type: defaultType, hotkey: defaultHotkey, component: defaultComponent } = defaults;
+  constructor(
+    public readonly type: string,
+    private readonly handlersFactory: (toggleMarkController: ToggleMarkController) => ToggleMarkHandlers,
+    private readonly renderer: CommonMarkRenderer
+  ) {}
 
-  return class implements ToggleMark<IA, A, R, T> {
-    static create(config?: ToggleMarkConfig) {
-      const type = config?.type ?? defaultType;
-      const hotkey = config?.hotkey ?? defaultHotkey;
-      const component = config?.component ?? defaultComponent;
-      const utils = Utils(type);
-      const handlers = Handlers(hotkey, utils);
-      const renderer = CommonMarkRenderer({ type, component });
+  isToggleMarkActive: ToggleMarkController['isToggleMarkActive'] = editor =>
+    editor.value.activeMarks.some(mark => mark?.type === this.type);
 
-      return new this(utils, handlers, renderer);
-    }
+  addToggleMark: ToggleMarkController['addToggleMark'] = editor => editor.addMark(this.type);
 
-    constructor(
-      public readonly utils: ToggleMarkUtils<IA, A, R, T>,
-      private readonly handlers: ToggleMarkHandlers,
-      private readonly renderer: CommonMarkRenderer
-    ) {}
+  removeToggleMark: ToggleMarkController['removeToggleMark'] = editor => editor.removeMark(this.type);
 
-    get plugin() {
-      return { ...this.handlers, ...this.renderer };
-    }
-  };
+  toggleToggleMark: ToggleMarkController['toggleToggleMark'] = editor => editor.toggleMark(this.type);
 }
