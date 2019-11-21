@@ -63,24 +63,18 @@ export const plugins: Plugin[] = [
   ToolbarPlugin({
     disabledBlocks: [INPUT_BLOCK_TYPE],
     expandedTools: [
-      [BoldIcon, { isActive: bold.utils.isBoldActive, onMouseDown: bold.utils.toggleBoldMark }],
-      [ItalicIcon, { isActive: italic.utils.isItalicIsActive, onMouseDown: italic.utils.toggleItalicMark }],
-      [
-        UnderlineIcon,
-        { isActive: underline.utils.isUnderlineActive, onMouseDown: underline.utils.toggleUnderlineMark }
-      ],
+      [BoldIcon, { isActive: bold.isBoldActive, onMouseDown: bold.toggleBoldMark }],
+      [ItalicIcon, { isActive: italic.isItalicActive, onMouseDown: italic.toggleItalicMark }],
+      [UnderlineIcon, { isActive: underline.isUnderlineActive, onMouseDown: underline.toggleUnderlineMark }],
       [
         StrikethroughIcon,
         {
-          isActive: strikethrough.utils.isStrikethroughActive,
-          onMouseDown: strikethrough.utils.toggleStrikethroughMark
+          isActive: strikethrough.isStrikethroughActive,
+          onMouseDown: strikethrough.toggleStrikethroughMark
         }
       ],
       TOOLBAR_DIVIDER,
-      [
-        HighlightIcon,
-        { isActive: highlight.utils.isHighlightActive, onMouseDown: highlight.utils.toggleHighlightMark }
-      ],
+      [HighlightIcon, { isActive: highlight.isHighlightActive, onMouseDown: highlight.toggleHighlightMark }],
       [
         Link,
         {

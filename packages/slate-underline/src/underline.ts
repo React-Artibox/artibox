@@ -1,28 +1,34 @@
-import { createToggleMarkUtils, createToggleMarkHandlers, createToggleMark } from '@artibox/slate-toggle-mark';
-import {
-  UNDERLINE_TYPE,
-  UNDERLINE_COMPONENT,
-  UNDERLINE_HOTKEY,
-  UNDERLINE_UTIL_IS_ACTIVE,
-  UNDERLINE_UTIL_ADD,
-  UNDERLINE_UTIL_REMOVE,
-  UNDERLINE_UTIL_TOGGLE
-} from './underline.constants';
+import { ToggleMarkConfig, ToggleMark } from '@artibox/slate-toggle-mark';
+import { UNDERLINE_TYPE, UNDERLINE_COMPONENT, UNDERLINE_HOTKEY } from './underline.constants';
+import { UnderlineController } from './underline.interfaces';
 
-export const UnderlineUtils = createToggleMarkUtils({
-  type: UNDERLINE_TYPE,
-  isActive: UNDERLINE_UTIL_IS_ACTIVE,
-  add: UNDERLINE_UTIL_ADD,
-  remove: UNDERLINE_UTIL_REMOVE,
-  toggle: UNDERLINE_UTIL_TOGGLE
-});
+export const UnderlineHandlers = ToggleMark.Handlers;
+export const UnderlineRenderer = ToggleMark.Renderer;
 
-export const UnderlineHandlers = createToggleMarkHandlers(UNDERLINE_UTIL_TOGGLE);
+export class Underline implements UnderlineController {
+  static Handlers = UnderlineHandlers;
+  static Renderer = UnderlineRenderer;
 
-export const Underline = createToggleMark({
-  Utils: UnderlineUtils,
-  Handlers: UnderlineHandlers,
-  type: UNDERLINE_TYPE,
-  component: UNDERLINE_COMPONENT,
-  hotkey: UNDERLINE_HOTKEY
-});
+  static create(config?: Partial<ToggleMarkConfig>) {
+    return new this(
+      ToggleMark.create({
+        type: UNDERLINE_TYPE,
+        hotkey: UNDERLINE_HOTKEY,
+        component: UNDERLINE_COMPONENT,
+        ...config
+      })
+    );
+  }
+
+  plugin = this.toggleMark.plugin;
+
+  constructor(private readonly toggleMark: ToggleMark) {}
+
+  isUnderlineActive: UnderlineController['isUnderlineActive'] = this.toggleMark.isToggleMarkActive;
+
+  addUnderlineMark: UnderlineController['addUnderlineMark'] = this.toggleMark.addToggleMark;
+
+  removeUnderlineMark: UnderlineController['removeUnderlineMark'] = this.toggleMark.removeToggleMark;
+
+  toggleUnderlineMark: UnderlineController['toggleUnderlineMark'] = this.toggleMark.toggleToggleMark;
+}

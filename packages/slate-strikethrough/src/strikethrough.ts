@@ -1,28 +1,34 @@
-import { createToggleMarkUtils, createToggleMarkHandlers, createToggleMark } from '@artibox/slate-toggle-mark';
-import {
-  STRIKETHROUGH_TYPE,
-  STRIKETHROUGH_COMPONENT,
-  STRIKETHROUGH_HOTKEY,
-  STRIKETHROUGH_UTIL_IS_ACTIVE,
-  STRIKETHROUGH_UTIL_ADD,
-  STRIKETHROUGH_UTIL_REMOVE,
-  STRIKETHROUGH_UTIL_TOGGLE
-} from './strikethrough.constants';
+import { ToggleMarkConfig, ToggleMark } from '@artibox/slate-toggle-mark';
+import { STRIKETHROUGH_TYPE, STRIKETHROUGH_COMPONENT, STRIKETHROUGH_HOTKEY } from './strikethrough.constants';
+import { StrikethroughController } from './strikethrough.interfaces';
 
-export const StrikethroughUtils = createToggleMarkUtils({
-  type: STRIKETHROUGH_TYPE,
-  isActive: STRIKETHROUGH_UTIL_IS_ACTIVE,
-  add: STRIKETHROUGH_UTIL_ADD,
-  remove: STRIKETHROUGH_UTIL_REMOVE,
-  toggle: STRIKETHROUGH_UTIL_TOGGLE
-});
+export const StrikethroughHandlers = ToggleMark.Handlers;
+export const StrikethroughRenderer = ToggleMark.Renderer;
 
-export const StrikethroughHandlers = createToggleMarkHandlers(STRIKETHROUGH_UTIL_TOGGLE);
+export class Strikethrough implements StrikethroughController {
+  static Handlers = StrikethroughHandlers;
+  static Renderer = StrikethroughRenderer;
 
-export const Strikethrough = createToggleMark({
-  Utils: StrikethroughUtils,
-  Handlers: StrikethroughHandlers,
-  type: STRIKETHROUGH_TYPE,
-  component: STRIKETHROUGH_COMPONENT,
-  hotkey: STRIKETHROUGH_HOTKEY
-});
+  static create(config?: Partial<ToggleMarkConfig>) {
+    return new this(
+      ToggleMark.create({
+        type: STRIKETHROUGH_TYPE,
+        hotkey: STRIKETHROUGH_HOTKEY,
+        component: STRIKETHROUGH_COMPONENT,
+        ...config
+      })
+    );
+  }
+
+  plugin = this.toggleMark.plugin;
+
+  constructor(private readonly toggleMark: ToggleMark) {}
+
+  isStrikethroughActive: StrikethroughController['isStrikethroughActive'] = this.toggleMark.isToggleMarkActive;
+
+  addStrikethroughMark: StrikethroughController['addStrikethroughMark'] = this.toggleMark.addToggleMark;
+
+  removeStrikethroughMark: StrikethroughController['removeStrikethroughMark'] = this.toggleMark.removeToggleMark;
+
+  toggleStrikethroughMark: StrikethroughController['toggleStrikethroughMark'] = this.toggleMark.toggleToggleMark;
+}

@@ -1,28 +1,34 @@
-import { createToggleMarkUtils, createToggleMarkHandlers, createToggleMark } from '@artibox/slate-toggle-mark';
-import {
-  HIGHLIGHT_TYPE,
-  HIGHLIGHT_COMPONENT,
-  HIGHLIGHT_HOTKEY,
-  HIGHLIGHT_UTIL_IS_ACTIVE,
-  HIGHLIGHT_UTIL_ADD,
-  HIGHLIGHT_UTIL_REMOVE,
-  HIGHLIGHT_UTIL_TOGGLE
-} from './highlight.constants';
+import { ToggleMarkConfig, ToggleMark } from '@artibox/slate-toggle-mark';
+import { HIGHLIGHT_TYPE, HIGHLIGHT_COMPONENT, HIGHLIGHT_HOTKEY } from './highlight.constants';
+import { HighlightController } from './highlight.interfaces';
 
-export const HighlightUtils = createToggleMarkUtils({
-  type: HIGHLIGHT_TYPE,
-  isActive: HIGHLIGHT_UTIL_IS_ACTIVE,
-  add: HIGHLIGHT_UTIL_ADD,
-  remove: HIGHLIGHT_UTIL_REMOVE,
-  toggle: HIGHLIGHT_UTIL_TOGGLE
-});
+export const HighlightHandlers = ToggleMark.Handlers;
+export const HighlightRenderer = ToggleMark.Renderer;
 
-export const HighlightHandlers = createToggleMarkHandlers(HIGHLIGHT_UTIL_TOGGLE);
+export class Highlight implements HighlightController {
+  static Handlers = HighlightHandlers;
+  static Renderer = HighlightRenderer;
 
-export const Highlight = createToggleMark({
-  Utils: HighlightUtils,
-  Handlers: HighlightHandlers,
-  type: HIGHLIGHT_TYPE,
-  component: HIGHLIGHT_COMPONENT,
-  hotkey: HIGHLIGHT_HOTKEY
-});
+  static create(config?: Partial<ToggleMarkConfig>) {
+    return new this(
+      ToggleMark.create({
+        type: HIGHLIGHT_TYPE,
+        hotkey: HIGHLIGHT_HOTKEY,
+        component: HIGHLIGHT_COMPONENT,
+        ...config
+      })
+    );
+  }
+
+  plugin = this.toggleMark.plugin;
+
+  constructor(private readonly toggleMark: ToggleMark) {}
+
+  isHighlightActive: HighlightController['isHighlightActive'] = this.toggleMark.isToggleMarkActive;
+
+  addHighlightMark: HighlightController['addHighlightMark'] = this.toggleMark.addToggleMark;
+
+  removeHighlightMark: HighlightController['removeHighlightMark'] = this.toggleMark.removeToggleMark;
+
+  toggleHighlightMark: HighlightController['toggleHighlightMark'] = this.toggleMark.toggleToggleMark;
+}

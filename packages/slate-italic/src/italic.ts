@@ -1,28 +1,34 @@
-import { createToggleMarkUtils, createToggleMarkHandlers, createToggleMark } from '@artibox/slate-toggle-mark';
-import {
-  ITALIC_TYPE,
-  ITALIC_COMPONENT,
-  ITALIC_HOTKEY,
-  ITALIC_UTIL_IS_ACTIVE,
-  ITALIC_UTIL_ADD,
-  ITALIC_UTIL_REMOVE,
-  ITALIC_UTIL_TOGGLE
-} from './italic.constants';
+import { ToggleMarkConfig, ToggleMark } from '@artibox/slate-toggle-mark';
+import { ITALIC_TYPE, ITALIC_COMPONENT, ITALIC_HOTKEY } from './italic.constants';
+import { ItalicController } from './italic.interfaces';
 
-export const ItalicUtils = createToggleMarkUtils({
-  type: ITALIC_TYPE,
-  isActive: ITALIC_UTIL_IS_ACTIVE,
-  add: ITALIC_UTIL_ADD,
-  remove: ITALIC_UTIL_REMOVE,
-  toggle: ITALIC_UTIL_TOGGLE
-});
+export const ItalicHandlers = ToggleMark.Handlers;
+export const ItalicRenderer = ToggleMark.Renderer;
 
-export const ItalicHandlers = createToggleMarkHandlers(ITALIC_UTIL_TOGGLE);
+export class Italic implements ItalicController {
+  static Handlers = ItalicHandlers;
+  static Renderer = ItalicRenderer;
 
-export const Italic = createToggleMark({
-  Utils: ItalicUtils,
-  Handlers: ItalicHandlers,
-  type: ITALIC_TYPE,
-  component: ITALIC_COMPONENT,
-  hotkey: ITALIC_HOTKEY
-});
+  static create(config?: Partial<ToggleMarkConfig>) {
+    return new this(
+      ToggleMark.create({
+        type: ITALIC_TYPE,
+        hotkey: ITALIC_HOTKEY,
+        component: ITALIC_COMPONENT,
+        ...config
+      })
+    );
+  }
+
+  plugin = this.toggleMark.plugin;
+
+  constructor(private readonly toggleMark: ToggleMark) {}
+
+  isItalicActive: ItalicController['isItalicActive'] = this.toggleMark.isToggleMarkActive;
+
+  addItalicMark: ItalicController['addItalicMark'] = this.toggleMark.addToggleMark;
+
+  removeItalicMark: ItalicController['removeItalicMark'] = this.toggleMark.removeToggleMark;
+
+  toggleItalicMark: ItalicController['toggleItalicMark'] = this.toggleMark.toggleToggleMark;
+}
