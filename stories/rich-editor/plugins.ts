@@ -96,22 +96,22 @@ export const plugins: Plugin[] = [
       [
         Heading1,
         {
-          isActive: editor => heading.utils.isSelectionInHeading(editor, 1),
-          onMouseDown: editor => heading.utils.toggleHeadingBlock(editor, 1)
+          isActive: editor => heading.isSelectionInHeading(editor, 1),
+          onMouseDown: editor => heading.toggleHeadingBlock(editor, 1)
         }
       ],
       [
         Heading2,
         {
-          isActive: editor => heading.utils.isSelectionInHeading(editor, 2),
-          onMouseDown: editor => heading.utils.toggleHeadingBlock(editor, 2)
+          isActive: editor => heading.isSelectionInHeading(editor, 2),
+          onMouseDown: editor => heading.toggleHeadingBlock(editor, 2)
         }
       ],
       [
         Heading3,
         {
-          isActive: editor => heading.utils.isSelectionInHeading(editor, 3),
-          onMouseDown: editor => heading.utils.toggleHeadingBlock(editor, 3)
+          isActive: editor => heading.isSelectionInHeading(editor, 3),
+          onMouseDown: editor => heading.toggleHeadingBlock(editor, 3)
         }
       ],
       [
