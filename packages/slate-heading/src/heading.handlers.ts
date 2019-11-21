@@ -1,22 +1,26 @@
 import { isKeyHotkey } from 'is-hotkey';
 import { PickPluginAndRequired } from '@artibox/slate-core';
 import { HEADING_LEVELS } from './heading.constants';
-import { HeadingUtils } from './heading.utils';
+import { HeadingController } from './heading.interfaces';
 
 export type HeadingHandlers = PickPluginAndRequired<'onKeyDown'>;
 
-export function HeadingHandlers(hotkey: string, enabled: HEADING_LEVELS[], utils: HeadingUtils): HeadingHandlers {
+export function HeadingHandlers(
+  hotkey: string,
+  enabled: HEADING_LEVELS[],
+  headingController: HeadingController
+): HeadingHandlers {
   return {
     onKeyDown(event, editor, next) {
       if (event.key === 'Enter') {
         /**
          * If press enter on the block not heading, continue.
          */
-        if (!utils.isBlockAsHeading(editor.value.startBlock)) {
+        if (!headingController.isBlockAsHeading(editor.value.startBlock)) {
           return next();
         }
 
-        return utils.endHeadingBlock(editor);
+        return headingController.endHeadingBlock(editor);
       }
 
       /**
@@ -28,7 +32,7 @@ export function HeadingHandlers(hotkey: string, enabled: HEADING_LEVELS[], utils
         const level = numKey as HEADING_LEVELS;
 
         event.preventDefault();
-        return utils.toggleHeadingBlock(editor, level);
+        return headingController.toggleHeadingBlock(editor, level);
       }
 
       return next();
