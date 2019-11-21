@@ -6,6 +6,3 @@ export type VIDEO_PROVIDERS = typeof VIDEO_PROVIDERS[number];
 
 export const VIDEO_DATA_KEY_PROVIDER = 'provider';
 export type VIDEO_DATA_KEY_PROVIDER = typeof VIDEO_DATA_KEY_PROVIDER;
-
-export const VIDEO_COMMAND_ADD = 'Command[Video] Add' as const;
-export type VIDEO_COMMAND_ADD = typeof VIDEO_COMMAND_ADD;
