@@ -1,5 +1,5 @@
 import { Editor } from 'slate';
 
 export interface SeparationLineController {
-  addSeparationLine(editor: Editor): Editor;
+  addSeparationLineBlock(editor: Editor): Editor;
 }

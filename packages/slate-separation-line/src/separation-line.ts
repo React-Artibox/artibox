@@ -32,7 +32,7 @@ export class SeparationLine implements SeparationLineController {
     private readonly schema: SchemaProperties
   ) {}
 
-  addSeparationLine: SeparationLineController['addSeparationLine'] = editor =>
+  addSeparationLineBlock: SeparationLineController['addSeparationLineBlock'] = editor =>
     editor
       .insertBlock(this.type)
       .insertBlock(PARAGRAPH_TYPE)
