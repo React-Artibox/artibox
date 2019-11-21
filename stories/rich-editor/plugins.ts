@@ -5,7 +5,7 @@ import {
   Underline as UnderlineIcon,
   Strikethrough as StrikethroughIcon,
   Highlight as HighlightIcon,
-  Link,
+  Link as LinkIcon,
   Unlink,
   Heading1,
   Heading2,
@@ -23,7 +23,7 @@ import { Italic } from '@artibox/slate-italic';
 import { Underline } from '@artibox/slate-underline';
 import { Strikethrough } from '@artibox/slate-strikethrough';
 import { Highlight } from '@artibox/slate-highlight';
-import { LinkPlugin, linkIsActive, linkSet, linkRemove } from '@artibox/slate-plugin-link';
+import { Link } from '@artibox/slate-link';
 import { Heading } from '@artibox/slate-heading';
 import { Blockquote } from '@artibox/slate-blockquote';
 import { List } from '@artibox/slate-list';
@@ -39,6 +39,7 @@ const italic = Italic.create();
 const underline = Underline.create();
 const strikethrough = Strikethrough.create();
 const highlight = Highlight.create();
+const link = Link.create();
 const heading = Heading.create({ disabled: [4, 5, 6] });
 const blockquote = Blockquote.create();
 const list = List.create();
@@ -53,7 +54,7 @@ export const plugins: Plugin[] = [
   underline.plugin,
   strikethrough.plugin,
   highlight.plugin,
-  LinkPlugin(),
+  link.plugin,
   heading.plugin,
   blockquote.plugin,
   list.plugin,
@@ -77,16 +78,8 @@ export const plugins: Plugin[] = [
       ],
       TOOLBAR_DIVIDER,
       [HighlightIcon, { isActive: highlight.isHighlightActive, onMouseDown: highlight.toggleHighlightMark }],
-      [
-        Link,
-        {
-          isActive: linkIsActive,
-          inputable: {
-            onConfirm: linkSet
-          }
-        }
-      ],
-      [Unlink, { onMouseDown: linkRemove }]
+      [LinkIcon, { isActive: link.isSelectionInLink, inputable: { onConfirm: link.setLinkInline } }],
+      [Unlink, { onMouseDown: link.removeLinkInline }]
     ],
     collapsedTools: [
       [

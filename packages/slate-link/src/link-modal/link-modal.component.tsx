@@ -1,13 +1,11 @@
 import { Editor } from 'slate';
 import React, { memo, useCallback, useState, useLayoutEffect } from 'react';
 import { Modal } from '@artibox/components';
-import { getQuery, getCommand } from '@artibox/slate-core';
 import { LinkModalSetOpen } from './link-modal.contexts';
-import { LINK_QUERY_URL, LINK_COMMAND_SET } from '../link.constants';
-import { LinkQueryUrl } from '../link.queries';
-import { LinkCommandSet } from '../link.commands';
+import { LinkController } from '../link.interfaces';
 
 export interface LinkModalProps {
+  controller: LinkController;
   editor: Editor;
   open: boolean;
   setOpen: LinkModalSetOpen;
@@ -17,7 +15,7 @@ export interface LinkModalProps {
  * @todo
  * Provide i18n.
  */
-function LinkModal({ open, setOpen, editor }: LinkModalProps) {
+function LinkModal({ open, setOpen, controller, editor }: LinkModalProps) {
   const onClose = useCallback(() => {
     setOpen(false);
     editor.focus();
@@ -26,18 +24,16 @@ function LinkModal({ open, setOpen, editor }: LinkModalProps) {
   const [text, setText] = useState('');
   const { isExpanded } = editor.value.selection;
   const onConfirm = () => {
-    const command = getCommand<LinkCommandSet>(editor, LINK_COMMAND_SET);
-
     onClose();
 
     if (url) {
-      command(url, isExpanded ? undefined : text);
+      controller.setLinkInline(editor, url, isExpanded ? undefined : text);
     }
   };
 
   useLayoutEffect(() => {
     if (open) {
-      setUrl(getQuery<LinkQueryUrl>(editor, LINK_QUERY_URL)() ?? '');
+      setUrl(controller.getCurrentFirstLinkUrl(editor) ?? '');
       setText(isExpanded ? editor.value.fragment.text : '');
     }
   }, [open]);
