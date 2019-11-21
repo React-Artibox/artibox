@@ -19,15 +19,15 @@ export interface BlockquoteController {
   /**
    * To wrap the current block with blockquote block.
    */
-  wrapBlockquote(editor: Editor): Editor;
+  wrapBlockquoteBlock(editor: Editor): Editor;
 
   /**
    * To unwrap the current blockquote block if it is.
    */
-  unwrapBlockquote(editor: Editor): Editor;
+  unwrapBlockquoteBlock(editor: Editor): Editor;
 
   /**
    * To toggle the blockquote block.
    */
-  toggleBlockquote(editor: Editor): Editor;
+  toggleBlockquoteBlock(editor: Editor): Editor;
 }
