@@ -1,7 +1,8 @@
-import { Editor, SchemaProperties } from 'slate';
+import { SchemaProperties } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-core';
 import { RendererBaseComponent, CommonBlockRenderer } from '@artibox/slate-renderer';
 import { SEPARATION_LINE_TYPE, SEPARATION_LINE_COMPONENT } from './separation-line.constants';
+import { SeparationLineController } from './separation-line.interfaces';
 import { SeparationLineSchema } from './separation-line.schema';
 
 export interface SeparationLineConfig {
@@ -9,14 +10,15 @@ export interface SeparationLineConfig {
   component?: RendererBaseComponent;
 }
 
-export class SeparationLine {
+export class SeparationLine implements SeparationLineController {
+  static Renderer = CommonBlockRenderer;
+  static Schema = SeparationLineSchema;
+
   static create(config?: SeparationLineConfig) {
     const type = config?.type ?? SEPARATION_LINE_TYPE;
     const component = config?.component ?? SEPARATION_LINE_COMPONENT;
-    const renderer = CommonBlockRenderer({ type, component, isVoid: true });
-    const schema = SeparationLineSchema(type);
 
-    return new this(type, renderer, schema);
+    return new this(type, this.Renderer({ type, component, isVoid: true }), this.Schema(type));
   }
 
   plugin = {
@@ -30,7 +32,7 @@ export class SeparationLine {
     private readonly schema: SchemaProperties
   ) {}
 
-  addSeparationLine = (editor: Editor): Editor =>
+  addSeparationLine: SeparationLineController['addSeparationLine'] = editor =>
     editor
       .insertBlock(this.type)
       .insertBlock(PARAGRAPH_TYPE)
