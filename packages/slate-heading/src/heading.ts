@@ -1,10 +1,11 @@
+import { Block } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-core';
-import { HEADING_TYPE, HEADING_LEVELS, HEADING_HOTKEY } from './heading.constants';
-import { getHeadingLevelFromBlock, createHeadingBlock } from './heading.utils';
+import { HEADING_TYPE, HEADING_LEVELS, HEADING_HOTKEY, HEADING_DATA_KEY_LEVEL } from './heading.constants';
+import { getHeadingLevelFromBlock } from './heading.utils';
+import { HeadingController } from './heading.interfaces';
 import { HeadingHandlers } from './heading.handlers';
 import { HeadingRenderer } from './heading.renderer';
 import { HeadingSchema } from './heading.schema';
-import { HeadingController } from './heading.interfaces';
 
 export interface HeadingConfig {
   type?: string;
@@ -72,6 +73,12 @@ export class Heading implements HeadingController {
     return undefined;
   };
 
+  createHeadingBlock: HeadingController['createHeadingBlock'] = level =>
+    Block.fromJSON({
+      type: this.type,
+      data: { [HEADING_DATA_KEY_LEVEL]: level }
+    });
+
   endHeadingBlock: HeadingController['endHeadingBlock'] = editor => {
     const currentBlock = editor.value.startBlock;
 
@@ -84,7 +91,7 @@ export class Heading implements HeadingController {
 
   toggleHeadingBlock: HeadingController['toggleHeadingBlock'] = (editor, level) => {
     const currentLevel = this.getCurrentHeadingLevel(editor);
-    const block = currentLevel !== level ? createHeadingBlock(this.type, level) : PARAGRAPH_TYPE;
+    const block = currentLevel !== level ? this.createHeadingBlock(level) : PARAGRAPH_TYPE;
     return editor.setBlocks(block);
   };
 }
