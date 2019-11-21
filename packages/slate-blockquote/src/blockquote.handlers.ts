@@ -1,15 +1,15 @@
 import { PickPluginAndRequired, PARAGRAPH_TYPE } from '@artibox/slate-core';
 import { isKeyHotkey } from 'is-hotkey';
-import { BlockquoteUtils } from './blockquote.utils';
+import { BlockquoteController } from './blockquote.interfaces';
 
 export type BlockquoteHandlers = PickPluginAndRequired<'onKeyDown'>;
 
-export function BlockquoteHandlers(hotkey: string, utils: BlockquoteUtils): BlockquoteHandlers {
+export function BlockquoteHandlers(hotkey: string, blockquoteController: BlockquoteController): BlockquoteHandlers {
   /**
    * The handler of soft break.
    */
   const onSoftBreak: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
-    const blockquoteBlock = utils.getCurrentBlockquote(editor);
+    const blockquoteBlock = blockquoteController.getCurrentBlockquote(editor);
 
     if (!blockquoteBlock) {
       return next();
@@ -24,7 +24,7 @@ export function BlockquoteHandlers(hotkey: string, utils: BlockquoteUtils): Bloc
    * If the focused block inside blockquote is w/o any texts, unwrap the focused block.
    */
   const onEnter: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
-    const blockquoteBlock = utils.getCurrentBlockquote(editor);
+    const blockquoteBlock = blockquoteController.getCurrentBlockquote(editor);
     const currentBlock = editor.value.startBlock;
 
     if (!blockquoteBlock || currentBlock.text.length !== 0) {
@@ -33,14 +33,14 @@ export function BlockquoteHandlers(hotkey: string, utils: BlockquoteUtils): Bloc
 
     event.preventDefault();
 
-    return utils.unwrapBlockquote(editor);
+    return blockquoteController.unwrapBlockquote(editor);
   };
 
   /**
    * If the focused block inside blockquote and the selection is not expanded, unwrap the focused block.
    */
   const onBackSpace: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
-    const blockquoteBlock = utils.getCurrentBlockquote(editor);
+    const blockquoteBlock = blockquoteController.getCurrentBlockquote(editor);
     const { isExpanded, start } = editor.value.selection;
 
     if (!blockquoteBlock || isExpanded || start.offset !== 0) {
@@ -49,7 +49,7 @@ export function BlockquoteHandlers(hotkey: string, utils: BlockquoteUtils): Bloc
 
     event.preventDefault();
 
-    return utils.unwrapBlockquote(editor);
+    return blockquoteController.unwrapBlockquote(editor);
   };
 
   return {
@@ -63,7 +63,7 @@ export function BlockquoteHandlers(hotkey: string, utils: BlockquoteUtils): Bloc
       } else if (event.key === 'Backspace') {
         return onBackSpace(event, editor, next);
       } else if (isKeyHotkey(hotkey, event as any)) {
-        return utils.toggleBlockquote(editor);
+        return blockquoteController.toggleBlockquote(editor);
       }
 
       return next();
