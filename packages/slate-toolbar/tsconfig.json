@@ -9,7 +9,7 @@
     { "path": "../icons" },
     { "path": "../slate-core" },
     { "path": "../slate-renderer" },
-    { "path": "../slate-plugin-input-block" }
+    { "path": "../slate-input-block" }
   ],
   "include": ["./src"],
   "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]

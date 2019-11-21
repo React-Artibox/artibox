@@ -2,7 +2,6 @@ import React, { Dispatch, SetStateAction, MouseEventHandler, memo, useCallback }
 import cx from 'classnames';
 import { IconDefinition } from '@artibox/icons';
 import { Icon } from '@artibox/components';
-import { inputBlockStart } from '@artibox/slate-plugin-input-block';
 import { EditorPassable } from '@artibox/slate-renderer';
 import { TOOLBAR_DIVIDER } from '../toolbar.constants';
 import { Tool, ToolInputable } from '../toolbar.types';
@@ -42,8 +41,8 @@ function ToolbarIcon({ icon, config, editor, setInputableTool, expanded }: Toolb
       if (inputable) {
         if (expanded) {
           setInputableTool(inputable);
-        } else {
-          inputBlockStart(editor, inputable);
+        } else if (inputable.onStart) {
+          inputable.onStart(editor, inputable);
         }
       } else {
         onMouseDownFromConfig?.(editor, event);

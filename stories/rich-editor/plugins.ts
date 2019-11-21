@@ -31,7 +31,7 @@ import { SeparationLine } from '@artibox/slate-separation-line';
 import { Video } from '@artibox/slate-video';
 import { Facebook } from '@artibox/slate-facebook';
 import { Instagram } from '@artibox/slate-instagram';
-import { InputBlockPlugin, INPUT_BLOCK_TYPE } from '@artibox/slate-plugin-input-block';
+import { InputBlock } from '@artibox/slate-input-block';
 import { ToolbarPlugin, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
 const bold = Bold.create();
@@ -47,6 +47,7 @@ const separationLine = SeparationLine.create();
 const video = Video.create();
 const instagram = Instagram.create();
 const facebook = Facebook.create();
+const inputBlock = InputBlock.create();
 
 export const plugins: Plugin[] = [
   bold.plugin,
@@ -62,9 +63,9 @@ export const plugins: Plugin[] = [
   video.plugin,
   instagram.plugin,
   facebook.plugin,
-  InputBlockPlugin(),
+  inputBlock.plugin,
   ToolbarPlugin({
-    disabledBlocks: [INPUT_BLOCK_TYPE],
+    disabledBlocks: [inputBlock.type],
     expandedTools: [
       [BoldIcon, { isActive: bold.isBoldActive, onMouseDown: bold.toggleBoldMark }],
       [ItalicIcon, { isActive: italic.isItalicActive, onMouseDown: italic.toggleItalicMark }],
@@ -114,9 +115,9 @@ export const plugins: Plugin[] = [
       [OrderedList, { onMouseDown: editor => list.toggleListBlock(editor, 'ordered') }],
       TOOLBAR_DIVIDER,
       [SeparationLineIcon, { onMouseDown: separationLine.addSeparationLineBlock }],
-      [VideoIcon, { inputable: { onConfirm: video.addVideoBlock } }],
-      [InstagramIcon, { inputable: { onConfirm: instagram.addInstagramBlock } }],
-      [FacebookIcon, { inputable: { onConfirm: facebook.addFacebookBlock } }]
+      [VideoIcon, { inputable: { onStart: inputBlock.startInputBlock, onConfirm: video.addVideoBlock } }],
+      [InstagramIcon, { inputable: { onStart: inputBlock.startInputBlock, onConfirm: instagram.addInstagramBlock } }],
+      [FacebookIcon, { inputable: { onStart: inputBlock.startInputBlock, onConfirm: facebook.addFacebookBlock } }]
     ]
   })
 ];
