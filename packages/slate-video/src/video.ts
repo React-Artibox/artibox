@@ -1,5 +1,5 @@
 import { Block } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-core';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common';
 import { RendererBaseComponent } from '@artibox/slate-renderer';
 import { VIDEO_TYPE, VIDEO_DATA_KEY_PROVIDER } from './video.constants';
 import { VideoController } from './video.interfaces';

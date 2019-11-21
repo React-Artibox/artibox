@@ -1,1 +1,0 @@
-# `@artibox/slate-core`

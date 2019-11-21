@@ -1,6 +1,6 @@
 import React from 'react';
 import { RenderMarkProps, RenderAttributes } from 'slate-react';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { RendererBaseComponent } from './types';
 
 export interface CommonMarkRendererConfig<P extends RenderAttributes = RenderAttributes> {

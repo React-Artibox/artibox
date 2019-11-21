@@ -1,5 +1,5 @@
 import { isKeyHotkey } from 'is-hotkey';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { InputBlockController } from './input-block.interfaces';
 
 export type InputBlockHandlers = PickPluginAndRequired<'onKeyDown' | 'onPaste'>;

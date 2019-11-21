@@ -25,7 +25,7 @@
   "dependencies": {
     "@artibox/components": "^0.0.0",
     "@artibox/icons": "^0.0.0",
-    "@artibox/slate-core": "^0.0.0",
+    "@artibox/slate-common": "^0.0.0",
     "@artibox/slate-renderer": "^0.0.0",
     "@artibox/slate-input-block": "^0.0.0",
     "classnames": "^2.2.6",

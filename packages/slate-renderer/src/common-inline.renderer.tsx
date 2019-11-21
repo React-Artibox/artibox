@@ -1,6 +1,6 @@
 import React from 'react';
 import { RenderInlineProps, RenderAttributes } from 'slate-react';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { RendererBaseComponent } from './types';
 
 export interface CommonInlineRendererConfig<P extends RenderAttributes = RenderAttributes> {

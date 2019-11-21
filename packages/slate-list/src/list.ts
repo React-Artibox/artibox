@@ -1,5 +1,5 @@
 import { Block } from 'slate';
-import { isNodeExcludeText } from '@artibox/slate-core';
+import { isNodeExcludeText } from '@artibox/slate-common';
 import { LIST_TYPES } from './list.constants';
 import { ListController } from './list.interfaces';
 import { ListRenderer } from './list.renderer';

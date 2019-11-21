@@ -1,5 +1,5 @@
 import { SchemaProperties } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-core';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common';
 import { HEADING_LEVELS, HEADING_DATA_KEY_LEVEL } from './heading.constants';
 
 export interface HeadingSchemaConfig {

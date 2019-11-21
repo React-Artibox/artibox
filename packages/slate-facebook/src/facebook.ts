@@ -1,5 +1,5 @@
 import { Block } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-core';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common';
 import { RendererBaseComponent } from '@artibox/slate-renderer';
 import { FACEBOOK_TYPE } from './facebook.constants';
 import { FacebookController } from './facebook.interfaces';

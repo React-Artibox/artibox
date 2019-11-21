@@ -1,5 +1,5 @@
 import { isKeyHotkey } from 'is-hotkey';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { ToggleMarkController } from './toggle-mark.interfaces';
 
 export type ToggleMarkHandlers = PickPluginAndRequired<'onKeyDown'>;

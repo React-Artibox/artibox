@@ -7,7 +7,7 @@
   "references": [
     { "path": "../components" },
     { "path": "../icons" },
-    { "path": "../slate-core" },
+    { "path": "../slate-common" },
     { "path": "../slate-renderer" },
     { "path": "../slate-input-block" }
   ],
