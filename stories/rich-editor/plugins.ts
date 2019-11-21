@@ -126,7 +126,7 @@ export const plugins: Plugin[] = [
       TOOLBAR_DIVIDER,
       [SeparationLineIcon, { onMouseDown: separationLine.addSeparationLine }],
       [Video, { inputable: { onConfirm: videoAdd } }],
-      [InstagramIcon, { inputable: { onConfirm: instagram.utils.addInstagramBlock } }],
+      [InstagramIcon, { inputable: { onConfirm: instagram.addInstagramBlock } }],
       [FacebookIcon, { inputable: { onConfirm: facebook.addFacebookBlock } }]
     ]
   })
