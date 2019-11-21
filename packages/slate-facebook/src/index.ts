@@ -7,5 +7,6 @@ export {
   FACEBOOK_DATA_KEY_HEIGHT,
   FACEBOOK_REG
 } from './facebook.constants';
+export { FacebookEmbedData } from './facebook.interfaces';
 export { getFacebookEmbedDataFromHtmlCode, getSrcFromEmbedData } from './facebook.utils';
 export { FacebookConfig, Facebook } from './facebook';

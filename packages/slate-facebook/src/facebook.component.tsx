@@ -1,6 +1,6 @@
 import React, { CSSProperties, memo, forwardRef } from 'react';
 import { RenderAttributes } from 'slate-react';
-import { FacebookEmbedData } from './facebook.types';
+import { FacebookEmbedData } from './facebook.interfaces';
 import { getSrcFromEmbedData } from './facebook.utils';
 
 export type FacebookProps = RenderAttributes & FacebookEmbedData;

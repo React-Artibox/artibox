@@ -1,8 +1,8 @@
-import { Block, Editor, SchemaProperties } from 'slate';
+import { Block } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-core';
 import { RendererBaseComponent } from '@artibox/slate-renderer';
 import { FACEBOOK_TYPE } from './facebook.constants';
-import { FacebookEmbedData } from './facebook.types';
+import { FacebookController } from './facebook.interfaces';
 import { getFacebookEmbedDataFromHtmlCode } from './facebook.utils';
 import FacebookComponent, { FacebookProps } from './facebook.component';
 import { FacebookRenderer } from './facebook.renderer';
@@ -13,14 +13,15 @@ export interface FacebookConfig {
   component?: RendererBaseComponent<FacebookProps>;
 }
 
-export class Facebook {
+export class Facebook implements FacebookController {
+  static Renderer = FacebookRenderer;
+  static Schema = FacebookSchema;
+
   static create(config?: FacebookConfig) {
     const type = config?.type ?? FACEBOOK_TYPE;
     const component = config?.component ?? FacebookComponent;
-    const renderer = FacebookRenderer({ type, component });
-    const schema = FacebookSchema(type);
 
-    return new this(type, renderer, schema);
+    return new this(type, this.Renderer({ type, component }), this.Schema(type));
   }
 
   plugin = {
@@ -31,14 +32,14 @@ export class Facebook {
   constructor(
     public readonly type: string,
     private readonly renderer: FacebookRenderer,
-    private readonly schema: SchemaProperties
+    private readonly schema: ReturnType<typeof FacebookSchema>
   ) {}
 
-  createFacebookBlock = (embedData: FacebookEmbedData): Block => {
+  createFacebookBlock: FacebookController['createFacebookBlock'] = embedData => {
     return Block.fromJSON({ type: this.type, data: embedData });
   };
 
-  addFacebookBlock = (editor: Editor, htmlCode: string): Editor => {
+  addFacebookBlock: FacebookController['addFacebookBlock'] = (editor, htmlCode) => {
     const embedData = getFacebookEmbedDataFromHtmlCode(htmlCode);
 
     if (!embedData || !embedData.type) {

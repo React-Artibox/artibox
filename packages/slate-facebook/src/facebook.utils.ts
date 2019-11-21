@@ -5,7 +5,7 @@ import {
   FACEBOOK_DATA_KEY_WIDTH,
   FACEBOOK_DATA_KEY_HEIGHT
 } from './facebook.constants';
-import { FacebookEmbedData } from './facebook.types';
+import { FacebookEmbedData } from './facebook.interfaces';
 
 function getFacebookEmbedTypeFromPathname(pathname: string): FACEBOOK_EMBED_TYPES | null {
   if (pathname === '/plugins/post.php') {
