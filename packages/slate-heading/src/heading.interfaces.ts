@@ -19,6 +19,8 @@ export interface HeadingController {
    */
   getCurrentHeadingLevel(editor: Editor): HEADING_LEVELS | undefined;
 
+  createHeadingBlock(level: HEADING_LEVELS): Block;
+
   /**
    * To end the heading block and add one paragraph block below the heading.
    */
