@@ -26,7 +26,7 @@ import { Highlight } from '@artibox/slate-highlight';
 import { LinkPlugin, linkIsActive, linkSet, linkRemove } from '@artibox/slate-plugin-link';
 import { Heading } from '@artibox/slate-heading';
 import { Blockquote } from '@artibox/slate-blockquote';
-import { ListPlugin, listToggle } from '@artibox/slate-plugin-list';
+import { List } from '@artibox/slate-list';
 import { SeparationLine } from '@artibox/slate-separation-line';
 import { Video } from '@artibox/slate-video';
 import { Facebook } from '@artibox/slate-facebook';
@@ -41,6 +41,7 @@ const strikethrough = Strikethrough.create();
 const highlight = Highlight.create();
 const heading = Heading.create({ disabled: [4, 5, 6] });
 const blockquote = Blockquote.create();
+const list = List.create();
 const separationLine = SeparationLine.create();
 const video = Video.create();
 const instagram = Instagram.create();
@@ -55,7 +56,7 @@ export const plugins: Plugin[] = [
   LinkPlugin(),
   heading.plugin,
   blockquote.plugin,
-  ListPlugin(),
+  list.plugin,
   separationLine.plugin,
   video.plugin,
   instagram.plugin,
@@ -116,8 +117,8 @@ export const plugins: Plugin[] = [
           onMouseDown: blockquote.toggleBlockquoteBlock
         }
       ],
-      [UnorderedList, { onMouseDown: editor => listToggle(editor, 'unordered') }],
-      [OrderedList, { onMouseDown: editor => listToggle(editor, 'ordered') }],
+      [UnorderedList, { onMouseDown: editor => list.toggleListBlock(editor, 'unordered') }],
+      [OrderedList, { onMouseDown: editor => list.toggleListBlock(editor, 'ordered') }],
       TOOLBAR_DIVIDER,
       [SeparationLineIcon, { onMouseDown: separationLine.addSeparationLineBlock }],
       [VideoIcon, { inputable: { onConfirm: video.addVideoBlock } }],

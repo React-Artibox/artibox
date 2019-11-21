@@ -1,30 +1,9 @@
 import { PickPluginAndRequired } from '@artibox/slate-core';
-import { ListQueryCurrentItem, ListQueryIsSelectionInList } from './list.queries';
-import {
-  ListCommandIncreaseItemDepth,
-  ListCommandDecreaseItemDepth,
-  ListCommandDecreaseItemDepthOrUnwrapIfNeed
-} from './list.commands';
-
-export interface ListHandlersConfig {
-  queryCurrentItem: ListQueryCurrentItem;
-  queryIsSelectionInList: ListQueryIsSelectionInList;
-  commandIncreaseItemDepth: ListCommandIncreaseItemDepth;
-  commandDecreaseItemDepth: ListCommandDecreaseItemDepth;
-  commandDecreaseItemDepthOrUnwrapIfNeed: ListCommandDecreaseItemDepthOrUnwrapIfNeed;
-}
+import { ListController } from './list.interfaces';
 
 export type ListHandlers = PickPluginAndRequired<'onKeyDown'>;
 
-export function ListHandlers(config: ListHandlersConfig): ListHandlers {
-  const {
-    queryCurrentItem,
-    queryIsSelectionInList,
-    commandIncreaseItemDepth,
-    commandDecreaseItemDepth,
-    commandDecreaseItemDepthOrUnwrapIfNeed
-  } = config;
-
+export function ListHandlers(listController: ListController): ListHandlers {
   const onEnter: ListHandlers['onKeyDown'] = (event, editor, next) => {
     event.preventDefault();
 
@@ -37,12 +16,12 @@ export function ListHandlers(config: ListHandlersConfig): ListHandlers {
       editor.delete();
     }
 
-    const item = queryCurrentItem(editor);
+    const item = listController.getCurrentItem(editor);
 
     if (!item) {
       return next();
     } else if (selection.start.offset === 0 && startBlock.text === '' && item.nodes.size! <= 1) {
-      return commandDecreaseItemDepthOrUnwrapIfNeed(editor);
+      return listController.decreateItemDepthOrUnwrapIfNeed(editor);
     }
 
     /**
@@ -54,23 +33,23 @@ export function ListHandlers(config: ListHandlersConfig): ListHandlers {
   const onBackspace: ListHandlers['onKeyDown'] = (event, editor, next) => {
     const { selection } = editor.value;
 
-    if (selection.isExpanded || selection.start.offset !== 0 || queryCurrentItem(editor)?.nodes.size! > 1) {
+    if (selection.isExpanded || selection.start.offset !== 0) {
       return next();
     }
 
     event.preventDefault();
-    return commandDecreaseItemDepthOrUnwrapIfNeed(editor);
+    return listController.decreateItemDepthOrUnwrapIfNeed(editor);
   };
 
   const onTab: ListHandlers['onKeyDown'] = (event, editor) => {
     event.preventDefault();
-    const command = event.shiftKey ? commandDecreaseItemDepth : commandIncreaseItemDepth;
-    return command(editor);
+
+    return event.shiftKey ? listController.decreateItemDepth(editor) : listController.increateItemDepth(editor);
   };
 
   return {
     onKeyDown: (event, editor, next) => {
-      if (!queryIsSelectionInList(editor)) {
+      if (!listController.isSelectionInList(editor)) {
         return next();
       } else if (event.key === 'Enter' && !event.shiftKey) {
         return onEnter(event, editor, next);
