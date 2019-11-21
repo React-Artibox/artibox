@@ -57,10 +57,10 @@ export class Blockquote implements BlockquoteController {
     return this.isBlockAsBlockquote(parent) ? parent : null;
   };
 
-  wrapBlockquote: BlockquoteController['wrapBlockquote'] = editor => editor.wrapBlock(this.type);
+  wrapBlockquoteBlock: BlockquoteController['wrapBlockquoteBlock'] = editor => editor.wrapBlock(this.type);
 
-  unwrapBlockquote: BlockquoteController['unwrapBlockquote'] = editor => editor.unwrapBlock(this.type);
+  unwrapBlockquoteBlock: BlockquoteController['unwrapBlockquoteBlock'] = editor => editor.unwrapBlock(this.type);
 
-  toggleBlockquote: BlockquoteController['toggleBlockquote'] = editor =>
-    this.isSelectionInBlockquote(editor) ? this.unwrapBlockquote(editor) : this.wrapBlockquote(editor);
+  toggleBlockquoteBlock: BlockquoteController['toggleBlockquoteBlock'] = editor =>
+    this.isSelectionInBlockquote(editor) ? this.unwrapBlockquoteBlock(editor) : this.wrapBlockquoteBlock(editor);
 }

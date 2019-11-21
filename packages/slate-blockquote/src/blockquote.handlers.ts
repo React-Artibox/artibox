@@ -33,7 +33,7 @@ export function BlockquoteHandlers(hotkey: string, blockquoteController: Blockqu
 
     event.preventDefault();
 
-    return blockquoteController.unwrapBlockquote(editor);
+    return blockquoteController.unwrapBlockquoteBlock(editor);
   };
 
   /**
@@ -49,7 +49,7 @@ export function BlockquoteHandlers(hotkey: string, blockquoteController: Blockqu
 
     event.preventDefault();
 
-    return blockquoteController.unwrapBlockquote(editor);
+    return blockquoteController.unwrapBlockquoteBlock(editor);
   };
 
   return {
@@ -63,7 +63,7 @@ export function BlockquoteHandlers(hotkey: string, blockquoteController: Blockqu
       } else if (event.key === 'Backspace') {
         return onBackSpace(event, editor, next);
       } else if (isKeyHotkey(hotkey, event as any)) {
-        return blockquoteController.toggleBlockquote(editor);
+        return blockquoteController.toggleBlockquoteBlock(editor);
       }
 
       return next();

@@ -113,7 +113,7 @@ export const plugins: Plugin[] = [
         BlockquoteIcon,
         {
           isActive: blockquote.isSelectionInBlockquote,
-          onMouseDown: blockquote.toggleBlockquote
+          onMouseDown: blockquote.toggleBlockquoteBlock
         }
       ],
       [UnorderedList, { onMouseDown: editor => listToggle(editor, 'unordered') }],
