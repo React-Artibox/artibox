@@ -1,5 +1,5 @@
 import { Block } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-core';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common';
 import { HEADING_TYPE, HEADING_LEVELS, HEADING_HOTKEY, HEADING_DATA_KEY_LEVEL } from './heading.constants';
 import { getHeadingLevelFromBlock } from './heading.utils';
 import { HeadingController } from './heading.interfaces';

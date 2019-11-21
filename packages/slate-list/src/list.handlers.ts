@@ -1,4 +1,4 @@
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { ListController } from './list.interfaces';
 
 export type ListHandlers = PickPluginAndRequired<'onKeyDown'>;

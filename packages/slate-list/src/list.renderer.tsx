@@ -1,5 +1,5 @@
 import React from 'react';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { LIST_TYPES, LIST_COMPONENTS } from './list.constants';
 
 export type ListRenderer = PickPluginAndRequired<'renderBlock'>;

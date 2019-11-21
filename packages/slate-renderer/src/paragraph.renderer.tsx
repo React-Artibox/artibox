@@ -1,4 +1,4 @@
-import { PARAGRAPH_TYPE } from '@artibox/slate-core';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common';
 import { CommonBlockRendererConfig, CommonBlockRenderer } from './common-block.renderer';
 
 export type ParagraphRenderer = CommonBlockRenderer;

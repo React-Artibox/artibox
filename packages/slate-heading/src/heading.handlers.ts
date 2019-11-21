@@ -1,5 +1,5 @@
 import { isKeyHotkey } from 'is-hotkey';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { HEADING_LEVELS } from './heading.constants';
 import { HeadingController } from './heading.interfaces';
 

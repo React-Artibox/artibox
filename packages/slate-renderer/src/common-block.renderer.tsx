@@ -1,6 +1,6 @@
 import React from 'react';
 import { RenderBlockProps, RenderAttributes } from 'slate-react';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { RendererBaseComponent } from './types';
 
 export interface CommonBlockRendererConfig<P extends RenderAttributes = RenderAttributes> {

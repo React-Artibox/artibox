@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { Editor } from 'slate';
 
 export interface CommonEditorRendererConfig {

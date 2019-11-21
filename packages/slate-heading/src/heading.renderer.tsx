@@ -1,5 +1,5 @@
 import React from 'react';
-import { PickPluginAndRequired } from '@artibox/slate-core';
+import { PickPluginAndRequired } from '@artibox/slate-common';
 import { HEADING_COMPONENTS } from './heading.constants';
 import { getHeadingLevelFromBlock } from './heading.utils';
 
