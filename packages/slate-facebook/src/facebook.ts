@@ -1,6 +1,5 @@
 import { Block } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-common';
-import { RendererBaseComponent } from '@artibox/slate-renderer';
+import { PARAGRAPH_TYPE, RendererBaseComponent } from '@artibox/slate-common';
 import { FACEBOOK_TYPE } from './facebook.constants';
 import { FacebookController } from './facebook.interfaces';
 import { getFacebookEmbedDataFromHtmlCode } from './facebook.utils';

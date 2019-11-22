@@ -1,6 +1,5 @@
 import { SchemaProperties, Block } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-common';
-import { RendererBaseComponent } from '@artibox/slate-renderer';
+import { PARAGRAPH_TYPE, RendererBaseComponent } from '@artibox/slate-common';
 import { INSTAGRAM_DATA_KEY_URL } from './instagram.constants';
 import { INSTAGRAM_TYPE } from './instagram.constants';
 import { InstagramController } from './instagram.interfaces';

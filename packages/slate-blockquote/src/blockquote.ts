@@ -1,5 +1,5 @@
 import { Block } from 'slate';
-import { CommonBlockRenderer, RendererBaseComponent } from '@artibox/slate-renderer';
+import { CommonBlockRenderer, RendererBaseComponent } from '@artibox/slate-common';
 import { BLOCKQUOTE_TYPE, BLOCKQUOTE_HOTKEY, BLOCKQUOTE_COMPONENT } from './blockquote.constants';
 import { BlockquoteHandlers } from './blockquote.handlers';
 import { BlockquoteController } from './blockquote.interfaces';

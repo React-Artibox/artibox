@@ -1,5 +1,5 @@
 import React from 'react';
-import { CommonEditorRenderer } from '@artibox/slate-renderer';
+import { CommonEditorRenderer } from '@artibox/slate-common';
 import { Tool } from './toolbar.types';
 import Toolbar from './components/toolbar';
 import './styles';

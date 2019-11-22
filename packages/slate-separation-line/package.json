@@ -22,8 +22,7 @@
     "build": "tsc && tsc -m esnext -outDir esm"
   },
   "dependencies": {
-    "@artibox/slate-common": "^0.0.0",
-    "@artibox/slate-renderer": "^0.0.0"
+    "@artibox/slate-common": "^0.0.0"
   },
   "peerDependencies": {
     "react": "16.8.6"

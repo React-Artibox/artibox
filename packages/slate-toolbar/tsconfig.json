@@ -4,13 +4,7 @@
     "outDir": "./lib",
     "rootDir": "./src"
   },
-  "references": [
-    { "path": "../components" },
-    { "path": "../icons" },
-    { "path": "../slate-common" },
-    { "path": "../slate-renderer" },
-    { "path": "../slate-input-block" }
-  ],
+  "references": [{ "path": "../components" }, { "path": "../icons" }, { "path": "../slate-common" }],
   "include": ["./src"],
   "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
 }

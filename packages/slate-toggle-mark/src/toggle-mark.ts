@@ -1,4 +1,4 @@
-import { RendererBaseComponent, CommonMarkRenderer } from '@artibox/slate-renderer';
+import { RendererBaseComponent, CommonMarkRenderer } from '@artibox/slate-common';
 import { ToggleMarkController } from './toggle-mark.interfaces';
 import { ToggleMarkHandlers } from './toggle-mark.handlers';
 
