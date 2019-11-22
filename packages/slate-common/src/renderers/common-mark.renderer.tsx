@@ -1,13 +1,12 @@
 import React from 'react';
 import { RenderMarkProps, RenderAttributes } from 'slate-react';
 import { PickPluginAndRequired } from '../types/plugin.types';
-import { RendererBaseComponent } from './renderer.types';
+import { CommonRendererConfig } from './renderer.interfaces';
 
-export interface CommonMarkRendererConfig<P extends RenderAttributes = RenderAttributes> {
-  type: string;
-  component: RendererBaseComponent<P>;
-  getProps?: (props: RenderMarkProps) => object;
-}
+export type CommonMarkRendererConfig<P extends RenderAttributes = RenderAttributes> = CommonRendererConfig<
+  RenderMarkProps,
+  P
+>;
 
 export type CommonMarkRenderer = PickPluginAndRequired<'renderMark'>;
 

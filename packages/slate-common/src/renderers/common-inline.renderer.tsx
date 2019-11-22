@@ -1,14 +1,13 @@
 import React from 'react';
 import { RenderInlineProps, RenderAttributes } from 'slate-react';
 import { PickPluginAndRequired } from '../types/plugin.types';
-import { RendererBaseComponent } from './renderer.types';
+import { CommonRendererConfig, NodeIsVoid } from './renderer.interfaces';
 
-export interface CommonInlineRendererConfig<P extends RenderAttributes = RenderAttributes> {
-  type: string;
-  component: RendererBaseComponent<P>;
-  getProps?: (props: RenderInlineProps) => object;
-  isVoid?: boolean;
-}
+export type CommonInlineRendererConfig<P extends RenderAttributes = RenderAttributes> = CommonRendererConfig<
+  RenderInlineProps,
+  P
+> &
+  NodeIsVoid;
 
 export type CommonInlineRenderer = PickPluginAndRequired<'renderInline'>;
 

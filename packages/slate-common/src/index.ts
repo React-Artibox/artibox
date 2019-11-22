@@ -23,6 +23,8 @@ export { isNodeExcludeText } from './utils/is-node-exclude-text';
  */
 export {
   RendererBaseComponent,
+  CommonRendererConfig,
+  NodeIsVoid,
   CommonMarkRendererConfig,
   CommonMarkRenderer,
   CommonInlineRendererConfig,
