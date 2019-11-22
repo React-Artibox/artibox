@@ -1,14 +1,13 @@
 import React from 'react';
 import { RenderBlockProps, RenderAttributes } from 'slate-react';
 import { PickPluginAndRequired } from '../types/plugin.types';
-import { RendererBaseComponent } from './renderer.types';
+import { CommonRendererConfig, NodeIsVoid } from './renderer.interfaces';
 
-export interface CommonBlockRendererConfig<P extends RenderAttributes = RenderAttributes> {
-  type: string;
-  component: RendererBaseComponent<P>;
-  getProps?: (props: RenderBlockProps) => object;
-  isVoid?: boolean;
-}
+export type CommonBlockRendererConfig<P extends RenderAttributes = RenderAttributes> = CommonRendererConfig<
+  RenderBlockProps,
+  P
+> &
+  NodeIsVoid;
 
 export type CommonBlockRenderer = PickPluginAndRequired<'renderBlock'>;
 

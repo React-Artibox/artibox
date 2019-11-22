@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { PickPluginAndRequired } from '@artibox/slate-common';
 import { Editor } from 'slate';
+import { PickPluginAndRequired } from '../types/plugin.types';
 
 export interface CommonEditorRendererConfig {
   render: (editor: Editor, el: ReactNode) => ReactNode;
