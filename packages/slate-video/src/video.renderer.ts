@@ -1,4 +1,4 @@
-import { RendererBaseComponent, CommonBlockRenderer } from '@artibox/slate-renderer';
+import { RendererBaseComponent, CommonBlockRenderer } from '@artibox/slate-common';
 import { VideoProps } from './video.component';
 import { getSourceFromBlock } from './video.utils';
 

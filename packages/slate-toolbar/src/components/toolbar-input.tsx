@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, KeyboardEventHandler } from 'react';
-import { EditorPassable } from '@artibox/slate-renderer';
+import { EditorPassable } from '@artibox/slate-common';
 import { ToolInputable } from '../toolbar.types';
 
 export interface ToolbarInputProps extends EditorPassable {

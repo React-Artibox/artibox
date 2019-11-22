@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, MouseEventHandler, memo, useCallback }
 import cx from 'classnames';
 import { IconDefinition } from '@artibox/icons';
 import { Icon } from '@artibox/components';
-import { EditorPassable } from '@artibox/slate-renderer';
+import { EditorPassable } from '@artibox/slate-common';
 import { TOOLBAR_DIVIDER } from '../toolbar.constants';
 import { Tool, ToolInputable } from '../toolbar.types';
 

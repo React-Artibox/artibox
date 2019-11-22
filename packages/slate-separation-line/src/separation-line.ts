@@ -1,6 +1,5 @@
 import { SchemaProperties } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-common';
-import { RendererBaseComponent, CommonBlockRenderer } from '@artibox/slate-renderer';
+import { PARAGRAPH_TYPE, RendererBaseComponent, CommonBlockRenderer } from '@artibox/slate-common';
 import { SEPARATION_LINE_TYPE, SEPARATION_LINE_COMPONENT } from './separation-line.constants';
 import { SeparationLineController } from './separation-line.interfaces';
 import { SeparationLineSchema } from './separation-line.schema';

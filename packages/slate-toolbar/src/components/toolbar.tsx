@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Editor } from 'slate-react';
 import cx from 'classnames';
-import { EditorPassable } from '@artibox/slate-renderer';
+import { EditorPassable } from '@artibox/slate-common';
 import { Portal, useTheme } from '@artibox/components';
 import { TOOLBAR_DIVIDER } from '../toolbar.constants';
 import { Tool, ToolInputable } from '../toolbar.types';

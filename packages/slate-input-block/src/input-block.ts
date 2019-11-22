@@ -1,5 +1,5 @@
 import { Block } from 'slate';
-import { CommonBlockRenderer } from '@artibox/slate-renderer';
+import { CommonBlockRenderer } from '@artibox/slate-common';
 import { INPUT_BLOCK_TYPE, INPUT_BLOCK_DATA_KEY_ON_CONFIRM } from './input-block.constants';
 import { InputBlockData } from './input-block.types';
 import { InputBlockController } from './input-block.interfaces';

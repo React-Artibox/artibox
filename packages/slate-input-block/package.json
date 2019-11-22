@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "@artibox/slate-common": "^0.0.0",
-    "@artibox/slate-renderer": "^0.0.0",
     "is-hotkey": "^0.1.6"
   },
   "devDependencies": {
