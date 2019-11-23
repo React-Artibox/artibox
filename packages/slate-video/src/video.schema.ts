@@ -1,4 +1,5 @@
 import { SchemaProperties } from 'slate';
+import { HasNodeType } from '@artibox/slate-common';
 import { VIDEO_PROVIDERS } from './video.constants';
 import { VideoSerializer, videoSerializers } from './video.serializers';
 
@@ -18,7 +19,11 @@ const data: VideoSchemaRulesData = {
   vimeo: createVideoSchemaRulesDataValidator(videoSerializers.vimeo)
 };
 
-export function VideoSchema(type: string): SchemaProperties {
+export type VideoSchemaConfig = HasNodeType;
+
+export function VideoSchema(config: VideoSchemaConfig): SchemaProperties {
+  const { type } = config;
+
   return {
     blocks: {
       [type]: {

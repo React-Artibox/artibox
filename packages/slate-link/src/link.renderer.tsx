@@ -1,44 +1,36 @@
 import { Editor } from 'slate';
 import React, { ReactNode } from 'react';
-import { CommonInlineRenderer, CommonEditorRenderer } from '@artibox/slate-common';
-import { LINK_COMPONENT } from './link.constants';
-import { LinkController } from './link.interfaces';
+import { CommonInlineRendererConfig, CommonInlineRenderer, CommonEditorRenderer } from '@artibox/slate-common';
+import { LINK_TYPE } from './link.constants';
 import { getUrlFromInline } from './link.utils';
+import Link, { LinkProps } from './link.component';
 import LinkModalProvider, { LinkModalProviderProps } from './link-modal/link-modal.provider';
-import LinkModal from './link-modal/link-modal.component';
 
 export type LinkRendererRenderModal = (
   editor: Editor,
   ...args: Parameters<LinkModalProviderProps['children']>
 ) => ReactNode;
 
-export interface LinkRendererConfig {
-  type: string;
-  controller: LinkController;
-  modal?: boolean | LinkRendererRenderModal;
+export interface LinkRendererConfig extends Partial<Pick<CommonInlineRendererConfig<LinkProps>, 'type' | 'component'>> {
+  renderModal?: LinkRendererRenderModal;
 }
 
 export type LinkRenderer = CommonInlineRenderer | (CommonInlineRenderer & CommonEditorRenderer);
 
-export function LinkRenderer(config: LinkRendererConfig): LinkRenderer {
-  const { type, modal = false, controller } = config;
+export function LinkRenderer(config?: LinkRendererConfig): LinkRenderer {
+  const { type = LINK_TYPE, renderModal, component = Link } = config || {};
   const inlineRenderer = CommonInlineRenderer({
     type,
-    component: LINK_COMPONENT,
+    component,
     getProps: props => ({
       href: getUrlFromInline(props.node),
       target: '_blank'
     })
   });
 
-  if (!modal) {
+  if (!renderModal) {
     return inlineRenderer;
   }
-
-  const renderModal: LinkRendererRenderModal =
-    typeof modal !== 'function'
-      ? (editor, open, setOpen) => <LinkModal controller={controller} editor={editor} open={open} setOpen={setOpen} />
-      : modal;
 
   const editorRenderer = CommonEditorRenderer({
     render: (editor, el) => (

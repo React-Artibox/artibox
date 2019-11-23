@@ -1,11 +1,15 @@
 import React from 'react';
-import { PickPluginAndRequired } from '@artibox/slate-common';
-import { HEADING_COMPONENTS } from './heading.constants';
+import { PickPluginAndRequired, HasNodeType } from '@artibox/slate-common';
+import { HEADING_TYPE, HEADING_COMPONENTS } from './heading.constants';
 import { getHeadingLevelFromBlock } from './heading.utils';
+
+export type HeadingRendererConfig = Partial<HasNodeType>;
 
 export type HeadingRenderer = PickPluginAndRequired<'renderBlock'>;
 
-export function HeadingRenderer(type: string): HeadingRenderer {
+export function HeadingRenderer(config?: HeadingRendererConfig): HeadingRenderer {
+  const { type = HEADING_TYPE } = config || {};
+
   return {
     renderBlock(props, _, next) {
       const { children, attributes } = props;

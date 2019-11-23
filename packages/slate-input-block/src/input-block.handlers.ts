@@ -1,22 +1,28 @@
 import { isKeyHotkey } from 'is-hotkey';
 import { PickPluginAndRequired } from '@artibox/slate-common';
-import { InputBlockController } from './input-block.interfaces';
+import { InputBlockController } from './input-block.controller';
+
+export interface InputBlockHandlersConfig {
+  controller: InputBlockController;
+}
 
 export type InputBlockHandlers = PickPluginAndRequired<'onKeyDown' | 'onPaste'>;
 
-export function InputBlockHandlers(inputBlockController: InputBlockController): InputBlockHandlers {
+export function InputBlockHandlers(config: InputBlockHandlersConfig): InputBlockHandlers {
+  const { controller } = config;
+
   return {
     onKeyDown(event, editor, next) {
-      if (!inputBlockController.isSelectionInInputBlock(editor)) {
+      if (!controller.isSelectionIn(editor)) {
         return next();
       } else if (event.key === 'Enter') {
         event.preventDefault();
-        return inputBlockController.confirmInputBlock(editor);
+        return controller.confirm(editor);
       } else if (event.key === 'Escape') {
         event.preventDefault();
-        return inputBlockController.cancelInputBlock(editor);
+        return controller.cancel(editor);
       } else if (isKeyHotkey('cmd+a', event as any)) {
-        const block = inputBlockController.getCurrentInputBlock(editor);
+        const block = controller.getCurrent(editor);
 
         if (block) {
           event.preventDefault();
@@ -27,7 +33,7 @@ export function InputBlockHandlers(inputBlockController: InputBlockController): 
       return next();
     },
     onPaste(event, editor, next) {
-      if (!inputBlockController.isSelectionInInputBlock(editor)) {
+      if (!controller.isSelectionIn(editor)) {
         return next();
       } else {
         event.preventDefault();

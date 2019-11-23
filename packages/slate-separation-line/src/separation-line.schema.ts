@@ -1,6 +1,11 @@
 import { SchemaProperties } from 'slate';
+import { HasNodeType } from '@artibox/slate-common';
 
-export function SeparationLineSchema(type: string): SchemaProperties {
+export type SeparationLineSchemaConfig = HasNodeType;
+
+export function SeparationLineSchema(config: SeparationLineSchemaConfig): SchemaProperties {
+  const { type } = config;
+
   return {
     blocks: {
       [type]: {

@@ -1,12 +1,11 @@
-import { Editor } from 'slate';
 import React, { memo, useCallback, useState, useLayoutEffect } from 'react';
 import { Modal } from '@artibox/components';
+import { EditorPassable } from '@artibox/slate-common';
 import { LinkModalSetOpen } from './link-modal.contexts';
-import { LinkController } from '../link.interfaces';
+import { LinkController } from '../link.controller';
 
-export interface LinkModalProps {
+export interface LinkModalProps extends EditorPassable {
   controller: LinkController;
-  editor: Editor;
   open: boolean;
   setOpen: LinkModalSetOpen;
 }
@@ -27,13 +26,13 @@ function LinkModal({ open, setOpen, controller, editor }: LinkModalProps) {
     onClose();
 
     if (url) {
-      controller.setLinkInline(editor, url, isExpanded ? undefined : text);
+      controller.set(editor, url, isExpanded ? undefined : text);
     }
   };
 
   useLayoutEffect(() => {
     if (open) {
-      setUrl(controller.getCurrentFirstLinkUrl(editor) ?? '');
+      setUrl(controller.getUrlOfCurrentFirst(editor) ?? '');
       setText(isExpanded ? editor.value.fragment.text : '');
     }
   }, [open]);

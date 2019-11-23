@@ -1,26 +1,33 @@
 import { isKeyHotkey } from 'is-hotkey';
 import { PickPluginAndRequired } from '@artibox/slate-common';
 import { HEADING_LEVELS } from './heading.constants';
-import { HeadingController } from './heading.interfaces';
+import { HeadingConfigEnabled } from './heading.interfaces';
+import { HeadingController } from './heading.controller';
+
+export interface HeadingHandlersConfig extends HeadingConfigEnabled {
+  /**
+   * If the hotkey is `ctrl+opt`, the level 1 hotkey will be `ctrl+opt+1`, and so on.
+   */
+  hotkey: string;
+  controller: HeadingController;
+}
 
 export type HeadingHandlers = PickPluginAndRequired<'onKeyDown'>;
 
-export function HeadingHandlers(
-  hotkey: string,
-  enabled: HEADING_LEVELS[],
-  headingController: HeadingController
-): HeadingHandlers {
+export function HeadingHandlers(config: HeadingHandlersConfig): HeadingHandlers {
+  const { enabled, hotkey, controller } = config;
+
   return {
     onKeyDown(event, editor, next) {
       if (event.key === 'Enter') {
         /**
          * If press enter on the block not heading, continue.
          */
-        if (!headingController.isBlockAsHeading(editor.value.startBlock)) {
+        if (!controller.isBlockAs(editor.value.startBlock)) {
           return next();
         }
 
-        return headingController.endHeadingBlock(editor);
+        return controller.end(editor);
       }
 
       /**
@@ -32,7 +39,7 @@ export function HeadingHandlers(
         const level = numKey as HEADING_LEVELS;
 
         event.preventDefault();
-        return headingController.toggleHeadingBlock(editor, level);
+        return controller.toggle(editor, level);
       }
 
       return next();

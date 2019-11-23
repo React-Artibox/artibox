@@ -1,34 +1,23 @@
-import { ToggleMarkConfig, ToggleMark } from '@artibox/slate-toggle-mark';
-import { BOLD_TYPE, BOLD_COMPONENT, BOLD_HOTKEY } from './bold.constants';
-import { BoldController } from './bold.interfaces';
+import { ToggleMarkCreateConfig, ToggleMarkForPluginConfig, ToggleMarkController } from '@artibox/slate-toggle-mark';
+import { BOLD_TYPE } from './bold.constants';
+import { BoldHandlers } from './bold.handlers';
+import { BoldRenderer } from './bold.renderer';
 
-export const BoldHandlers = ToggleMark.Handlers;
-export const BoldRenderer = ToggleMark.Renderer;
+export type BoldCreateConfig = Partial<ToggleMarkCreateConfig>;
 
-export class Bold implements BoldController {
-  static Handlers = BoldHandlers;
-  static Renderer = BoldRenderer;
+export type BlockquoteForPluginConfig = Partial<ToggleMarkForPluginConfig>;
 
-  static create(config?: Partial<ToggleMarkConfig>) {
-    return new this(
-      ToggleMark.create({
-        type: BOLD_TYPE,
-        hotkey: BOLD_HOTKEY,
-        component: BOLD_COMPONENT,
-        ...config
-      })
-    );
+export class Bold extends ToggleMarkController {
+  static create(config?: BoldCreateConfig) {
+    const { type = BOLD_TYPE } = config || {};
+    return new this(type);
   }
 
-  plugin = this.toggleMark.plugin;
-
-  constructor(private readonly toggleMark: ToggleMark) {}
-
-  isBoldActive: BoldController['isBoldActive'] = this.toggleMark.isToggleMarkActive;
-
-  addBoldMark: BoldController['addBoldMark'] = this.toggleMark.addToggleMark;
-
-  removeBoldMark: BoldController['removeBoldMark'] = this.toggleMark.removeToggleMark;
-
-  toggleBoldMark: BoldController['toggleBoldMark'] = this.toggleMark.toggleToggleMark;
+  forPlugin(config?: BlockquoteForPluginConfig) {
+    const { hotkey, component } = config || {};
+    return {
+      ...BoldHandlers({ hotkey, controller: this }),
+      ...BoldRenderer({ type: this.type, component })
+    };
+  }
 }

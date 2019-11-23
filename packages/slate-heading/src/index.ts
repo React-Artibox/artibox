@@ -5,6 +5,8 @@ export {
   HEADING_HOTKEY,
   HEADING_DATA_KEY_LEVEL
 } from './heading.constants';
-export { HeadingController } from './heading.interfaces';
+export { HeadingConfigEnabled } from './heading.interfaces';
 export { getHeadingLevelFromBlock } from './heading.utils';
-export { HeadingConfig, Heading } from './heading';
+export { HeadingController } from './heading.controller';
+export { HeadingRendererConfig, HeadingRenderer } from './heading.renderer';
+export { HeadingCreateConfig, HeadingForPluginConfig, Heading } from './heading';

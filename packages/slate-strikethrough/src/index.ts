@@ -1,2 +1,3 @@
 export { STRIKETHROUGH_TYPE, STRIKETHROUGH_COMPONENT, STRIKETHROUGH_HOTKEY } from './strikethrough.constants';
-export { StrikethroughRenderer, StrikethroughHandlers, Strikethrough } from './strikethrough';
+export { StrikethroughRenderer } from './strikethrough.renderer';
+export { StrikethroughCreateConfig, BlockquoteForPluginConfig, Strikethrough } from './strikethrough';

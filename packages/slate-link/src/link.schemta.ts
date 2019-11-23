@@ -1,9 +1,16 @@
 import { SchemaProperties } from 'slate';
 import { LINK_DATA_KEY_URL } from './link.constants';
-import { LinkController } from './link.interfaces';
 import { isUrl } from './link.utils';
+import { LinkController } from './link.controller';
 
-export function LinkSchema(type: string, linkController: LinkController): SchemaProperties {
+export interface LinkSchemaConfig {
+  controller: LinkController;
+}
+
+export function LinkSchema(config: LinkSchemaConfig): SchemaProperties {
+  const { controller } = config;
+  const { type } = controller;
+
   return {
     inlines: {
       [type]: {
@@ -12,7 +19,7 @@ export function LinkSchema(type: string, linkController: LinkController): Schema
         },
         normalize(editor, error) {
           if (error.code === 'node_data_invalid') {
-            linkController.removeLinkInline(editor);
+            controller.remove(editor);
           }
         }
       }

@@ -1,16 +1,15 @@
-import { RendererBaseComponent, CommonBlockRenderer } from '@artibox/slate-common';
-import { VideoProps } from './video.component';
+import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common';
+import { VIDEO_TYPE } from './video.constants';
 import { getSourceFromBlock } from './video.utils';
+import Video, { VideoProps } from './video.component';
 
-export interface VideoRendererConfig {
-  type: string;
-  component: RendererBaseComponent<VideoProps>;
-}
+export type VideoRendererConfig = Partial<Pick<CommonBlockRendererConfig<VideoProps>, 'type' | 'component'>>;
 
 export type VideoRenderer = CommonBlockRenderer;
 
-export function VideoRenderer(config: VideoRendererConfig): VideoRenderer {
-  const { type, component } = config;
+export function VideoRenderer(config?: VideoRendererConfig): VideoRenderer {
+  const { type = VIDEO_TYPE, component = Video } = config || {};
+
   return CommonBlockRenderer({
     type,
     component,

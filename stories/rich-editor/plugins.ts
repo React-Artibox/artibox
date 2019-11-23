@@ -40,7 +40,7 @@ const underline = Underline.create();
 const strikethrough = Strikethrough.create();
 const highlight = Highlight.create();
 const link = Link.create();
-const heading = Heading.create({ disabled: [4, 5, 6] });
+const heading = Heading.create();
 const blockquote = Blockquote.create();
 const list = List.create();
 const separationLine = SeparationLine.create();
@@ -50,74 +50,62 @@ const facebook = Facebook.create();
 const inputBlock = InputBlock.create();
 
 export const plugins: Plugin[] = [
-  bold.plugin,
-  italic.plugin,
-  underline.plugin,
-  strikethrough.plugin,
-  highlight.plugin,
-  link.plugin,
-  heading.plugin,
-  blockquote.plugin,
-  list.plugin,
-  separationLine.plugin,
-  video.plugin,
-  instagram.plugin,
-  facebook.plugin,
-  inputBlock.plugin,
+  bold.forPlugin(),
+  italic.forPlugin(),
+  underline.forPlugin(),
+  strikethrough.forPlugin(),
+  highlight.forPlugin(),
+  link.forPlugin(),
+  heading.forPlugin({ disabled: [4, 5, 6] }),
+  blockquote.forPlugin(),
+  list.forPlugin(),
+  separationLine.forPlugin(),
+  video.forPlugin(),
+  instagram.forPlugin(),
+  facebook.forPlugin(),
+  inputBlock.forPlugin(),
   ToolbarPlugin({
     disabledBlocks: [inputBlock.type],
     expandedTools: [
-      [BoldIcon, { isActive: bold.isBoldActive, onMouseDown: bold.toggleBoldMark }],
-      [ItalicIcon, { isActive: italic.isItalicActive, onMouseDown: italic.toggleItalicMark }],
-      [UnderlineIcon, { isActive: underline.isUnderlineActive, onMouseDown: underline.toggleUnderlineMark }],
-      [
-        StrikethroughIcon,
-        {
-          isActive: strikethrough.isStrikethroughActive,
-          onMouseDown: strikethrough.toggleStrikethroughMark
-        }
-      ],
+      [BoldIcon, { isActive: bold.isSelectionIn, onMouseDown: bold.toggle }],
+      [ItalicIcon, { isActive: italic.isSelectionIn, onMouseDown: italic.toggle }],
+      [UnderlineIcon, { isActive: underline.isSelectionIn, onMouseDown: underline.toggle }],
+      [StrikethroughIcon, { isActive: strikethrough.isSelectionIn, onMouseDown: strikethrough.toggle }],
       TOOLBAR_DIVIDER,
-      [HighlightIcon, { isActive: highlight.isHighlightActive, onMouseDown: highlight.toggleHighlightMark }],
-      [LinkIcon, { isActive: link.isSelectionInLink, inputable: { onConfirm: link.setLinkInline } }],
-      [Unlink, { onMouseDown: link.removeLinkInline }]
+      [HighlightIcon, { isActive: highlight.isSelectionIn, onMouseDown: highlight.toggle }],
+      [LinkIcon, { isActive: link.isSelectionIn, inputable: { onConfirm: link.set } }],
+      [Unlink, { onMouseDown: link.remove }]
     ],
     collapsedTools: [
       [
         Heading1,
         {
-          isActive: editor => heading.isSelectionInHeading(editor, 1),
-          onMouseDown: editor => heading.toggleHeadingBlock(editor, 1)
+          isActive: editor => heading.isSelectionIn(editor, 1),
+          onMouseDown: editor => heading.toggle(editor, 1)
         }
       ],
       [
         Heading2,
         {
-          isActive: editor => heading.isSelectionInHeading(editor, 2),
-          onMouseDown: editor => heading.toggleHeadingBlock(editor, 2)
+          isActive: editor => heading.isSelectionIn(editor, 2),
+          onMouseDown: editor => heading.toggle(editor, 2)
         }
       ],
       [
         Heading3,
         {
-          isActive: editor => heading.isSelectionInHeading(editor, 3),
-          onMouseDown: editor => heading.toggleHeadingBlock(editor, 3)
+          isActive: editor => heading.isSelectionIn(editor, 3),
+          onMouseDown: editor => heading.toggle(editor, 3)
         }
       ],
-      [
-        BlockquoteIcon,
-        {
-          isActive: blockquote.isSelectionInBlockquote,
-          onMouseDown: blockquote.toggleBlockquoteBlock
-        }
-      ],
-      [UnorderedList, { onMouseDown: editor => list.toggleListBlock(editor, 'unordered') }],
-      [OrderedList, { onMouseDown: editor => list.toggleListBlock(editor, 'ordered') }],
+      [BlockquoteIcon, { isActive: blockquote.isSelectionIn, onMouseDown: blockquote.toggle }],
+      [UnorderedList, { onMouseDown: editor => list.toggle(editor, 'unordered') }],
+      [OrderedList, { onMouseDown: editor => list.toggle(editor, 'ordered') }],
       TOOLBAR_DIVIDER,
-      [SeparationLineIcon, { onMouseDown: separationLine.addSeparationLineBlock }],
-      [VideoIcon, { inputable: { onStart: inputBlock.startInputBlock, onConfirm: video.addVideoBlock } }],
-      [InstagramIcon, { inputable: { onStart: inputBlock.startInputBlock, onConfirm: instagram.addInstagramBlock } }],
-      [FacebookIcon, { inputable: { onStart: inputBlock.startInputBlock, onConfirm: facebook.addFacebookBlock } }]
+      [SeparationLineIcon, { onMouseDown: separationLine.add }],
+      [VideoIcon, { inputable: { onStart: inputBlock.start, onConfirm: video.add } }],
+      [InstagramIcon, { inputable: { onStart: inputBlock.start, onConfirm: instagram.add } }],
+      [FacebookIcon, { inputable: { onStart: inputBlock.start, onConfirm: facebook.add } }]
     ]
   })
 ];

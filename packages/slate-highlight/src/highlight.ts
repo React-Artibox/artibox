@@ -1,34 +1,23 @@
-import { ToggleMarkConfig, ToggleMark } from '@artibox/slate-toggle-mark';
-import { HIGHLIGHT_TYPE, HIGHLIGHT_COMPONENT, HIGHLIGHT_HOTKEY } from './highlight.constants';
-import { HighlightController } from './highlight.interfaces';
+import { ToggleMarkCreateConfig, ToggleMarkForPluginConfig, ToggleMarkController } from '@artibox/slate-toggle-mark';
+import { HIGHLIGHT_TYPE } from './highlight.constants';
+import { HighlightHandlers } from './highlight.handlers';
+import { HighlightRenderer } from './highlight.renderer';
 
-export const HighlightHandlers = ToggleMark.Handlers;
-export const HighlightRenderer = ToggleMark.Renderer;
+export type HighlightCreateConfig = Partial<ToggleMarkCreateConfig>;
 
-export class Highlight implements HighlightController {
-  static Handlers = HighlightHandlers;
-  static Renderer = HighlightRenderer;
+export type BlockquoteForPluginConfig = Partial<ToggleMarkForPluginConfig>;
 
-  static create(config?: Partial<ToggleMarkConfig>) {
-    return new this(
-      ToggleMark.create({
-        type: HIGHLIGHT_TYPE,
-        hotkey: HIGHLIGHT_HOTKEY,
-        component: HIGHLIGHT_COMPONENT,
-        ...config
-      })
-    );
+export class Highlight extends ToggleMarkController {
+  static create(config?: HighlightCreateConfig) {
+    const { type = HIGHLIGHT_TYPE } = config || {};
+    return new this(type);
   }
 
-  plugin = this.toggleMark.plugin;
-
-  constructor(private readonly toggleMark: ToggleMark) {}
-
-  isHighlightActive: HighlightController['isHighlightActive'] = this.toggleMark.isToggleMarkActive;
-
-  addHighlightMark: HighlightController['addHighlightMark'] = this.toggleMark.addToggleMark;
-
-  removeHighlightMark: HighlightController['removeHighlightMark'] = this.toggleMark.removeToggleMark;
-
-  toggleHighlightMark: HighlightController['toggleHighlightMark'] = this.toggleMark.toggleToggleMark;
+  forPlugin(config?: BlockquoteForPluginConfig) {
+    const { hotkey, component } = config || {};
+    return {
+      ...HighlightHandlers({ hotkey, controller: this }),
+      ...HighlightRenderer({ type: this.type, component })
+    };
+  }
 }

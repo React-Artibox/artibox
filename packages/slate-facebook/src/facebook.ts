@@ -1,50 +1,25 @@
-import { Block } from 'slate';
-import { PARAGRAPH_TYPE, RendererBaseComponent } from '@artibox/slate-common';
+import { HasNodeType } from '@artibox/slate-common';
 import { FACEBOOK_TYPE } from './facebook.constants';
-import { FacebookController } from './facebook.interfaces';
-import { getFacebookEmbedDataFromHtmlCode } from './facebook.utils';
-import FacebookComponent, { FacebookProps } from './facebook.component';
-import { FacebookRenderer } from './facebook.renderer';
+import { FacebookController } from './facebook.controller';
+import { FacebookRendererConfig, FacebookRenderer } from './facebook.renderer';
 import { FacebookSchema } from './facebook.schema';
 
-export interface FacebookConfig {
-  type?: string;
-  component?: RendererBaseComponent<FacebookProps>;
-}
+export type FacebookCreateConfig = Partial<HasNodeType>;
 
-export class Facebook implements FacebookController {
-  static Renderer = FacebookRenderer;
-  static Schema = FacebookSchema;
+export type FacebookForPluginConfig = Omit<FacebookRendererConfig, 'type'>;
 
-  static create(config?: FacebookConfig) {
-    const type = config?.type ?? FACEBOOK_TYPE;
-    const component = config?.component ?? FacebookComponent;
-
-    return new this(type, this.Renderer({ type, component }), this.Schema(type));
+export class Facebook extends FacebookController {
+  static create(config?: FacebookCreateConfig) {
+    const { type = FACEBOOK_TYPE } = config || {};
+    return new this(type);
   }
 
-  plugin = {
-    ...this.renderer,
-    schema: this.schema
-  } as const;
-
-  constructor(
-    public readonly type: string,
-    private readonly renderer: FacebookRenderer,
-    private readonly schema: ReturnType<typeof FacebookSchema>
-  ) {}
-
-  createFacebookBlock: FacebookController['createFacebookBlock'] = embedData => {
-    return Block.fromJSON({ type: this.type, data: embedData });
-  };
-
-  addFacebookBlock: FacebookController['addFacebookBlock'] = (editor, htmlCode) => {
-    const embedData = getFacebookEmbedDataFromHtmlCode(htmlCode);
-
-    if (!embedData || !embedData.type) {
-      return editor;
-    }
-
-    return editor.insertBlock(this.createFacebookBlock(embedData)).insertBlock(PARAGRAPH_TYPE);
-  };
+  forPlugin(config?: FacebookForPluginConfig) {
+    const { type } = this;
+    const { component } = config || {};
+    return {
+      ...FacebookRenderer({ component }),
+      schema: FacebookSchema({ type })
+    } as const;
+  }
 }
