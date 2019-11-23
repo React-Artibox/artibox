@@ -1,11 +1,9 @@
 import { SchemaProperties } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-common';
+import { PARAGRAPH_TYPE, HasNodeType } from '@artibox/slate-common';
 import { HEADING_LEVELS, HEADING_DATA_KEY_LEVEL } from './heading.constants';
+import { HeadingConfigEnabled } from './heading.interfaces';
 
-export interface HeadingSchemaConfig {
-  type: string;
-  enabled: HEADING_LEVELS[];
-}
+export type HeadingSchemaConfig = HasNodeType & HeadingConfigEnabled;
 
 export function HeadingSchema(config: HeadingSchemaConfig): SchemaProperties {
   const { type, enabled } = config;

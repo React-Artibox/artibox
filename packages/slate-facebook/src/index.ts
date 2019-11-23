@@ -9,4 +9,7 @@ export {
 } from './facebook.constants';
 export { FacebookEmbedData } from './facebook.interfaces';
 export { getFacebookEmbedDataFromHtmlCode, getSrcFromEmbedData } from './facebook.utils';
-export { FacebookConfig, Facebook } from './facebook';
+export { FacebookController } from './facebook.controller';
+export { FacebookProps } from './facebook.component';
+export { FacebookRendererConfig, FacebookRenderer } from './facebook.renderer';
+export { FacebookCreateConfig, FacebookForPluginConfig, Facebook } from './facebook';

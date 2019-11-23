@@ -1,2 +1,3 @@
 export { BOLD_TYPE, BOLD_COMPONENT, BOLD_HOTKEY } from './bold.constants';
-export { BoldHandlers, BoldRenderer, Bold } from './bold';
+export { BoldRenderer } from './bold.renderer';
+export { BoldCreateConfig, BlockquoteForPluginConfig, Bold } from './bold';

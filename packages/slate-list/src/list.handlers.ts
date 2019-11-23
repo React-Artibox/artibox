@@ -1,9 +1,15 @@
 import { PickPluginAndRequired } from '@artibox/slate-common';
-import { ListController } from './list.interfaces';
+import { ListController } from './list.controller';
+
+export interface ListHandlersConfig {
+  controller: ListController;
+}
 
 export type ListHandlers = PickPluginAndRequired<'onKeyDown'>;
 
-export function ListHandlers(listController: ListController): ListHandlers {
+export function ListHandlers(config: ListHandlersConfig): ListHandlers {
+  const { controller } = config;
+
   const onEnter: ListHandlers['onKeyDown'] = (event, editor, next) => {
     event.preventDefault();
 
@@ -16,12 +22,12 @@ export function ListHandlers(listController: ListController): ListHandlers {
       editor.delete();
     }
 
-    const item = listController.getCurrentItem(editor);
+    const item = controller.getCurrentItem(editor);
 
     if (!item) {
       return next();
     } else if (selection.start.offset === 0 && startBlock.text === '' && item.nodes.size! <= 1) {
-      return listController.decreateItemDepthOrUnwrapIfNeed(editor);
+      return controller.decreaseItemDepthOrUnwrapIfNeed(editor);
     }
 
     /**
@@ -38,18 +44,18 @@ export function ListHandlers(listController: ListController): ListHandlers {
     }
 
     event.preventDefault();
-    return listController.decreateItemDepthOrUnwrapIfNeed(editor);
+    return controller.decreaseItemDepthOrUnwrapIfNeed(editor);
   };
 
   const onTab: ListHandlers['onKeyDown'] = (event, editor) => {
     event.preventDefault();
 
-    return event.shiftKey ? listController.decreateItemDepth(editor) : listController.increateItemDepth(editor);
+    return event.shiftKey ? controller.decreaseItemDepth(editor) : controller.increaseItemDepth(editor);
   };
 
   return {
     onKeyDown: (event, editor, next) => {
-      if (!listController.isSelectionInList(editor)) {
+      if (!controller.isSelectionIn(editor)) {
         return next();
       } else if (event.key === 'Enter' && !event.shiftKey) {
         return onEnter(event, editor, next);

@@ -1,34 +1,24 @@
-import { ToggleMarkConfig, ToggleMark } from '@artibox/slate-toggle-mark';
-import { UNDERLINE_TYPE, UNDERLINE_COMPONENT, UNDERLINE_HOTKEY } from './underline.constants';
-import { UnderlineController } from './underline.interfaces';
+import { ToggleMarkCreateConfig, ToggleMarkForPluginConfig, ToggleMarkController } from '@artibox/slate-toggle-mark';
+import { UNDERLINE_TYPE } from './underline.constants';
+import { UnderlineHandlers } from './underline.handlers';
+import { UnderlineRenderer } from './underline.renderer';
 
-export const UnderlineHandlers = ToggleMark.Handlers;
-export const UnderlineRenderer = ToggleMark.Renderer;
+export type UnderlineCreateConfig = Partial<ToggleMarkCreateConfig>;
 
-export class Underline implements UnderlineController {
-  static Handlers = UnderlineHandlers;
-  static Renderer = UnderlineRenderer;
+export type BlockquoteForPluginConfig = Partial<ToggleMarkForPluginConfig>;
 
-  static create(config?: Partial<ToggleMarkConfig>) {
-    return new this(
-      ToggleMark.create({
-        type: UNDERLINE_TYPE,
-        hotkey: UNDERLINE_HOTKEY,
-        component: UNDERLINE_COMPONENT,
-        ...config
-      })
-    );
+export class Underline extends ToggleMarkController {
+  static create(config?: UnderlineCreateConfig) {
+    const { type = UNDERLINE_TYPE } = config || {};
+    return new this(type);
   }
 
-  plugin = this.toggleMark.plugin;
+  forPlugin(config?: BlockquoteForPluginConfig) {
+    const { hotkey, component } = config || {};
 
-  constructor(private readonly toggleMark: ToggleMark) {}
-
-  isUnderlineActive: UnderlineController['isUnderlineActive'] = this.toggleMark.isToggleMarkActive;
-
-  addUnderlineMark: UnderlineController['addUnderlineMark'] = this.toggleMark.addToggleMark;
-
-  removeUnderlineMark: UnderlineController['removeUnderlineMark'] = this.toggleMark.removeToggleMark;
-
-  toggleUnderlineMark: UnderlineController['toggleUnderlineMark'] = this.toggleMark.toggleToggleMark;
+    return {
+      ...UnderlineHandlers({ hotkey, controller: this }),
+      ...UnderlineRenderer({ type: this.type, component })
+    };
+  }
 }

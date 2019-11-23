@@ -1,6 +1,11 @@
 import { SchemaProperties } from 'slate';
+import { HasNodeType } from '@artibox/slate-common';
 
-export function InputBlockSchema(type: string): SchemaProperties {
+export type InputBlockSchemaConfig = HasNodeType;
+
+export function InputBlockSchema(config: InputBlockSchemaConfig): SchemaProperties {
+  const { type } = config;
+
   return {
     blocks: {
       [type]: {

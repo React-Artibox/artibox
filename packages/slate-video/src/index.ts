@@ -8,5 +8,7 @@ export {
   videoSerializers,
   serializeVideoSource
 } from './video.serializers';
-export { VideoController } from './video.interfaces';
-export { VideoConfig, Video } from './video';
+export { VideoController } from './video.controller';
+export { VideoProps } from './video.component';
+export { VideoRendererConfig, VideoRenderer } from './video.renderer';
+export { VideoCreateConfig, VideoForPluginConfig, Video } from './video';

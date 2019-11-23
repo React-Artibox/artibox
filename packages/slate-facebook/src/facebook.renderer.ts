@@ -1,15 +1,14 @@
-import { RendererBaseComponent, CommonBlockRenderer } from '@artibox/slate-common';
-import { FacebookProps } from './facebook.component';
+import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common';
+import { FACEBOOK_TYPE } from './facebook.constants';
+import Facebook, { FacebookProps } from './facebook.component';
 
-export interface FacebookRendererConfig {
-  type: string;
-  component: RendererBaseComponent<FacebookProps>;
-}
+export type FacebookRendererConfig = Partial<Pick<CommonBlockRendererConfig<FacebookProps>, 'type' | 'component'>>;
 
 export type FacebookRenderer = CommonBlockRenderer;
 
-export function FacebookRenderer(config: FacebookRendererConfig): FacebookRenderer {
-  const { type, component } = config;
+export function FacebookRenderer(config?: FacebookRendererConfig): FacebookRenderer {
+  const { type = FACEBOOK_TYPE, component = Facebook } = config || {};
+
   return CommonBlockRenderer({
     type,
     component,

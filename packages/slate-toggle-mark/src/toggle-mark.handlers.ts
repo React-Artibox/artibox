@@ -1,17 +1,33 @@
 import { isKeyHotkey } from 'is-hotkey';
 import { PickPluginAndRequired } from '@artibox/slate-common';
-import { ToggleMarkController } from './toggle-mark.interfaces';
+import { ToggleMarkController } from './toggle-mark.controller';
+
+export interface ToggleMarkHandlersDefaultConfig {
+  hotkey: string;
+}
+
+export interface ToggleMarkHandlersConfig extends Partial<ToggleMarkHandlersDefaultConfig> {
+  controller: ToggleMarkController;
+}
 
 export type ToggleMarkHandlers = PickPluginAndRequired<'onKeyDown'>;
 
-export function ToggleMarkHandlers(hotkey: string, toggleMarkController: ToggleMarkController): ToggleMarkHandlers {
-  return {
-    onKeyDown(event, editor, next) {
-      if (isKeyHotkey(hotkey, event as any)) {
-        return toggleMarkController.toggleToggleMark(editor);
-      }
+export function createToggleMarkHandlers(defaults: ToggleMarkHandlersDefaultConfig) {
+  const { hotkey: defaultHotkey } = defaults;
 
-      return next();
-    }
-  };
+  function ToggleMarkHandlers(config: ToggleMarkHandlersConfig): ToggleMarkHandlers {
+    const { hotkey = defaultHotkey, controller } = config;
+
+    return {
+      onKeyDown(event, editor, next) {
+        if (isKeyHotkey(hotkey, event as any)) {
+          return controller.toggle(editor);
+        }
+
+        return next();
+      }
+    };
+  }
+
+  return ToggleMarkHandlers;
 }

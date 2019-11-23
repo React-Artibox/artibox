@@ -1,6 +1,11 @@
 import { SchemaProperties } from 'slate';
+import { HasNodeType } from '@artibox/slate-common';
 
-export function InstagramSchema(type: string): SchemaProperties {
+export type InstagramSchemaConfig = HasNodeType;
+
+export function InstagramSchema(config: InstagramSchemaConfig): SchemaProperties {
+  const { type } = config;
+
   return {
     blocks: {
       [type]: {

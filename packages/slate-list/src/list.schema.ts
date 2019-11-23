@@ -2,7 +2,13 @@ import { SchemaProperties, Rules, Block } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common';
 import { LIST_TYPES } from './list.constants';
 
-export function ListSchema(types: LIST_TYPES): SchemaProperties {
+export interface ListSchemaConfig {
+  types: LIST_TYPES;
+}
+
+export function ListSchema(config: ListSchemaConfig): SchemaProperties {
+  const { types } = config;
+
   const listRules: Rules = {
     /**
      * There must be at least one item in each list.

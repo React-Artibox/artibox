@@ -2,9 +2,14 @@ import React from 'react';
 import { PickPluginAndRequired } from '@artibox/slate-common';
 import { LIST_TYPES, LIST_COMPONENTS } from './list.constants';
 
+export interface ListRendererConfig {
+  types?: LIST_TYPES;
+}
+
 export type ListRenderer = PickPluginAndRequired<'renderBlock'>;
 
-export function ListRenderer(types: LIST_TYPES): ListRenderer {
+export function ListRenderer(config?: ListRendererConfig): ListRenderer {
+  const types = { ...LIST_TYPES, ...config?.types };
   const componentMap = {
     [types.unordered]: LIST_COMPONENTS.unordered,
     [types.ordered]: LIST_COMPONENTS.ordered,
