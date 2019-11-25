@@ -1,6 +1,3 @@
-import { Editor } from 'slate';
-import { INPUT_BLOCK_DATA_KEY_ON_CONFIRM } from './input-block.constants';
+import { ToolInput } from '@artibox/slate-common';
 
-export interface InputBlockData {
-  [INPUT_BLOCK_DATA_KEY_ON_CONFIRM]: (editor: Editor, value: string) => Editor;
-}
+export type InputBlockData = ToolInput;

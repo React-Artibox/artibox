@@ -1,23 +1,8 @@
-import { ToggleMarkCreateConfig, ToggleMarkForPluginConfig, ToggleMarkController } from '@artibox/slate-toggle-mark';
-import { HIGHLIGHT_TYPE } from './highlight.constants';
-import { HighlightHandlers } from './highlight.handlers';
-import { HighlightRenderer } from './highlight.renderer';
+import { createToggleMark } from '@artibox/slate-toggle-mark';
+import { HIGHLIGHT_TYPE, HIGHLIGHT_HOTKEY, HIGHLIGHT_COMPONENT } from './highlight.constants';
 
-export type HighlightCreateConfig = Partial<ToggleMarkCreateConfig>;
-
-export type BlockquoteForPluginConfig = Partial<ToggleMarkForPluginConfig>;
-
-export class Highlight extends ToggleMarkController {
-  static create(config?: HighlightCreateConfig) {
-    const { type = HIGHLIGHT_TYPE } = config || {};
-    return new this(type);
-  }
-
-  forPlugin(config?: BlockquoteForPluginConfig) {
-    const { hotkey, component } = config || {};
-    return {
-      ...HighlightHandlers({ hotkey, controller: this }),
-      ...HighlightRenderer({ type: this.type, component })
-    };
-  }
-}
+export const { Core: Highlight, Handlers: HighlightHandlers, Renderer: HighlightRenderer } = createToggleMark({
+  type: HIGHLIGHT_TYPE,
+  hotkey: HIGHLIGHT_HOTKEY,
+  component: HIGHLIGHT_COMPONENT
+});

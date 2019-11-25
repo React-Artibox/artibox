@@ -22,8 +22,7 @@
     "build": "tsc && tsc -m esnext -outDir esm"
   },
   "dependencies": {
-    "tslib": "^1.10.0",
-    "utility-types": "^3.9.0"
+    "tslib": "^1.10.0"
   },
   "devDependencies": {
     "@types/slate": "^0.47.3",

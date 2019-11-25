@@ -9,4 +9,4 @@ export { HeadingConfigEnabled } from './heading.interfaces';
 export { getHeadingLevelFromBlock } from './heading.utils';
 export { HeadingController } from './heading.controller';
 export { HeadingRendererConfig, HeadingRenderer } from './heading.renderer';
-export { HeadingCreateConfig, HeadingForPluginConfig, Heading } from './heading';
+export { HeadingCreateConfig, HeadingForPluginConfig, HeadingForToolHookConfig, Heading } from './heading';

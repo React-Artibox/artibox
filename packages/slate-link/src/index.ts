@@ -3,4 +3,4 @@ export { getUrlFromInline } from './link.utils';
 export { LinkController } from './link.controller';
 export { LinkProps } from './link.component';
 export { LinkRendererRenderModal, LinkRendererConfig, LinkRenderer } from './link.renderer';
-export { LinkCreateConfig, LinkForPluginConfig, Link } from './link';
+export { LinkCreateConfig, LinkForPluginConfig, LinkForToolHookConfig, Link } from './link';

@@ -12,4 +12,4 @@ export { getFacebookEmbedDataFromHtmlCode, getSrcFromEmbedData } from './faceboo
 export { FacebookController } from './facebook.controller';
 export { FacebookProps } from './facebook.component';
 export { FacebookRendererConfig, FacebookRenderer } from './facebook.renderer';
-export { FacebookCreateConfig, FacebookForPluginConfig, Facebook } from './facebook';
+export { FacebookCreateConfig, FacebookForPluginConfig, FacebookForToolHookConfig, Facebook } from './facebook';

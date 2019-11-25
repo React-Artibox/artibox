@@ -3,4 +3,4 @@ export { getInstagramUrlFromEmbedCode } from './instagram.utils';
 export { InstagramController } from './instagram.controller';
 export { InstagramProps } from './instagram.component';
 export { InstagramRendererConfig, InstagramRenderer } from './instagram.renderer';
-export { InstagramCreateConfig, InstagramForPluginConfig, Instagram } from './instagram';
+export { InstagramCreateConfig, InstagramForPluginConfig, InstagramForToolHookConfig, Instagram } from './instagram';
