@@ -6,7 +6,7 @@
   "homepage": "https://github.com/React-Artibox/artibox#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "./lib/index.js",
+  "main": "./index.js",
   "module": "./esm/index.js",
   "typings": "./esm/index.d.ts",
   "repository": {
@@ -19,7 +19,8 @@
   "scripts": {
     "clean": "npm run build:clean",
     "build:clean": "rm -rf ./{esm,lib} && rm -rf ./*.tsbuildinfo",
-    "build": "tsc && tsc -m esnext -outDir esm && rollup --config rollup.config.js"
+    "build:css": "rollup --config rollup.config.js",
+    "build": "tsc && tsc -m esnext -outDir esm && npm run build:css"
   },
   "dependencies": {
     "@artibox/icons": "^0.0.0",

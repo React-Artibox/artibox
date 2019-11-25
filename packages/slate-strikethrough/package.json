@@ -6,7 +6,7 @@
   "homepage": "https://github.com/React-Artibox/artibox#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "./lib/index.js",
+  "main": "./index.js",
   "module": "./esm/index.js",
   "typings": "./esm/index.d.ts",
   "repository": {

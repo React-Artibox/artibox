@@ -6,8 +6,8 @@
   "homepage": "https://github.com/React-Artibox/artibox#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
+  "main": "./index.js",
+  "module": "./index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/React-Artibox/artibox.git"
