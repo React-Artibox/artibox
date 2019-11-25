@@ -20,7 +20,27 @@
     "lib": ["dom", "dom.iterable", "es5", "es2015", "es2016", "es2017", "esnext"],
     "baseUrl": "./",
     "paths": {
-      "@artibox/*": ["./packages/*/src"]
+      "@artibox/*": ["./packages/*/src"],
+      "@artibox/components/*": ["./packages/components/src/*"],
+      "@artibox/icons/*": ["./packages/icons/src/*"],
+      "@artibox/slate-blockquote/*": ["./packages/slate-blockquote/src/*"],
+      "@artibox/slate-bold/*": ["./packages/slate-bold/src/*"],
+      "@artibox/slate-common/*": ["./packages/slate-common/src/*"],
+      "@artibox/slate-editor/*": ["./packages/slate-editor/src/*"],
+      "@artibox/slate-facebook/*": ["./packages/slate-facebook/src/*"],
+      "@artibox/slate-heading/*": ["./packages/slate-heading/src/*"],
+      "@artibox/slate-highlight/*": ["./packages/slate-highlight/src/*"],
+      "@artibox/slate-input-block/*": ["./packages/slate-input-block/src/*"],
+      "@artibox/slate-instagram/*": ["./packages/slate-instagram/src/*"],
+      "@artibox/slate-italic/*": ["./packages/slate-italic/src/*"],
+      "@artibox/slate-link/*": ["./packages/slate-link/src/*"],
+      "@artibox/slate-list/*": ["./packages/slate-list/src/*"],
+      "@artibox/slate-separation-line/*": ["./packages/slate-separation-line/src/*"],
+      "@artibox/slate-strikethrough/*": ["./packages/slate-strikethrough/src/*"],
+      "@artibox/slate-toggle-mark/*": ["./packages/slate-toggle-mark/src/*"],
+      "@artibox/slate-toolbar/*": ["./packages/slate-toolbar/src/*"],
+      "@artibox/slate-underline/*": ["./packages/slate-underline/src/*"],
+      "@artibox/slate-video/*": ["./packages/slate-video/src/*"]
     }
   }
 }
