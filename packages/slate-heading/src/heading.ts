@@ -1,7 +1,8 @@
-import { HasNodeType } from '@artibox/slate-common';
+import { useCallback } from 'react';
+import { HasNodeType, ToolHook } from '@artibox/slate-common';
 import { HEADING_TYPE, HEADING_HOTKEY, HEADING_LEVELS } from './heading.constants';
-import { HeadingController } from './heading.controller';
 import { HeadingHandlersConfig, HeadingHandlers } from './heading.handlers';
+import { HeadingController } from './heading.controller';
 import { HeadingRendererConfig, HeadingRenderer } from './heading.renderer';
 import { HeadingSchemaConfig, HeadingSchema } from './heading.schema';
 
@@ -12,6 +13,10 @@ export interface HeadingForPluginConfig
     Omit<HeadingHandlersConfig & HeadingRendererConfig & HeadingSchemaConfig, 'type' | 'controller' | 'enabled'>
   > {
   disabled?: HEADING_LEVELS[];
+}
+
+export interface HeadingForToolHookConfig {
+  level: HEADING_LEVELS;
 }
 
 export class Heading extends HeadingController {
@@ -30,5 +35,13 @@ export class Heading extends HeadingController {
       ...HeadingRenderer({ type }),
       schema: HeadingSchema({ type, enabled })
     };
+  }
+
+  forToolHook(config: HeadingForToolHookConfig): ToolHook {
+    const { level } = config;
+    return editor => ({
+      active: this.isSelectionIn(editor, level),
+      onMouseDown: useCallback(() => this.toggle(editor, level), [editor])
+    });
   }
 }

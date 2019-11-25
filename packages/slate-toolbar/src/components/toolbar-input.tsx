@@ -1,28 +1,27 @@
-import React, { Dispatch, SetStateAction, KeyboardEventHandler } from 'react';
-import { EditorPassable } from '@artibox/slate-common';
-import { ToolInputable } from '../toolbar.types';
+import React, { KeyboardEventHandler } from 'react';
+import { EditorPassable, ToolInput, SetToolInput } from '@artibox/slate-common';
 
 export interface ToolbarInputProps extends EditorPassable {
-  inputableTool: ToolInputable;
-  setInputableTool: Dispatch<SetStateAction<ToolInputable | null>>;
+  toolInput: ToolInput;
+  setToolInput: SetToolInput;
 }
 
-function ToolbarInput({ editor, inputableTool, setInputableTool }: ToolbarInputProps) {
+function ToolbarInput({ editor, toolInput, setToolInput }: ToolbarInputProps) {
   const ref = (input: HTMLInputElement) => {
     if (input) {
       input.focus();
     }
   };
   const exitInputAndFocus = () => {
-    setInputableTool(null);
+    setToolInput(null);
     editor.focus();
   };
   const onKeyDown: KeyboardEventHandler = event => {
-    if (!inputableTool) {
+    if (!toolInput) {
       return;
     }
 
-    const { onConfirm } = inputableTool;
+    const { onConfirm } = toolInput;
 
     if (event.key === 'Enter') {
       event.preventDefault();

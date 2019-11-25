@@ -1,6 +1,5 @@
 import { Editor, Block } from 'slate';
 import { HasNodeType } from '@artibox/slate-common';
-import { INPUT_BLOCK_DATA_KEY_ON_CONFIRM } from './input-block.constants';
 import { InputBlockData } from './input-block.types';
 
 export abstract class InputBlockController implements HasNodeType {
@@ -37,7 +36,7 @@ export abstract class InputBlockController implements HasNodeType {
     }
 
     const { text, data } = block;
-    const onConfirm: InputBlockData[INPUT_BLOCK_DATA_KEY_ON_CONFIRM] = data.get(INPUT_BLOCK_DATA_KEY_ON_CONFIRM);
+    const onConfirm: InputBlockData['onConfirm'] = data.get('onConfirm');
     return onConfirm(this.cancel(editor), text);
   };
 }

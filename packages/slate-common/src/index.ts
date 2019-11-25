@@ -7,6 +7,7 @@ export { PARAGRAPH_TYPE } from './constants/paragraph.constants';
  * @types
  */
 export { PickPluginAndRequired } from './types/plugin.types';
+export { ToolInput, SetToolInput, ToolHook } from './types/tool.types';
 
 /**
  * @interfaces

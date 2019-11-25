@@ -67,45 +67,26 @@ export const plugins: Plugin[] = [
   ToolbarPlugin({
     disabledBlocks: [inputBlock.type],
     expandedTools: [
-      [BoldIcon, { isActive: bold.isSelectionIn, onMouseDown: bold.toggle }],
-      [ItalicIcon, { isActive: italic.isSelectionIn, onMouseDown: italic.toggle }],
-      [UnderlineIcon, { isActive: underline.isSelectionIn, onMouseDown: underline.toggle }],
-      [StrikethroughIcon, { isActive: strikethrough.isSelectionIn, onMouseDown: strikethrough.toggle }],
-      TOOLBAR_DIVIDER,
-      [HighlightIcon, { isActive: highlight.isSelectionIn, onMouseDown: highlight.toggle }],
-      [LinkIcon, { isActive: link.isSelectionIn, inputable: { onConfirm: link.set } }],
-      [Unlink, { onMouseDown: link.remove }]
+      { icon: BoldIcon, hook: bold.forToolHook() },
+      { icon: ItalicIcon, hook: italic.forToolHook() },
+      { icon: UnderlineIcon, hook: underline.forToolHook() },
+      { icon: StrikethroughIcon, hook: strikethrough.forToolHook() },
+      { icon: HighlightIcon, hook: highlight.forToolHook() },
+      { icon: LinkIcon, hook: link.forToolHook() },
+      { icon: Unlink, hook: link.forToolHook({ action: 'remove' }) }
     ],
     collapsedTools: [
-      [
-        Heading1,
-        {
-          isActive: editor => heading.isSelectionIn(editor, 1),
-          onMouseDown: editor => heading.toggle(editor, 1)
-        }
-      ],
-      [
-        Heading2,
-        {
-          isActive: editor => heading.isSelectionIn(editor, 2),
-          onMouseDown: editor => heading.toggle(editor, 2)
-        }
-      ],
-      [
-        Heading3,
-        {
-          isActive: editor => heading.isSelectionIn(editor, 3),
-          onMouseDown: editor => heading.toggle(editor, 3)
-        }
-      ],
-      [BlockquoteIcon, { isActive: blockquote.isSelectionIn, onMouseDown: blockquote.toggle }],
-      [UnorderedList, { onMouseDown: editor => list.toggle(editor, 'unordered') }],
-      [OrderedList, { onMouseDown: editor => list.toggle(editor, 'ordered') }],
+      { icon: Heading1, hook: heading.forToolHook({ level: 1 }) },
+      { icon: Heading2, hook: heading.forToolHook({ level: 2 }) },
+      { icon: Heading3, hook: heading.forToolHook({ level: 3 }) },
+      { icon: BlockquoteIcon, hook: blockquote.forToolHook() },
+      { icon: UnorderedList, hook: list.forToolHook({ orderedType: 'unordered' }) },
+      { icon: OrderedList, hook: list.forToolHook({ orderedType: 'ordered' }) },
       TOOLBAR_DIVIDER,
-      [SeparationLineIcon, { onMouseDown: separationLine.add }],
-      [VideoIcon, { inputable: { onStart: inputBlock.start, onConfirm: video.add } }],
-      [InstagramIcon, { inputable: { onStart: inputBlock.start, onConfirm: instagram.add } }],
-      [FacebookIcon, { inputable: { onStart: inputBlock.start, onConfirm: facebook.add } }]
+      { icon: SeparationLineIcon, hook: separationLine.forToolHook() },
+      { icon: VideoIcon, hook: video.forToolHook({ setToolInput: inputBlock.start }) },
+      { icon: InstagramIcon, hook: instagram.forToolHook({ setToolInput: inputBlock.start }) },
+      { icon: FacebookIcon, hook: facebook.forToolHook({ setToolInput: inputBlock.start }) }
     ]
   })
 ];

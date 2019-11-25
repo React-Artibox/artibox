@@ -1,4 +1,5 @@
-import { HasNodeType } from '@artibox/slate-common';
+import { useCallback } from 'react';
+import { HasNodeType, ToolHook } from '@artibox/slate-common';
 import { SEPARATION_LINE_TYPE } from './separation-line.constants';
 import { SeparationLineController } from './separation-line.controller';
 import { SeparationLineRendererConfig, SeparationLineRenderer } from './separation-line.renderer';
@@ -21,5 +22,11 @@ export class SeparationLine extends SeparationLineController {
       ...SeparationLineRenderer({ type, component }),
       schema: SeparationLineSchema({ type })
     } as const;
+  }
+
+  forToolHook(): ToolHook {
+    return editor => ({
+      onMouseDown: useCallback(() => this.add(editor), [editor])
+    });
   }
 }

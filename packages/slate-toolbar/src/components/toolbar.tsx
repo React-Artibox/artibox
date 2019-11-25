@@ -1,10 +1,10 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Editor } from 'slate-react';
 import cx from 'classnames';
-import { EditorPassable } from '@artibox/slate-common';
+import { EditorPassable, ToolInput } from '@artibox/slate-common';
 import { Portal, useTheme } from '@artibox/components';
 import { TOOLBAR_DIVIDER } from '../toolbar.constants';
-import { Tool, ToolInputable } from '../toolbar.types';
+import { Tool } from '../toolbar.types';
 import Divider from './divider';
 import ToolbarIcon from './toolbar-icon';
 import ToolbarInput from './toolbar-input';
@@ -48,11 +48,11 @@ export interface ToolbarProps extends EditorPassable {
 function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
-  const [inputableTool, setInputableTool] = useState<ToolInputable | null>(null);
+  const [toolInput, setToolInput] = useState<ToolInput | null>(null);
   const { fragment, selection } = editor.value;
   const { isFocused, isExpanded } = selection;
   const focusTextEmpty = fragment.text === '';
-  const expanded = !!((isExpanded || inputableTool) && !focusTextEmpty && expandedTools);
+  const expanded = !!((isExpanded || toolInput) && !focusTextEmpty && expandedTools);
   const collapsed = !expanded && isFocused && collapsedTools;
   let tools: Tool[] | undefined;
 
@@ -63,7 +63,7 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   }
 
   useLayoutEffect(() => {
-    if (!isFocused || inputableTool) {
+    if (!isFocused || toolInput) {
       return;
     }
 
@@ -99,22 +99,11 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
             return <Divider key={index} />;
           }
 
-          const [icon, config] = tool;
+          const { icon, hook } = tool;
 
-          return (
-            <ToolbarIcon
-              key={icon.name}
-              icon={icon}
-              config={config}
-              editor={editor}
-              setInputableTool={setInputableTool}
-              expanded={expanded}
-            />
-          );
+          return <ToolbarIcon key={icon.name} icon={icon} hook={hook} editor={editor} setToolInput={setToolInput} />;
         })}
-        {expanded && inputableTool && (
-          <ToolbarInput editor={editor} inputableTool={inputableTool} setInputableTool={setInputableTool} />
-        )}
+        {expanded && toolInput && <ToolbarInput editor={editor} toolInput={toolInput} setToolInput={setToolInput} />}
       </div>
     </Portal>
   );
