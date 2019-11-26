@@ -1,13 +1,11 @@
 {
-  "name": "@artibox/components",
+  "name": "@artibox/locale",
   "version": "0.0.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "./index.js",
-  "module": "./esm/index.js",
   "typings": "./esm/index.d.ts",
   "repository": {
     "type": "git",
@@ -19,19 +17,6 @@
   "scripts": {
     "clean": "npm run build:clean",
     "build:clean": "rm -rf ./{esm,lib} && rm -rf ./*.tsbuildinfo",
-    "build:css": "rollup --config rollup.config.js",
-    "build": "tsc && tsc -m esnext -outDir esm && npm run build:css"
-  },
-  "dependencies": {
-    "@artibox/icons": "^0.0.0",
-    "@artibox/locale": "^0.0.0",
-    "@artibox/theme": "^0.0.0",
-    "classnames": "^2.2.6",
-    "react-transition-group": "^4.3.0",
-    "tslib": "^1.10.0"
-  },
-  "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "build": "tsc && tsc -m esnext -outDir esm"
   }
 }
