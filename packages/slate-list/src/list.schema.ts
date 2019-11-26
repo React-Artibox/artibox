@@ -1,5 +1,5 @@
 import { SchemaProperties, Rules, Block } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-common';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
 import { LIST_TYPES } from './list.constants';
 
 export interface ListSchemaConfig {

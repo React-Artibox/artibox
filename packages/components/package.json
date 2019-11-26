@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@artibox/icons": "^0.0.0",
-    "@artibox/theme-default": "^0.0.0",
+    "@artibox/theme": "^0.0.0",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.3.0",
     "tslib": "^1.10.0"
@@ -32,12 +32,5 @@
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
-  },
-  "devDependencies": {
-    "@types/classnames": "^2.2.9",
-    "@types/react": "^16.9.11",
-    "@types/react-transition-group": "^4.2.3",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
   }
 }

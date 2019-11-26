@@ -1,5 +1,6 @@
 import { Editor } from 'slate';
-import { HasNodeType, PARAGRAPH_TYPE } from '@artibox/slate-common';
+import { HasNodeType } from '@artibox/slate-common';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
 
 export abstract class SeparationLineController implements HasNodeType {
   constructor(public readonly type: string) {}

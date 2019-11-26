@@ -1,4 +1,4 @@
-import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common';
+import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common/renderers/common-block.renderer';
 import { SEPARATION_LINE_TYPE, SEPARATION_LINE_COMPONENT } from './separation-line.constants';
 
 export type SeparationLineRendererConfig = Partial<Pick<CommonBlockRendererConfig, 'type' | 'component'>>;

@@ -1,4 +1,5 @@
-import { HasNodeType, CommonBlockRenderer } from '@artibox/slate-common';
+import { HasNodeType } from '@artibox/slate-common';
+import { CommonBlockRenderer } from '@artibox/slate-common/renderers/common-block.renderer';
 import { INPUT_BLOCK_TYPE } from './input-block.constants';
 import InputBlock from './input-block.component';
 

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import cx from 'classnames';
 import { IconDefinition } from '@artibox/icons';
-import { Icon } from '@artibox/components';
+import Icon from '@artibox/components/Icon';
 import { EditorPassable, SetToolInput } from '@artibox/slate-common';
 import { TOOLBAR_DIVIDER } from '../toolbar.constants';
 import { Tool } from '../toolbar.types';

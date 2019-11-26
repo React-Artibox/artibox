@@ -1,4 +1,4 @@
-import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common';
+import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common/renderers/common-block.renderer';
 import { FACEBOOK_TYPE } from './facebook.constants';
 import Facebook, { FacebookProps } from './facebook.component';
 

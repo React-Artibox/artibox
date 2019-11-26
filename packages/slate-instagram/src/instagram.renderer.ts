@@ -1,4 +1,4 @@
-import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common';
+import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common/renderers/common-block.renderer';
 import { InstagramProps } from './instagram.component';
 import { INSTAGRAM_DATA_KEY_URL, INSTAGRAM_TYPE } from './instagram.constants';
 import Instagram from './instagram.component';

@@ -1,5 +1,6 @@
 import { Block, Editor } from 'slate';
-import { HasNodeType, PARAGRAPH_TYPE } from '@artibox/slate-common';
+import { HasNodeType } from '@artibox/slate-common';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
 import { VIDEO_DATA_KEY_PROVIDER } from './video.constants';
 import { VideoSerializeResult, serializeVideoSource } from './video.serializers';
 

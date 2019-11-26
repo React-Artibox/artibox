@@ -1,5 +1,5 @@
 {
-  "name": "@artibox/theme-default",
+  "name": "@artibox/theme",
   "version": "0.0.0",
   "description": "",
   "author": "Rytass",
@@ -18,6 +18,6 @@
   "scripts": {
     "clean": "npm run build:clean",
     "build:clean": "rm -rf ./{esm,lib}",
-    "build": "rollup --config ../../tools/rollup/theme.rollup.config.js"
+    "build": "rollup --config ./rollup.config.js"
   }
 }

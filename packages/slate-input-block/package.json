@@ -25,8 +25,9 @@
     "@artibox/slate-common": "^0.0.0",
     "is-hotkey": "^0.1.6"
   },
-  "devDependencies": {
-    "@types/is-hotkey": "^0.1.1",
-    "@types/slate": "^0.47.3"
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "slate": "^0.47.0",
+    "slate-react": "^0.22.0"
   }
 }

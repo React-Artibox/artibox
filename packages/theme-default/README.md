@@ -1,1 +1,0 @@
-# `@artibox/theme-default`
