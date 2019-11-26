@@ -1,3 +1,4 @@
+import { Editor } from 'slate';
 import { isKeyHotkey } from 'is-hotkey';
 import { PickPluginAndRequired } from '@artibox/slate-common';
 import { ToggleMarkController } from './toggle-mark.controller';
@@ -21,7 +22,7 @@ export function createToggleMarkHandlers(defaults: ToggleMarkHandlersDefaultConf
     return {
       onKeyDown(event, editor, next) {
         if (isKeyHotkey(hotkey, event as any)) {
-          return controller.toggle(editor);
+          return controller.toggle((editor as any) as Editor);
         }
 
         return next();

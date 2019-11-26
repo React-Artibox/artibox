@@ -1,3 +1,4 @@
+import { Editor } from 'slate';
 import { isKeyHotkey } from 'is-hotkey';
 import { PickPluginAndRequired } from '@artibox/slate-common';
 import { HEADING_LEVELS } from './heading.constants';
@@ -18,7 +19,9 @@ export function HeadingHandlers(config: HeadingHandlersConfig): HeadingHandlers 
   const { enabled, hotkey, controller } = config;
 
   return {
-    onKeyDown(event, editor, next) {
+    onKeyDown(event, editorComponent, next) {
+      const editor = (editorComponent as any) as Editor;
+
       if (event.key === 'Enter') {
         /**
          * If press enter on the block not heading, continue.
