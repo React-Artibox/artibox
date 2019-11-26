@@ -1,5 +1,6 @@
 import React, { KeyboardEventHandler } from 'react';
 import { EditorPassable, ToolInput, SetToolInput } from '@artibox/slate-common';
+import { useLocale } from '@artibox/components/locale';
 
 export interface ToolbarInputProps extends EditorPassable {
   toolInput: ToolInput;
@@ -32,8 +33,19 @@ function ToolbarInput({ editor, toolInput, setToolInput }: ToolbarInputProps) {
       exitInputAndFocus();
     }
   };
+  const { getPlaceholder } = toolInput;
+  const locale = useLocale();
+  const placeholder = getPlaceholder(locale);
 
-  return <input ref={ref} className="artibox-toolbar__input" onKeyDown={onKeyDown} onBlur={exitInputAndFocus} />;
+  return (
+    <input
+      ref={ref}
+      className="artibox-toolbar__input"
+      placeholder={placeholder}
+      onKeyDown={onKeyDown}
+      onBlur={exitInputAndFocus}
+    />
+  );
 }
 
 export default ToolbarInput;

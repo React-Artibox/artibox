@@ -32,6 +32,7 @@ export class Instagram extends InstagramController {
   forToolHook(config: InstagramForToolHookConfig): ToolHook {
     const { setToolInput } = config;
     const toolInput: ToolInput = {
+      getPlaceholder: locale => locale.editor.instagram.inputPlaceholder,
       onConfirm: this.add
     };
 

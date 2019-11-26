@@ -32,6 +32,7 @@ export class Link extends LinkController {
     const { action = 'set' } = config || {};
     const activeProvided = action === 'set';
     const toolInput: ToolInput = {
+      getPlaceholder: locale => locale.editor.link.inputPlaceholder,
       onConfirm: this.set
     };
 
