@@ -1,3 +1,4 @@
+import { Editor } from 'slate';
 import { PickPluginAndRequired } from '@artibox/slate-common';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
 import { isKeyHotkey } from 'is-hotkey';
@@ -16,7 +17,8 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
   /**
    * The handler of soft break.
    */
-  const onSoftBreak: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
+  const onSoftBreak: BlockquoteHandlers['onKeyDown'] = (event, editorComponent, next) => {
+    const editor = (editorComponent as any) as Editor;
     const blockquoteBlock = controller.getCurrent(editor);
 
     if (!blockquoteBlock) {
@@ -31,7 +33,8 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
   /**
    * If the focused block inside blockquote is w/o any texts, unwrap the focused block.
    */
-  const onEnter: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
+  const onEnter: BlockquoteHandlers['onKeyDown'] = (event, editorComponent, next) => {
+    const editor = (editorComponent as any) as Editor;
     const blockquoteBlock = controller.getCurrent(editor);
     const currentBlock = editor.value.startBlock;
 
@@ -47,7 +50,8 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
   /**
    * If the focused block inside blockquote and the selection is not expanded, unwrap the focused block.
    */
-  const onBackSpace: BlockquoteHandlers['onKeyDown'] = (event, editor, next) => {
+  const onBackSpace: BlockquoteHandlers['onKeyDown'] = (event, editorComponent, next) => {
+    const editor = (editorComponent as any) as Editor;
     const blockquoteBlock = controller.getCurrent(editor);
     const { isExpanded, start } = editor.value.selection;
 
@@ -71,7 +75,7 @@ export function BlockquoteHandlers(config: BlockquoteHandlersConfig): Blockquote
       } else if (event.key === 'Backspace') {
         return onBackSpace(event, editor, next);
       } else if (isKeyHotkey(hotkey, event as any)) {
-        return controller.toggle(editor);
+        return controller.toggle((editor as any) as Editor);
       }
 
       return next();

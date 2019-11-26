@@ -1,3 +1,4 @@
+import { Editor } from 'slate';
 import { isKeyHotkey } from 'is-hotkey';
 import { PickPluginAndRequired } from '@artibox/slate-common';
 import { InputBlockController } from './input-block.controller';
@@ -12,7 +13,9 @@ export function InputBlockHandlers(config: InputBlockHandlersConfig): InputBlock
   const { controller } = config;
 
   return {
-    onKeyDown(event, editor, next) {
+    onKeyDown(event, editorComponent, next) {
+      const editor = (editorComponent as any) as Editor;
+
       if (!controller.isSelectionIn(editor)) {
         return next();
       } else if (event.key === 'Enter') {
@@ -32,7 +35,9 @@ export function InputBlockHandlers(config: InputBlockHandlersConfig): InputBlock
 
       return next();
     },
-    onPaste(event, editor, next) {
+    onPaste(event, editorComponent, next) {
+      const editor = (editorComponent as any) as Editor;
+
       if (!controller.isSelectionIn(editor)) {
         return next();
       } else {
