@@ -22,6 +22,7 @@
     "build": "tsc && tsc -m esnext -outDir esm"
   },
   "dependencies": {
+    "@artibox/locale": "^0.0.0",
     "tslib": "^1.10.0"
   },
   "peerDependencies": {

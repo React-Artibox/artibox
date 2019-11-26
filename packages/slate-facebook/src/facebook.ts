@@ -32,6 +32,7 @@ export class Facebook extends FacebookController {
   forToolHook(config: FacebookForToolHookConfig): ToolHook {
     const { setToolInput } = config;
     const toolInput: ToolInput = {
+      getPlaceholder: locale => locale.editor.facebook.inputPlaceholder,
       onConfirm: this.add
     };
 

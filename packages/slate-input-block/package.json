@@ -22,6 +22,7 @@
     "build": "tsc && tsc -m esnext -outDir esm"
   },
   "dependencies": {
+    "@artibox/components": "^0.0.0",
     "@artibox/slate-common": "^0.0.0",
     "is-hotkey": "^0.1.6"
   },

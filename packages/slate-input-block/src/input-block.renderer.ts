@@ -12,6 +12,6 @@ export function InputblockRenderer(config?: InputblockRendererConfig): Inputbloc
   return CommonBlockRenderer({
     type,
     component: InputBlock,
-    getProps: props => ({ isEmpty: props.node.text === '' })
+    getProps: props => ({ isEmpty: props.node.text === '', getPlaceholder: props.node.data.get('getPlaceholder') })
   });
 }

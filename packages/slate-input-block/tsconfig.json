@@ -4,7 +4,7 @@
     "outDir": "./lib",
     "rootDir": "./src"
   },
-  "references": [{ "path": "../slate-common" }],
+  "references": [{ "path": "../components" }, { "path": "../slate-common" }],
   "include": ["./src"],
   "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
 }

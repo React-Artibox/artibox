@@ -4,6 +4,7 @@
     "outDir": "./lib",
     "rootDir": "./src"
   },
+  "references": [{ "path": "../locale" }],
   "include": ["./src"],
   "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
 }

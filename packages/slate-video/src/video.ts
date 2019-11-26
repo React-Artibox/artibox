@@ -32,6 +32,7 @@ export class Video extends VideoController {
   forToolHook(config: VideoForToolHookConfig): ToolHook {
     const { setToolInput } = config;
     const toolInput: ToolInput = {
+      getPlaceholder: locale => locale.editor.video.inputPlaceholder,
       onConfirm: this.add
     };
 
