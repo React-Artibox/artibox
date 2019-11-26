@@ -1,6 +1,10 @@
 import { Editor } from 'slate';
 import React, { ReactNode } from 'react';
-import { CommonInlineRendererConfig, CommonInlineRenderer, CommonEditorRenderer } from '@artibox/slate-common';
+import {
+  CommonInlineRendererConfig,
+  CommonInlineRenderer
+} from '@artibox/slate-common/renderers/common-inline.renderer';
+import { CommonEditorRenderer } from '@artibox/slate-common/renderers/common-editor.renderer';
 import { LINK_TYPE } from './link.constants';
 import { getUrlFromInline } from './link.utils';
 import Link, { LinkProps } from './link.component';

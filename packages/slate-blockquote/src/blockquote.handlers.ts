@@ -1,4 +1,5 @@
-import { PickPluginAndRequired, PARAGRAPH_TYPE } from '@artibox/slate-common';
+import { PickPluginAndRequired } from '@artibox/slate-common';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
 import { isKeyHotkey } from 'is-hotkey';
 import { BlockquoteController } from './blockquote.controller';
 

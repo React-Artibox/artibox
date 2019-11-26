@@ -1,5 +1,5 @@
 import { Editor, Node, Block } from 'slate';
-import { isNodeExcludeText } from '@artibox/slate-common';
+import { isNodeExcludeText } from '@artibox/slate-common/utils/is-node-exclude-text';
 import { LIST_TYPES, LIST_ORDERED_TYPES } from './list.constants';
 
 export abstract class ListController {

@@ -40,7 +40,8 @@
       "@artibox/slate-toggle-mark/*": ["./packages/slate-toggle-mark/src/*"],
       "@artibox/slate-toolbar/*": ["./packages/slate-toolbar/src/*"],
       "@artibox/slate-underline/*": ["./packages/slate-underline/src/*"],
-      "@artibox/slate-video/*": ["./packages/slate-video/src/*"]
+      "@artibox/slate-video/*": ["./packages/slate-video/src/*"],
+      "@artibox/theme/*": ["./packages/theme/src/*"]
     }
   }
 }

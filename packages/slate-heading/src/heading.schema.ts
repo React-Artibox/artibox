@@ -1,5 +1,6 @@
 import { SchemaProperties } from 'slate';
-import { PARAGRAPH_TYPE, HasNodeType } from '@artibox/slate-common';
+import { HasNodeType } from '@artibox/slate-common';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
 import { HEADING_LEVELS, HEADING_DATA_KEY_LEVEL } from './heading.constants';
 import { HeadingConfigEnabled } from './heading.interfaces';
 

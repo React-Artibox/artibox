@@ -26,11 +26,8 @@
     "@artibox/slate-common": "^0.0.0"
   },
   "peerDependencies": {
-    "react": "16.8.6"
-  },
-  "devDependencies": {
-    "@types/slate": "^0.47.3",
-    "@types/slate-react": "^0.22.6",
-    "react": "^16.11.0"
+    "react": "^16.8.6",
+    "slate": "^0.47.0",
+    "slate-react": "^0.22.0"
   }
 }

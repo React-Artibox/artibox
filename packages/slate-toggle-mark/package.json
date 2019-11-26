@@ -22,17 +22,12 @@
     "build": "tsc && tsc -m esnext -outDir esm"
   },
   "dependencies": {
-    "is-hotkey": "^0.1.6",
-    "@artibox/slate-common": "^0.0.0"
+    "@artibox/slate-common": "^0.0.0",
+    "is-hotkey": "^0.1.6"
   },
   "peerDependencies": {
-    "react": "^16.8.6"
-  },
-  "devDependencies": {
-    "@types/is-hotkey": "^0.1.1",
-    "@types/react": "^16.9.11",
-    "@types/slate": "^0.47.3",
-    "@types/slate-react": "^0.22.6",
-    "react": "^16.11.0"
+    "react": "^16.8.0",
+    "slate": "^0.47.0",
+    "slate-react": "^0.22.0"
   }
 }

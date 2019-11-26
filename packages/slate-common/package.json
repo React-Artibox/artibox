@@ -24,8 +24,9 @@
   "dependencies": {
     "tslib": "^1.10.0"
   },
-  "devDependencies": {
-    "@types/slate": "^0.47.3",
-    "@types/slate-react": "^0.22.6"
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "slate": "^0.47.0",
+    "slate-react": "^0.22.0"
   }
 }

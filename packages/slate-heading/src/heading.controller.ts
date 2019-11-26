@@ -1,5 +1,6 @@
 import { Block, Editor } from 'slate';
-import { HasNodeType, PARAGRAPH_TYPE } from '@artibox/slate-common';
+import { HasNodeType } from '@artibox/slate-common';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
 import { HEADING_LEVELS, HEADING_DATA_KEY_LEVEL } from './heading.constants';
 import { getHeadingLevelFromBlock } from './heading.utils';
 

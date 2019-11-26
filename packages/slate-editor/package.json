@@ -28,12 +28,6 @@
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "slate-react": "^0.22.9"
-  },
-  "devDependencies": {
-    "@types/classnames": "^2.2.9",
-    "@types/react": "^16.9.11",
-    "@types/slate-react": "^0.22.6",
-    "react": "^16.11.0"
+    "slate-react": "^0.22.0"
   }
 }

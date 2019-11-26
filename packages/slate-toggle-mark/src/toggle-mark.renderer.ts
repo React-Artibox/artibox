@@ -1,4 +1,4 @@
-import { CommonMarkRendererConfig, CommonMarkRenderer } from '@artibox/slate-common';
+import { CommonMarkRendererConfig, CommonMarkRenderer } from '@artibox/slate-common/renderers/common-mark.renderer';
 
 export type ToggleMarkRendererDefaultConfig = Pick<CommonMarkRendererConfig, 'type' | 'component'>;
 

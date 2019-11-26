@@ -1,4 +1,4 @@
-import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common';
+import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common/renderers/common-block.renderer';
 import { BLOCKQUOTE_TYPE, BLOCKQUOTE_COMPONENT } from './blockquote.constants';
 
 export type BlockquoteRendererConfig = Partial<Pick<CommonBlockRendererConfig, 'type' | 'component'>>;
