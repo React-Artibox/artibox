@@ -1,3 +1,4 @@
+export { LocaleContext, LocaleProviderProps, LocaleProvider, useLocale } from './locale';
 export { ThemeContext, ThemeProviderProps, ThemeProvider, useTheme } from './theme';
 
 export { default as Icon, IconProps } from './Icon';

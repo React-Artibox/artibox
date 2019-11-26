@@ -23,6 +23,7 @@
       "@artibox/*": ["./packages/*/src"],
       "@artibox/components/*": ["./packages/components/src/*"],
       "@artibox/icons/*": ["./packages/icons/src/*"],
+      "@artibox/locale/*": ["./packages/locale/src/*"],
       "@artibox/slate-blockquote/*": ["./packages/slate-blockquote/src/*"],
       "@artibox/slate-bold/*": ["./packages/slate-bold/src/*"],
       "@artibox/slate-common/*": ["./packages/slate-common/src/*"],
