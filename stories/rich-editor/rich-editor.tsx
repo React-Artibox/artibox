@@ -1,8 +1,7 @@
 import React, { useState, useCallback, FC } from 'react';
 import { OnChangeFn } from 'slate-react';
 import cx from 'classnames';
-import { ArtiboxEditor } from '@artibox/slate-editor';
-import { LocaleProvider } from '@artibox/components';
+import { createArtiboxEditor } from '@artibox/slate-editor';
 import { LocaleDefinition } from '@artibox/locale';
 import { enUS } from '@artibox/locale/en-US';
 import { zhTW } from '@artibox/locale/zh-TW';
@@ -25,6 +24,8 @@ const LocaleButton: FC<LocaleButtonProps> = ({ children, active, locale, setLoca
   </button>
 );
 
+const ArtiboxEditor = createArtiboxEditor({ plugins });
+
 export function RichEditor() {
   const [value, setValue] = useState(initialValue);
   const onChange = useCallback<OnChangeFn>(change => setValue(change.value), []);
@@ -40,9 +41,7 @@ export function RichEditor() {
           EN
         </LocaleButton>
       </div>
-      <LocaleProvider locale={locale}>
-        <ArtiboxEditor className="rich-editor" value={value} onChange={onChange} plugins={plugins} />
-      </LocaleProvider>
+      <ArtiboxEditor className="rich-editor" value={value} onChange={onChange} locale={locale} theme="default" />
     </>
   );
 }
