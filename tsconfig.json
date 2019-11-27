@@ -34,6 +34,7 @@
       "@artibox/slate-input-block/*": ["./packages/slate-input-block/src/*"],
       "@artibox/slate-instagram/*": ["./packages/slate-instagram/src/*"],
       "@artibox/slate-italic/*": ["./packages/slate-italic/src/*"],
+      "@artibox/slate-jsx-serializer/*": ["./packages/slate-jsx-serializer/src/*"],
       "@artibox/slate-link/*": ["./packages/slate-link/src/*"],
       "@artibox/slate-list/*": ["./packages/slate-list/src/*"],
       "@artibox/slate-separation-line/*": ["./packages/slate-separation-line/src/*"],

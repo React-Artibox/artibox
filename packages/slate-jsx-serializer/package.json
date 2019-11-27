@@ -1,0 +1,33 @@
+{
+  "name": "@artibox/slate-jsx-serializer",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Rytass",
+  "homepage": "https://github.com/React-Artibox/artibox#readme",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./index.js",
+  "module": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/React-Artibox/artibox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/React-Artibox/artibox/issues"
+  },
+  "scripts": {
+    "clean": "npm run build:clean",
+    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./*.tsbuildinfo",
+    "build": "tsc && tsc -m esnext -outDir esm"
+  },
+  "dependencies": {
+    "@artibox/slate-common": "^0.0.0",
+    "tslib": "^1.10.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "slate": "^0.47.0",
+    "slate-react": "^0.22.0"
+  }
+}
