@@ -1,1 +1,1 @@
-export { ArtiboxEditorProps, default as ArtiboxEditor } from './editor';
+export { ArtiboxEditorProps, CreateArtiboxEditorConfig, createArtiboxEditor } from './editor';

@@ -1,18 +1,33 @@
 import React from 'react';
-import { Editor, EditorProps } from 'slate-react';
+import { Editor, EditorProps, Plugin } from 'slate-react';
 import cx from 'classnames';
 import { ThemeProvider } from '@artibox/components/theme';
+import { LocaleProvider } from '@artibox/components/locale';
+import { LocaleDefinition } from '@artibox/locale';
+import { placeholder } from './placeholder';
 
-export interface ArtiboxEditorProps extends EditorProps {
+export interface CreateArtiboxEditorConfig {
+  plugins?: Plugin[];
+}
+
+export interface ArtiboxEditorProps extends Omit<EditorProps, keyof CreateArtiboxEditorConfig> {
+  locale?: LocaleDefinition;
   theme?: string;
 }
 
-function ArtiboxEditor({ theme, className, ...props }: ArtiboxEditorProps) {
-  return (
-    <ThemeProvider theme={theme}>
-      {themeName => <Editor className={cx(className, themeName)} {...props} />}
-    </ThemeProvider>
-  );
-}
+export function createArtiboxEditor(config: CreateArtiboxEditorConfig) {
+  let { plugins } = config;
+  plugins = [placeholder, ...plugins];
 
-export default ArtiboxEditor;
+  function ArtiboxEditor({ theme, locale, className, ...props }: ArtiboxEditorProps) {
+    return (
+      <LocaleProvider locale={locale}>
+        <ThemeProvider theme={theme}>
+          {themeName => <Editor className={cx(className, themeName)} plugins={plugins} {...props} />}
+        </ThemeProvider>
+      </LocaleProvider>
+    );
+  }
+
+  return ArtiboxEditor;
+}
