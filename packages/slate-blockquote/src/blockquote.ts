@@ -1,15 +1,14 @@
 import { useCallback } from 'react';
 import { HasNodeType, ToolHook } from '@artibox/slate-common';
-import { BLOCKQUOTE_TYPE, BLOCKQUOTE_HOTKEY } from './blockquote.constants';
+import { BLOCKQUOTE_TYPE, BLOCKQUOTE_HOTKEY, BLOCKQUOTE_COMPONENT } from './blockquote.constants';
 import { BlockquoteController } from './blockquote.controller';
 import { BlockquoteHandlersConfig, BlockquoteHandlers } from './blockquote.handlers';
 import { BlockquoteRendererConfig, BlockquoteRenderer } from './blockquote.renderer';
 
 export type BlockquoteCreateConfig = Partial<HasNodeType>;
 
-export type BlockquoteForPluginConfig = Omit<
-  BlockquoteHandlersConfig & BlockquoteRendererConfig,
-  'type' | 'controller'
+export type BlockquoteForPluginConfig = Partial<
+  Omit<BlockquoteHandlersConfig & BlockquoteRendererConfig, 'type' | 'controller'>
 >;
 
 export interface BlockquoteForToolHookConfig {
@@ -24,7 +23,7 @@ export class Blockquote extends BlockquoteController {
   }
 
   forPlugin(config?: BlockquoteForPluginConfig) {
-    const { hotkey = BLOCKQUOTE_HOTKEY, component } = config || {};
+    const { hotkey = BLOCKQUOTE_HOTKEY, component = BLOCKQUOTE_COMPONENT } = config || {};
     const { type } = this;
 
     return {

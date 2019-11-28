@@ -1,3 +1,4 @@
+import { Block } from 'slate';
 import {
   FACEBOOK_EMBED_TYPES,
   FACEBOOK_DATA_KEY_TYPE,
@@ -60,4 +61,15 @@ export function getSrcFromEmbedData(embedData: FacebookEmbedData): string {
   }
 
   return '';
+}
+
+export function getFacebookEmbedDataFromBlock(block: Block): FacebookEmbedData {
+  const { data } = block;
+
+  return {
+    [FACEBOOK_DATA_KEY_TYPE]: data.get(FACEBOOK_DATA_KEY_TYPE),
+    [FACEBOOK_DATA_KEY_URL]: data.get(FACEBOOK_DATA_KEY_URL),
+    [FACEBOOK_DATA_KEY_WIDTH]: data.get(FACEBOOK_DATA_KEY_WIDTH),
+    [FACEBOOK_DATA_KEY_HEIGHT]: data.get(FACEBOOK_DATA_KEY_HEIGHT)
+  };
 }

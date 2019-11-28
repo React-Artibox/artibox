@@ -1,5 +1,5 @@
 import { Inline } from 'slate';
-import { LINK_DATA_KEY_URL } from './link.constants';
+import { LINK_DATA_KEY_HREF } from './link.constants';
 
 export function isUrl(arg: string): boolean {
   //  eslint-disable-next-line no-useless-escape
@@ -8,6 +8,13 @@ export function isUrl(arg: string): boolean {
   );
 }
 
-export function getUrlFromInline(inline: Inline): string | undefined {
-  return inline.data.get(LINK_DATA_KEY_URL);
+export function getLinkUrlFromInline(inline: Inline): string | undefined {
+  return inline.data.get(LINK_DATA_KEY_HREF);
+}
+
+export function getLinkPropsFromInline(inline: Inline) {
+  return {
+    href: getLinkUrlFromInline(inline),
+    target: '_blank'
+  };
 }

@@ -1,8 +1,7 @@
 import { Editor } from 'slate';
 import { isKeyHotkey } from 'is-hotkey';
 import { PickPluginAndRequired } from '@artibox/slate-common';
-import { HEADING_LEVELS } from './heading.constants';
-import { HeadingConfigEnabled } from './heading.interfaces';
+import { HeadingLevel, HeadingConfigEnabled } from './heading.types';
 import { HeadingController } from './heading.controller';
 
 export interface HeadingHandlersConfig extends HeadingConfigEnabled {
@@ -38,8 +37,8 @@ export function HeadingHandlers(config: HeadingHandlersConfig): HeadingHandlers 
        */
       const numKey = +event.key;
 
-      if (isKeyHotkey(hotkey, event as any) && enabled.includes(numKey as HEADING_LEVELS)) {
-        const level = numKey as HEADING_LEVELS;
+      if (isKeyHotkey(hotkey, event as any) && enabled.includes(numKey as HeadingLevel)) {
+        const level = numKey as HeadingLevel;
 
         event.preventDefault();
         return controller.toggle(editor, level);

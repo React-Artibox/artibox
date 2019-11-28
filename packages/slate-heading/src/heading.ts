@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { HasNodeType, ToolHook } from '@artibox/slate-common';
 import { HEADING_TYPE, HEADING_HOTKEY, HEADING_LEVELS } from './heading.constants';
+import { HeadingLevel } from './heading.types';
 import { HeadingHandlersConfig, HeadingHandlers } from './heading.handlers';
 import { HeadingController } from './heading.controller';
 import { HeadingRendererConfig, HeadingRenderer } from './heading.renderer';
@@ -12,11 +13,11 @@ export interface HeadingForPluginConfig
   extends Partial<
     Omit<HeadingHandlersConfig & HeadingRendererConfig & HeadingSchemaConfig, 'type' | 'controller' | 'enabled'>
   > {
-  disabled?: HEADING_LEVELS[];
+  disabled?: HeadingLevel[];
 }
 
 export interface HeadingForToolHookConfig {
-  level: HEADING_LEVELS;
+  level: HeadingLevel;
 }
 
 export class Heading extends HeadingController {

@@ -1,7 +1,8 @@
 import { Block, Editor } from 'slate';
 import { HasNodeType } from '@artibox/slate-common';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
-import { HEADING_LEVELS, HEADING_DATA_KEY_LEVEL } from './heading.constants';
+import { HEADING_DATA_KEY_LEVEL } from './heading.constants';
+import { HeadingLevel } from './heading.types';
 import { getHeadingLevelFromBlock } from './heading.utils';
 
 export abstract class HeadingController implements HasNodeType {
@@ -10,12 +11,12 @@ export abstract class HeadingController implements HasNodeType {
   /**
    * To check if the block is heading.
    */
-  isBlockAs = (block?: Block | null): boolean => block?.type === this.type;
+  isBlockAs = (block?: Block | null): block is Block => block?.type === this.type;
 
   /**
    * To check if the current selection is heading in the specific level.
    */
-  isSelectionIn = (editor: Editor, level: HEADING_LEVELS): boolean =>
+  isSelectionIn = (editor: Editor, level: HeadingLevel): boolean =>
     editor.value.blocks.some(block => this.isBlockAs(block) && getHeadingLevelFromBlock(block) === level);
 
   getCurrent = (editor: Editor): Block | null => {
@@ -28,7 +29,7 @@ export abstract class HeadingController implements HasNodeType {
    *
    * @returns Will be number if the block is heading, or undefined.
    */
-  getCurrentLevel = (editor: Editor): HEADING_LEVELS | undefined => {
+  getCurrentLevel = (editor: Editor): HeadingLevel | undefined => {
     const currentBlock = this.getCurrent(editor);
 
     if (!currentBlock) {
@@ -38,13 +39,13 @@ export abstract class HeadingController implements HasNodeType {
     const level = getHeadingLevelFromBlock(currentBlock);
 
     if (typeof level === 'number') {
-      return level as HEADING_LEVELS;
+      return level as HeadingLevel;
     }
 
     return undefined;
   };
 
-  createBlock = (level: HEADING_LEVELS): Block =>
+  createBlock = (level: HeadingLevel): Block =>
     Block.fromJSON({
       type: this.type,
       data: { [HEADING_DATA_KEY_LEVEL]: level }
@@ -66,7 +67,7 @@ export abstract class HeadingController implements HasNodeType {
   /**
    * To set the current block to be heading if it is not heading or the same heading level, or unset heading.
    */
-  toggle = (editor: Editor, level: HEADING_LEVELS): Editor => {
+  toggle = (editor: Editor, level: HeadingLevel): Editor => {
     const currentLevel = this.getCurrentLevel(editor);
     const block = currentLevel !== level ? this.createBlock(level) : PARAGRAPH_TYPE;
     return editor.setBlocks(block);

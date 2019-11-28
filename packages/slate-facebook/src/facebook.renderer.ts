@@ -1,5 +1,6 @@
 import { CommonBlockRendererConfig, CommonBlockRenderer } from '@artibox/slate-common/renderers/common-block.renderer';
 import { FACEBOOK_TYPE } from './facebook.constants';
+import { getFacebookEmbedDataFromBlock } from './facebook.utils';
 import Facebook, { FacebookProps } from './facebook.component';
 
 export type FacebookRendererConfig = Partial<Pick<CommonBlockRendererConfig<FacebookProps>, 'type' | 'component'>>;
@@ -13,6 +14,6 @@ export function FacebookRenderer(config?: FacebookRendererConfig): FacebookRende
     type,
     component,
     isVoid: true,
-    getProps: props => props.node.data.toJS()
+    getProps: props => getFacebookEmbedDataFromBlock(props.node)
   });
 }

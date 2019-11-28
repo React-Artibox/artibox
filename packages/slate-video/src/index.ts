@@ -1,5 +1,5 @@
 export { VIDEO_TYPE, VIDEO_PROVIDERS, VIDEO_DATA_KEY_PROVIDER } from './video.constants';
-export { getSourceFromBlock } from './video.utils';
+export { getVideoSourceFromBlock, getVideoPropsFromBlock } from './video.utils';
 export {
   VideoSerializeResult,
   VideoSerialize,
@@ -8,7 +8,6 @@ export {
   videoSerializers,
   serializeVideoSource
 } from './video.serializers';
-export { VideoController } from './video.controller';
 export { VideoProps } from './video.component';
-export { VideoRendererConfig, VideoRenderer } from './video.renderer';
 export { VideoCreateConfig, VideoForPluginConfig, VideoForToolHookConfig, Video } from './video';
+export { CreateVideoJsxSerializerRuleConfig, createVideoJsxSerializerRule } from './video.jsx-serializer';
