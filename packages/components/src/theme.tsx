@@ -1,5 +1,4 @@
 import React, { ReactNode, createContext, useContext } from 'react';
-import '@artibox/theme/default';
 
 export const ThemeContext = createContext<string>('');
 export type ThemeContext = typeof ThemeContext;

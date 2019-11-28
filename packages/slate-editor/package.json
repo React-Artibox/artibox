@@ -25,6 +25,7 @@
     "@artibox/components": "^0.0.0",
     "@artibox/locale": "^0.0.0",
     "@artibox/slate-common": "^0.0.0",
+    "@artibox/theme": "^0.0.0",
     "classnames": "^2.2.6",
     "tslib": "^1.10.0"
   },
