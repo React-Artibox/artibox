@@ -1,17 +1,18 @@
 import { useCallback } from 'react';
-import { HasNodeType, ToolHook } from '@artibox/slate-common';
-import { HEADING_TYPE, HEADING_HOTKEY, HEADING_LEVELS } from './heading.constants';
-import { HeadingLevel } from './heading.types';
-import { HeadingHandlersConfig, HeadingHandlers } from './heading.handlers';
-import { HeadingController } from './heading.controller';
-import { HeadingRendererConfig, HeadingRenderer } from './heading.renderer';
-import { HeadingSchemaConfig, HeadingSchema } from './heading.schema';
-
-export type HeadingCreateConfig = Partial<HasNodeType>;
+import { NodeType, ToolHook, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { HEADING_TYPE, HEADING_HOTKEY, HEADING_LEVELS } from './constants';
+import { HeadingLevel } from './types';
+import { CreateHeadingHandlersConfig, createHeadingHandlers } from './handlers';
+import { HeadingController, createHeadingController } from './controller';
+import { CreateHeadingRendererConfig, createHeadingRenderer } from './renderer';
+import { CreateHeadingSchemaConfig, createHeadingSchema } from './schema';
 
 export interface HeadingForPluginConfig
   extends Partial<
-    Omit<HeadingHandlersConfig & HeadingRendererConfig & HeadingSchemaConfig, 'type' | 'controller' | 'enabled'>
+    Omit<
+      CreateHeadingHandlersConfig & CreateHeadingRendererConfig & CreateHeadingSchemaConfig,
+      'type' | 'controller' | 'enabled'
+    >
   > {
   disabled?: HeadingLevel[];
 }
@@ -20,29 +21,35 @@ export interface HeadingForToolHookConfig {
   level: HeadingLevel;
 }
 
-export class Heading extends HeadingController {
-  static create(config?: HeadingCreateConfig) {
-    const { type = HEADING_TYPE } = config || {};
-    return new this(type);
-  }
+export type Heading = NodeType &
+  HeadingController &
+  ForPlugin<HeadingForPluginConfig> &
+  ForToolHook<HeadingForToolHookConfig>;
 
-  forPlugin(config?: HeadingForPluginConfig) {
-    const { type } = this;
-    const { disabled = [], hotkey = HEADING_HOTKEY } = config || {};
-    const enabled = HEADING_LEVELS.filter(level => !disabled.includes(level));
+export type CreateHeadingonfig = Partial<NodeType>;
 
-    return {
-      ...HeadingHandlers({ enabled, hotkey, controller: this }),
-      ...HeadingRenderer({ type }),
-      schema: HeadingSchema({ type, enabled })
-    };
-  }
+export function createHeading(config?: CreateHeadingonfig): Heading {
+  const { type = HEADING_TYPE } = config || {};
+  const controller = createHeadingController({ type });
+  return {
+    type,
+    ...controller,
+    forPlugin(config?: HeadingForPluginConfig) {
+      const { disabled = [], hotkey = HEADING_HOTKEY } = config || {};
+      const enabled = HEADING_LEVELS.filter(level => !disabled.includes(level));
 
-  forToolHook(config: HeadingForToolHookConfig): ToolHook {
-    const { level } = config;
-    return editor => ({
-      active: this.isSelectionIn(editor, level),
-      onMouseDown: useCallback(() => this.toggle(editor, level), [editor])
-    });
-  }
+      return {
+        ...createHeadingHandlers({ enabled, hotkey, controller }),
+        ...createHeadingRenderer({ type }),
+        schema: createHeadingSchema({ type, enabled })
+      };
+    },
+    forToolHook(config: HeadingForToolHookConfig): ToolHook {
+      const { level } = config;
+      return editor => ({
+        active: controller.isSelectionIn(editor, level),
+        onMouseDown: useCallback(() => controller.toggle(editor, level), [editor])
+      });
+    }
+  };
 }

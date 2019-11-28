@@ -1,3 +1,3 @@
-export { ITALIC_TYPE, ITALIC_COMPONENT, ITALIC_HOTKEY } from './italic.constants';
-export { ItalicRenderer, Italic } from './italic';
-export { createItalicJsxSerializerRule } from './italic.jsx-serializer';
+export { ITALIC_TYPE, ITALIC_COMPONENT, ITALIC_HOTKEY } from './constants';
+export { createItalic } from './italic';
+export { createItalicJsxSerializerRule } from './jsx-serializer';

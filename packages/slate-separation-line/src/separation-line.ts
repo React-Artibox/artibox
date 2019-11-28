@@ -1,32 +1,34 @@
 import { useCallback } from 'react';
-import { HasNodeType, ToolHook } from '@artibox/slate-common';
-import { SEPARATION_LINE_TYPE } from './separation-line.constants';
-import { SeparationLineController } from './separation-line.controller';
-import { SeparationLineRendererConfig, SeparationLineRenderer } from './separation-line.renderer';
-import { SeparationLineSchema } from './separation-line.schema';
+import { NodeType, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { SEPARATION_LINE_TYPE } from './constants';
+import { SeparationLineController, createSeparationLineController } from './controller';
+import { CreateSeparationLineRendererConfig, createSeparationLineRenderer } from './renderer';
+import { createSeparationLineSchema } from './schema';
 
-export type SeparationLineCreateConfig = Partial<HasNodeType>;
+export type CreateSeparationLineConfig = Partial<NodeType>;
 
-export type SeparationLineForPluginConfig = Omit<SeparationLineRendererConfig, 'type'>;
+export type SeparationLineForPluginConfig = Omit<CreateSeparationLineRendererConfig, 'type'>;
 
-export class SeparationLine extends SeparationLineController {
-  static create(config?: SeparationLineCreateConfig) {
-    const { type = SEPARATION_LINE_TYPE } = config || {};
-    return new this(type);
-  }
+export type SeparationLine = NodeType &
+  SeparationLineController &
+  ForPlugin<SeparationLineForPluginConfig> &
+  ForToolHook<undefined>;
 
-  forPlugin(config?: SeparationLineForPluginConfig) {
-    const { type } = this;
-    const { component } = config || {};
-    return {
-      ...SeparationLineRenderer({ type, component }),
-      schema: SeparationLineSchema({ type })
-    } as const;
-  }
-
-  forToolHook(): ToolHook {
-    return editor => ({
-      onMouseDown: useCallback(() => this.add(editor), [editor])
-    });
-  }
+export function createSeparationLine(config?: CreateSeparationLineConfig): SeparationLine {
+  const { type = SEPARATION_LINE_TYPE } = config || {};
+  const controller = createSeparationLineController({ type });
+  return {
+    type,
+    ...controller,
+    forPlugin(config?: SeparationLineForPluginConfig) {
+      const { component } = config || {};
+      return {
+        ...createSeparationLineRenderer({ type, component }),
+        schema: createSeparationLineSchema({ type })
+      };
+    },
+    forToolHook: () => editor => ({
+      onMouseDown: useCallback(() => controller.add(editor), [editor])
+    })
+  };
 }

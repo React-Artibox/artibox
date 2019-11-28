@@ -1,3 +1,3 @@
-export { STRIKETHROUGH_TYPE, STRIKETHROUGH_COMPONENT, STRIKETHROUGH_HOTKEY } from './strikethrough.constants';
-export { StrikethroughRenderer, Strikethrough } from './strikethrough';
-export { createStrikethroughJsxSerializerRule } from './strikethrough.jsx-serializer';
+export { STRIKETHROUGH_TYPE, STRIKETHROUGH_COMPONENT, STRIKETHROUGH_HOTKEY } from './constants';
+export { createStrikethrough } from './strikethrough';
+export { createStrikethroughJsxSerializerRule } from './jsx-serializer';

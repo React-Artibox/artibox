@@ -1,6 +1,6 @@
 import React, { ReactNode, ReactElement, cloneElement } from 'react';
 import { Value, Node, Document, Block, Inline, Mark, Text } from 'slate';
-import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
 import { JsxSerializerRule } from './types';
 
 export interface CreateJsxSerializerConfig {

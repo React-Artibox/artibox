@@ -1,11 +1,11 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Editor } from 'slate-react';
 import cx from 'classnames';
-import { EditorPassable, ToolInput } from '@artibox/slate-common';
+import { WithEditor, InputData } from '@artibox/slate-common';
 import { useTheme } from '@artibox/components/theme';
 import Portal from '@artibox/components/Portal';
-import { TOOLBAR_DIVIDER } from '../toolbar.constants';
-import { Tool } from '../toolbar.types';
+import { TOOLBAR_DIVIDER } from '../constants';
+import { Tool } from '../types';
 import Divider from './divider';
 import ToolbarIcon from './toolbar-icon';
 import ToolbarInput from './toolbar-input';
@@ -41,7 +41,7 @@ function calculatePosition(el: HTMLElement, editor: Editor, expanded?: boolean) 
   return { top, left };
 }
 
-export interface ToolbarProps extends EditorPassable {
+export interface ToolbarProps extends WithEditor {
   collapsedTools?: Tool[];
   expandedTools?: Tool[];
 }
@@ -49,7 +49,7 @@ export interface ToolbarProps extends EditorPassable {
 function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
-  const [toolInput, setToolInput] = useState<ToolInput | null>(null);
+  const [toolInput, setToolInput] = useState<InputData | null>(null);
   const { fragment, selection } = editor.value;
   const { isFocused, isExpanded } = selection;
   const focusTextEmpty = fragment.text === '';

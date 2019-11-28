@@ -1,49 +1,53 @@
 import { useCallback } from 'react';
 import { Editor } from 'slate';
-import { HasNodeType, ToolInput, ToolHook } from '@artibox/slate-common';
-import { FACEBOOK_TYPE } from './facebook.constants';
-import { FacebookController } from './facebook.controller';
-import { FacebookRendererConfig, FacebookRenderer } from './facebook.renderer';
-import { FacebookSchema } from './facebook.schema';
+import { NodeType, InputData, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { FACEBOOK_TYPE } from './constants';
+import { FacebookController, createFacebookController } from './controller';
+import { CreateFacebookRendererConfig, createFacebookRenderer } from './renderer';
+import { createFacebookSchema } from './schema';
 
-export type FacebookCreateConfig = Partial<HasNodeType>;
-
-export type FacebookForPluginConfig = Omit<FacebookRendererConfig, 'type'>;
+export type FacebookForPluginConfig = Omit<CreateFacebookRendererConfig, 'type'>;
 
 export interface FacebookForToolHookConfig {
-  setToolInput?: (editor: Editor, toolInput: ToolInput) => Editor | void;
+  setToolInput?: (editor: Editor, toolInput: InputData) => Editor | void;
 }
 
-export class Facebook extends FacebookController {
-  static create(config?: FacebookCreateConfig) {
-    const { type = FACEBOOK_TYPE } = config || {};
-    return new this(type);
-  }
+export type Facebook = NodeType &
+  FacebookController &
+  ForPlugin<FacebookForPluginConfig> &
+  ForToolHook<FacebookForToolHookConfig>;
 
-  forPlugin(config?: FacebookForPluginConfig) {
-    const { type } = this;
-    const { component } = config || {};
-    return {
-      ...FacebookRenderer({ component }),
-      schema: FacebookSchema({ type })
-    } as const;
-  }
+export type CreateFacebookConfig = Partial<NodeType>;
 
-  forToolHook(config: FacebookForToolHookConfig): ToolHook {
-    const { setToolInput } = config;
-    const toolInput: ToolInput = {
-      getPlaceholder: locale => locale.editor.facebook.inputPlaceholder,
-      onConfirm: this.add
-    };
+export function createFacebook(config?: CreateFacebookConfig): Facebook {
+  const { type = FACEBOOK_TYPE } = config || {};
+  const controller = createFacebookController({ type });
+  return {
+    type,
+    ...controller,
+    forPlugin(config) {
+      const { component } = config || {};
+      return {
+        ...createFacebookRenderer({ component }),
+        schema: createFacebookSchema({ type })
+      };
+    },
+    forToolHook(config) {
+      const { setToolInput } = config || {};
+      const toolInput: InputData = {
+        getPlaceholder: locale => locale.editor.facebook.inputPlaceholder,
+        onConfirm: controller.add
+      };
 
-    return (editor, defaultSetToolInput) => ({
-      onMouseDown: useCallback(() => {
-        if (setToolInput) {
-          setToolInput(editor, toolInput);
-        } else {
-          defaultSetToolInput(toolInput);
-        }
-      }, [editor, defaultSetToolInput])
-    });
-  }
+      return (editor, defaultSetToolInput) => ({
+        onMouseDown: useCallback(() => {
+          if (setToolInput) {
+            setToolInput(editor, toolInput);
+          } else {
+            defaultSetToolInput(toolInput);
+          }
+        }, [editor, defaultSetToolInput])
+      });
+    }
+  };
 }

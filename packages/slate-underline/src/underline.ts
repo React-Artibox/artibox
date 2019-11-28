@@ -1,7 +1,7 @@
-import { createToggleMark } from '@artibox/slate-toggle-mark';
-import { UNDERLINE_TYPE, UNDERLINE_HOTKEY, UNDERLINE_COMPONENT } from './underline.constants';
+import { createToggleMarkCreator } from '@artibox/slate-toggle-mark';
+import { UNDERLINE_TYPE, UNDERLINE_HOTKEY, UNDERLINE_COMPONENT } from './constants';
 
-export const { Core: Underline, Handlers: UnderlineHandlers, Renderer: UnderlineRenderer } = createToggleMark({
+export const createUnderline = createToggleMarkCreator({
   type: UNDERLINE_TYPE,
   hotkey: UNDERLINE_HOTKEY,
   component: UNDERLINE_COMPONENT

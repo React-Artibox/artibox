@@ -1,3 +1,3 @@
-export { UNDERLINE_TYPE, UNDERLINE_COMPONENT, UNDERLINE_HOTKEY } from './underline.constants';
-export { UnderlineRenderer, Underline } from './underline';
-export { createUnderlineJsxSerializerRule } from './underline.jsx-serializer';
+export { UNDERLINE_TYPE, UNDERLINE_COMPONENT, UNDERLINE_HOTKEY } from './constants';
+export { createUnderline } from './underline';
+export { createUnderlineJsxSerializerRule } from './jsx-serializer';

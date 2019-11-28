@@ -1,9 +1,5 @@
-export { RendererBaseComponent } from './renderer.types';
-export { CommonRendererConfig, NodeIsVoid } from './renderer.interfaces';
-
-export { CommonMarkRendererConfig, CommonMarkRenderer } from './common-mark.renderer';
-export { CommonInlineRendererConfig, CommonInlineRenderer } from './common-inline.renderer';
-export { CommonBlockRendererConfig, CommonBlockRenderer } from './common-block.renderer';
-export { CommonEditorRendererConfig, CommonEditorRenderer } from './common-editor.renderer';
-
-export { ParagraphRenderer } from './paragraph.renderer';
+export { CreateCommonBlockRendererConfig, createCommonBlockRenderer } from './common-block';
+export { CreateCommonEditorRendererConfig, createCommonEditorRenderer } from './common-editor';
+export { CreateCommonInlineRendererConfig, createCommonInlineRenderer } from './common-inline';
+export { CreateCommonMarkRendererConfig, createCommonMarkRenderer } from './common-mark';
+export { createParagraphRenderer } from './paragraph';
