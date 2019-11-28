@@ -4,7 +4,7 @@
     "outDir": "./lib",
     "rootDir": "./src"
   },
-  "references": [{ "path": "../locale" }, { "path": "../icons" }, { "path": "../theme" }],
+  "references": [{ "path": "../locale" }, { "path": "../icons" }],
   "include": ["./src"],
   "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
 }
