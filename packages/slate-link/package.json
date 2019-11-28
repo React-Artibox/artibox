@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "@artibox/components": "^0.0.0",
-    "@artibox/slate-common": "^0.0.0"
+    "@artibox/slate-common": "^0.0.0",
+    "@artibox/slate-jsx-serializer": "^0.0.0"
   },
   "peerDependencies": {
     "react": "^16.8.6",

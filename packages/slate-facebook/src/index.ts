@@ -8,8 +8,7 @@ export {
   FACEBOOK_REG
 } from './facebook.constants';
 export { FacebookEmbedData } from './facebook.interfaces';
-export { getFacebookEmbedDataFromHtmlCode, getSrcFromEmbedData } from './facebook.utils';
-export { FacebookController } from './facebook.controller';
+export { getFacebookEmbedDataFromHtmlCode, getSrcFromEmbedData, getFacebookEmbedDataFromBlock } from './facebook.utils';
 export { FacebookProps } from './facebook.component';
-export { FacebookRendererConfig, FacebookRenderer } from './facebook.renderer';
 export { FacebookCreateConfig, FacebookForPluginConfig, FacebookForToolHookConfig, Facebook } from './facebook';
+export { CreateFacebookJsxSerializerRuleConfig, createFacebookJsxSerializerRule } from './facebook.jsx-serializer';

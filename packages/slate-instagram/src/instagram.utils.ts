@@ -1,3 +1,7 @@
+import { Block } from 'slate';
+import { INSTAGRAM_DATA_KEY_URL } from './instagram.constants';
+import { InstagramProps } from './instagram.component';
+
 export function getInstagramUrlFromEmbedCode(embedCode: string): string | undefined {
   const template = document.createElement('template');
   template.innerHTML = embedCode;
@@ -21,4 +25,8 @@ export function getInstagramUrlFromEmbedCode(embedCode: string): string | undefi
   }
 
   return href.replace(/^https:\/\/www\.instagram\.com\//, '').replace(/\/$/, '');
+}
+
+export function getInstagramPropsFromBlock(block: Block): InstagramProps {
+  return { url: block.data.get(INSTAGRAM_DATA_KEY_URL) || '' };
 }

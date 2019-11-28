@@ -5,8 +5,7 @@ export {
   HEADING_HOTKEY,
   HEADING_DATA_KEY_LEVEL
 } from './heading.constants';
-export { HeadingConfigEnabled } from './heading.interfaces';
-export { getHeadingLevelFromBlock } from './heading.utils';
-export { HeadingController } from './heading.controller';
-export { HeadingRendererConfig, HeadingRenderer } from './heading.renderer';
+export { HeadingLevel, HeadingProps, HeadingConfigEnabled } from './heading.types';
+export { getHeadingLevelFromBlock, getHeadingPropsFromBlock } from './heading.utils';
 export { HeadingCreateConfig, HeadingForPluginConfig, HeadingForToolHookConfig, Heading } from './heading';
+export { CreateHeadingJsxSerializerRuleConfig, createHeadingJsxSerializerRule } from './heading.jsx-serializer';

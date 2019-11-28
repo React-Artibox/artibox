@@ -2,3 +2,4 @@ export { LIST_ORDERED_TYPES, LIST_TYPES, LIST_COMPONENTS } from './list.constant
 export { ListController } from './list.controller';
 export { ListRendererConfig, ListRenderer } from './list.renderer';
 export { ListCreateConfig, ListForToolHookConfig, List } from './list';
+export { CreateListJsxSerializerRulesConfig, createListJsxSerializerRules } from './list.jsx-serializer';

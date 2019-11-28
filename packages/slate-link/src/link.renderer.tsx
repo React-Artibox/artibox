@@ -6,7 +6,7 @@ import {
 } from '@artibox/slate-common/renderers/common-inline.renderer';
 import { CommonEditorRenderer } from '@artibox/slate-common/renderers/common-editor.renderer';
 import { LINK_TYPE } from './link.constants';
-import { getUrlFromInline } from './link.utils';
+import { getLinkPropsFromInline } from './link.utils';
 import Link, { LinkProps } from './link.component';
 import LinkModalProvider, { LinkModalProviderProps } from './link-modal/link-modal.provider';
 
@@ -26,10 +26,7 @@ export function LinkRenderer(config?: LinkRendererConfig): LinkRenderer {
   const inlineRenderer = CommonInlineRenderer({
     type,
     component,
-    getProps: props => ({
-      href: getUrlFromInline(props.node),
-      target: '_blank'
-    })
+    getProps: props => getLinkPropsFromInline(props.node)
   });
 
   if (!renderModal) {

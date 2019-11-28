@@ -1,7 +1,7 @@
 import { Inline, Text, Editor } from 'slate';
 import { HasNodeType } from '@artibox/slate-common';
-import { LINK_DATA_KEY_URL } from './link.constants';
-import { getUrlFromInline } from './link.utils';
+import { LINK_DATA_KEY_HREF } from './link.constants';
+import { getLinkUrlFromInline } from './link.utils';
 
 export abstract class LinkController implements HasNodeType {
   constructor(public readonly type: string) {}
@@ -18,13 +18,13 @@ export abstract class LinkController implements HasNodeType {
   };
   getUrlOfCurrentFirst = (editor: Editor): string | undefined => {
     const link = this.getCurrentFirst(editor);
-    return link ? getUrlFromInline(link) : undefined;
+    return link ? getLinkUrlFromInline(link) : undefined;
   };
 
   createInline = (url: string, text?: string): Inline =>
     Inline.fromJSON({
       type: this.type,
-      data: { [LINK_DATA_KEY_URL]: url },
+      data: { [LINK_DATA_KEY_HREF]: url },
       nodes: text ? [Text.fromJSON({ text })] : undefined
     });
 

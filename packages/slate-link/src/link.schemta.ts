@@ -1,5 +1,5 @@
 import { SchemaProperties } from 'slate';
-import { LINK_DATA_KEY_URL } from './link.constants';
+import { LINK_DATA_KEY_HREF } from './link.constants';
 import { isUrl } from './link.utils';
 import { LinkController } from './link.controller';
 
@@ -15,7 +15,7 @@ export function LinkSchema(config: LinkSchemaConfig): SchemaProperties {
     inlines: {
       [type]: {
         data: {
-          [LINK_DATA_KEY_URL]: isUrl
+          [LINK_DATA_KEY_HREF]: isUrl
         },
         normalize(editor, error) {
           if (error.code === 'node_data_invalid') {

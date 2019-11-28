@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@artibox/slate-common": "^0.0.0",
+    "@artibox/slate-jsx-serializer": "^0.0.0",
     "tslib": "^1.10.0"
   },
   "peerDependencies": {

@@ -1,8 +1,8 @@
 import { SchemaProperties } from 'slate';
 import { HasNodeType } from '@artibox/slate-common';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph.constants';
-import { HEADING_LEVELS, HEADING_DATA_KEY_LEVEL } from './heading.constants';
-import { HeadingConfigEnabled } from './heading.interfaces';
+import { HEADING_DATA_KEY_LEVEL } from './heading.constants';
+import { HeadingLevel, HeadingConfigEnabled } from './heading.types';
 
 export type HeadingSchemaConfig = HasNodeType & HeadingConfigEnabled;
 
@@ -13,7 +13,7 @@ export function HeadingSchema(config: HeadingSchemaConfig): SchemaProperties {
     blocks: {
       [type]: {
         data: {
-          [HEADING_DATA_KEY_LEVEL]: (level: HEADING_LEVELS) => enabled.includes(level)
+          [HEADING_DATA_KEY_LEVEL]: (level: HeadingLevel) => enabled.includes(level)
         },
         normalize: (editor, error) => {
           if (error.code === 'node_data_invalid') {
