@@ -1,59 +1,54 @@
 import { useCallback } from 'react';
-import { HasNodeType, ToolHook } from '@artibox/slate-common';
-import { ToggleMarkHandlersDefaultConfig, ToggleMarkHandlersConfig, ToggleMarkHandlers } from './toggle-mark.handlers';
-import { ToggleMarkRendererDefaultConfig, ToggleMarkRendererConfig, ToggleMarkRenderer } from './toggle-mark.renderer';
-import { ToggleMarkController } from './toggle-mark.controller';
-import { createToggleMarkHandlers } from './toggle-mark.handlers';
-import { createToggleMarkRenderer } from './toggle-mark.renderer';
+import { NodeType, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import {
+  CreateToggleMarkHandlersCreatorDefaultConfig,
+  CreateToggleMarkHandlersCreatorConfig,
+  createToggleMarkHandlersCreator
+} from './handlers';
+import {
+  CreateToggleMarkRendererCreatorDefaultConfig,
+  CreateToggleMarkRendererCreatorConfig,
+  createToggleMarkRendererCreator
+} from './renderer';
+import { ToggleMarkController, createToggleMarkController } from './controller';
 
-export type ToggleMarkDefaultConfig = ToggleMarkHandlersDefaultConfig & ToggleMarkRendererDefaultConfig;
+export type ToggleMarkDefaultConfig = CreateToggleMarkHandlersCreatorDefaultConfig &
+  CreateToggleMarkRendererCreatorDefaultConfig;
 
-export type ToggleMarkCreateConfig = Partial<HasNodeType>;
+export type CreateToggleMarkConfig = Partial<NodeType>;
 
 export type ToggleMarkForPluginConfig = Partial<
-  Omit<ToggleMarkHandlersConfig & ToggleMarkRendererConfig, 'type' | 'controller'>
+  Omit<CreateToggleMarkHandlersCreatorConfig & CreateToggleMarkRendererCreatorConfig, 'type' | 'controller'>
 >;
 
-export interface ToggleMark extends ToggleMarkController {
-  forPlugin(config?: ToggleMarkForPluginConfig): ToggleMarkHandlers & ToggleMarkRenderer;
-  forToolHook(): ToolHook;
-}
+export type ToggleMark = NodeType &
+  ToggleMarkController &
+  ForPlugin<ToggleMarkForPluginConfig> &
+  ForToolHook<undefined>;
 
-export interface ToggleMarkFactory {
-  new (type: string): ToggleMark;
-  create(config?: ToggleMarkCreateConfig): ToggleMark;
-}
+export function createToggleMarkCreator(defaults: ToggleMarkDefaultConfig) {
+  const createHandlers = createToggleMarkHandlersCreator(defaults);
+  const createRenderer = createToggleMarkRendererCreator(defaults);
 
-export function createToggleMark(defaults: ToggleMarkDefaultConfig) {
-  const Handlers = createToggleMarkHandlers(defaults);
-  const Renderer = createToggleMarkRenderer(defaults);
-
-  class Core extends ToggleMarkController implements ToggleMark {
-    static create(config?: ToggleMarkCreateConfig) {
-      const { type = defaults.type } = config || {};
-      return new this(type);
-    }
-
-    forPlugin(config?: ToggleMarkForPluginConfig) {
-      const { type } = this;
-      const { hotkey, component } = config || {};
-      return {
-        ...Handlers({ hotkey, controller: this }),
-        ...Renderer({ type, component })
-      };
-    }
-
-    forToolHook(): ToolHook {
-      return editor => ({
-        active: this.isSelectionIn(editor),
-        onMouseDown: useCallback(() => this.toggle(editor), [editor])
-      });
-    }
+  function createToggleMark(config?: CreateToggleMarkConfig): ToggleMark {
+    const { type = defaults.type } = config || {};
+    const controller = createToggleMarkController({ type });
+    return {
+      type,
+      ...controller,
+      forPlugin(config) {
+        const { hotkey, component } = config || {};
+        return {
+          ...createHandlers({ hotkey, controller }),
+          ...createRenderer({ type, component })
+        };
+      },
+      forToolHook: () => editor => ({
+        active: controller.isSelectionIn(editor),
+        onMouseDown: useCallback(() => controller.toggle(editor), [editor])
+      })
+    };
   }
 
-  return {
-    Core: Core as ToggleMarkFactory,
-    Handlers,
-    Renderer
-  };
+  return createToggleMark;
 }

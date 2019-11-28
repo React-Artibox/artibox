@@ -1,50 +1,50 @@
 import { useCallback } from 'react';
-import { HasNodeType, ToolHook, ToolInput } from '@artibox/slate-common';
-import { LINK_TYPE } from './link.constants';
-import { LinkController } from './link.controller';
-import { LinkRendererConfig, LinkRenderer } from './link.renderer';
-import { LinkSchema } from './link.schemta';
+import { NodeType, InputData, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { LINK_TYPE } from './constants';
+import { LinkController, createLinkController } from './controller';
+import { CreateLinkRendererConfig, createLinkRenderer } from './renderer';
+import { createLinkSchema } from './schemta';
 
-export type LinkCreateConfig = Partial<HasNodeType>;
-
-export type LinkForPluginConfig = LinkRendererConfig;
+export type LinkForPluginConfig = CreateLinkRendererConfig;
 
 export interface LinkForToolHookConfig {
   action?: 'set' | 'remove';
 }
+export type Link = NodeType & LinkController & ForPlugin<LinkForPluginConfig> & ForToolHook<LinkForToolHookConfig>;
 
-export class Link extends LinkController {
-  static create(config?: LinkCreateConfig) {
-    const { type = LINK_TYPE } = config || {};
-    return new this(type);
-  }
+export type CreateLinkConfig = Partial<NodeType>;
 
-  forPlugin(config?: LinkForPluginConfig) {
-    const { type } = this;
-    const { renderModal } = config || {};
-    return {
-      ...LinkRenderer({ type, renderModal }),
-      schema: LinkSchema({ controller: this })
-    } as const;
-  }
+export function createLink(config?: CreateLinkConfig): Link {
+  const { type = LINK_TYPE } = config || {};
+  const controller = createLinkController({ type });
+  return {
+    type,
+    ...controller,
+    forPlugin(config) {
+      const { renderModal } = config || {};
+      return {
+        ...createLinkRenderer({ type, renderModal }),
+        schema: createLinkSchema({ type, controller })
+      };
+    },
+    forToolHook(config?: LinkForToolHookConfig) {
+      const { action = 'set' } = config || {};
+      const activeProvided = action === 'set';
+      const toolInput: InputData = {
+        getPlaceholder: locale => locale.editor.link.inputPlaceholder,
+        onConfirm: controller.set
+      };
 
-  forToolHook(config?: LinkForToolHookConfig): ToolHook {
-    const { action = 'set' } = config || {};
-    const activeProvided = action === 'set';
-    const toolInput: ToolInput = {
-      getPlaceholder: locale => locale.editor.link.inputPlaceholder,
-      onConfirm: this.set
-    };
-
-    return (editor, setToolInput) => ({
-      active: activeProvided && this.isSelectionIn(editor),
-      onMouseDown: useCallback(() => {
-        if (action === 'set') {
-          setToolInput(toolInput);
-        } else if (action === 'remove') {
-          this.remove(editor);
-        }
-      }, [editor])
-    });
-  }
+      return (editor, setToolInput) => ({
+        active: activeProvided && controller.isSelectionIn(editor),
+        onMouseDown: useCallback(() => {
+          if (action === 'set') {
+            setToolInput(toolInput);
+          } else if (action === 'remove') {
+            controller.remove(editor);
+          }
+        }, [editor])
+      });
+    }
+  };
 }

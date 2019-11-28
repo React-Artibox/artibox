@@ -1,10 +1,10 @@
 import React, { KeyboardEventHandler } from 'react';
-import { EditorPassable, ToolInput, SetToolInput } from '@artibox/slate-common';
+import { WithEditor, InputData, SetInputData } from '@artibox/slate-common';
 import { useLocale } from '@artibox/components/locale';
 
-export interface ToolbarInputProps extends EditorPassable {
-  toolInput: ToolInput;
-  setToolInput: SetToolInput;
+export interface ToolbarInputProps extends WithEditor {
+  toolInput: InputData;
+  setToolInput: SetInputData;
 }
 
 function ToolbarInput({ editor, toolInput, setToolInput }: ToolbarInputProps) {

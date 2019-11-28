@@ -1,38 +1,10 @@
-/**
- * @constants
- */
-export { PARAGRAPH_TYPE } from './constants/paragraph.constants';
+export { PARAGRAPH_TYPE } from './constants/paragraph';
 
-/**
- * @types
- */
-export { PickPluginAndRequired } from './types/plugin.types';
-export { ToolInput, SetToolInput, ToolHook } from './types/tool.types';
+export { WithEditor, NodeType, ForPlugin, ForToolHook } from './typings/common';
+export { RendererBaseComponent, CreateCommonRendererConfig, NodeIsVoid } from './typings/renderer';
+export { InputData, SetInputData } from './typings/input';
+export { ToolHook } from './typings/tool';
 
-/**
- * @interfaces
- */
-export { EditorPassable, HasNodeType } from './interfaces/common.interfaces';
-
-/**
- * @utils
- */
 export { isNodeExcludeText } from './utils/is-node-exclude-text';
 
-/**
- * @renderers
- */
-export {
-  RendererBaseComponent,
-  CommonRendererConfig,
-  NodeIsVoid,
-  CommonMarkRendererConfig,
-  CommonMarkRenderer,
-  CommonInlineRendererConfig,
-  CommonInlineRenderer,
-  CommonBlockRendererConfig,
-  CommonBlockRenderer,
-  CommonEditorRendererConfig,
-  CommonEditorRenderer,
-  ParagraphRenderer
-} from './renderers';
+export * from './renderers';

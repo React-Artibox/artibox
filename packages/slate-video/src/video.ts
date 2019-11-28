@@ -1,49 +1,50 @@
 import { useCallback } from 'react';
 import { Editor } from 'slate';
-import { HasNodeType, ToolInput, ToolHook } from '@artibox/slate-common';
-import { VIDEO_TYPE } from './video.constants';
-import { VideoController } from './video.controller';
-import { VideoRendererConfig, VideoRenderer } from './video.renderer';
-import { VideoSchema } from './video.schema';
+import { NodeType, InputData, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { VIDEO_TYPE } from './constants';
+import { VideoController, createVideoContrller } from './controller';
+import { CreateVideoRendererConfig, createVideoRenderer } from './renderer';
+import { createVideoSchema } from './schema';
 
-export type VideoCreateConfig = Partial<HasNodeType>;
+export type CreateVideoConfig = Partial<NodeType>;
 
-export type VideoForPluginConfig = Omit<VideoRendererConfig, 'type'>;
+export type VideoForPluginConfig = Omit<CreateVideoRendererConfig, 'type'>;
 
 export interface VideoForToolHookConfig {
-  setToolInput?: (editor: Editor, toolInput: ToolInput) => Editor | void;
+  setToolInput?: (editor: Editor, toolInput: InputData) => Editor | void;
 }
 
-export class Video extends VideoController {
-  static create(config?: VideoCreateConfig) {
-    const { type = VIDEO_TYPE } = config || {};
-    return new this(type);
-  }
+export type Video = NodeType & VideoController & ForPlugin<VideoForPluginConfig> & ForToolHook<VideoForToolHookConfig>;
 
-  forPlugin(config?: VideoForPluginConfig) {
-    const { type } = this;
-    const { component } = config || {};
-    return {
-      ...VideoRenderer({ type, component }),
-      schema: VideoSchema({ type })
-    } as const;
-  }
+export function createVideo(config?: CreateVideoConfig): Video {
+  const { type = VIDEO_TYPE } = config || {};
+  const contrller = createVideoContrller({ type });
+  return {
+    type,
+    ...contrller,
+    forPlugin(config) {
+      const { component } = config || {};
+      return {
+        ...createVideoRenderer({ type, component }),
+        schema: createVideoSchema({ type })
+      };
+    },
+    forToolHook(config) {
+      const { setToolInput } = config || {};
+      const toolInput: InputData = {
+        getPlaceholder: locale => locale.editor.video.inputPlaceholder,
+        onConfirm: contrller.add
+      };
 
-  forToolHook(config: VideoForToolHookConfig): ToolHook {
-    const { setToolInput } = config;
-    const toolInput: ToolInput = {
-      getPlaceholder: locale => locale.editor.video.inputPlaceholder,
-      onConfirm: this.add
-    };
-
-    return (editor, defaultSetToolInput) => ({
-      onMouseDown: useCallback(() => {
-        if (setToolInput) {
-          setToolInput(editor, toolInput);
-        } else {
-          defaultSetToolInput(toolInput);
-        }
-      }, [editor, defaultSetToolInput])
-    });
-  }
+      return (editor, defaultSetToolInput) => ({
+        onMouseDown: useCallback(() => {
+          if (setToolInput) {
+            setToolInput(editor, toolInput);
+          } else {
+            defaultSetToolInput(toolInput);
+          }
+        }, [editor, defaultSetToolInput])
+      });
+    }
+  };
 }

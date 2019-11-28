@@ -1,14 +1,12 @@
 import { useCallback } from 'react';
-import { HasNodeType, ToolHook } from '@artibox/slate-common';
-import { BLOCKQUOTE_TYPE, BLOCKQUOTE_HOTKEY, BLOCKQUOTE_COMPONENT } from './blockquote.constants';
-import { BlockquoteController } from './blockquote.controller';
-import { BlockquoteHandlersConfig, BlockquoteHandlers } from './blockquote.handlers';
-import { BlockquoteRendererConfig, BlockquoteRenderer } from './blockquote.renderer';
-
-export type BlockquoteCreateConfig = Partial<HasNodeType>;
+import { NodeType, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { BLOCKQUOTE_TYPE, BLOCKQUOTE_HOTKEY, BLOCKQUOTE_COMPONENT } from './constants';
+import { BlockquoteController, createBlockquoteController } from './controller';
+import { CreateBlockquoteHandlersConfig, createBlockquoteHandlers } from './handlers';
+import { CreateBlockquoteRendererConfig, createBlockquoteRenderer } from './renderer';
 
 export type BlockquoteForPluginConfig = Partial<
-  Omit<BlockquoteHandlersConfig & BlockquoteRendererConfig, 'type' | 'controller'>
+  Omit<CreateBlockquoteHandlersConfig & CreateBlockquoteRendererConfig, 'type' | 'controller'>
 >;
 
 export interface BlockquoteForToolHookConfig {
@@ -16,27 +14,32 @@ export interface BlockquoteForToolHookConfig {
   activeNotProvided?: boolean;
 }
 
-export class Blockquote extends BlockquoteController {
-  static create(config?: BlockquoteCreateConfig) {
-    const { type = BLOCKQUOTE_TYPE } = config || {};
-    return new this(type);
-  }
+export type Blockquote = NodeType &
+  BlockquoteController &
+  ForPlugin<BlockquoteForPluginConfig> &
+  ForToolHook<BlockquoteForToolHookConfig>;
 
-  forPlugin(config?: BlockquoteForPluginConfig) {
-    const { hotkey = BLOCKQUOTE_HOTKEY, component = BLOCKQUOTE_COMPONENT } = config || {};
-    const { type } = this;
+export type CreatBlockquoteeConfig = Partial<NodeType>;
 
-    return {
-      ...BlockquoteHandlers({ hotkey, controller: this }),
-      ...BlockquoteRenderer({ type, component })
-    } as const;
-  }
-
-  forToolHook(config?: BlockquoteForToolHookConfig): ToolHook {
-    const { action = 'toggle', activeNotProvided = false } = config || {};
-    return editor => ({
-      active: !activeNotProvided && this.isSelectionIn(editor),
-      onMouseDown: useCallback(() => this[action](editor), [editor])
-    });
-  }
+export function createBlockquote(config?: CreatBlockquoteeConfig): Blockquote {
+  const { type = BLOCKQUOTE_TYPE } = config || {};
+  const controller = createBlockquoteController({ type });
+  return {
+    type,
+    ...controller,
+    forPlugin(config) {
+      const { hotkey = BLOCKQUOTE_HOTKEY, component = BLOCKQUOTE_COMPONENT } = config || {};
+      return {
+        ...createBlockquoteHandlers({ hotkey, controller }),
+        ...createBlockquoteRenderer({ type, component })
+      };
+    },
+    forToolHook(config) {
+      const { action = 'toggle', activeNotProvided = false } = config || {};
+      return editor => ({
+        active: !activeNotProvided && controller.isSelectionIn(editor),
+        onMouseDown: useCallback(() => controller[action](editor), [editor])
+      });
+    }
+  };
 }

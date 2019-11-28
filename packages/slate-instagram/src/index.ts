@@ -1,5 +1,10 @@
-export { INSTAGRAM_TYPE, INSTAGRAM_DATA_KEY_URL, INSTAGRAM_REG } from './instagram.constants';
-export { getInstagramUrlFromEmbedCode, getInstagramPropsFromBlock } from './instagram.utils';
-export { InstagramProps } from './instagram.component';
-export { InstagramCreateConfig, InstagramForPluginConfig, InstagramForToolHookConfig, Instagram } from './instagram';
-export { CreateInstagramJsxSerializerRuleConfig, createInstagramJsxSerializerRule } from './instagram.jsx-serializer';
+export { INSTAGRAM_TYPE, INSTAGRAM_REG } from './constants';
+export { InstagramEmbedApi, InstagramProps } from './types';
+export {
+  InstagramForPluginConfig,
+  InstagramForToolHookConfig,
+  Instagram,
+  CreateInstagramConfig,
+  createInstagram
+} from './instagram';
+export { CreateInstagramJsxSerializerRuleConfig, createInstagramJsxSerializerRule } from './jsx-serializer';

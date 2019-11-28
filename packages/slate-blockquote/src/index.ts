@@ -1,11 +1,9 @@
-export { BLOCKQUOTE_TYPE, BLOCKQUOTE_HOTKEY, BLOCKQUOTE_COMPONENT } from './blockquote.constants';
+export { BLOCKQUOTE_TYPE, BLOCKQUOTE_HOTKEY, BLOCKQUOTE_COMPONENT } from './constants';
 export {
-  BlockquoteCreateConfig,
   BlockquoteForPluginConfig,
   BlockquoteForToolHookConfig,
-  Blockquote
+  Blockquote,
+  CreatBlockquoteeConfig,
+  createBlockquote
 } from './blockquote';
-export {
-  CreateBlockquoteJsxSerializerRuleConfig,
-  createBlockquoteJsxSerializerRule
-} from './blockquote.jsx-serializer';
+export { CreateBlockquoteJsxSerializerRuleConfig, createBlockquoteJsxSerializerRule } from './jsx-serializer';

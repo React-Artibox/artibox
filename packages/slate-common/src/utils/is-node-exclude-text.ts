@@ -8,5 +8,5 @@ export function isNodeExcludeText(node?: Node | null): node is Document | Block 
     return false;
   }
 
-  return 'nodes' in node;
+  return node.object !== 'text';
 }
