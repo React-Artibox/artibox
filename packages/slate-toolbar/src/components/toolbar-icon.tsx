@@ -5,6 +5,7 @@ import Icon from '@artibox/components/Icon';
 import { WithEditor, SetInputData } from '@artibox/slate-common';
 import { TOOLBAR_DIVIDER } from '../constants';
 import { Tool } from '../types';
+import { clsPrefix } from './constants';
 
 interface ToolbarIconInnerProps extends ReturnType<Exclude<Tool, TOOLBAR_DIVIDER>['hook']> {
   icon: IconDefinition;
@@ -13,7 +14,7 @@ interface ToolbarIconInnerProps extends ReturnType<Exclude<Tool, TOOLBAR_DIVIDER
 const ToolbarIconInner = memo<ToolbarIconInnerProps>(
   ({ active, onMouseDown, icon }) => (
     <span
-      className={cx('artibox-toolbar__icon', { 'artibox-toolbar__icon--active': active })}
+      className={cx(`${clsPrefix}__icon`, { [`${clsPrefix}__icon--active`]: active })}
       onMouseDown={event => {
         event.preventDefault();
         onMouseDown(event);
