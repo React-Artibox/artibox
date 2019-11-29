@@ -86,7 +86,7 @@ const Tooltip: FC<TooltipProps> = ({
   if (triggers.includes('hover')) {
     triggerProps.onMouseEnter = clearDelayTimer;
     triggerProps.onMouseLeave = event => {
-      if (!popupRef.current?.contains(event.relatedTarget as any)) {
+      if (!(event.relatedTarget instanceof Node && popupRef.current?.contains(event.relatedTarget))) {
         delaySetVisible(false, mouseLeaveDelay);
       }
     };
