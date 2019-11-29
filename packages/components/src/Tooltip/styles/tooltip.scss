@@ -1,0 +1,108 @@
+$popup-gap: 10px;
+$placement-inverse-map: (
+  top: 'bottom',
+  right: 'left',
+  bottom: 'top',
+  left: 'right'
+);
+
+.artibox-tooltip {
+  &__mask {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20;
+  }
+
+  &__popup {
+    position: absolute;
+    max-width: 250px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+
+    @each $placement, $inverse-placement in $placement-inverse-map {
+      &--#{$placement} {
+        padding-#{$inverse-placement}: $popup-gap;
+      }
+    }
+  }
+
+  &__content {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    padding: 16px;
+    font-size: 13px;
+    white-space: pre-wrap;
+  }
+
+  &__arrow {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: white;
+    border: 1px solid #dbdbdb;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+
+    &--top {
+      top: calc(100% - #{$popup-gap});
+      left: 50%;
+      border-top: none;
+      border-left: none;
+    }
+
+    &--bottom {
+      left: 50%;
+      top: #{$popup-gap};
+      border-bottom: none;
+      border-right: none;
+    }
+
+    &--right {
+      left: #{$popup-gap};
+      top: 50%;
+      border-top: none;
+      border-right: none;
+    }
+
+    &--left {
+      left: calc(100% - #{$popup-gap});
+      top: 50%;
+      border-bottom: none;
+      border-left: none;
+    }
+
+    &--top-left,
+    &--bottom-left {
+      left: #{$popup-gap * 2};
+    }
+
+    &--top-right,
+    &--bottom-right {
+      left: calc(100% - #{$popup-gap * 2});
+    }
+  }
+
+  &__fade {
+    &--enter {
+      opacity: 0.01;
+    }
+
+    &--enter-active {
+      opacity: 1;
+      transition: all 200ms ease-out;
+    }
+
+    &--exit {
+      opacity: 1;
+    }
+
+    &--exit-active {
+      opacity: 0;
+      transition: all 200ms ease-in;
+    }
+  }
+}
