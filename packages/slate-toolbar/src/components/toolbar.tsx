@@ -9,6 +9,7 @@ import { Tool } from '../types';
 import Divider from './divider';
 import ToolbarIcon from './toolbar-icon';
 import ToolbarInput from './toolbar-input';
+import { clsPrefix } from './constants';
 
 function roundNumber(value: number, min: number, max: number) {
   if (value < min) {
@@ -94,7 +95,7 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
 
   return (
     <Portal>
-      <div ref={ref} className={cx('artibox-toolbar', theme)}>
+      <div ref={ref} className={cx(clsPrefix, theme)}>
         {tools.map((tool, index) => {
           if (tool === TOOLBAR_DIVIDER) {
             return <Divider key={index} />;
