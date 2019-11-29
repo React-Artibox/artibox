@@ -75,32 +75,32 @@ const Tooltip: FC<TooltipProps> = ({
   const popupRef = useRef<HTMLDivElement>(null);
   const [firstPlacement, secondPlacement] = placement.split('-');
   const child = Children.only(children) as ReactElement;
-  const triggerProps: HTMLAttributes<HTMLDivElement> = {};
-  const childProps: HTMLAttributes<HTMLElement> = {};
+  const triggerProps: HTMLAttributes<HTMLElement> = {};
+  const popupProps: HTMLAttributes<HTMLDivElement> = {};
 
   if (triggers.includes('click')) {
     const toggle = () => delaySetVisible(prevVisible => !prevVisible, 0);
-    childProps.onClick = composeEventHandlers([toggle, child.props.onClick]);
+    triggerProps.onClick = composeEventHandlers([toggle, child.props.onClick]);
   }
 
   if (triggers.includes('hover')) {
-    triggerProps.onMouseEnter = clearDelayTimer;
-    triggerProps.onMouseLeave = event => {
+    popupProps.onMouseEnter = clearDelayTimer;
+    popupProps.onMouseLeave = event => {
       if (!(event.relatedTarget instanceof Node && popupRef.current?.contains(event.relatedTarget))) {
         delaySetVisible(false, mouseLeaveDelay);
       }
     };
-    childProps.onMouseEnter = composeEventHandlers([
+    triggerProps.onMouseEnter = composeEventHandlers([
       child.props.onMouseEnter,
       () => delaySetVisible(true, mouseEnterDelay)
     ]);
-    childProps.onMouseLeave = composeEventHandlers([
+    triggerProps.onMouseLeave = composeEventHandlers([
       child.props.onMouseLeave,
       () => delaySetVisible(false, mouseLeaveDelay)
     ]);
   }
 
-  const trigger = cloneElement(child, { ...childProps, ref: composeRefs([triggerRef, (child as any).ref]) });
+  const trigger = cloneElement(child, { ...triggerProps, ref: composeRefs([triggerRef, (child as any).ref]) });
 
   useLayoutEffect(() => {
     const triggerEl = triggerRef.current;
@@ -152,7 +152,7 @@ const Tooltip: FC<TooltipProps> = ({
             <div
               className={cx(`${clsPrefix}__popup`, `${clsPrefix}__popup--${firstPlacement}`)}
               ref={popupRef}
-              {...triggerProps}
+              {...popupProps}
             >
               <div
                 className={cx(`${clsPrefix}__arrow`, `${clsPrefix}__arrow--${firstPlacement}`, {
