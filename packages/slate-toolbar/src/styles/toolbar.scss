@@ -1,76 +1,94 @@
+$toolbar-popup-gap: 10px;
+$toolbar-arrow-size: $toolbar-popup-gap;
 $toolbar-height: 40px;
 $toolbar-padding-vertical: 8px;
 $toolbar-padding-horizontal: 10px;
 $toolbar-input-cross-size: 14px;
 
-.artibox {
-  &-toolbar {
+.artibox-toolbar {
+  display: flex;
+  align-items: center;
+  height: $toolbar-height;
+  padding: $toolbar-padding-vertical $toolbar-padding-horizontal;
+  background-color: var(--artibox-toolbar-icon-background);
+  border: 1px solid var(--artibox-toolbar-icon-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &__wrapper {
     position: absolute;
     z-index: 1;
-    display: flex;
-    align-items: center;
+    padding-bottom: $toolbar-popup-gap;
     height: $toolbar-height;
-    margin-top: -6px;
-    padding: $toolbar-padding-vertical $toolbar-padding-horizontal;
-    background-color: var(--artibox-toolbar-icon-background);
-    border: 1px solid var(--artibox-toolbar-icon-color);
-    border-radius: 4px;
-    box-sizing: border-box;
+  }
 
-    &__divider {
-      width: 1px;
-      height: 20px;
-      background-color: var(--artibox-toolbar-icon-color);
-      margin: 0 8px;
+  &__arrow {
+    position: absolute;
+    top: calc(100% - #{$toolbar-popup-gap});
+    left: 50%;
+    content: '';
+    width: $toolbar-arrow-size;
+    height: $toolbar-arrow-size;
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-top: none;
+    border-left: none;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+
+  &__divider {
+    width: 1px;
+    height: 20px;
+    background-color: var(--artibox-toolbar-icon-color);
+    margin: 0 8px;
+  }
+
+  &__icon {
+    position: relative;
+    color: var(--artibox-toolbar-icon-color);
+    font-size: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 9px;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+    transition: color 0.2s ease-out;
+    cursor: pointer;
+
+    &:hover,
+    &--active {
+      color: var(--artibox-primary);
     }
+  }
 
-    &__icon {
-      position: relative;
-      color: var(--artibox-toolbar-icon-color);
-      font-size: 24px;
-      display: inline-flex;
-      justify-content: center;
+  &__input {
+    width: calc(100% - #{$toolbar-input-cross-size});
+    border: none;
+    padding: 0;
+    outline: none;
+
+    &__wrapper {
+      display: flex;
       align-items: center;
-      margin: 0 9px;
-      border: 0;
-      background-color: transparent;
-      padding: 0;
-      outline: none;
-      box-shadow: none;
-      border-radius: 0;
-      transition: color 0.2s ease-out;
-      cursor: pointer;
-
-      &:hover,
-      &--active {
-        color: var(--artibox-primary);
-      }
+      position: absolute;
+      top: $toolbar-padding-vertical;
+      left: $toolbar-padding-horizontal;
+      width: calc(100% - #{$toolbar-padding-horizontal * 2});
+      height: calc(100% - #{$toolbar-padding-vertical * 2 + $toolbar-popup-gap});
+      background: var(--artibox-toolbar-icon-background);
+      box-sizing: border-box;
     }
 
-    &__input {
-      width: calc(100% - #{$toolbar-input-cross-size});
-      border: none;
-      padding: 0;
-      outline: none;
-
-      &__wrapper {
-        display: flex;
-        align-items: center;
-        position: absolute;
-        top: $toolbar-padding-vertical;
-        left: $toolbar-padding-horizontal;
-        width: calc(100% - #{$toolbar-padding-horizontal} * 2);
-        height: calc(100% - #{$toolbar-padding-vertical} * 2);
-        background: var(--artibox-toolbar-icon-background);
-        box-sizing: border-box;
-      }
-
-      &__cross {
-        font-size: $toolbar-input-cross-size;
-        width: 1em;
-        height: 1em;
-        cursor: pointer;
-      }
+    &__cross {
+      font-size: $toolbar-input-cross-size;
+      width: 1em;
+      height: 1em;
+      cursor: pointer;
     }
   }
 }
