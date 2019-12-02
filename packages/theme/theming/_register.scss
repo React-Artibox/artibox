@@ -1,6 +1,7 @@
 @import './themes/components/tooltip';
-@import './themes/toolbar';
 @import './themes/editor';
+@import './themes/input-block';
+@import './themes/toolbar';
 
 @mixin artibox-theme($name, $palette) {
   .artibox-theme-#{$name} {
@@ -20,8 +21,9 @@
     }
 
     @include artibox-tooltip-theme($palette);
-    @include artibox-toolbar-theme($palette);
     @include artibox-editor-theme($palette);
+    @include artibox-input-block-theme($palette);
+    @include artibox-toolbar-theme($palette);
 
     @content;
   }

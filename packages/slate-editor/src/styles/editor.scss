@@ -1,4 +1,9 @@
 .artibox-editor {
   background-color: var(--artibox-editor-background);
   border: solid 1px var(--artibox-editor-border);
+  color: var(--artibox-editor-color);
+
+  &__placeholder {
+    color: var(--artibox-editor-placeholder);
+  }
 }

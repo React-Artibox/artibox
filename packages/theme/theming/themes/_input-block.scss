@@ -1,0 +1,12 @@
+@import '../utils/map-get-deep';
+@import '../utils/custom-palette-register';
+
+@mixin artibox-input-block-theme($palette) {
+  @include custom-palette-register(
+    $palette,
+    input-block,
+    (
+      placeholder: map-get-deep($palette, neutral, 4)
+    )
+  );
+}

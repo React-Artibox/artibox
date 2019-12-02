@@ -8,9 +8,10 @@
     (
       background: map-get-deep($palette, neutral, 9),
       border: map-get-deep($palette, neutral, 7),
-      divider: map-get-deep($palette, neutral, 7),
-      icon: map-get-deep($palette, neutral, 7),
-      icon-active: map-get-deep($palette, primary, default)
+      divider: map-get-deep($palette, neutral, 6),
+      icon: map-get-deep($palette, neutral, 4),
+      icon-active: map-get-deep($palette, primary, default),
+      input: map-get-deep($palette, neutral, 4)
     )
   );
 }
