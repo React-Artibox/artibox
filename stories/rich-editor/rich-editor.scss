@@ -1,7 +1,7 @@
-@import '../../packages/theme/theming/palettes/default';
+@import '../../packages/theme/theming/palettes/artibox';
 @import '../../packages/theme/theming/utils/map-get-deep';
 
-$rich-editor-locale-primary: map-get-deep($artibox-default-palette, primary, default);
+$rich-editor-locale-primary: map-get-deep($artibox-palette-artibox, primary, default);
 
 .rich-editor {
   margin-bottom: 100px;
