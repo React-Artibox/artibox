@@ -8,10 +8,9 @@ const PLACEHOLDER_TYPE = 'placeholder' as const;
 const placeholderStyle: CSSProperties = {
   pointerEvents: 'none',
   display: 'inline-block',
-  width: '0',
+  width: 0,
   maxWidth: '100%',
   whiteSpace: 'nowrap',
-  opacity: '0.333',
   verticalAlign: 'text-top'
 };
 
@@ -21,7 +20,7 @@ const Placeholder: FC = ({ children }) => {
 
   return (
     <span>
-      <span contentEditable={false} style={placeholderStyle}>
+      <span className="artibox-editor__placeholder" contentEditable={false} style={placeholderStyle}>
         {placeholder}
       </span>
       {children}
@@ -31,26 +30,13 @@ const Placeholder: FC = ({ children }) => {
 
 export const placeholder: Plugin = {
   decorateNode(node, editor, next) {
+    const others = next();
+
     if (editor.value.document.text !== '' || editor.value.document.nodes.size > 1 || !isNodeExcludeText(node)) {
-      return next();
+      return others;
     }
 
-    const others = next();
-    const [first] = node.texts({});
-    const [last] = node.texts({ direction: 'backward' });
-    const [firstNode, firstPath] = first;
-    const [lastNode, lastPath] = last;
-    const decoration = {
-      type: PLACEHOLDER_TYPE,
-      anchor: { key: firstNode.key, offset: 0, path: firstPath },
-      focus: {
-        key: lastNode.key,
-        offset: lastNode.text.length,
-        path: lastPath
-      }
-    };
-
-    return [...others, decoration];
+    return [...others, { type: PLACEHOLDER_TYPE }];
   },
   renderDecoration: (props, _, next) =>
     props.decoration.type === PLACEHOLDER_TYPE ? <Placeholder>{props.children}</Placeholder> : next()

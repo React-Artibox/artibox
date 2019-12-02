@@ -1,0 +1,9 @@
+.artibox-input-block {
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+
+  &__placeholder {
+    color: var(--artibox-input-block-placeholder);
+  }
+}

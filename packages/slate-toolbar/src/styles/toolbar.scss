@@ -67,7 +67,10 @@ $toolbar-input-cross-size: 14px;
   }
 
   &__input {
+    font-size: 13px;
+    color: var(--artibox-toolbar-input);
     width: calc(100% - #{$toolbar-input-cross-size});
+    height: 100%;
     border: none;
     padding: 0;
     outline: none;
@@ -85,6 +88,7 @@ $toolbar-input-cross-size: 14px;
     }
 
     &__cross {
+      fill: var(--artibox-toolbar-input);
       font-size: $toolbar-input-cross-size;
       width: 1em;
       height: 1em;

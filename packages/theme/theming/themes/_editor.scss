@@ -7,7 +7,9 @@
     editor,
     (
       background: map-get-deep($palette, neutral, 8),
-      border: map-get-deep($palette, neutral, 7)
+      border: map-get-deep($palette, neutral, 8),
+      color: map-get-deep($palette, neutral, 0),
+      placeholder: map-get-deep($palette, neutral, 4)
     )
   );
 }
