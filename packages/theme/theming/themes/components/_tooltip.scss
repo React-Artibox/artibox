@@ -7,7 +7,8 @@
     tooltip,
     (
       background: map-get-deep($palette, neutral, 9),
-      border: map-get-deep($palette, neutral, 7)
+      border: map-get-deep($palette, neutral, 7),
+      color: map-get-deep($palette, neutral, 0)
     )
   );
 }
