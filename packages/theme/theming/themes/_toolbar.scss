@@ -11,7 +11,7 @@
       divider: map-get-deep($palette, neutral, 6),
       icon: map-get-deep($palette, neutral, 4),
       icon-active: map-get-deep($palette, primary, default),
-      input: map-get-deep($palette, neutral, 4)
+      input: map-get-deep($palette, neutral, 5)
     )
   );
 }

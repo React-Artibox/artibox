@@ -6,7 +6,7 @@
     $palette,
     input-block,
     (
-      placeholder: map-get-deep($palette, neutral, 4)
+      placeholder: map-get-deep($palette, neutral, 5)
     )
   );
 }
