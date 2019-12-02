@@ -41,7 +41,7 @@ export function RichEditor() {
           EN
         </LocaleButton>
       </div>
-      <ArtiboxEditor className="rich-editor" value={value} onChange={onChange} locale={locale} theme="default" />
+      <ArtiboxEditor className="rich-editor" value={value} onChange={onChange} locale={locale} theme="artibox" />
     </>
   );
 }

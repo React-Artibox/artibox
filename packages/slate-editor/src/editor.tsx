@@ -1,4 +1,4 @@
-import '@artibox/theme/default';
+import '@artibox/theme/artibox';
 import React from 'react';
 import { Editor, EditorProps, Plugin } from 'slate-react';
 import cx from 'classnames';

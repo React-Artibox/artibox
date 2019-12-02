@@ -9,7 +9,7 @@ export interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ theme, children }: ThemeProviderProps) {
-  const themeName = `artibox-theme-${theme || 'default'}`;
+  const themeName = `artibox-theme-${theme || 'artibox'}`;
 
   return (
     <ThemeContext.Provider value={themeName}>
