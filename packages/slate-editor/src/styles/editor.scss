@@ -2,6 +2,8 @@
   background-color: var(--artibox-editor-background);
   border: solid 1px var(--artibox-editor-border);
   color: var(--artibox-editor-color);
+  transition: background-color 300ms ease-in-out, border-color 300ms ease-in-out, color 300ms ease-in-out;
+  will-change: background-color, border-color, color;
 
   &__placeholder {
     color: var(--artibox-editor-placeholder);

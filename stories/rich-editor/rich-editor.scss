@@ -1,8 +1,3 @@
-@import '../../packages/theme/theming/palettes/artibox';
-@import '../../packages/theme/theming/utils/map-get-deep';
-
-$rich-editor-locale-primary: map-get-deep($artibox-palette-artibox, primary, default);
-
 .rich-editor {
   margin-bottom: 100px;
   padding: 40px 80px;
@@ -10,40 +5,52 @@ $rich-editor-locale-primary: map-get-deep($artibox-palette-artibox, primary, def
   min-height: 800px;
   box-sizing: border-box;
 
-  &__locale {
+  &__toggle-buttons {
+    display: inline-flex;
+    align-items: center;
+
+    &:not(:first-of-type) {
+      margin-left: 20px;
+    }
+  }
+
+  &__toggle-button {
+    min-width: 60px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    background: white;
+    border-radius: 45%;
+    border: 1px solid var(--artibox-primary);
+    padding: 0 15px;
+    outline: none;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+    will-change: background-color, border-color, color;
+    user-select: none;
+    cursor: pointer;
+
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &--active {
+      color: white;
+      background: var(--artibox-primary);
+    }
+  }
+
+  &__settings {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin: 15px 0;
-
-    &__button {
-      min-width: 60px;
-      height: 30px;
-      font-size: 14px;
-      line-height: 1.5;
-      text-align: center;
-      background: #fff;
-      border-radius: 45%;
-      border: 1px solid $rich-editor-locale-primary;
-      padding: 0 15px;
-      outline: none;
-      user-select: none;
-      cursor: pointer;
-
-      &:first-child {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-
-      &:last-child {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-
-      &--active {
-        background: $rich-editor-locale-primary;
-      }
-    }
   }
 
   blockquote {

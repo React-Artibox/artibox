@@ -8,8 +8,12 @@ export interface ThemeProviderProps {
   children: ReactNode | ((theme: string) => ReactNode);
 }
 
+export function resolveThemeName(theme?: string) {
+  return `artibox-theme-${theme || 'artibox'}`;
+}
+
 export function ThemeProvider({ theme, children }: ThemeProviderProps) {
-  const themeName = `artibox-theme-${theme || 'artibox'}`;
+  const themeName = resolveThemeName(theme);
 
   return (
     <ThemeContext.Provider value={themeName}>
