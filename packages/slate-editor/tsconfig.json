@@ -4,12 +4,7 @@
     "outDir": "./lib",
     "rootDir": "./src"
   },
-  "references": [
-    { "path": "../components" },
-    { "path": "../locale" },
-    { "path": "../slate-common" },
-    { "path": "../theme" }
-  ],
+  "references": [{ "path": "../components" }, { "path": "../locale" }, { "path": "../slate-common" }],
   "include": ["./src"],
   "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
 }

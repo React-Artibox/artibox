@@ -1,28 +1,27 @@
-import React, { useState, useCallback, FC } from 'react';
+import '@artibox/theme/artibox';
+import '@artibox/theme/artibox-dark';
+
+import React, { useState, useCallback, useMemo } from 'react';
 import { OnChangeFn } from 'slate-react';
 import cx from 'classnames';
 import { createArtiboxEditor } from '@artibox/slate-editor';
-import { LocaleDefinition } from '@artibox/locale';
 import { enUS } from '@artibox/locale/en-US';
 import { zhTW } from '@artibox/locale/zh-TW';
+import { resolveThemeName } from '@artibox/components/theme';
 import { initialValue } from './value';
 import { plugins } from './plugins';
+import ToggleButtons from './toggle-buttons';
 import './rich-editor.scss';
 
-interface LocaleButtonProps {
-  active: boolean;
-  locale: LocaleDefinition;
-  setLocale: (locale: LocaleDefinition) => void;
-}
+const themes = [
+  { value: 'artibox', label: 'Light' },
+  { value: 'artibox-dark', label: 'Dark' }
+];
 
-const LocaleButton: FC<LocaleButtonProps> = ({ children, active, locale, setLocale }) => (
-  <button
-    className={cx('rich-editor__locale__button', { 'rich-editor__locale__button--active': active })}
-    onClick={() => setLocale(locale)}
-  >
-    {children}
-  </button>
-);
+const locales = [
+  { value: zhTW, label: '中文' },
+  { value: enUS, label: 'EN' }
+];
 
 const ArtiboxEditor = createArtiboxEditor({ plugins });
 
@@ -30,18 +29,21 @@ export function RichEditor() {
   const [value, setValue] = useState(initialValue);
   const onChange = useCallback<OnChangeFn>(change => setValue(change.value), []);
   const [locale, setLocale] = useState(zhTW);
+  const [theme, setTheme] = useState('artibox');
+  const settings = useMemo(
+    () => (
+      <div className={cx('rich-editor__settings', resolveThemeName(theme))}>
+        <ToggleButtons value={theme} items={themes} onChange={setTheme} />
+        <ToggleButtons value={locale} items={locales} onChange={setLocale} />
+      </div>
+    ),
+    [theme, locale]
+  );
 
   return (
     <>
-      <div className="rich-editor__locale">
-        <LocaleButton active={locale === zhTW} locale={zhTW} setLocale={setLocale}>
-          中文
-        </LocaleButton>
-        <LocaleButton active={locale === enUS} locale={enUS} setLocale={setLocale}>
-          EN
-        </LocaleButton>
-      </div>
-      <ArtiboxEditor className="rich-editor" value={value} onChange={onChange} locale={locale} theme="artibox" />
+      {settings}
+      <ArtiboxEditor className="rich-editor" value={value} onChange={onChange} theme={theme} locale={locale} />
     </>
   );
 }

@@ -1,0 +1,1 @@
+import './artibox-dark.scss';
