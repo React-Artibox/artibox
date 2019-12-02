@@ -1,0 +1,16 @@
+@import '../utils/map-get-deep';
+@import '../utils/custom-palette-register';
+
+@mixin artibox-toolbar-theme($palette) {
+  @include custom-palette-register(
+    $palette,
+    toolbar,
+    (
+      background: map-get-deep($palette, neutral, 9),
+      border: map-get-deep($palette, neutral, 7),
+      divider: map-get-deep($palette, neutral, 7),
+      icon: map-get-deep($palette, neutral, 7),
+      icon-active: map-get-deep($palette, primary, default)
+    )
+  );
+}

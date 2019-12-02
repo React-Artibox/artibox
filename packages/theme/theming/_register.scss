@@ -1,0 +1,28 @@
+@import './themes/components/tooltip';
+@import './themes/toolbar';
+@import './themes/editor';
+
+@mixin artibox-theme($name, $palette) {
+  .artibox-theme-#{$name} {
+    $primary: map-get($palette, primary);
+    $neutral: map-get($palette, neutral);
+
+    @each $name, $color in $primary {
+      @if $name == default {
+        --artibox-primary: #{$color};
+      } @else {
+        --artibox-primary-#{$name}: #{$color};
+      }
+    }
+
+    @each $level, $color in $neutral {
+      --artibox-neutral-#{$level}: #{$color};
+    }
+
+    @include artibox-tooltip-theme($palette);
+    @include artibox-toolbar-theme($palette);
+    @include artibox-editor-theme($palette);
+
+    @content;
+  }
+}

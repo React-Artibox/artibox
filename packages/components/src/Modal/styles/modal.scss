@@ -2,8 +2,9 @@
   position: relative;
   font-size: 14px;
   line-height: 1.5;
+  background-color: var(--artibox-modal-background);
   border-radius: 4px;
-  background-color: #fff;
+  border: 1px solid var(--artibox-modal-border);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   top: 100px;
   width: 520px;
@@ -31,7 +32,7 @@
     display: flex;
     align-items: center;
     padding: 16px 24px;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid var(--artibox-modal-border);
     border-radius: 4px 4px 0 0;
   }
 
@@ -54,7 +55,7 @@
     padding: 10px 16px;
     text-align: right;
     background: transparent;
-    border-top: 1px solid #e8e8e8;
+    border-top: 1px solid var(--artibox-modal-border);
     border-radius: 0 0 4px 4px;
   }
 

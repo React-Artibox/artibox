@@ -1,0 +1,9 @@
+@function map-get-deep($map, $keys...) {
+  $result: $map;
+
+  @each $key in $keys {
+    $result: map-get($result, $key);
+  }
+
+  @return $result;
+}

@@ -10,8 +10,8 @@ $toolbar-input-cross-size: 14px;
   align-items: center;
   height: $toolbar-height;
   padding: $toolbar-padding-vertical $toolbar-padding-horizontal;
-  background-color: var(--artibox-toolbar-icon-background);
-  border: 1px solid var(--artibox-toolbar-icon-color);
+  background-color: var(--artibox-toolbar-background);
+  border: 1px solid var(--artibox-toolbar-border);
   border-radius: 4px;
   box-sizing: border-box;
 
@@ -29,8 +29,8 @@ $toolbar-input-cross-size: 14px;
     content: '';
     width: $toolbar-arrow-size;
     height: $toolbar-arrow-size;
-    background: white;
-    border: 1px solid #dbdbdb;
+    background: var(--artibox-toolbar-background);
+    border: 1px solid var(--artibox-toolbar-border);
     border-top: none;
     border-left: none;
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
@@ -39,13 +39,13 @@ $toolbar-input-cross-size: 14px;
   &__divider {
     width: 1px;
     height: 20px;
-    background-color: var(--artibox-toolbar-icon-color);
+    background-color: var(--artibox-toolbar-divider);
     margin: 0 8px;
   }
 
   &__icon {
     position: relative;
-    color: var(--artibox-toolbar-icon-color);
+    color: var(--artibox-toolbar-icon);
     font-size: 24px;
     display: inline-flex;
     justify-content: center;
@@ -62,7 +62,7 @@ $toolbar-input-cross-size: 14px;
 
     &:hover,
     &--active {
-      color: var(--artibox-primary);
+      color: var(--artibox-toolbar-icon-active);
     }
   }
 
@@ -80,7 +80,7 @@ $toolbar-input-cross-size: 14px;
       left: $toolbar-padding-horizontal;
       width: calc(100% - #{$toolbar-padding-horizontal * 2});
       height: calc(100% - #{$toolbar-padding-vertical * 2 + $toolbar-popup-gap});
-      background: var(--artibox-toolbar-icon-background);
+      background: var(--artibox-toolbar-background);
       box-sizing: border-box;
     }
 
