@@ -33,6 +33,7 @@ $placement-inverse-map: (
   &__content {
     background-color: var(--artibox-tooltip-background);
     border: 1px solid var(--artibox-tooltip-border);
+    color: var(--artibox-tooltip-color);
     border-radius: 4px;
     padding: 16px;
     font-size: 13px;
