@@ -46,8 +46,8 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const { fragment, selection } = editor.value;
   const { isFocused, isExpanded } = selection;
   const focusTextEmpty = fragment.text === '';
-  const expanded = !!((isExpanded || toolInput) && !focusTextEmpty && expandedTools);
-  const collapsed = !expanded && isFocused && collapsedTools;
+  const expanded = !!(((isExpanded && isFocused) || toolInput) && !focusTextEmpty && expandedTools);
+  const collapsed = !!(((!isExpanded && isFocused) || toolInput) && collapsedTools);
   let tools: Tool[] | undefined;
 
   if (expanded) {
@@ -99,7 +99,7 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
 
             return <ToolbarIcon key={icon.name} icon={icon} hook={hook} editor={editor} setToolInput={setToolInput} />;
           })}
-          {expanded && toolInput && <ToolbarInput editor={editor} toolInput={toolInput} setToolInput={setToolInput} />}
+          {toolInput && <ToolbarInput editor={editor} toolInput={toolInput} setToolInput={setToolInput} />}
         </div>
       </div>
     </Portal>
