@@ -6,6 +6,7 @@ import { ThemeProvider } from '@artibox/components/theme';
 import { LocaleProvider } from '@artibox/components/locale';
 import { LocaleDefinition } from '@artibox/locale';
 import { placeholder } from './placeholder';
+import './styles';
 
 export interface CreateArtiboxEditorConfig {
   plugins?: Plugin[];
@@ -24,7 +25,7 @@ export function createArtiboxEditor(config: CreateArtiboxEditorConfig) {
     return (
       <LocaleProvider locale={locale}>
         <ThemeProvider theme={theme}>
-          {themeName => <Editor className={cx(className, themeName)} plugins={plugins} {...props} />}
+          {themeName => <Editor className={cx('artibox-editor', themeName, className)} plugins={plugins} {...props} />}
         </ThemeProvider>
       </LocaleProvider>
     );

@@ -1,5 +1,8 @@
-.artibox-theme-default {
-  --artibox-primary: rgb(171, 220, 220);
-  --artibox-toolbar-icon-color: rgb(219, 219, 219);
-  --artibox-toolbar-icon-background: rgb(255, 255, 255);
+@import '../../theming/palettes/default';
+@import '../../theming/common';
+@import '../../theming/register';
+
+@include artibox-theme('default', $artibox-default-palette) {
+  @include artibox-caret;
+  @include artibox-selection;
 }

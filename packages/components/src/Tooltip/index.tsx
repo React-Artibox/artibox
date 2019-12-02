@@ -18,6 +18,7 @@ import { TooltipTrigger, TooltipProps } from './types';
 import { composeRefs } from '../utils/compose-refs';
 import { composeEventHandlers } from '../utils/compose-event-handlers';
 import { calculatePosition } from './calculate-position';
+import { useTheme } from '../theme';
 import './styles';
 
 const clsPrefix = 'artibox-tooltip';
@@ -48,6 +49,7 @@ const Tooltip: FC<TooltipProps> = ({
   mouseEnterDelay = 0,
   mouseLeaveDelay = 0.1
 }) => {
+  const theme = useTheme();
   const [visible, setVisible] = useState(false);
   const delayTimer = useRef(NaN);
   const clearDelayTimer = useCallback(() => {
@@ -150,7 +152,7 @@ const Tooltip: FC<TooltipProps> = ({
         <CSSTransition in={visible} classNames={transitionClassNames} timeout={200} unmountOnExit>
           <div className={`${clsPrefix}__mask`}>
             <div
-              className={cx(`${clsPrefix}__popup`, `${clsPrefix}__popup--${firstPlacement}`)}
+              className={cx(theme, `${clsPrefix}__popup`, `${clsPrefix}__popup--${firstPlacement}`)}
               ref={popupRef}
               {...popupProps}
             >

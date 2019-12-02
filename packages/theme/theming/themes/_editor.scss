@@ -1,0 +1,13 @@
+@import '../utils/map-get-deep';
+@import '../utils/custom-palette-register';
+
+@mixin artibox-editor-theme($palette) {
+  @include custom-palette-register(
+    $palette,
+    editor,
+    (
+      background: map-get-deep($palette, neutral, 8),
+      border: map-get-deep($palette, neutral, 7)
+    )
+  );
+}

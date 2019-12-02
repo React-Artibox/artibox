@@ -19,7 +19,8 @@
   "scripts": {
     "clean": "npm run build:clean",
     "build:clean": "rm -rf ./{esm,lib} && rm -rf ./*.tsbuildinfo",
-    "build": "tsc && tsc -m esnext -outDir esm"
+    "build:css": "rollup --config rollup.config.js",
+    "build": "tsc && tsc -m esnext -outDir esm && npm run build:css"
   },
   "dependencies": {
     "@artibox/components": "^0.0.0",
