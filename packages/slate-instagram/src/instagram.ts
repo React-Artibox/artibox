@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Editor } from 'slate';
-import { NodeType, InputData, ToolHook, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { NodeType, InputConfig, ToolHook, ForPlugin, ForToolHook } from '@artibox/slate-common';
 import { INSTAGRAM_TYPE } from './constants';
 import { InstagramController, createInstagramController } from './controller';
 import { CreateInstagramRendererConfig, createInstagramRenderer } from './renderer';
@@ -9,7 +9,7 @@ import { createInstagramSchema } from './schema';
 export type InstagramForPluginConfig = Omit<CreateInstagramRendererConfig, 'type'>;
 
 export interface InstagramForToolHookConfig {
-  setToolInput?: (editor: Editor, toolInput: InputData) => Editor | void;
+  setToolInput?: (editor: Editor, toolInput: InputConfig) => Editor | void;
 }
 
 export type Instagram = NodeType &
@@ -34,7 +34,7 @@ export function createInstagram(config?: CreateInstagramConfig): Instagram {
     },
     forToolHook(config: InstagramForToolHookConfig): ToolHook {
       const { setToolInput } = config;
-      const toolInput: InputData = {
+      const toolInput: InputConfig = {
         getPlaceholder: locale => locale.editor.instagram.inputPlaceholder,
         onConfirm: controller.add
       };

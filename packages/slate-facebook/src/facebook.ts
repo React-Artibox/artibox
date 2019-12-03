@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Editor } from 'slate';
-import { NodeType, InputData, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { NodeType, InputConfig, ForPlugin, ForToolHook } from '@artibox/slate-common';
 import { FACEBOOK_TYPE } from './constants';
 import { FacebookController, createFacebookController } from './controller';
 import { CreateFacebookRendererConfig, createFacebookRenderer } from './renderer';
@@ -9,7 +9,7 @@ import { createFacebookSchema } from './schema';
 export type FacebookForPluginConfig = Omit<CreateFacebookRendererConfig, 'type'>;
 
 export interface FacebookForToolHookConfig {
-  setToolInput?: (editor: Editor, toolInput: InputData) => Editor | void;
+  setToolInput?: (editor: Editor, toolInput: InputConfig) => Editor | void;
 }
 
 export type Facebook = NodeType &
@@ -34,7 +34,7 @@ export function createFacebook(config?: CreateFacebookConfig): Facebook {
     },
     forToolHook(config) {
       const { setToolInput } = config || {};
-      const toolInput: InputData = {
+      const toolInput: InputConfig = {
         getPlaceholder: locale => locale.editor.facebook.inputPlaceholder,
         onConfirm: controller.add
       };

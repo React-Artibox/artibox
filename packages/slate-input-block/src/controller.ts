@@ -1,10 +1,10 @@
 import { Editor, Block } from 'slate';
-import { NodeType, InputData } from '@artibox/slate-common';
+import { NodeType, InputConfig } from '@artibox/slate-common';
 
 export interface InputBlockController {
   isSelectionIn(editor: Editor): boolean;
   getCurrent(editor: Editor): Block | null;
-  start(editor: Editor, data: InputData): Editor;
+  start(editor: Editor, data: InputConfig): Editor;
   cancel(editor: Editor): Editor;
   confirm(editor: Editor): Editor;
 }
@@ -40,7 +40,7 @@ export function createInputBlockContrller(config: CreateInputBlockContrllerConfi
     }
 
     const { text, data } = block;
-    const onConfirm: InputData['onConfirm'] = data.get('onConfirm');
+    const onConfirm: InputConfig['onConfirm'] = data.get('onConfirm');
     return onConfirm(cancel(editor), text);
   };
 
