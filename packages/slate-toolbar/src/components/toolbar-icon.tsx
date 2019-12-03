@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import cx from 'classnames';
 import { IconDefinition } from '@artibox/icons';
 import Icon from '@artibox/components/Icon';
-import { WithEditor, SetInputData } from '@artibox/slate-common';
+import { WithEditor, SetInputConfig } from '@artibox/slate-common';
 import { TOOLBAR_DIVIDER } from '../constants';
 import { Tool } from '../types';
 import { clsPrefix } from './constants';
@@ -27,7 +27,7 @@ const ToolbarIconInner = memo<ToolbarIconInnerProps>(
 );
 
 export interface ToolbarIconProps extends WithEditor, Exclude<Tool, TOOLBAR_DIVIDER> {
-  setToolInput: SetInputData;
+  setToolInput: SetInputConfig;
 }
 
 function ToolbarIcon({ icon, hook, editor, setToolInput }: ToolbarIconProps) {

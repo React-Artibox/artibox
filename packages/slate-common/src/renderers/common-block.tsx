@@ -8,6 +8,9 @@ export type CreateCommonBlockRendererConfig<P extends RenderAttributes = RenderA
 > &
   NodeIsVoid;
 
+/**
+ * Create the render methods for common block.
+ */
 export function createCommonBlockRenderer<P extends RenderAttributes = RenderAttributes>(
   config: CreateCommonBlockRendererConfig<P>
 ): Plugin {

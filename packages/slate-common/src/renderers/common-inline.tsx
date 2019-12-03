@@ -6,6 +6,9 @@ export type CreateCommonInlineRendererConfig<
   P extends RenderAttributes = RenderAttributes
 > = CreateCommonRendererConfig<RenderInlineProps, P> & NodeIsVoid;
 
+/**
+ * Create the render methods for common inline.
+ */
 export function createCommonInlineRenderer<P extends RenderAttributes = RenderAttributes>(
   config: CreateCommonInlineRendererConfig<P>
 ): Plugin {

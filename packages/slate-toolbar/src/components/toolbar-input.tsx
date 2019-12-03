@@ -1,11 +1,11 @@
 import React, { KeyboardEventHandler, KeyboardEvent, MouseEvent } from 'react';
-import { WithEditor, InputData, SetInputData } from '@artibox/slate-common';
+import { WithEditor, InputConfig, SetInputConfig } from '@artibox/slate-common';
 import { useLocale } from '@artibox/components/locale';
 import { clsPrefix } from './constants';
 
 export interface ToolbarInputProps extends WithEditor {
-  toolInput: InputData;
-  setToolInput: SetInputData;
+  toolInput: InputConfig;
+  setToolInput: SetInputConfig;
 }
 
 function ToolbarInput({ editor, toolInput, setToolInput }: ToolbarInputProps) {

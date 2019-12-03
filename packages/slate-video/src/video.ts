@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Editor } from 'slate';
-import { NodeType, InputData, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { NodeType, InputConfig, ForPlugin, ForToolHook } from '@artibox/slate-common';
 import { VIDEO_TYPE } from './constants';
 import { VideoController, createVideoContrller } from './controller';
 import { CreateVideoRendererConfig, createVideoRenderer } from './renderer';
@@ -11,7 +11,7 @@ export type CreateVideoConfig = Partial<NodeType>;
 export type VideoForPluginConfig = Omit<CreateVideoRendererConfig, 'type'>;
 
 export interface VideoForToolHookConfig {
-  setToolInput?: (editor: Editor, toolInput: InputData) => Editor | void;
+  setToolInput?: (editor: Editor, toolInput: InputConfig) => Editor | void;
 }
 
 export type Video = NodeType & VideoController & ForPlugin<VideoForPluginConfig> & ForToolHook<VideoForToolHookConfig>;
@@ -31,7 +31,7 @@ export function createVideo(config?: CreateVideoConfig): Video {
     },
     forToolHook(config) {
       const { setToolInput } = config || {};
-      const toolInput: InputData = {
+      const toolInput: InputConfig = {
         getPlaceholder: locale => locale.editor.video.inputPlaceholder,
         onConfirm: contrller.add
       };

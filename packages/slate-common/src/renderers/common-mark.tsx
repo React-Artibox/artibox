@@ -7,6 +7,9 @@ export type CreateCommonMarkRendererConfig<P extends RenderAttributes = RenderAt
   P
 >;
 
+/**
+ * Create the render methods for common mark.
+ */
 export function createCommonMarkRenderer<P extends RenderAttributes = RenderAttributes>(
   config: CreateCommonMarkRendererConfig<P>
 ): Plugin {

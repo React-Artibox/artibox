@@ -6,6 +6,9 @@ export interface CreateCommonEditorRendererConfig {
   render: (editor: Editor, el: ReactNode) => ReactNode;
 }
 
+/**
+ * Create the render methods for common editor.
+ */
 export function createCommonEditorRenderer(config: CreateCommonEditorRendererConfig): Plugin {
   const { render } = config;
 

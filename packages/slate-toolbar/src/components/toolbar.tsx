@@ -1,6 +1,6 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import cx from 'classnames';
-import { WithEditor, InputData } from '@artibox/slate-common';
+import { WithEditor, InputConfig } from '@artibox/slate-common';
 import { useTheme } from '@artibox/components/theme';
 import Portal from '@artibox/components/Portal';
 import { TOOLBAR_DIVIDER } from '../constants';
@@ -42,7 +42,7 @@ export interface ToolbarProps extends WithEditor {
 function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
-  const [toolInput, setToolInput] = useState<InputData | null>(null);
+  const [toolInput, setToolInput] = useState<InputConfig | null>(null);
   const { fragment, selection } = editor.value;
   const { isFocused, isExpanded } = selection;
   const focusTextEmpty = fragment.text === '';

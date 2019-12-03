@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { NodeType, InputData, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { NodeType, InputConfig, ForPlugin, ForToolHook } from '@artibox/slate-common';
 import { LINK_TYPE } from './constants';
 import { LinkController, createLinkController } from './controller';
 import { CreateLinkRendererConfig, createLinkRenderer } from './renderer';
@@ -30,7 +30,7 @@ export function createLink(config?: CreateLinkConfig): Link {
     forToolHook(config?: LinkForToolHookConfig) {
       const { action = 'set' } = config || {};
       const activeProvided = action === 'set';
-      const toolInput: InputData = {
+      const toolInput: InputConfig = {
         getPlaceholder: locale => locale.editor.link.inputPlaceholder,
         onConfirm: controller.set
       };
