@@ -13,6 +13,7 @@
     "at-rule-empty-line-before": [
       "always",
       {
+        "ignore": ["first-nested"],
         "ignoreAtRules": ["import", "include", "if", "else"]
       }
     ],
