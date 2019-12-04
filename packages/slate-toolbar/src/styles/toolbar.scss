@@ -84,6 +84,7 @@ $toolbar-input-cross-size: 14px;
       left: $toolbar-padding-horizontal;
       width: calc(100% - #{$toolbar-padding-horizontal * 2});
       height: calc(100% - #{$toolbar-padding-vertical * 2 + $toolbar-popup-gap});
+      background: var(--artibox-toolbar-background);
       box-sizing: border-box;
     }
 
