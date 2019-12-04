@@ -1,5 +1,6 @@
 import React, { CSSProperties, memo, forwardRef, useEffect } from 'react';
-import { InstagramEmbedApi, InstagramProps } from '../types';
+import { InstagramProps } from '../typings';
+import { loadInstagramApi } from '../utils/load-instagram-api';
 
 const instagramStyle: CSSProperties = {
   background: '#fff',
@@ -13,40 +14,13 @@ const instagramStyle: CSSProperties = {
   width: 'calc(100% - 2px)'
 };
 
-function getInstagramEmbedApi(): InstagramEmbedApi | undefined {
-  return (window as any).instgrm;
-}
-
-function useLoadInstagramApi() {
-  useEffect(() => {
-    let instgrm = getInstagramEmbedApi();
-
-    if (instgrm) {
-      instgrm.Embeds.process();
-      return;
-    }
-
-    const script = document.createElement('script');
-
-    script.src = '//www.instagram.com/embed.js';
-    script.onload = () => {
-      instgrm = getInstagramEmbedApi();
-
-      if (instgrm) {
-        instgrm.Embeds.process();
-      }
-
-      script.remove();
-    };
-    script.async = true;
-
-    document.body.appendChild(script);
-  }, []);
-}
-
+/**
+ * Default component of both renderer of editor and jsx serializer rule of instagram.
+ */
 const Instagram = forwardRef<HTMLElement, InstagramProps>(({ url, ...props }, ref) => {
   const permalink = `https://www.instagram.com/${url}`;
-  useLoadInstagramApi();
+
+  useEffect(() => loadInstagramApi(), []);
 
   return (
     <blockquote

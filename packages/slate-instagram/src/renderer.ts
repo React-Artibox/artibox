@@ -4,7 +4,7 @@ import {
 } from '@artibox/slate-common/renderers/common-block';
 import { INSTAGRAM_TYPE } from './constants';
 import { getInstagramPropsFromBlock } from './utils/get-instagram-props-from-block';
-import { InstagramProps } from './types';
+import { InstagramProps } from './typings';
 import Instagram from './components/instagram';
 
 export type CreateInstagramRendererConfig = Partial<
