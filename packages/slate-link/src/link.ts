@@ -8,7 +8,10 @@ import { createLinkSchema } from './schemta';
 export type LinkForPluginConfig = CreateLinkRendererConfig;
 
 export interface LinkForToolHookConfig {
-  action?: 'set' | 'remove';
+  /**
+   * The command of controller of link will be triggered after clicked.
+   */
+  command?: 'set' | 'remove';
 }
 export type Link = NodeType & LinkController & ForPlugin<LinkForPluginConfig> & ForToolHook<LinkForToolHookConfig>;
 
@@ -28,19 +31,19 @@ export function createLink(config?: CreateLinkConfig): Link {
       };
     },
     forToolHook(config?: LinkForToolHookConfig) {
-      const { action = 'set' } = config || {};
-      const activeProvided = action === 'set';
-      const toolInput: InputConfig = {
+      const { command = 'set' } = config || {};
+      const activeProvided = command === 'set';
+      const inputConfig: InputConfig = {
         getPlaceholder: locale => locale.editor.link.inputPlaceholder,
         onConfirm: controller.set
       };
 
-      return (editor, setToolInput) => ({
+      return (editor, setInputConfig) => ({
         active: activeProvided && controller.isSelectionIn(editor),
         onMouseDown: useCallback(() => {
-          if (action === 'set') {
-            setToolInput(toolInput);
-          } else if (action === 'remove') {
+          if (command === 'set') {
+            setInputConfig(inputConfig);
+          } else if (command === 'remove') {
             controller.remove(editor);
           }
         }, [editor])

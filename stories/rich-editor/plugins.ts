@@ -73,7 +73,7 @@ export const plugins: Plugin[] = [
       { icon: Strikethrough, hook: strikethrough.forToolHook() },
       { icon: Highlight, hook: highlight.forToolHook() },
       { icon: Link, hook: link.forToolHook() },
-      { icon: Unlink, hook: link.forToolHook({ action: 'remove' }) }
+      { icon: Unlink, hook: link.forToolHook({ command: 'remove' }) }
     ],
     collapsedTools: [
       { icon: Heading1, hook: heading.forToolHook({ level: 1 }) },

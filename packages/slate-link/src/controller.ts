@@ -1,15 +1,37 @@
-import { Inline, Text, Editor } from 'slate';
+import { Inline, Editor } from 'slate';
 import { NodeType } from '@artibox/slate-common';
 import { getLinkUrlFromInline } from './utils/get-link-url-from-inline';
+import { createLinkInline } from './utils/create-link-inline';
 
 export interface LinkController {
+  /**
+   * Check if the inline is link.
+   */
   isInlineAs(inline?: Inline | null): boolean;
+  /**
+   * Check if there are some links in the current selection.
+   */
   isSelectionIn(editor: Editor): boolean;
+  /**
+   * Get all links in the current selection.
+   */
   getCurrentAll(editor: Editor): Inline[];
+  /**
+   * Get the first link in the current selection.
+   */
   getCurrentFirst(editor: Editor): Inline | null;
+  /**
+   * Get url of the first link in the current selection.
+   */
   getUrlOfCurrentFirst(editor: Editor): string | undefined;
-  createInline(url: string, text?: string): Inline;
+  /**
+   * Remove all links in the current selection.
+   */
   remove(editor: Editor): Editor;
+  /**
+   * 1. If exapnded, set the selected text as link.
+   * 2. If collapsed, insert a text and set it as link.
+   */
   set(editor: Editor, url: string, text?: string): Editor;
 }
 
@@ -28,31 +50,20 @@ export function createLinkController(config: CreateLinkControllerConfig): LinkCo
     const link = getCurrentFirst(editor);
     return link ? getLinkUrlFromInline(link) : undefined;
   };
-  const createInline: LinkController['createInline'] = (url, text) =>
-    Inline.fromJSON({
-      type,
-      data: { href: url },
-      nodes: text ? [Text.fromJSON({ text })] : undefined
-    });
-  const remove: LinkController['remove'] = editor => {
-    const hasAnyLink = isSelectionIn(editor);
-
-    if (!hasAnyLink) {
-      return editor;
-    }
-
-    return getCurrentAll(editor).reduce((prev, inline) => prev!.unwrapInline(inline!.type), editor);
-  };
+  const remove: LinkController['remove'] = editor =>
+    isSelectionIn(editor)
+      ? getCurrentAll(editor).reduce((prev, inline) => prev!.unwrapInline(inline!.type), editor)
+      : editor;
   const set: LinkController['set'] = (editor, url, text) => {
     const { isExpanded } = editor.value.selection;
 
     if (isExpanded) {
-      return remove(editor).wrapInline(createInline(url));
+      return remove(editor).wrapInline(createLinkInline(type, url));
     } else if (!text) {
       return editor;
     }
 
-    return editor.insertInline(createInline(url, text));
+    return editor.insertInline(createLinkInline(type, url, text));
   };
 
   return {
@@ -61,7 +72,6 @@ export function createLinkController(config: CreateLinkControllerConfig): LinkCo
     getCurrentAll,
     getCurrentFirst,
     getUrlOfCurrentFirst,
-    createInline,
     remove,
     set
   };
