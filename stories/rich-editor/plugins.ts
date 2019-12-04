@@ -84,7 +84,7 @@ export const plugins: Plugin[] = [
       { icon: OrderedList, hook: list.forToolHook({ orderedType: 'ordered' }) },
       TOOLBAR_DIVIDER,
       { icon: SeparationLine, hook: separationLine.forToolHook() },
-      { icon: Video, hook: video.forToolHook({ setToolInput: inputBlock.start }) },
+      { icon: Video, hook: video.forToolHook({ setInputConfig: inputBlock.start }) },
       { icon: Instagram, hook: instagram.forToolHook({ setInputConfig: inputBlock.start }) },
       { icon: Facebook, hook: facebook.forToolHook({ setInputConfig: inputBlock.start }) }
     ]

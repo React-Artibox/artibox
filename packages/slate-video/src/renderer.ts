@@ -3,17 +3,13 @@ import {
   CreateCommonBlockRendererConfig,
   createCommonBlockRenderer
 } from '@artibox/slate-common/renderers/common-block';
-import { VIDEO_TYPE } from './constants';
 import { getVideoPropsFromBlock } from './utils/get-video-props-from-block';
-import { VideoProps } from './types';
-import Video from './components/video';
+import { VideoProps } from './typings';
 
-export type CreateVideoRendererConfig = Partial<
-  Pick<CreateCommonBlockRendererConfig<VideoProps>, 'type' | 'component'>
->;
+export type CreateVideoRendererConfig = Pick<CreateCommonBlockRendererConfig<VideoProps>, 'type' | 'component'>;
 
-export function createVideoRenderer(config?: CreateVideoRendererConfig): Plugin {
-  const { type = VIDEO_TYPE, component = Video } = config || {};
+export function createVideoRenderer(config: CreateVideoRendererConfig): Plugin {
+  const { type, component } = config;
   return createCommonBlockRenderer({
     type,
     component,

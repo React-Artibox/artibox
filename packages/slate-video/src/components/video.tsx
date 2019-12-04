@@ -1,25 +1,16 @@
-import React, { memo, useRef, useState, useCallback, useLayoutEffect, forwardRef } from 'react';
-import { VideoProps } from '../types';
+import React, { memo, forwardRef, useMemo, useRef, useState, useLayoutEffect } from 'react';
+import { composeRefs } from '@artibox/components/utils/compose-refs';
+import { VideoProps } from '../typings';
+import { videoSourceSerializers } from '../source-serializers';
 
-const Video = forwardRef<HTMLDivElement, VideoProps>(({ src, ...props }, ref) => {
+/**
+ * Default component of both renderer of editor and jsx serializer rule of video.
+ */
+const Video = forwardRef<HTMLDivElement, VideoProps>(({ id, provider, ...props }, ref) => {
+  const src = useMemo(() => videoSourceSerializers[provider].deserialize(id), [id, provider]);
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
-  const refs = [ref, containerRef];
-  const combinedRef = useCallback(
-    (element: HTMLDivElement) =>
-      refs.forEach(ref => {
-        if (!ref) {
-          return;
-        }
-
-        if (typeof ref === 'function') {
-          return ref(element);
-        }
-
-        (ref as any).current = element;
-      }),
-    refs
-  );
+  const composedRef = composeRefs([ref, containerRef]);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -31,7 +22,7 @@ const Video = forwardRef<HTMLDivElement, VideoProps>(({ src, ...props }, ref) =>
   }, [containerRef]);
 
   return (
-    <div ref={combinedRef} {...props}>
+    <div ref={composedRef} {...props}>
       <div style={size}>
         <iframe src={src} frameBorder="0" width="100%" height="100%" />
       </div>

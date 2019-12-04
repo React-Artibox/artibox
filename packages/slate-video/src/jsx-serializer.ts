@@ -2,7 +2,7 @@ import { Block } from 'slate';
 import { CreateJsxSerializerRuleConfig, createJsxSerializerRule } from '@artibox/slate-jsx-serializer/rule';
 import { VIDEO_TYPE } from './constants';
 import { getVideoPropsFromBlock } from './utils/get-video-props-from-block';
-import { VideoProps } from './types';
+import { VideoProps } from './typings';
 import Video from './components/video';
 
 export type CreateVideoJsxSerializerRuleConfig = Partial<

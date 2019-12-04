@@ -1,69 +1,56 @@
 import { VIDEO_PROVIDERS } from './constants';
+import { VideoProvider } from './typings';
 
 export interface VideoSourceSerializeResult {
-  src: string;
-  provider: VIDEO_PROVIDERS;
-}
-
-export interface VideoSourceSerialize {
-  (src: string): VideoSourceSerializeResult | null;
-  template: string;
-  reg: RegExp;
+  id: string;
+  provider: VideoProvider;
 }
 
 export interface VideoSourceSerializer {
-  serialize: VideoSourceSerialize;
-  deserialize: VideoSourceSerialize;
+  serialize(src: string): VideoSourceSerializeResult | null;
+  deserialize(id: string): string;
 }
 
 export type VideoSourceSerializers = {
-  [p in VIDEO_PROVIDERS]: VideoSourceSerializer;
+  [p in VideoProvider]: VideoSourceSerializer;
 };
 
-function createVideoSourceSerialize(provider: VIDEO_PROVIDERS, config: [string, RegExp]): VideoSourceSerialize {
-  const [template, reg] = config;
-  const serialize: VideoSourceSerialize = src => {
-    const result = reg.exec(src);
-    if (!result) {
-      return null;
-    }
+type CreateVideoSourceSerializerConfig = {
+  [p in VideoProvider]: {
+    reg: RegExp;
+    template: string;
+  };
+};
 
-    const [, id] = result;
-    return {
-      src: template.replace('{{id}}', id),
-      provider
+function createVideoSourceSerializers(config: CreateVideoSourceSerializerConfig): VideoSourceSerializers {
+  return (Object.keys(config) as VideoProvider[]).reduce((serializers, provider) => {
+    const { reg, template } = config[provider];
+    serializers[provider] = {
+      serialize: src => {
+        const result = reg.exec(src);
+        if (!result) {
+          return null;
+        }
+
+        const [, id] = result;
+        return { id, provider };
+      },
+      deserialize: id => template.replace('{{id}}', id)
     };
-  };
-
-  serialize.template = template;
-  serialize.reg = reg;
-
-  return serialize;
+    return serializers;
+  }, {} as VideoSourceSerializers);
 }
 
-function createVideoSourceSerializer(
-  provider: VIDEO_PROVIDERS,
-  serialize: [string, RegExp],
-  deserialize: [string, RegExp] = serialize
-): VideoSourceSerializer {
-  return {
-    serialize: createVideoSourceSerialize(provider, serialize),
-    deserialize: createVideoSourceSerialize(provider, deserialize)
-  };
-}
-
-export const videoSourceSerializers: VideoSourceSerializers = {
-  youtube: createVideoSourceSerializer(
-    'youtube',
-    ['https://www.youtube.com/embed/{{id}}', /^https:\/\/www.youtube.com\/watch\?v=([\w-]*)/i],
-    ['https://www.youtube.com/watch?v={{id}}', /^https:\/\/www.youtube.com\/embed\/([\w-]*)/i]
-  ),
-  vimeo: createVideoSourceSerializer(
-    'vimeo',
-    ['https://player.vimeo.com/video/{{id}}', /^https:\/\/vimeo.com\/([\w-]*)/i],
-    ['https://vimeo.com/{{id}}', /^https:\/\/player.vimeo.com\/video\/([\w-]*)/i]
-  )
-};
+export const videoSourceSerializers = createVideoSourceSerializers({
+  youtube: {
+    reg: /^https:\/\/www.youtube.com\/watch\?v=([\w-]*)/i,
+    template: 'https://www.youtube.com/embed/{{id}}'
+  },
+  vimeo: {
+    reg: /^https:\/\/vimeo.com\/([\w-]*)/i,
+    template: 'https://player.vimeo.com/video/{{id}}'
+  }
+});
 
 export function serializeVideoSource(src: string): VideoSourceSerializeResult | undefined {
   let ret: VideoSourceSerializeResult | undefined;
