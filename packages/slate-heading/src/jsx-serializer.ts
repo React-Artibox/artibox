@@ -1,7 +1,7 @@
 import { Block } from 'slate';
 import { CreateJsxSerializerRuleConfig, createJsxSerializerRule } from '@artibox/slate-jsx-serializer/rule';
 import { HEADING_TYPE } from './constants';
-import { HeadingProps } from './types';
+import { HeadingProps } from './typings';
 import { getHeadingPropsFromBlock } from './utils/get-heading-props-from-block';
 import Heading from './components/heading';
 

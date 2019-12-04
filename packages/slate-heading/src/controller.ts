@@ -1,32 +1,35 @@
 import { Block, Editor } from 'slate';
 import { NodeType } from '@artibox/slate-common';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
-import { HeadingLevel } from './types';
+import { HeadingLevel } from './typings';
 import { getHeadingLevelFromBlock } from './utils/get-heading-level-from-block';
+import { createHeadingBlock } from './utils/create-heading-block';
 
 export interface HeadingController {
   /**
-   * To check if the block is heading.
+   * Check if the block is heading.
    */
   isBlockAs(block?: Block | null): block is Block;
   /**
-   * To check if the current selection is heading in the specific level.
+   * Check if the current selection is heading in the specific level.
    */
   isSelectionIn(editor: Editor, level: HeadingLevel): boolean;
+  /**
+   * Get the heading block in the current selection.
+   */
   getCurrent(editor: Editor): Block | null;
   /**
-   * To get the level of the heading in current selection.
+   * Get the level of the heading block in the current selection.
    *
    * @returns Will be number if the block is heading, or undefined.
    */
   getCurrentLevel(editor: Editor): HeadingLevel | undefined;
-  createBlock(level: HeadingLevel): Block;
   /**
-   * To end the heading block and add one paragraph block below the heading.
+   * End the heading block and add one paragraph block below the heading.
    */
   end(editor: Editor): Editor;
   /**
-   * To set the current block to be heading if it is not heading or the same heading level, or unset heading.
+   * Set the current block to be heading if it is not heading or not the same heading level, or unset heading.
    */
   toggle(editor: Editor, level: HeadingLevel): Editor;
 }
@@ -45,32 +48,13 @@ export function createHeadingController(config: CreateHeadingControllerConfig): 
   };
   const getCurrentLevel: HeadingController['getCurrentLevel'] = editor => {
     const currentBlock = getCurrent(editor);
-
-    if (!currentBlock) {
-      return undefined;
-    }
-
-    const level = getHeadingLevelFromBlock(currentBlock);
-
-    if (typeof level === 'number') {
-      return level as HeadingLevel;
-    }
-
-    return undefined;
+    return currentBlock ? getHeadingLevelFromBlock(currentBlock) : undefined;
   };
-  const createBlock: HeadingController['createBlock'] = level => Block.fromJSON({ type, data: { level } });
-  const end: HeadingController['end'] = editor => {
-    const currentBlock = editor.value.startBlock;
-
-    if (!isBlockAs(currentBlock)) {
-      return editor;
-    }
-
-    return editor.splitBlock().setBlocks(PARAGRAPH_TYPE);
-  };
+  const end: HeadingController['end'] = editor =>
+    isBlockAs(editor.value.startBlock) ? editor.splitBlock().setBlocks(PARAGRAPH_TYPE) : editor;
   const toggle: HeadingController['toggle'] = (editor, level) => {
     const currentLevel = getCurrentLevel(editor);
-    const block = currentLevel !== level ? createBlock(level) : PARAGRAPH_TYPE;
+    const block = currentLevel !== level ? createHeadingBlock(type, level) : PARAGRAPH_TYPE;
     return editor.setBlocks(block);
   };
 
@@ -79,7 +63,6 @@ export function createHeadingController(config: CreateHeadingControllerConfig): 
     isSelectionIn,
     getCurrent,
     getCurrentLevel,
-    createBlock,
     end,
     toggle
   };
