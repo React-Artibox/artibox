@@ -1,5 +1,5 @@
 export { INSTAGRAM_TYPE, INSTAGRAM_REG } from './constants';
-export { InstagramEmbedApi, InstagramProps } from './types';
+export { InstagramEmbedApi, InstagramProps } from './typings';
 export {
   InstagramForPluginConfig,
   InstagramForToolHookConfig,

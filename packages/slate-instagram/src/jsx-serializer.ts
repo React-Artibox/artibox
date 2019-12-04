@@ -1,7 +1,7 @@
 import { Block } from 'slate';
 import { CreateJsxSerializerRuleConfig, createJsxSerializerRule } from '@artibox/slate-jsx-serializer/rule';
 import { INSTAGRAM_TYPE } from './constants';
-import { InstagramProps } from './types';
+import { InstagramProps } from './typings';
 import { getInstagramPropsFromBlock } from './utils/get-instagram-props-from-block';
 import Instagram from './components/instagram';
 
