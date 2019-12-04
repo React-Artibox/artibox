@@ -2,8 +2,9 @@ import { Plugin } from 'slate-react';
 import { NodeType } from '@artibox/slate-common';
 import { createCommonBlockRenderer } from '@artibox/slate-common/renderers';
 import { INPUT_BLOCK_TYPE } from './constants';
-import { InputBlockProps } from './types';
+import { InputBlockProps } from './typings';
 import InputBlock from './components/input-block';
+import { getInputBlockPropsFromBlock } from './utils/get-input-block-props-from-block';
 
 export type CreateInputBlockRendererConfig = NodeType;
 
@@ -12,6 +13,6 @@ export function createInputBlockRenderer(config: CreateInputBlockRendererConfig)
   return createCommonBlockRenderer<InputBlockProps>({
     type,
     component: InputBlock,
-    getProps: props => ({ isEmpty: props.node.text === '', getPlaceholder: props.node.data.get('getPlaceholder') })
+    getProps: props => getInputBlockPropsFromBlock(props.node)
   });
 }

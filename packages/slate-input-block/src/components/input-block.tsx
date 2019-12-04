@@ -1,6 +1,6 @@
 import React, { CSSProperties, forwardRef } from 'react';
 import { useLocale } from '@artibox/components/locale';
-import { InputBlockProps } from '../types';
+import { InputBlockProps } from '../typings';
 import '../styles';
 
 const placeholderStyle: CSSProperties = {
