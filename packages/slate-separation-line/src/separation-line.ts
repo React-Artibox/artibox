@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { NodeType, ForPlugin, ForToolHook } from '@artibox/slate-common';
-import { SEPARATION_LINE_TYPE } from './constants';
+import { SEPARATION_LINE_TYPE, SEPARATION_LINE_COMPONENT } from './constants';
 import { SeparationLineController, createSeparationLineController } from './controller';
 import { CreateSeparationLineRendererConfig, createSeparationLineRenderer } from './renderer';
 import { createSeparationLineSchema } from './schema';
@@ -21,7 +21,7 @@ export function createSeparationLine(config?: CreateSeparationLineConfig): Separ
     type,
     ...controller,
     forPlugin(config?: SeparationLineForPluginConfig) {
-      const { component } = config || {};
+      const { component = SEPARATION_LINE_COMPONENT } = config || {};
       return {
         ...createSeparationLineRenderer({ type, component }),
         schema: createSeparationLineSchema({ type })

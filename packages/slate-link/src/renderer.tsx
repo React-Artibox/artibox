@@ -6,10 +6,8 @@ import {
   createCommonInlineRenderer
 } from '@artibox/slate-common/renderers/common-inline';
 import { createCommonEditorRenderer } from '@artibox/slate-common/renderers/common-editor';
-import { LINK_TYPE } from './constants';
 import { getLinkPropsFromInline } from './utils/get-link-props-from-inline';
 import { LinkProps } from './typings';
-import Link from './components/link';
 import LinkModalProvider, { LinkModalProviderProps } from './components/link-modal/link-modal-provider';
 
 export type LinkRendererRenderModal = (
@@ -18,12 +16,12 @@ export type LinkRendererRenderModal = (
 ) => ReactNode;
 
 export interface CreateLinkRendererConfig
-  extends Partial<Pick<CreateCommonInlineRendererConfig<LinkProps>, 'type' | 'component'>> {
+  extends Pick<CreateCommonInlineRendererConfig<LinkProps>, 'type' | 'component'> {
   renderModal?: LinkRendererRenderModal;
 }
 
-export function createLinkRenderer(config?: CreateLinkRendererConfig): Plugin {
-  const { type = LINK_TYPE, renderModal, component = Link } = config || {};
+export function createLinkRenderer(config: CreateLinkRendererConfig): Plugin {
+  const { type, renderModal, component } = config;
   const inlineRenderer = createCommonInlineRenderer({
     type,
     component,

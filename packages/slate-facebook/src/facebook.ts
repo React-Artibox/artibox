@@ -5,6 +5,7 @@ import { FACEBOOK_TYPE } from './constants';
 import { FacebookController, createFacebookController } from './controller';
 import { CreateFacebookRendererConfig, createFacebookRenderer } from './renderer';
 import { createFacebookSchema } from './schema';
+import Facebook from './components/facebook';
 
 export type FacebookForPluginConfig = Omit<CreateFacebookRendererConfig, 'type'>;
 
@@ -29,9 +30,9 @@ export function createFacebook(config?: CreateFacebookConfig): Facebook {
     type,
     ...controller,
     forPlugin(config) {
-      const { component } = config || {};
+      const { component = Facebook } = config || {};
       return {
-        ...createFacebookRenderer({ component }),
+        ...createFacebookRenderer({ type, component }),
         schema: createFacebookSchema({ type })
       };
     },

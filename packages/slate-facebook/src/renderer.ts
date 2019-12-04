@@ -2,18 +2,13 @@ import {
   CreateCommonBlockRendererConfig,
   createCommonBlockRenderer
 } from '@artibox/slate-common/renderers/common-block';
-import { FACEBOOK_TYPE } from './constants';
 import { getFacebookEmbedDataFromBlock } from './utils/get-facebook-embed-data-from-block';
 import { FacebookProps } from './typings';
-import Facebook from './components/facebook';
 
-export type CreateFacebookRendererConfig = Partial<
-  Pick<CreateCommonBlockRendererConfig<FacebookProps>, 'type' | 'component'>
->;
+export type CreateFacebookRendererConfig = Pick<CreateCommonBlockRendererConfig<FacebookProps>, 'type' | 'component'>;
 
-export function createFacebookRenderer(config?: CreateFacebookRendererConfig) {
-  const { type = FACEBOOK_TYPE, component = Facebook } = config || {};
-
+export function createFacebookRenderer(config: CreateFacebookRendererConfig) {
+  const { type, component } = config;
   return createCommonBlockRenderer({
     type,
     component,

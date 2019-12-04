@@ -4,6 +4,7 @@ import { LINK_TYPE } from './constants';
 import { LinkController, createLinkController } from './controller';
 import { CreateLinkRendererConfig, createLinkRenderer } from './renderer';
 import { createLinkSchema } from './schemta';
+import Link from './components/link';
 
 export type LinkForPluginConfig = CreateLinkRendererConfig;
 
@@ -24,9 +25,9 @@ export function createLink(config?: CreateLinkConfig): Link {
     type,
     ...controller,
     forPlugin(config) {
-      const { renderModal } = config || {};
+      const { component = Link, renderModal } = config || {};
       return {
-        ...createLinkRenderer({ type, renderModal }),
+        ...createLinkRenderer({ type, component, renderModal }),
         schema: createLinkSchema({ type, controller })
       };
     },
