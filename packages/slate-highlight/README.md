@@ -80,8 +80,8 @@ This package is based on based on [@artibox/slate-toggle-mark](../slate-toggle-m
 
 | OS                       | Shortcut                     |
 | ------------------------ | ---------------------------- |
-| ![Apple Logo][apple]     | <kbd>⌘</kbd>+<kbd>i</kbd>    |
-| ![Windows Logo][windows] | <kbd>ctrl</kbd>+<kbd>i</kbd> |
+| ![Apple Logo][apple]     | <kbd>⌘</kbd>+<kbd>h</kbd>    |
+| ![Windows Logo][windows] | <kbd>ctrl</kbd>+<kbd>h</kbd> |
 
 [apple]: https://cdn2.iconfinder.com/data/icons/designer-skills/128/apple-ios-system-platform-os-mac-linux-48.png
 [windows]: https://cdn2.iconfinder.com/data/icons/designer-skills/128/windows-48.png
