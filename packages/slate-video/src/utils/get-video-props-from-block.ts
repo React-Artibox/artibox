@@ -1,7 +1,9 @@
 import { Block } from 'slate';
-import { VideoProps } from '../types';
-import { getVideoSourceFromBlock } from './get-video-source-from-block';
+import { VideoProps } from '../typings';
 
 export function getVideoPropsFromBlock(block: Block): VideoProps {
-  return { src: getVideoSourceFromBlock(block) || '' };
+  const { data } = block;
+  const provider = data.get('provider');
+  const id = data.get(provider);
+  return { id, provider };
 }

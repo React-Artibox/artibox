@@ -1,10 +1,13 @@
-import { Block, Editor } from 'slate';
+import { Editor } from 'slate';
 import { NodeType } from '@artibox/slate-common';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
-import { VideoSourceSerializeResult, serializeVideoSource } from './source-serializers';
+import { serializeVideoSource } from './source-serializers';
+import { createVideoBlock } from './utils/create-video-block';
 
 export interface VideoController {
-  createBlock({ provider, src }: VideoSourceSerializeResult): Block;
+  /**
+   * Add the video block to editor.
+   */
   add(editor: Editor, source: string): Editor;
 }
 
@@ -12,8 +15,6 @@ export type CreateVideoControllerConfig = NodeType;
 
 export function createVideoContrller(config: CreateVideoControllerConfig): VideoController {
   const { type } = config;
-  const createBlock: VideoController['createBlock'] = ({ provider, src }) =>
-    Block.fromJSON({ type, data: { provider, [provider]: src } });
   const add: VideoController['add'] = (editor, source) => {
     const result = serializeVideoSource(source);
 
@@ -21,8 +22,8 @@ export function createVideoContrller(config: CreateVideoControllerConfig): Video
       return editor;
     }
 
-    return editor.insertBlock(createBlock(result)).insertBlock(PARAGRAPH_TYPE);
+    return editor.insertBlock(createVideoBlock(type, result)).insertBlock(PARAGRAPH_TYPE);
   };
 
-  return { createBlock, add };
+  return { add };
 }
