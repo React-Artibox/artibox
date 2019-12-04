@@ -1,6 +1,8 @@
 import React from 'react';
 import { Editor, EditorProps, Plugin } from 'slate-react';
 import cx from 'classnames';
+import { RendererBaseComponent } from '@artibox/slate-common';
+import { createParagraphRenderer } from '@artibox/slate-common/renderers/paragraph';
 import { ThemeProvider } from '@artibox/components/theme';
 import { LocaleProvider } from '@artibox/components/locale';
 import { LocaleDefinition } from '@artibox/locale';
@@ -8,6 +10,7 @@ import { placeholder } from './placeholder';
 import './styles';
 
 export interface CreateArtiboxEditorConfig {
+  defaultBlockComponent?: RendererBaseComponent;
   plugins?: Plugin[];
 }
 
@@ -17,8 +20,9 @@ export interface ArtiboxEditorProps extends Omit<EditorProps, keyof CreateArtibo
 }
 
 export function createArtiboxEditor(config: CreateArtiboxEditorConfig) {
-  let { plugins } = config;
-  plugins = [placeholder, ...plugins];
+  const { defaultBlockComponent = 'div' } = config;
+  let { plugins = [] } = config;
+  plugins = [placeholder, createParagraphRenderer(defaultBlockComponent), ...plugins];
 
   function ArtiboxEditor({ theme, locale, className, ...props }: ArtiboxEditorProps) {
     return (
