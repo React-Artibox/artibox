@@ -1,4 +1,4 @@
-import { LocaleDefinition } from './types';
+import { LocaleDefinition } from './typings';
 
 export const zhTW: LocaleDefinition = {
   locale: 'zh-TW',
