@@ -5,6 +5,7 @@ import { INSTAGRAM_TYPE } from './constants';
 import { InstagramController, createInstagramController } from './controller';
 import { CreateInstagramRendererConfig, createInstagramRenderer } from './renderer';
 import { createInstagramSchema } from './schema';
+import Instagram from './components/instagram';
 
 export type InstagramForPluginConfig = Omit<CreateInstagramRendererConfig, 'type'>;
 
@@ -29,7 +30,7 @@ export function createInstagram(config?: CreateInstagramConfig): Instagram {
     type,
     ...controller,
     forPlugin(config?: InstagramForPluginConfig) {
-      const { component } = config || {};
+      const { component = Instagram } = config || {};
       return {
         ...createInstagramRenderer({ type, component }),
         schema: createInstagramSchema({ type })
