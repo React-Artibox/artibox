@@ -2,10 +2,25 @@ import { Editor, Block } from 'slate';
 import { NodeType, InputConfig } from '@artibox/slate-common';
 
 export interface InputBlockController {
+  /**
+   * Check if the current selection is in input block.
+   */
   isSelectionIn(editor: Editor): boolean;
+  /**
+   * Get the input block in the current selection.
+   */
   getCurrent(editor: Editor): Block | null;
+  /**
+   * Start the input process and add an input block.
+   */
   start(editor: Editor, data: InputConfig): Editor;
+  /**
+   * Cancel the input process and remove input block.
+   */
   cancel(editor: Editor): Editor;
+  /**
+   * Confirm
+   */
   confirm(editor: Editor): Editor;
 }
 

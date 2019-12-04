@@ -1,6 +1,6 @@
 import { Editor } from 'slate';
 import { Plugin } from 'slate-react';
-import { isKeyHotkey } from 'is-hotkey';
+import { isHotkey } from 'is-hotkey';
 import { InputBlockController } from './controller';
 
 export interface CreateInputBlockHandlersConfig {
@@ -19,11 +19,18 @@ export function createInputBlockHandlers(config: CreateInputBlockHandlersConfig)
         event.preventDefault();
         return controller.confirm(editor);
       } else if (event.key === 'Escape') {
+        /**
+         * To cancel the input process.
+         */
         event.preventDefault();
         return controller.cancel(editor);
-      } else if (isKeyHotkey('cmd+a', event as any)) {
+      } else if (isHotkey('mod+a', event as any)) {
         const block = controller.getCurrent(editor);
 
+        /**
+         * Override original behavior of select all.
+         * Only select the text in input block if current selection is in input block.
+         */
         if (block) {
           event.preventDefault();
           return editor.moveToRangeOfNode(block);
@@ -32,6 +39,9 @@ export function createInputBlockHandlers(config: CreateInputBlockHandlersConfig)
 
       return next();
     },
+    /**
+     * Only get the text.
+     */
     onPaste(event, editorComponent, next) {
       const editor = (editorComponent as any) as Editor;
 
