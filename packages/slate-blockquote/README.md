@@ -1,1 +1,88 @@
-# `@artibox/slate-blockquote`
+<div align="center">
+  <img
+    src="https://raw.githubusercontent.com/ianstormtaylor/slate/master/docs/images/banner.png"
+    height="200"
+  />
+</div>
+
+<h1 align="center">@artibox/slate-blockquote</h1>
+
+<div align="center">
+
+[Slate](https://github.com/ianstormtaylor/slate) blockquote.
+
+[![npm package](https://img.shields.io/npm/v/@artibox/slate-blockquote.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/slate-blockquote)
+[![npm downloads](https://img.shields.io/npm/dt/@artibox/slate-blockquote.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/slate-blockquote)
+
+</div>
+
+## Installation
+
+```bash
+npm install @artibox/slate-blockquote --save
+
+or
+
+$ yarn add @artibox/slate-blockquote
+```
+
+## Usage
+
+### Editor
+
+```js
+import React from 'react';
+import { Blockquote as BlockquoteIcon } from '@artibox/icons';
+import { createArtiboxEditor } from '@artibox/slate-editor';
+import { Toolbar } from '@artibox/slate-toolbar';
+import { createBlockquote } from '@artibox/slate-blockquote';
+
+const Blockquote = createBlockquote();
+
+const plugins = [
+  Blockquote.forPlugin(),
+  Toolbar.forPlugin({
+    collapsedTools: [{ icon: BlockquoteIcon, hook: Blockquote.forToolHook() }]
+  })
+];
+
+const Editor = createArtiboxEditor({
+  plugins
+});
+
+export default Editor;
+```
+
+### Jsx Serializer
+
+```ts
+import { createJsxSerializer } from '@artibox/slate-jsx-serializer';
+import { createBlockquoteJsxSerializerRule } from '@artibox/slate-italic';
+
+const value = ...;  //  from editor
+
+const jsxSerializer = createJsxSerializer({
+  marks: [
+    createBlockquoteJsxSerializerRule()
+  ]
+});
+```
+
+## API
+
+- [constants](./src/constants.ts)
+- [createBlockquote](./src/blockquote.ts#L33)
+- [createBlockquoteJsxSerializerRule](./src/jsx-serializer.ts)
+- [Blockquote.forPlugin](./src/blockquote.ts#L39)
+- [Blockquote.forToolHook](./src/blockquote.ts#L46)
+- [BlockquoteController](./src/controller.ts#L4)
+
+## Hotkey
+
+| OS                       | Shortcut                                   |
+| ------------------------ | ------------------------------------------ |
+| ![Apple Logo][apple]     | <kbd>ctrl</kbd>+<kbd>opt</kbd+<kbd>q</kbd> |
+| ![Windows Logo][windows] | <kbd>ctrl</kbd>+<kbd>alt</kbd+<kbd>q</kbd> |
+
+[apple]: https://cdn2.iconfinder.com/data/icons/designer-skills/128/apple-ios-system-platform-os-mac-linux-48.png
+[windows]: https://cdn2.iconfinder.com/data/icons/designer-skills/128/windows-48.png
