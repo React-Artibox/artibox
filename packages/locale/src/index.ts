@@ -1,1 +1,1 @@
-export { LocaleDefinition } from './types';
+export { LocaleDefinition } from './typings';

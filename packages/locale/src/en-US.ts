@@ -1,4 +1,4 @@
-import { LocaleDefinition } from './types';
+import { LocaleDefinition } from './typings';
 
 export const enUS: LocaleDefinition = {
   locale: 'en-US',
