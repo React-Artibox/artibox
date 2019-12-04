@@ -1,11 +1,14 @@
 import { Editor } from 'slate';
 import { Plugin } from 'slate-react';
-import { isKeyHotkey } from 'is-hotkey';
+import { isHotkey } from 'is-hotkey';
+import { Hotkey } from '@artibox/slate-common';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
 import { BlockquoteController } from './controller';
 
-export interface CreateBlockquoteHandlersConfig {
-  hotkey: string;
+/**
+ * @property hotkey - Toggle blockquote while the hotkey pressed.
+ */
+export interface CreateBlockquoteHandlersConfig extends Hotkey {
   controller: BlockquoteController;
 }
 
@@ -72,7 +75,7 @@ export function createBlockquoteHandlers(config: CreateBlockquoteHandlersConfig)
         return onEnter(event, editor, next);
       } else if (event.key === 'Backspace') {
         return onBackSpace(event, editor, next);
-      } else if (isKeyHotkey(hotkey, event as any)) {
+      } else if (isHotkey(hotkey, event as any)) {
         return controller.toggle((editor as any) as Editor);
       }
 

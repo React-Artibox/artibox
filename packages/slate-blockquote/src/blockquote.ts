@@ -1,16 +1,25 @@
 import { useCallback } from 'react';
 import { NodeType, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import {
+  CreateCommonBlockRendererConfig,
+  createCommonBlockRenderer
+} from '@artibox/slate-common/renderers/common-block';
 import { BLOCKQUOTE_TYPE, BLOCKQUOTE_HOTKEY, BLOCKQUOTE_COMPONENT } from './constants';
 import { BlockquoteController, createBlockquoteController } from './controller';
 import { CreateBlockquoteHandlersConfig, createBlockquoteHandlers } from './handlers';
-import { CreateBlockquoteRendererConfig, createBlockquoteRenderer } from './renderer';
 
 export type BlockquoteForPluginConfig = Partial<
-  Omit<CreateBlockquoteHandlersConfig & CreateBlockquoteRendererConfig, 'type' | 'controller'>
+  Omit<CreateBlockquoteHandlersConfig & Pick<CreateCommonBlockRendererConfig, 'component'>, 'controller'>
 >;
 
 export interface BlockquoteForToolHookConfig {
-  action?: 'wrap' | 'unwrap' | 'toggle';
+  /**
+   * The command of controller of blockquote will be triggered after clicked.
+   */
+  command?: 'wrap' | 'unwrap' | 'toggle';
+  /**
+   * A flag to determine whether to provide active.
+   */
   activeNotProvided?: boolean;
 }
 
@@ -31,14 +40,14 @@ export function createBlockquote(config?: CreatBlockquoteeConfig): Blockquote {
       const { hotkey = BLOCKQUOTE_HOTKEY, component = BLOCKQUOTE_COMPONENT } = config || {};
       return {
         ...createBlockquoteHandlers({ hotkey, controller }),
-        ...createBlockquoteRenderer({ type, component })
+        ...createCommonBlockRenderer({ type, component })
       };
     },
     forToolHook(config) {
-      const { action = 'toggle', activeNotProvided = false } = config || {};
+      const { command = 'toggle', activeNotProvided = false } = config || {};
       return editor => ({
         active: !activeNotProvided && controller.isSelectionIn(editor),
-        onMouseDown: useCallback(() => controller[action](editor), [editor])
+        onMouseDown: useCallback(() => controller[command](editor), [editor])
       });
     }
   };
