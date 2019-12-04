@@ -55,11 +55,9 @@ export default Editor;
 
 ### Jsx Serializer
 
-```ts
+```tsx
 import { createJsxSerializer } from '@artibox/slate-jsx-serializer';
 import { createToggleMarkJsxSerializerRuleCreator } from '@artibox/slate-toggle-mark';
-
-const value = ...;  //  from editor
 
 const createBoldJsxSerializerRule = createToggleMarkJsxSerializerRuleCreator({
   type: 'bold',
@@ -71,6 +69,14 @@ const jsxSerializer = createJsxSerializer({
     createBoldJsxSerializerRule()
   ]
 });
+
+...
+
+return (
+  <div>
+    {jsxSerializer(value /* from slate */)}
+  </div>
+);
 ```
 
 ## API

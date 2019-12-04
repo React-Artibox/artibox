@@ -58,17 +58,23 @@ export default Editor;
 
 ### Jsx Serializer
 
-```ts
+```tsx
 import { createJsxSerializer } from '@artibox/slate-jsx-serializer';
 import { createListJsxSerializerRules } from '@artibox/slate-list';
 
-const value = ...;  //  from editor
-
 const jsxSerializer = createJsxSerializer({
-  marks: [
+  blocks: [
     ...createListJsxSerializerRules()
   ]
 });
+
+...
+
+return (
+  <div>
+    {jsxSerializer(value /* from slate */)}
+  </div>
+);
 ```
 
 ## API

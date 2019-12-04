@@ -55,17 +55,23 @@ export default Editor;
 
 ### Jsx Serializer
 
-```ts
+```tsx
 import { createJsxSerializer } from '@artibox/slate-jsx-serializer';
 import { createInstagramJsxSerializerRule } from '@artibox/slate-instagram';
 
-const value = ...;  //  from editor
-
 const jsxSerializer = createJsxSerializer({
-  marks: [
+  blocks: [
     createInstagramJsxSerializerRule()
   ]
 });
+
+...
+
+return (
+  <div>
+    {jsxSerializer(value /* from slate */)}
+  </div>
+);
 ```
 
 ## API
