@@ -1,5 +1,5 @@
 import { Block } from 'slate';
-import { FacebookEmbedData } from '../types';
+import { FacebookEmbedData } from '../typings';
 
 export function getFacebookEmbedDataFromBlock(block: Block): FacebookEmbedData {
   const { data } = block;

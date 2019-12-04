@@ -86,7 +86,7 @@ export const plugins: Plugin[] = [
       { icon: SeparationLine, hook: separationLine.forToolHook() },
       { icon: Video, hook: video.forToolHook({ setToolInput: inputBlock.start }) },
       { icon: Instagram, hook: instagram.forToolHook({ setToolInput: inputBlock.start }) },
-      { icon: Facebook, hook: facebook.forToolHook({ setToolInput: inputBlock.start }) }
+      { icon: Facebook, hook: facebook.forToolHook({ setInputConfig: inputBlock.start }) }
     ]
   })
 ];
