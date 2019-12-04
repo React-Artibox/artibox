@@ -1,6 +1,6 @@
-import { FacebookEmbedData } from '../types';
+import { FacebookEmbedData } from '../typings';
 
-export function getSrcFromEmbedData(embedData: FacebookEmbedData): string {
+export function getSrcFromFacebookEmbedData(embedData: FacebookEmbedData): string {
   const type = embedData.type;
   const { width, height, url } = embedData;
   const params = new URLSearchParams({

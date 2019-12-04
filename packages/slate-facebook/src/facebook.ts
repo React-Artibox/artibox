@@ -9,7 +9,10 @@ import { createFacebookSchema } from './schema';
 export type FacebookForPluginConfig = Omit<CreateFacebookRendererConfig, 'type'>;
 
 export interface FacebookForToolHookConfig {
-  setToolInput?: (editor: Editor, toolInput: InputConfig) => Editor | void;
+  /**
+   * The callback method override the origin setInputConfig provided by toolbar.
+   */
+  setInputConfig?: (editor: Editor, inputConfig: InputConfig) => Editor | void;
 }
 
 export type Facebook = NodeType &
@@ -33,20 +36,20 @@ export function createFacebook(config?: CreateFacebookConfig): Facebook {
       };
     },
     forToolHook(config) {
-      const { setToolInput } = config || {};
-      const toolInput: InputConfig = {
+      const { setInputConfig } = config || {};
+      const inputConfig: InputConfig = {
         getPlaceholder: locale => locale.editor.facebook.inputPlaceholder,
         onConfirm: controller.add
       };
 
-      return (editor, defaultSetToolInput) => ({
+      return (editor, defaultSetInputConfig) => ({
         onMouseDown: useCallback(() => {
-          if (setToolInput) {
-            setToolInput(editor, toolInput);
+          if (setInputConfig) {
+            setInputConfig(editor, inputConfig);
           } else {
-            defaultSetToolInput(toolInput);
+            defaultSetInputConfig(inputConfig);
           }
-        }, [editor, defaultSetToolInput])
+        }, [editor, defaultSetInputConfig])
       });
     }
   };

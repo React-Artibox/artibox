@@ -1,14 +1,17 @@
 import React, { CSSProperties, memo, forwardRef } from 'react';
-import { FacebookProps } from '../types';
-import { getSrcFromEmbedData } from '../utils/get-src-from-embed-data';
+import { FacebookProps } from '../typings';
+import { getSrcFromFacebookEmbedData } from '../utils/get-src-from-facebook-embed-data';
 
 const facebookStyle: CSSProperties = {
   border: 0,
   overflow: 'hidden'
 };
 
-const Facebook = forwardRef<HTMLIFrameElement, FacebookProps>(({ width, height, url, type, ...props }, ref) => {
-  const src = getSrcFromEmbedData({ type, url, width, height });
+/**
+ * Default component of both renderer of editor and jsx serializer rule of facebook.
+ */
+const Facebook = forwardRef<HTMLIFrameElement, FacebookProps>(({ type, url, width, height, ...props }, ref) => {
+  const src = getSrcFromFacebookEmbedData({ type, url, width, height });
 
   return (
     <iframe

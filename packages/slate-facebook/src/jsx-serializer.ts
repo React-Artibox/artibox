@@ -2,7 +2,7 @@ import { Block } from 'slate';
 import { CreateJsxSerializerRuleConfig, createJsxSerializerRule } from '@artibox/slate-jsx-serializer/rule';
 import { FACEBOOK_TYPE } from './constants';
 import { getFacebookEmbedDataFromBlock } from './utils/get-facebook-embed-data-from-block';
-import { FacebookProps } from './types';
+import { FacebookProps } from './typings';
 import Facebook from './components/facebook';
 
 export type CreateFacebookJsxSerializerRuleConfig = Partial<

@@ -1,5 +1,5 @@
 import { FACEBOOK_EMBED_TYPES } from '../constants';
-import { FacebookEmbedData } from '../types';
+import { FacebookEmbedData } from '../typings';
 
 function getFacebookEmbedTypeFromPathname(pathname: string): FACEBOOK_EMBED_TYPES | null {
   if (pathname === '/plugins/post.php') {

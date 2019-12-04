@@ -1,5 +1,5 @@
 export { FACEBOOK_TYPE, FACEBOOK_EMBED_TYPES, FACEBOOK_REG } from './constants';
-export { FacebookEmbedData, FacebookProps } from './types';
+export { FacebookEmbedData, FacebookProps } from './typings';
 export {
   FacebookForPluginConfig,
   FacebookForToolHookConfig,
