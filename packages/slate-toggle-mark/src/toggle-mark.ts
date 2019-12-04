@@ -1,24 +1,16 @@
 import { useCallback } from 'react';
 import { NodeType, ForPlugin, ForToolHook } from '@artibox/slate-common';
-import {
-  CreateToggleMarkHandlersCreatorDefaultConfig,
-  CreateToggleMarkHandlersCreatorConfig,
-  createToggleMarkHandlersCreator
-} from './handlers';
-import {
-  CreateToggleMarkRendererCreatorDefaultConfig,
-  CreateToggleMarkRendererCreatorConfig,
-  createToggleMarkRendererCreator
-} from './renderer';
+import { CreateToggleMarkHandlersConfig, createToggleMarkHandlers } from './handlers';
+import { CreateToggleMarkRendererConfig, createToggleMarkRenderer } from './renderer';
 import { ToggleMarkController, createToggleMarkController } from './controller';
 
-export type ToggleMarkDefaultConfig = CreateToggleMarkHandlersCreatorDefaultConfig &
-  CreateToggleMarkRendererCreatorDefaultConfig;
+export type ToggleMarkDefaultConfig = Omit<CreateToggleMarkHandlersConfig, 'controller'> &
+  CreateToggleMarkRendererConfig;
 
 export type CreateToggleMarkConfig = Partial<NodeType>;
 
 export type ToggleMarkForPluginConfig = Partial<
-  Omit<CreateToggleMarkHandlersCreatorConfig & CreateToggleMarkRendererCreatorConfig, 'type' | 'controller'>
+  Omit<CreateToggleMarkHandlersConfig & CreateToggleMarkRendererConfig, 'type' | 'controller'>
 >;
 
 export type ToggleMark = NodeType &
@@ -27,9 +19,6 @@ export type ToggleMark = NodeType &
   ForToolHook<undefined>;
 
 export function createToggleMarkCreator(defaults: ToggleMarkDefaultConfig) {
-  const createHandlers = createToggleMarkHandlersCreator(defaults);
-  const createRenderer = createToggleMarkRendererCreator(defaults);
-
   function createToggleMark(config?: CreateToggleMarkConfig): ToggleMark {
     const { type = defaults.type } = config || {};
     const controller = createToggleMarkController({ type });
@@ -37,14 +26,17 @@ export function createToggleMarkCreator(defaults: ToggleMarkDefaultConfig) {
       type,
       ...controller,
       forPlugin(config) {
-        const { hotkey, component } = config || {};
+        const { hotkey = defaults.hotkey, component = defaults.component } = config || {};
         return {
-          ...createHandlers({ hotkey, controller }),
-          ...createRenderer({ type, component })
+          ...createToggleMarkHandlers({ hotkey, controller }),
+          ...createToggleMarkRenderer({ type, component })
         };
       },
       forToolHook: () => editor => ({
         active: controller.isSelectionIn(editor),
+        /**
+         * Toggle the mark while tool clicked.
+         */
         onMouseDown: useCallback(() => controller.toggle(editor), [editor])
       })
     };
