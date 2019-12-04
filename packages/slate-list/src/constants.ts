@@ -1,19 +1,19 @@
-import { ReactHTML, ComponentType } from 'react';
-import { RenderAttributes } from 'slate-react';
+import { ListTypeKey } from './typings';
 
-export type LIST_ORDERED_TYPES = 'ordered' | 'unordered';
-export type LIST_TYPES = {
-  [t in LIST_ORDERED_TYPES | 'item']: string;
-};
+/**
+ * Default types of list.
+ */
 export const LIST_TYPES = {
-  ordered: 'ordered list',
-  unordered: 'unordered list',
-  item: 'list item'
+  ordered: 'ordered_list',
+  unordered: 'unordered_list',
+  item: 'list_item'
 } as const;
 
-export type LIST_COMPONENTS = {
-  [k in keyof LIST_TYPES]: keyof ReactHTML | ComponentType<RenderAttributes>;
-};
+export const LIST_TYPE_KEY_LIST: ListTypeKey[] = ['unordered', 'ordered', 'item'];
+
+/**
+ * Default components of list.
+ */
 export const LIST_COMPONENTS = {
   ordered: 'ol',
   unordered: 'ul',
