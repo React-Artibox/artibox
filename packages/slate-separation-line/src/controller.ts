@@ -3,6 +3,9 @@ import { NodeType } from '@artibox/slate-common';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
 
 export interface SeparationLineController {
+  /**
+   * Add the separation block to editor.
+   */
   add(editor: Editor): Editor;
 }
 
