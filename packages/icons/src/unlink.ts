@@ -1,4 +1,4 @@
-import { IconDefinition } from './types';
+import { IconDefinition } from './typings';
 
 export const Unlink: IconDefinition = {
   name: 'unlink',
