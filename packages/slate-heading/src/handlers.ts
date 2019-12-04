@@ -1,7 +1,7 @@
 import { Editor } from 'slate';
 import { Plugin } from 'slate-react';
 import { isKeyHotkey } from 'is-hotkey';
-import { HeadingLevel, HeadingConfigEnabled } from './types';
+import { HeadingLevel, HeadingConfigEnabled } from './typings';
 import { HeadingController } from './controller';
 
 export interface CreateHeadingHandlersConfig extends HeadingConfigEnabled {
@@ -19,14 +19,15 @@ export function createHeadingHandlers(config: CreateHeadingHandlersConfig): Plug
     onKeyDown(event, editorComponent, next) {
       const editor = (editorComponent as any) as Editor;
 
+      /**
+       * While enter pressed, end the heading block if current selection is in heading, or continue.
+       */
       if (event.key === 'Enter') {
-        /**
-         * If press enter on the block not heading, continue.
-         */
         if (!controller.isBlockAs(editor.value.startBlock)) {
           return next();
         }
 
+        event.preventDefault();
         return controller.end(editor);
       }
 

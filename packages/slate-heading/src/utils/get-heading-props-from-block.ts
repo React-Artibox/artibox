@@ -1,5 +1,5 @@
 import { Block } from 'slate';
-import { HeadingProps } from '../types';
+import { HeadingProps } from '../typings';
 import { getHeadingLevelFromBlock } from './get-heading-level-from-block';
 
 export function getHeadingPropsFromBlock(block: Block): HeadingProps {

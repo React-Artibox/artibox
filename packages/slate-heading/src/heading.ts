@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { NodeType, ToolHook, ForPlugin, ForToolHook } from '@artibox/slate-common';
 import { HEADING_TYPE, HEADING_HOTKEY, HEADING_LEVELS } from './constants';
-import { HeadingLevel } from './types';
+import { HeadingLevel } from './typings';
 import { CreateHeadingHandlersConfig, createHeadingHandlers } from './handlers';
 import { HeadingController, createHeadingController } from './controller';
 import { CreateHeadingRendererConfig, createHeadingRenderer } from './renderer';
@@ -14,6 +14,9 @@ export interface HeadingForPluginConfig
       'type' | 'controller' | 'enabled'
     >
   > {
+  /**
+   * The blacklist of heading levels.
+   */
   disabled?: HeadingLevel[];
 }
 

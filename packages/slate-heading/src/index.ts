@@ -1,5 +1,5 @@
 export { HEADING_TYPE, HEADING_COMPONENTS, HEADING_HOTKEY, HEADING_LEVELS } from './constants';
-export { HeadingLevel, HeadingProps, HeadingConfigEnabled } from './types';
+export { HeadingLevel, HeadingProps, HeadingConfigEnabled } from './typings';
 export {
   HeadingForPluginConfig,
   HeadingForToolHookConfig,
