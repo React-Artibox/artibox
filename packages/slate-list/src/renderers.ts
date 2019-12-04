@@ -1,21 +1,18 @@
 import { createCommonBlockRenderer } from '@artibox/slate-common/renderers/common-block';
-import { LIST_TYPES, LIST_COMPONENTS } from './constants';
+import { LIST_TYPE_KEY_LIST } from './constants';
+import { ListTypes, ListComponents } from './typings';
 
 export interface CreateListRendererConfig {
-  types?: LIST_TYPES;
+  types: ListTypes;
+  components: ListComponents;
 }
 
-export function createListRenderers(config?: CreateListRendererConfig) {
-  const types = { ...LIST_TYPES, ...config?.types };
-  const componentMap = {
-    [types.unordered]: LIST_COMPONENTS.unordered,
-    [types.ordered]: LIST_COMPONENTS.ordered,
-    [types.item]: LIST_COMPONENTS.item
-  };
-  return [types.unordered, types.ordered, types.item].map(type =>
+export function createListRenderers(config: CreateListRendererConfig) {
+  const { types, components } = config;
+  return LIST_TYPE_KEY_LIST.map(key =>
     createCommonBlockRenderer({
-      type,
-      component: componentMap[type]
+      type: types[key],
+      component: components[key]
     })
   );
 }

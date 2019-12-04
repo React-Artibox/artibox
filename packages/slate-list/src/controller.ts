@@ -1,56 +1,62 @@
 import { Editor, Node, Block } from 'slate';
 import { isNodeExcludeText } from '@artibox/slate-common/utils/is-node-exclude-text';
-import { LIST_TYPES, LIST_ORDERED_TYPES } from './constants';
+import { ListOrderedTypeKey, ListTypes } from './typings';
 
 export interface ListController {
+  /**
+   * Check if the node is list.
+   */
   isNodeAsList(node?: Node | null): node is Block;
+  /**
+   * Check if the node is list item.
+   */
   isNodeAsItem(node?: Node | null): node is Block;
   /**
-   * To check if current selection is in list.
+   * Check if current selection is in list.
    */
   isSelectionIn(editor: Editor): boolean;
   /**
-   * @returns Return the last node if the last node in the node from parameter is list, or null.
+   * Get the last node if the last node in the node from parameter is list, or get null.
    */
   getLastListInNode(node?: Node | null): Block | null;
   /**
-   * To get the item wrapping the node from parameter.
+   * Get the item wrapping the node from parameter.
    */
   getItemFromNode(editor: Editor, node?: Node | null): Block | null;
   /**
-   * To get the list wrapping the node from parameter.
+   * Get the list wrapping the node from parameter.
    */
   getListFromNode(editor: Editor, node?: Node | null): Block | null;
   /**
-   * To get the previous sibling item.
+   * Get the previous sibling item.
    */
   getPreviousItem(editor: Editor, item: Block): Block | null;
   /**
-   * To get the item wrapping the start block of current selection.
+   * Get the item wrapping the start block of current selection.
    */
   getCurrentItem(editor: Editor): Block | null;
   /**
-   * To get the list wrapping the start block of current selection.
+   * Get the list wrapping the start block of current selection.
    */
   getCurrentList(editor: Editor): Block | null;
   /**
-   * To wrap the root blocks in current selection with list.
+   * Wrap the root blocks in current selection with list.
    */
-  wrap(editor: Editor, orderedType: LIST_ORDERED_TYPES): Editor;
+  wrap(editor: Editor, orderedType: ListOrderedTypeKey): Editor;
   /**
-   * To unwrap the root blocks in current selection from list.
+   * Unwrap the root blocks in current selection from list.
    */
   unwrap(editor: Editor): Editor;
   /**
-   * To toggle the root blocks in current selection between being list.
+   * Toggle the root blocks in current selection between being list.
    */
-  toggle(editor: Editor, orderedType: LIST_ORDERED_TYPES): Editor;
+  toggle(editor: Editor, orderedType: ListOrderedTypeKey): Editor;
   /**
-   * To increase the depth of the first item in current selection if increasable.
+   * Increase the depth of the first item in current selection if increasable.
    */
   increaseItemDepth(editor: Editor): Editor;
   /**
-   * To decrease the depth of the first item in current selection if decreasable.
+   * Decrease the depth of the first item in current selection if decreasable.
    */
   decreaseItemDepth(editor: Editor): Editor;
   /**
@@ -60,7 +66,7 @@ export interface ListController {
 }
 
 export interface CreateListControllerConfig {
-  types: LIST_TYPES;
+  types: ListTypes;
 }
 
 export function createListController(config: CreateListControllerConfig): ListController {

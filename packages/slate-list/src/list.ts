@@ -1,43 +1,47 @@
 import { useCallback } from 'react';
 import { ToolHook, ForPlugin, ForToolHook } from '@artibox/slate-common';
-import { LIST_TYPES, LIST_ORDERED_TYPES } from './constants';
+import { LIST_TYPES, LIST_COMPONENTS } from './constants';
+import { ListOrderedTypeKey, ListTypes } from './typings';
 import { ListController, createListController } from './controller';
 import { createListHandlers } from './handlers';
-import { createListRenderers } from './renderers';
+import { CreateListRendererConfig, createListRenderers } from './renderers';
 import { createListSchema } from './schema';
 
 export interface ListForToolHookConfig {
-  orderedType: LIST_ORDERED_TYPES;
-  action?: 'wrap' | 'unwrap' | 'toggle';
+  /**
+   * The command of controller of list will be triggered after clicked.
+   */
+  command?: 'wrap' | 'unwrap' | 'toggle';
+  orderedType: ListOrderedTypeKey;
 }
 
 export interface List extends ListController, ForPlugin<undefined, true>, ForToolHook<ListForToolHookConfig> {
-  types: LIST_TYPES;
+  types: ListTypes;
 }
 
 export interface CreateListConfig {
-  types?: Partial<LIST_TYPES>;
+  types?: Partial<CreateListRendererConfig['types']>;
+  components?: Partial<CreateListRendererConfig['components']>;
 }
 
 export function createList(config?: CreateListConfig): List {
   const types = { ...LIST_TYPES, ...config?.types };
+  const components = { ...LIST_COMPONENTS, ...config?.components };
   const controller = createListController({ types });
   return {
     types,
     ...controller,
-    forPlugin() {
-      return [
-        {
-          ...createListHandlers({ controller }),
-          schema: createListSchema({ types })
-        },
-        ...createListRenderers({ types })
-      ];
-    },
+    forPlugin: () => [
+      {
+        ...createListHandlers({ controller }),
+        schema: createListSchema({ types })
+      },
+      ...createListRenderers({ types, components })
+    ],
     forToolHook(config: ListForToolHookConfig): ToolHook {
-      const { orderedType, action = 'toggle' } = config;
+      const { orderedType, command = 'toggle' } = config;
       return editor => ({
-        onMouseDown: useCallback(() => controller[action](editor, orderedType), [editor])
+        onMouseDown: useCallback(() => controller[command](editor, orderedType), [editor])
       });
     }
   };

@@ -1,14 +1,17 @@
 import { Block } from 'slate';
 import { createJsxSerializerRule } from '@artibox/slate-jsx-serializer/rule';
-import { LIST_TYPES, LIST_COMPONENTS } from './constants';
+import { LIST_TYPES, LIST_COMPONENTS, LIST_TYPE_KEY_LIST } from './constants';
+import { ListTypes, ListComponents } from './typings';
 
 export type CreateListJsxSerializerRulesConfig = {
-  types?: LIST_TYPES;
+  types?: ListTypes;
+  components?: ListComponents;
 };
 
 export function createListJsxSerializerRules(config?: CreateListJsxSerializerRulesConfig) {
   const types = { ...LIST_TYPES, ...config?.types };
-  return (['unordered', 'ordered', 'item'] as Array<keyof LIST_TYPES>).map(type =>
-    createJsxSerializerRule<Block>({ type: types[type], component: LIST_COMPONENTS[type] })
+  const components = { ...LIST_COMPONENTS, ...config?.components };
+  return LIST_TYPE_KEY_LIST.map(key =>
+    createJsxSerializerRule<Block>({ type: types[key], component: components[key] })
   );
 }

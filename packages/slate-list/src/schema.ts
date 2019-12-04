@@ -1,9 +1,9 @@
 import { SchemaProperties, Rules, Block } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
-import { LIST_TYPES } from './constants';
+import { ListTypes } from './typings';
 
 export interface CreateListSchemaConfig {
-  types: LIST_TYPES;
+  types: ListTypes;
 }
 
 export function createListSchema(config: CreateListSchemaConfig): SchemaProperties {
