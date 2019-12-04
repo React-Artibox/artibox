@@ -2,12 +2,12 @@ import React, { memo } from 'react';
 import cx from 'classnames';
 import { IconDefinition } from '@artibox/icons';
 import Icon from '@artibox/components/Icon';
-import { WithEditor, SetInputConfig } from '@artibox/slate-common';
+import { WithEditor, SetInputConfig, ToolHook } from '@artibox/slate-common';
 import { TOOLBAR_DIVIDER } from '../constants';
-import { Tool } from '../types';
+import { Tool } from '../typings';
 import { clsPrefix } from './constants';
 
-interface ToolbarIconInnerProps extends ReturnType<Exclude<Tool, TOOLBAR_DIVIDER>['hook']> {
+interface ToolbarIconInnerProps extends ReturnType<ToolHook> {
   icon: IconDefinition;
 }
 

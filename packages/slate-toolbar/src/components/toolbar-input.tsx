@@ -9,6 +9,9 @@ export interface ToolbarInputProps extends WithEditor {
 }
 
 function ToolbarInput({ editor, toolInput, setToolInput }: ToolbarInputProps) {
+  /**
+   * Auto focus on mount.
+   */
   const ref = (input: HTMLInputElement) => {
     if (input) {
       input.focus();
@@ -33,6 +36,9 @@ function ToolbarInput({ editor, toolInput, setToolInput }: ToolbarInputProps) {
       onExitInputAndFocus(event);
     }
   };
+  /**
+   * Won't invoke `editor.focus()` since the native selection will be lost.
+   */
   const onBlur = () => setToolInput(null);
   const { getPlaceholder } = toolInput;
   const locale = useLocale();
