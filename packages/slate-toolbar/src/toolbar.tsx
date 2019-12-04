@@ -1,13 +1,15 @@
 import React from 'react';
+import { ForPlugin } from '@artibox/slate-common';
 import { createCommonEditorRenderer } from '@artibox/slate-common/renderers/common-editor';
-import { Tool } from './types';
+import { WithTools } from './typings';
 import ToolbarComponent from './components/toolbar';
 import './styles';
-import { ForPlugin } from '@artibox/slate-common/src';
 
-export interface ToolbarForPluginConfig {
-  collapsedTools?: Tool[];
-  expandedTools?: Tool[];
+export interface ToolbarForPluginConfig extends WithTools {
+  /**
+   * The blacklist of blocks.
+   * If some blocks in the current selection is in the blacklist, toolbar will hide.
+   */
   disabledBlocks?: string[];
 }
 

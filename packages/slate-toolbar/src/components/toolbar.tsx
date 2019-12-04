@@ -4,7 +4,7 @@ import { WithEditor, InputConfig } from '@artibox/slate-common';
 import { useTheme } from '@artibox/components/theme';
 import Portal from '@artibox/components/Portal';
 import { TOOLBAR_DIVIDER } from '../constants';
-import { Tool } from '../types';
+import { Tool, WithTools } from '../typings';
 import Divider from './divider';
 import ToolbarIcon from './toolbar-icon';
 import ToolbarInput from './toolbar-input';
@@ -20,6 +20,10 @@ function roundNumber(value: number, min: number, max: number) {
   return value;
 }
 
+/**
+ * @todo
+ * Also round top.
+ */
 function calculatePosition(el: HTMLElement) {
   const native = window.getSelection();
   const range = native!.getRangeAt(0);
@@ -34,10 +38,7 @@ function calculatePosition(el: HTMLElement) {
   return { top, left };
 }
 
-export interface ToolbarProps extends WithEditor {
-  collapsedTools?: Tool[];
-  expandedTools?: Tool[];
-}
+export type ToolbarProps = WithEditor & WithTools;
 
 function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -46,6 +47,10 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const { fragment, selection } = editor.value;
   const { isFocused, isExpanded } = selection;
   const focusTextEmpty = fragment.text === '';
+  /**
+   * If the tool input process start, the editor will be blurred so that toolbar will hide.
+   * To avoid this issue, add `|| toolInput` to the condition.
+   */
   const expanded = !!(((isExpanded && isFocused) || toolInput) && !focusTextEmpty && expandedTools);
   const collapsed = !!(((!isExpanded && isFocused) || toolInput) && collapsedTools);
   let tools: Tool[] | undefined;
@@ -77,6 +82,10 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
     if (expanded) {
       handler();
     } else {
+      /**
+       * While this effect fired, the native selection is not synchronize sometimes.
+       * To avoid the issue, we just invoke the handler on next frame.
+       */
       window.requestAnimationFrame(handler);
     }
   });
