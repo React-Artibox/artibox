@@ -1,7 +1,7 @@
 import { Inline } from 'slate';
 import { CreateJsxSerializerRuleConfig, createJsxSerializerRule } from '@artibox/slate-jsx-serializer/rule';
 import { LINK_TYPE } from './constants';
-import { LinkProps } from './types';
+import { LinkProps } from './typings';
 import { getLinkPropsFromInline } from './utils/get-link-props-from-inline';
 
 export type CreateLinkJsxSerializerRuleConfig = Partial<

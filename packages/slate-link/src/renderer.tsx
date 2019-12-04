@@ -8,7 +8,7 @@ import {
 import { createCommonEditorRenderer } from '@artibox/slate-common/renderers/common-editor';
 import { LINK_TYPE } from './constants';
 import { getLinkPropsFromInline } from './utils/get-link-props-from-inline';
-import { LinkProps } from './types';
+import { LinkProps } from './typings';
 import Link from './components/link';
 import LinkModalProvider, { LinkModalProviderProps } from './components/link-modal/link-modal-provider';
 
