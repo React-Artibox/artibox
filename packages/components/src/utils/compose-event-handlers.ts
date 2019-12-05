@@ -1,5 +1,8 @@
 import { SyntheticEvent, EventHandler } from 'react';
 
+/**
+ * Compose all same event handlers to single one.
+ */
 export function composeEventHandlers<E extends SyntheticEvent<any, Event>>(handlers: (EventHandler<E> | undefined)[]) {
   const existHandlers = handlers.filter(Boolean) as EventHandler<E>[];
 

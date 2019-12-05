@@ -8,12 +8,15 @@ export interface ThemeProviderProps {
   children: ReactNode | ((theme: string) => ReactNode);
 }
 
-export function resolveThemeName(theme?: string) {
+/**
+ * Add prefix to theme name.
+ */
+export function addThemeNamePrefix(theme?: string) {
   return `artibox-theme-${theme || 'artibox'}`;
 }
 
 export function ThemeProvider({ theme, children }: ThemeProviderProps) {
-  const themeName = resolveThemeName(theme);
+  const themeName = addThemeNamePrefix(theme);
 
   return (
     <ThemeContext.Provider value={themeName}>

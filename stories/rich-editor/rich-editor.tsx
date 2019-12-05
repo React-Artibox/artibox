@@ -7,7 +7,7 @@ import cx from 'classnames';
 import { createArtiboxEditor } from '@artibox/slate-editor';
 import { enUS } from '@artibox/locale/en-US';
 import { zhTW } from '@artibox/locale/zh-TW';
-import { resolveThemeName } from '@artibox/components/theme';
+import { addThemeNamePrefix } from '@artibox/components/theme';
 import { initialValue } from './value';
 import { plugins } from './plugins';
 import ToggleButtons from './toggle-buttons';
@@ -32,7 +32,7 @@ export function RichEditor() {
   const [theme, setTheme] = useState('artibox');
   const settings = useMemo(
     () => (
-      <div className={cx('rich-editor__settings', resolveThemeName(theme))}>
+      <div className={cx('rich-editor__settings', addThemeNamePrefix(theme))}>
         <ToggleButtons value={theme} items={themes} onChange={setTheme} />
         <ToggleButtons value={locale} items={locales} onChange={setLocale} />
       </div>
