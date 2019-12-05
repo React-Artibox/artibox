@@ -1,9 +1,11 @@
 import React, { ReactNode, ReactElement, cloneElement } from 'react';
 import { Value, Node, Document, Block, Inline, Mark, Text } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
-import { JsxSerializerRule } from './types';
+import { RendererBaseComponent } from '@artibox/slate-common';
+import { JsxSerializerRule } from './typings';
 
 export interface CreateJsxSerializerConfig {
+  defaultBlockComponent?: RendererBaseComponent;
   blocks?: JsxSerializerRule<Block>[];
   inlines?: JsxSerializerRule<Inline>[];
   marks?: JsxSerializerRule<Mark>[];
@@ -19,16 +21,18 @@ function addKey(element: ReactElement) {
   return cloneElement(element, { key: key++ });
 }
 
-const PARAGRAPH_SERIALIZER_RULE: JsxSerializerRule<Block> = {
-  type: PARAGRAPH_TYPE,
-  serialize: (children, node) => (node.text !== '' ? <div>{children}</div> : <br />)
-};
+function createParagraphSerializerRule(Component: RendererBaseComponent): JsxSerializerRule<Block> {
+  return {
+    type: PARAGRAPH_TYPE,
+    serialize: (children, node) => (node.text !== '' ? <Component>{children}</Component> : <br />)
+  };
+}
 
 function resolveRulesToMap<N>(
-  rules?: JsxSerializerRule<N>[],
+  rules: JsxSerializerRule<N>[],
   initialMap: JsxSerializerRuleMap<N> = {}
 ): JsxSerializerRuleMap<N> {
-  if (!rules) {
+  if (rules.length === 0) {
     return {};
   }
 
@@ -38,10 +42,11 @@ function resolveRulesToMap<N>(
   }, initialMap);
 }
 
-export function createJsxSerializer(config: CreateJsxSerializerConfig) {
-  const blocksMap = resolveRulesToMap(config.blocks, { [PARAGRAPH_TYPE]: PARAGRAPH_SERIALIZER_RULE });
-  const inlinesMap = resolveRulesToMap(config.inlines);
-  const marksMap = resolveRulesToMap(config.marks);
+export function createJsxSerializer(config?: CreateJsxSerializerConfig) {
+  const { defaultBlockComponent = 'div', blocks = [], inlines = [], marks = [] } = config || {};
+  const blocksMap = resolveRulesToMap([...blocks, createParagraphSerializerRule(defaultBlockComponent)]);
+  const inlinesMap = resolveRulesToMap(inlines);
+  const marksMap = resolveRulesToMap(marks);
 
   function serializeText(node: Text): ReactNode {
     const { text } = node;
