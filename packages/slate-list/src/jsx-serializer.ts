@@ -1,4 +1,4 @@
-import { Block } from 'slate';
+import { BlockJSON } from 'slate';
 import { createJsxSerializerRule } from '@artibox/slate-jsx-serializer/rule';
 import { LIST_TYPES, LIST_COMPONENTS, LIST_TYPE_KEY_LIST } from './constants';
 import { ListTypes, ListComponents } from './typings';
@@ -12,6 +12,6 @@ export function createListJsxSerializerRules(config?: CreateListJsxSerializerRul
   const types = { ...LIST_TYPES, ...config?.types };
   const components = { ...LIST_COMPONENTS, ...config?.components };
   return LIST_TYPE_KEY_LIST.map(key =>
-    createJsxSerializerRule<Block>({ type: types[key], component: components[key] })
+    createJsxSerializerRule<BlockJSON>({ type: types[key], component: components[key] })
   );
 }

@@ -1,9 +1,9 @@
-import { Block } from 'slate';
+import { Block, BlockJSON } from 'slate';
+import { getNodeDataByKey } from '@artibox/slate-common/utils/get-node-data-by-key';
 import { VideoProps } from '../typings';
 
-export function getVideoPropsFromBlock(block: Block): VideoProps {
-  const { data } = block;
-  const provider = data.get('provider');
-  const id = data.get(provider);
+export function getVideoPropsFromBlock(block: Block | BlockJSON): VideoProps {
+  const provider = getNodeDataByKey(block, 'provider');
+  const id = getNodeDataByKey(block, provider);
   return { id, provider };
 }

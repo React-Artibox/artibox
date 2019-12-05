@@ -11,7 +11,7 @@ const ArtiboxEditor = createArtiboxEditor({ plugins });
 export function JsxSerializer() {
   const [value, setValue] = useState(initialValue);
   const onChange = useCallback<OnChangeFn>(change => setValue(change.value), []);
-  const jsx = useMemo(() => jsxSerializer(value), [value.document]);
+  const jsx = useMemo(() => jsxSerializer(value.toJSON()), [value.document]);
 
   return (
     <div className="demo-jsx-serializer">

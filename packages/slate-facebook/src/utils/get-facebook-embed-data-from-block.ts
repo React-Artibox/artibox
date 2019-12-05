@@ -1,12 +1,12 @@
-import { Block } from 'slate';
+import { Block, BlockJSON } from 'slate';
+import { getNodeDataByKey } from '@artibox/slate-common/utils/get-node-data-by-key';
 import { FacebookEmbedData } from '../typings';
 
-export function getFacebookEmbedDataFromBlock(block: Block): FacebookEmbedData {
-  const { data } = block;
+export function getFacebookEmbedDataFromBlock(block: Block | BlockJSON): FacebookEmbedData {
   return {
-    type: data.get('type'),
-    url: data.get('url'),
-    width: data.get('width'),
-    height: data.get('height')
+    type: getNodeDataByKey(block, 'type'),
+    url: getNodeDataByKey(block, 'url'),
+    width: getNodeDataByKey(block, 'width'),
+    height: getNodeDataByKey(block, 'height')
   };
 }

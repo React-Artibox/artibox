@@ -1,14 +1,14 @@
 import React, { ReactNode, ReactElement, cloneElement } from 'react';
-import { Value, Node, Document, Block, Inline, Mark, Text } from 'slate';
+import { ValueJSON, NodeJSON, BlockJSON, InlineJSON, MarkJSON, TextJSON } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
 import { RendererBaseComponent } from '@artibox/slate-common';
 import { JsxSerializerRule } from './typings';
 
 export interface CreateJsxSerializerConfig {
   defaultBlockComponent?: RendererBaseComponent;
-  blocks?: JsxSerializerRule<Block>[];
-  inlines?: JsxSerializerRule<Inline>[];
-  marks?: JsxSerializerRule<Mark>[];
+  blocks?: JsxSerializerRule<BlockJSON>[];
+  inlines?: JsxSerializerRule<InlineJSON>[];
+  marks?: JsxSerializerRule<MarkJSON>[];
 }
 
 interface JsxSerializerRuleMap<N> {
@@ -21,10 +21,14 @@ function addKey(element: ReactElement) {
   return cloneElement(element, { key: key++ });
 }
 
-function createParagraphSerializerRule(Component: RendererBaseComponent): JsxSerializerRule<Block> {
+function isNodeJSONAsTextJSON(node: NodeJSON): node is TextJSON {
+  return node.object === 'text' || !('nodes' in node);
+}
+
+function createParagraphSerializerRule(Component: RendererBaseComponent): JsxSerializerRule<BlockJSON> {
   return {
     type: PARAGRAPH_TYPE,
-    serialize: (children, node) => (node.text !== '' ? <Component>{children}</Component> : <br />)
+    serialize: children => (children ? <Component>{children}</Component> : <br />)
   };
 }
 
@@ -48,7 +52,7 @@ export function createJsxSerializer(config?: CreateJsxSerializerConfig) {
   const inlinesMap = resolveRulesToMap(inlines);
   const marksMap = resolveRulesToMap(marks);
 
-  function serializeText(node: Text): ReactNode {
+  function serializeText(node: TextJSON): ReactNode {
     const { text } = node;
 
     if (!node.marks) {
@@ -67,31 +71,29 @@ export function createJsxSerializer(config?: CreateJsxSerializerConfig) {
     }, text);
   }
 
-  function serializeNode(node: Node): ReactNode {
-    if (node.object === 'text') {
+  function serializeNode(node: NodeJSON): ReactNode {
+    if (isNodeJSONAsTextJSON(node)) {
       return serializeText(node);
     }
 
-    const children = (node.nodes as Document['nodes'])
-      .map(n => serializeNode(n!))
-      .filter(Boolean)
-      .toArray();
+    const childrenArray = (node.nodes || []).map(serializeNode).filter(Boolean);
+    const children = childrenArray.length ? childrenArray : undefined;
 
     if (node.object === 'block') {
       const rule = blocksMap[node.type];
-      const result = rule?.serialize?.(children, node);
+      const result = rule?.serialize(children, node);
       return result === undefined ? children : addKey(result);
     } else if (node.object === 'inline') {
-      const rule = inlinesMap?.[node.type];
-      const result = rule?.serialize?.(children, node);
+      const rule = inlinesMap[node.type];
+      const result = rule?.serialize(children, node);
       return result === undefined ? children : addKey(result);
     }
 
     return children;
   }
 
-  function JsxSerializer(value: Value) {
-    return serializeNode(value.document);
+  function JsxSerializer(value: ValueJSON) {
+    return value.document ? serializeNode(value.document) : undefined;
   }
 
   return JsxSerializer;
