@@ -63,7 +63,7 @@ const jsxSerializer = createJsxSerializer({
 
 return (
   <div>
-    {jsxSerializer(value /* from slate */)}
+    {jsxSerializer(valueJSON /* from slate */)}
   </div>
 );
 ```

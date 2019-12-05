@@ -2,12 +2,16 @@ import { ReactHTML, ComponentType } from 'react';
 import { RenderAttributes, RenderNodeProps, RenderProps } from 'slate-react';
 import { NodeType } from './common';
 
+export type RendererBaseComponent<P = {}> = keyof ReactHTML | ComponentType<P>;
+
 /**
  * Type of component that can be rendered by `slate-react`.
  *
  * @typeparam P - Props of component.
  */
-export type RendererBaseComponent<P extends RenderAttributes = RenderAttributes> = keyof ReactHTML | ComponentType<P>;
+export type RendererBaseComponentWithAttributes<P extends RenderAttributes = RenderAttributes> = RendererBaseComponent<
+  P
+>;
 
 /**
  * The configuration of common renderer of `slate-react`.
@@ -16,7 +20,7 @@ export type RendererBaseComponent<P extends RenderAttributes = RenderAttributes>
  * @property getProps - Get the props of component from `RP`.
  */
 export interface CreateCommonRendererConfig<RP, P extends RenderAttributes = RenderAttributes> extends NodeType {
-  component: RendererBaseComponent<P>;
+  component: RendererBaseComponentWithAttributes<P>;
   getProps?: (props: RP extends RenderNodeProps | RenderProps ? RP : never) => Partial<P>;
 }
 

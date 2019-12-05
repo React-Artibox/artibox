@@ -1,9 +1,10 @@
-import React, { ReactHTML, ComponentType } from 'react';
+import React from 'react';
+import { RendererBaseComponent } from '@artibox/slate-common';
 import { JsxSerializerRule } from './typings';
 
 export interface CreateJsxSerializerRuleConfig<N, P = {}> {
   type: string;
-  component: keyof ReactHTML | ComponentType<P>;
+  component: RendererBaseComponent<P>;
   getProps?: (node: N) => Partial<P>;
   isVoid?: boolean;
 }

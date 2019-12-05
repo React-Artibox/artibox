@@ -1,7 +1,7 @@
 import React from 'react';
 import { Editor, EditorProps, Plugin } from 'slate-react';
 import cx from 'classnames';
-import { RendererBaseComponent } from '@artibox/slate-common';
+import { RendererBaseComponentWithAttributes } from '@artibox/slate-common';
 import { createParagraphRenderer } from '@artibox/slate-common/renderers/paragraph';
 import { ThemeProvider } from '@artibox/components/theme';
 import { LocaleProvider } from '@artibox/components/locale';
@@ -10,7 +10,7 @@ import { placeholder } from './placeholder';
 import './styles';
 
 export interface CreateArtiboxEditorConfig {
-  defaultBlockComponent?: RendererBaseComponent;
+  defaultBlockComponent?: RendererBaseComponentWithAttributes;
   plugins?: Plugin[];
 }
 

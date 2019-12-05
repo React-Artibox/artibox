@@ -1,4 +1,4 @@
-import { Block } from 'slate';
+import { Block, BlockJSON } from 'slate';
 import { CreateJsxSerializerRuleConfig, createJsxSerializerRule } from '@artibox/slate-jsx-serializer/rule';
 import { BLOCKQUOTE_TYPE, BLOCKQUOTE_COMPONENT } from './constants';
 
@@ -8,5 +8,5 @@ export type CreateBlockquoteJsxSerializerRuleConfig = Partial<
 
 export function createBlockquoteJsxSerializerRule(config?: CreateBlockquoteJsxSerializerRuleConfig) {
   const { type = BLOCKQUOTE_TYPE, component = BLOCKQUOTE_COMPONENT } = config || {};
-  return createJsxSerializerRule<Block>({ type, component });
+  return createJsxSerializerRule<BlockJSON>({ type, component });
 }
