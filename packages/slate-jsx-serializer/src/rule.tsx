@@ -1,5 +1,5 @@
 import React, { ReactHTML, ComponentType } from 'react';
-import { JsxSerializerRule } from './types';
+import { JsxSerializerRule } from './typings';
 
 export interface CreateJsxSerializerRuleConfig<N, P = {}> {
   type: string;
