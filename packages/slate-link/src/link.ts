@@ -6,7 +6,7 @@ import { CreateLinkRendererConfig, createLinkRenderer } from './renderer';
 import { createLinkSchema } from './schemta';
 import Link from './components/link';
 
-export type LinkForPluginConfig = CreateLinkRendererConfig;
+export type LinkForPluginConfig = Partial<CreateLinkRendererConfig>;
 
 export interface LinkForToolHookConfig {
   /**
