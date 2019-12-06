@@ -44,7 +44,7 @@ export function createFacebook(config?: CreateFacebookConfig): Facebook {
       };
 
       return (editor, defaultSetInputConfig) => ({
-        onMouseDown: useCallback(() => {
+        onClick: useCallback(() => {
           if (setInputConfig) {
             setInputConfig(editor, inputConfig);
           } else {

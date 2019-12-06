@@ -12,7 +12,7 @@ export type ToolHook = (
   setInputConfig: SetInputConfig
 ) => {
   active?: boolean;
-  onMouseDown: MouseEventHandler;
+  onClick: MouseEventHandler;
 };
 
 /**

@@ -51,7 +51,7 @@ export function createHeading(config?: CreateHeadingonfig): Heading {
       const { level } = config;
       return editor => ({
         active: controller.isSelectionIn(editor, level),
-        onMouseDown: useCallback(() => controller.toggle(editor, level), [editor])
+        onClick: useCallback(() => controller.toggle(editor, level), [editor])
       });
     }
   };

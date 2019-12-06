@@ -41,7 +41,7 @@ export function createList(config?: CreateListConfig): List {
     forToolHook(config: ListForToolHookConfig): ToolHook {
       const { orderedType, command = 'toggle' } = config;
       return editor => ({
-        onMouseDown: useCallback(() => controller[command](editor, orderedType), [editor])
+        onClick: useCallback(() => controller[command](editor, orderedType), [editor])
       });
     }
   };

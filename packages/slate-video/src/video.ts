@@ -41,7 +41,7 @@ export function createVideo(config?: CreateVideoConfig): Video {
       };
 
       return (editor, defaultSetInputConfig) => ({
-        onMouseDown: useCallback(() => {
+        onClick: useCallback(() => {
           if (setInputConfig) {
             setInputConfig(editor, inputConfig);
           } else {

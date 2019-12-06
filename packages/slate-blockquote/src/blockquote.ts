@@ -47,7 +47,7 @@ export function createBlockquote(config?: CreatBlockquoteeConfig): Blockquote {
       const { command = 'toggle', activeNotProvided = false } = config || {};
       return editor => ({
         active: !activeNotProvided && controller.isSelectionIn(editor),
-        onMouseDown: useCallback(() => controller[command](editor), [editor])
+        onClick: useCallback(() => controller[command](editor), [editor])
       });
     }
   };
