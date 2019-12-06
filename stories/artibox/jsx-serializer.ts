@@ -13,10 +13,16 @@ import { createVideoJsxSerializerRule } from '@artibox/slate-video';
 import { createInstagramJsxSerializerRule } from '@artibox/slate-instagram';
 import { createFacebookJsxSerializerRule } from '@artibox/slate-facebook';
 
+/**
+ * custom components
+ */
+import CustomBlockquote from './components/blockquote';
+
 export const jsxSerializer = createJsxSerializer({
+  defaultBlockComponent: 'p',
   blocks: [
     createHeadingJsxSerializerRule(),
-    createBlockquoteJsxSerializerRule(),
+    createBlockquoteJsxSerializerRule({ component: CustomBlockquote }),
     ...createListJsxSerializerRules(),
     createSeparationLineJsxSerializerRule(),
     createVideoJsxSerializerRule(),

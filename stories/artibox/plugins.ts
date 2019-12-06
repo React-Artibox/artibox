@@ -34,20 +34,25 @@ import { createInstagram } from '@artibox/slate-instagram';
 import { createInputBlock } from '@artibox/slate-input-block';
 import { Toolbar, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
-const Bold = createBold();
-const Italic = createItalic();
-const Underline = createUnderline();
-const Strikethrough = createStrikethrough();
-const Highlight = createHighlight();
-const Link = createLink();
-const Heading = createHeading();
-const Blockquote = createBlockquote();
-const List = createList();
-const SeparationLine = createSeparationLine();
-const Video = createVideo();
-const Instagram = createInstagram();
-const Facebook = createFacebook();
-const InputBlock = createInputBlock();
+/**
+ * custom components
+ */
+import CustomBlockquote from './components/blockquote';
+
+export const Bold = createBold();
+export const Italic = createItalic();
+export const Underline = createUnderline();
+export const Strikethrough = createStrikethrough();
+export const Highlight = createHighlight();
+export const Link = createLink();
+export const Heading = createHeading();
+export const Blockquote = createBlockquote();
+export const List = createList();
+export const SeparationLine = createSeparationLine();
+export const Video = createVideo();
+export const Instagram = createInstagram();
+export const Facebook = createFacebook();
+export const InputBlock = createInputBlock();
 
 export const plugins: Plugin[] = [
   Bold.forPlugin(),
@@ -57,7 +62,7 @@ export const plugins: Plugin[] = [
   Highlight.forPlugin(),
   Link.forPlugin(),
   Heading.forPlugin({ disabled: [4, 5, 6] }),
-  Blockquote.forPlugin(),
+  Blockquote.forPlugin({ component: CustomBlockquote }),
   ...List.forPlugin(),
   SeparationLine.forPlugin(),
   Video.forPlugin(),
