@@ -9,11 +9,13 @@ interface ToggleButtonsProps<T> {
 
 function ToggleButtons<T>({ items, value, onChange }: ToggleButtonsProps<T>) {
   return (
-    <div className="rich-editor__toggle-buttons">
+    <div className="artibox-editor-story__toggle-buttons">
       {items.map(item => (
         <button
           key={item.label}
-          className={cx('rich-editor__toggle-button', { 'rich-editor__toggle-button--active': item.value === value })}
+          className={cx('artibox-editor-story__toggle-button', {
+            'artibox-editor-story__toggle-button--active': item.value === value
+          })}
           onClick={() => onChange(item.value)}
         >
           {item.label}
