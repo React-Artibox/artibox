@@ -12,7 +12,7 @@ A complete rich text editor based on [Slate](https://github.com/ianstormtaylor/s
 
 ## Demo
 
-Check out the [live demo]() of all of the examples!
+Check out the [live demo](https://react-artibox.github.io/artibox) of all of the examples!
 
 ## Examples
 
