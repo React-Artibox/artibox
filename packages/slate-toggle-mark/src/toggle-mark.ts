@@ -37,7 +37,7 @@ export function createToggleMarkCreator(defaults: ToggleMarkDefaultConfig) {
         /**
          * Toggle the mark while tool clicked.
          */
-        onMouseDown: useCallback(() => controller.toggle(editor), [editor])
+        onClick: useCallback(() => controller.toggle(editor), [editor])
       })
     };
   }

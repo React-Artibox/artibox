@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, MouseEventHandler } from 'react';
 import cx from 'classnames';
 import { IconDefinition } from '@artibox/icons';
 import Icon from '@artibox/components/Icon';
@@ -11,19 +11,19 @@ interface ToolbarIconInnerProps extends ReturnType<ToolHook> {
   icon: IconDefinition;
 }
 
+const preventDefault: MouseEventHandler = event => event.preventDefault();
+
 const ToolbarIconInner = memo<ToolbarIconInnerProps>(
-  ({ active, onMouseDown, icon }) => (
+  ({ active, onClick, icon }) => (
     <span
       className={cx(`${clsPrefix}__icon`, { [`${clsPrefix}__icon--active`]: active })}
-      onMouseDown={event => {
-        event.preventDefault();
-        onMouseDown(event);
-      }}
+      onClick={onClick}
+      onMouseDown={preventDefault}
     >
       <Icon icon={icon} />
     </span>
   ),
-  (prev, next) => prev.active === next.active && prev.onMouseDown === next.onMouseDown && prev.icon === next.icon
+  (prev, next) => prev.active === next.active && prev.onClick === next.onClick && prev.icon === next.icon
 );
 
 export interface ToolbarIconProps extends WithEditor, Exclude<Tool, TOOLBAR_DIVIDER> {
@@ -31,8 +31,8 @@ export interface ToolbarIconProps extends WithEditor, Exclude<Tool, TOOLBAR_DIVI
 }
 
 function ToolbarIcon({ icon, hook, editor, setToolInput }: ToolbarIconProps) {
-  const { active, onMouseDown } = hook(editor, setToolInput);
-  return <ToolbarIconInner active={active} onMouseDown={onMouseDown} icon={icon} />;
+  const { active, onClick } = hook(editor, setToolInput);
+  return <ToolbarIconInner active={active} onClick={onClick} icon={icon} />;
 }
 
 export default ToolbarIcon;

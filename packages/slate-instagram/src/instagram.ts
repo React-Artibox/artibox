@@ -44,7 +44,7 @@ export function createInstagram(config?: CreateInstagramConfig): Instagram {
       };
 
       return (editor, defaultSetInputConfig) => ({
-        onMouseDown: useCallback(() => {
+        onClick: useCallback(() => {
           if (setInputConfig) {
             setInputConfig(editor, inputConfig);
           } else {

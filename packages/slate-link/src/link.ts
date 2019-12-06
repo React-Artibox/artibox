@@ -41,7 +41,7 @@ export function createLink(config?: CreateLinkConfig): Link {
 
       return (editor, setInputConfig) => ({
         active: activeProvided && controller.isSelectionIn(editor),
-        onMouseDown: useCallback(() => {
+        onClick: useCallback(() => {
           if (command === 'set') {
             setInputConfig(inputConfig);
           } else if (command === 'remove') {
