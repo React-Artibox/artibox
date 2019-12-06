@@ -1,8 +1,8 @@
-import { ReactHTML, ComponentType } from 'react';
+import { ReactHTML, ForwardRefExoticComponent } from 'react';
 import { RenderAttributes, RenderNodeProps, RenderProps } from 'slate-react';
 import { NodeType } from './common';
 
-export type RendererBaseComponent<P = {}> = keyof ReactHTML | ComponentType<P>;
+export type RendererBaseComponent<P = {}> = keyof ReactHTML | ForwardRefExoticComponent<P>;
 
 /**
  * Type of component that can be rendered by `slate-react`.
