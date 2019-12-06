@@ -28,7 +28,7 @@ function isNodeJSONAsTextJSON(node: NodeJSON): node is TextJSON {
 function createParagraphSerializerRule(Component: RendererBaseComponent): JsxSerializerRule<BlockJSON> {
   return {
     type: PARAGRAPH_TYPE,
-    serialize: children => (children ? <Component>{children}</Component> : <br />)
+    serialize: children => <Component>{children}</Component>
   };
 }
 
@@ -54,9 +54,10 @@ export function createJsxSerializer(config?: CreateJsxSerializerConfig) {
 
   function serializeText(node: TextJSON): ReactNode {
     const { text } = node;
+    const textOrBr = text || addKey(<>&#65279;</>);
 
     if (!node.marks) {
-      return text;
+      return textOrBr;
     }
 
     return node.marks.reduce<ReactNode>((element, mark) => {
@@ -68,7 +69,7 @@ export function createJsxSerializer(config?: CreateJsxSerializerConfig) {
 
       const result = rule.serialize(element, mark!);
       return result === undefined ? element : addKey(result);
-    }, text);
+    }, textOrBr);
   }
 
   function serializeNode(node: NodeJSON): ReactNode {
