@@ -28,7 +28,7 @@ $ yarn add @artibox/slate-jsx-serializer
 
 ## Introduction
 
-Quick and easy way to reuse your custom component of editor to serialize value json from slate and render.
+Quick and easy way to reuse your custom component on both editor and anywhere you want to render the json of value.
 
 ## Usage
 

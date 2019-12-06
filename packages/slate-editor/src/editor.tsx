@@ -19,9 +19,9 @@ export interface ArtiboxEditorProps extends Omit<EditorProps, keyof CreateArtibo
   theme?: string;
 }
 
-export function createArtiboxEditor(config: CreateArtiboxEditorConfig) {
-  const { defaultBlockComponent = 'div' } = config;
-  let { plugins = [] } = config;
+export function createArtiboxEditor(config?: CreateArtiboxEditorConfig) {
+  const { defaultBlockComponent = 'div' } = config || {};
+  let { plugins = [] } = config || {};
   plugins = [placeholder, createParagraphRenderer(defaultBlockComponent), ...plugins];
 
   function ArtiboxEditor({ theme, locale, className, ...props }: ArtiboxEditorProps) {
