@@ -16,7 +16,7 @@ Check out the [live demo]() of all of the examples!
 
 ## Examples
 
-- [Rich Editor](./stories/rich-editor/rich-editor.tsx) — showing the features you'd expect from a basic editor.
+- [Rich Editor](./stories/rich-editor/index.tsx) — showing the features you'd expect from a basic editor.
 
 ## Documentation
 
