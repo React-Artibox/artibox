@@ -1,11 +1,11 @@
 import React, { SVGProps, forwardRef } from 'react';
 import { IconDefinition } from '@artibox/icons';
 
-const svgBaseProps = {
+const svgBaseProps: SVGProps<SVGSVGElement> = {
   width: '1em',
   height: '1em',
   ['aria-hidden']: true,
-  focusable: 'false'
+  focusable: false
 };
 
 export interface IconProps extends SVGProps<SVGSVGElement> {

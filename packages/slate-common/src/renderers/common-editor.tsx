@@ -13,6 +13,6 @@ export function createCommonEditorRenderer(config: CreateCommonEditorRendererCon
   const { render } = config;
 
   return {
-    renderEditor: (_, editor, next) => render(editor, next())
+    renderEditor: (_, editor, next) => render((editor as any) as Editor, next())
   };
 }
