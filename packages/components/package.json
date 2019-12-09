@@ -1,6 +1,6 @@
 {
   "name": "@artibox/components",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -26,8 +26,8 @@
     "build": "tsc && tsc -m esnext -outDir esm && npm run build:css"
   },
   "dependencies": {
-    "@artibox/icons": "^0.0.0",
-    "@artibox/locale": "^0.0.0",
+    "@artibox/icons": "^0.1.0",
+    "@artibox/locale": "^0.1.0",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.3.0",
     "tslib": "^1.10.0"

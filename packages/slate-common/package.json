@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-common",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -25,7 +25,7 @@
     "build": "tsc && tsc -m esnext -outDir esm"
   },
   "dependencies": {
-    "@artibox/locale": "^0.0.0",
+    "@artibox/locale": "^0.1.0",
     "tslib": "^1.10.0"
   },
   "peerDependencies": {
