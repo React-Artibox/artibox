@@ -27,7 +27,10 @@
   },
   "dependencies": {
     "@artibox/slate-common": "^0.1.0",
-    "@artibox/slate-jsx-serializer": "^0.1.0"
+    "@artibox/slate-jsx-serializer": "^0.1.0",
+    "@types/react": "^16.9.15",
+    "@types/slate": "^0.47.5",
+    "@types/slate-react": "^0.22.9"
   },
   "peerDependencies": {
     "react": "^16.8.6",

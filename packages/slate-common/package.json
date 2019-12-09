@@ -27,6 +27,9 @@
   },
   "dependencies": {
     "@artibox/locale": "^0.1.0",
+    "@types/react": "^16.9.5",
+    "@types/slate": "^0.47.5",
+    "@types/slate-react": "^0.22.9",
     "tslib": "^1.10.0"
   },
   "peerDependencies": {
