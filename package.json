@@ -23,8 +23,7 @@
     "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages --out ./public",
     "commit": "git-cz",
-    "version": "lerna version",
-    "publish": "lerna publish from-git"
+    "release": "npm run build:clean && lerna version && npm run build && lerna publish from-git"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

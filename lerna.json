@@ -8,7 +8,8 @@
     "version": {
       "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"],
       "message": "chore(release): %s",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "yes": true
     },
     "publish": {
       "contents": "dist"
