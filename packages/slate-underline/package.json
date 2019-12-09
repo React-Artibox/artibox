@@ -9,6 +9,9 @@
   "main": "./index.js",
   "module": "./esm/index.js",
   "typings": "./esm/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/React-Artibox/artibox.git"
