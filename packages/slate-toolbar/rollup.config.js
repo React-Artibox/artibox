@@ -5,11 +5,11 @@ export default [
     input: './src/styles/index.ts',
     output: [
       {
-        file: './lib/styles/index.js',
+        file: './dist/styles/index.js',
         format: 'cjs'
       },
       {
-        file: './esm/styles/index.js',
+        file: './dist/esm/styles/index.js',
         format: 'esm'
       }
     ],

@@ -11,11 +11,11 @@ export default themes.map(theme => ({
   input: `./src/${theme}/index.ts`,
   output: [
     {
-      file: `./lib/${theme}/index.js`,
+      file: `./dist/${theme}/index.js`,
       format: 'cjs'
     },
     {
-      file: `./esm/${theme}/index.js`,
+      file: `./dist/esm/${theme}/index.js`,
       format: 'esm'
     }
   ],

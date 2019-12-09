@@ -21,7 +21,8 @@
   },
   "scripts": {
     "clean": "npm run build:clean",
-    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./*.tsbuildinfo",
-    "build": "tsc && tsc -m esnext -outDir esm"
+    "prebuild": "rsync -ar --exclude-from=./.npmignore ./ ./dist",
+    "build": "tsc && tsc -m esnext -outDir ./dist/esm",
+    "build:clean": "rm -rf ./{dist,*.tsbuildinfo}"
   }
 }

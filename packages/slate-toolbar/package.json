@@ -21,9 +21,11 @@
   },
   "scripts": {
     "clean": "npm run build:clean",
-    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./*.tsbuildinfo",
+    "prebuild": "rsync -ar --exclude-from=./.npmignore ./ ./dist",
+    "build:ts": "tsc && tsc -m esnext -outDir ./dist/esm",
     "build:css": "rollup --config rollup.config.js",
-    "build": "tsc && tsc -m esnext -outDir esm && npm run build:css"
+    "build": "npm run build:ts && npm run build:css",
+    "build:clean": "rm -rf ./{dist,*.tsbuildinfo}"
   },
   "dependencies": {
     "@artibox/components": "^0.1.0",
