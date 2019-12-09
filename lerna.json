@@ -9,6 +9,9 @@
       "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"],
       "message": "chore(release): %s",
       "conventionalCommits": true
+    },
+    "publish": {
+      "contents": "dist"
     }
   }
 }

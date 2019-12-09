@@ -1,10 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./lib",
+    "outDir": "./dist",
     "rootDir": "./src"
   },
   "references": [{ "path": "../slate-toggle-mark" }],
   "include": ["./src"],
-  "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
+  "exclude": ["node_modules", "./**/*.test.*"]
 }

@@ -11,11 +11,11 @@ export default componentsWithStyles.map(component => ({
   input: `./src/${component}/styles/index.ts`,
   output: [
     {
-      file: `./lib/${component}/styles/index.js`,
+      file: `./dist/${component}/styles/index.js`,
       format: 'cjs'
     },
     {
-      file: `./esm/${component}/styles/index.js`,
+      file: `./dist/esm/${component}/styles/index.js`,
       format: 'esm'
     }
   ],

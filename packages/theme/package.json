@@ -20,7 +20,8 @@
   },
   "scripts": {
     "clean": "npm run build:clean",
-    "build:clean": "rm -rf ./{esm,lib}",
-    "build": "rollup --config ./rollup.config.js"
+    "prebuild": "rsync -ar --exclude-from=./.npmignore ./ ./dist",
+    "build": "rollup --config ./rollup.config.js",
+    "build:clean": "rm -rf ./{dist,*.tsbuildinfo}"
   }
 }

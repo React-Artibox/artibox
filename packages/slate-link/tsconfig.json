@@ -1,10 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./lib",
+    "outDir": "./dist",
     "rootDir": "./src"
   },
   "references": [{ "path": "../components" }, { "path": "../slate-common" }, { "path": "../slate-jsx-serializer" }],
   "include": ["./src"],
-  "exclude": ["node_modules", "./esm", "./lib", "./**/*.test.*"]
+  "exclude": ["node_modules", "./esm", "./dist", "./**/*.test.*"]
 }

@@ -21,11 +21,15 @@
   },
   "scripts": {
     "clean": "npm run build:clean",
-    "build:clean": "rm -rf ./{esm,lib} && rm -rf ./*.tsbuildinfo",
-    "build": "tsc && tsc -m esnext -outDir esm"
+    "prebuild": "rsync -ar --exclude-from=./.npmignore ./ ./dist",
+    "build": "tsc && tsc -m esnext -outDir ./dist/esm",
+    "build:clean": "rm -rf ./{dist,*.tsbuildinfo}"
   },
   "dependencies": {
     "@artibox/slate-common": "^0.1.0",
+    "@types/react": "^16.9.15",
+    "@types/slate": "^0.47.5",
+    "@types/slate-react": "^0.22.9",
     "tslib": "^1.10.0"
   },
   "peerDependencies": {
