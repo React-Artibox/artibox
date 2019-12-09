@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-underline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -26,6 +26,6 @@
     "build:clean": "rm -rf ./{dist,*.tsbuildinfo}"
   },
   "dependencies": {
-    "@artibox/slate-toggle-mark": "^0.1.0"
+    "@artibox/slate-toggle-mark": "^0.1.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-editor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -28,9 +28,9 @@
     "build:clean": "rm -rf ./{dist,*.tsbuildinfo}"
   },
   "dependencies": {
-    "@artibox/components": "^0.1.0",
-    "@artibox/locale": "^0.1.0",
-    "@artibox/slate-common": "^0.1.0",
+    "@artibox/components": "^0.1.1",
+    "@artibox/locale": "^0.1.1",
+    "@artibox/slate-common": "^0.1.1",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.15",
     "@types/slate-react": "^0.22.9",

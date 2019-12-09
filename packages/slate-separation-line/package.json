@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-separation-line",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -26,8 +26,8 @@
     "build:clean": "rm -rf ./{dist,*.tsbuildinfo}"
   },
   "dependencies": {
-    "@artibox/slate-common": "^0.1.0",
-    "@artibox/slate-jsx-serializer": "^0.1.0",
+    "@artibox/slate-common": "^0.1.1",
+    "@artibox/slate-jsx-serializer": "^0.1.1",
     "@types/react": "^16.9.15",
     "@types/slate": "^0.47.5",
     "@types/slate-react": "^0.22.9"
