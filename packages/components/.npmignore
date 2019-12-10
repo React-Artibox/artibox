@@ -3,4 +3,4 @@ src/
 *.log
 *.tsbuildinfo
 *.config.js
-tsconfig.json
+tsconfig.*

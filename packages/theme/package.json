@@ -20,8 +20,9 @@
   },
   "scripts": {
     "clean": "npm run build:clean",
-    "prebuild": "rsync -ar --exclude-from=./.npmignore ./ ./dist",
+    "prebuild": "npm run build:clean && node ../../tools/build/sync-publish-files-to-dist.js",
     "build": "rollup --config ./rollup.config.js",
-    "build:clean": "rm -rf ./{dist,*.tsbuildinfo}"
+    "postbuild": "node ../../tools/build/sync-dist-to-node_modules.js",
+    "build:clean": "node ../../tools/build/clean.js"
   }
 }
