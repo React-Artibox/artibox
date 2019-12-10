@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-highlight",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -27,6 +27,6 @@
     "build:clean": "node ../../tools/build/clean.js"
   },
   "dependencies": {
-    "@artibox/slate-toggle-mark": "^0.1.1"
+    "@artibox/slate-toggle-mark": "^0.1.2"
   }
 }
