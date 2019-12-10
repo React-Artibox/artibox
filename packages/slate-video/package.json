@@ -21,9 +21,10 @@
   },
   "scripts": {
     "clean": "npm run build:clean",
-    "prebuild": "rsync -ar --exclude-from=./.npmignore ./ ./dist",
-    "build": "tsc && tsc -m esnext -outDir ./dist/esm",
-    "build:clean": "rm -rf ./{dist,*.tsbuildinfo}"
+    "prebuild": "npm run build:clean && node ../../tools/build/sync-publish-files-to-dist.js",
+    "build": "tsc --project ./tsconfig.app.json && tsc --project ./tsconfig.app.json -m esnext -outDir ./dist/esm",
+    "postbuild": "node ../../tools/build/sync-dist-to-node_modules.js",
+    "build:clean": "node ../../tools/build/clean.js"
   },
   "dependencies": {
     "@artibox/components": "^0.1.1",
