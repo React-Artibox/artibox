@@ -18,13 +18,13 @@ export function createCommonBlockRenderer<P extends RenderAttributes = RenderAtt
   const Component = component as any;
 
   return {
-    renderBlock(props, _, next) {
+    renderBlock(props, editor, next) {
       if (props.node.type !== type) {
         return next();
       }
 
       const { children, attributes } = props;
-      const data = getProps?.(props);
+      const data = getProps?.(props, editor);
 
       return (
         <Component {...attributes} {...data}>

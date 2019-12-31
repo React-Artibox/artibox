@@ -1,5 +1,5 @@
 import { Editor } from 'slate';
-import { Plugin } from 'slate-react';
+import { Plugin, getEventTransfer } from 'slate-react';
 import { isHotkey } from 'is-hotkey';
 import { InputBlockController } from './controller';
 
@@ -40,6 +40,19 @@ export function createInputBlockHandlers(config: CreateInputBlockHandlersConfig)
       return next();
     },
     /**
+     * Disable drop event if in input block.
+     */
+    onDrop(event, editorComponent, next) {
+      const editor = (editorComponent as any) as Editor;
+
+      if (!controller.isSelectionIn(editor)) {
+        return next();
+      }
+
+      event.preventDefault();
+      return editor;
+    },
+    /**
      * Only get the text.
      */
     onPaste(event, editorComponent, next) {
@@ -47,10 +60,11 @@ export function createInputBlockHandlers(config: CreateInputBlockHandlersConfig)
 
       if (!controller.isSelectionIn(editor)) {
         return next();
-      } else {
-        event.preventDefault();
-        return editor.insertText(event.clipboardData.getData('text'));
       }
+
+      event.preventDefault();
+      const transfer = getEventTransfer(event);
+      return ['html', 'text'].includes(transfer.type) ? editor.insertText((transfer as any).text) : editor;
     }
   };
 }

@@ -17,13 +17,13 @@ export function createCommonMarkRenderer<P extends RenderAttributes = RenderAttr
   const Component = component as any;
 
   return {
-    renderMark(props, _, next) {
+    renderMark(props, editor, next) {
       if (props.mark.type !== type) {
         return next();
       }
 
       const { children, attributes } = props;
-      const data = getProps?.(props);
+      const data = getProps?.(props, editor);
 
       return (
         <Component {...attributes} {...data}>

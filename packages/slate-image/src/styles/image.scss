@@ -1,0 +1,33 @@
+$resizer-size: 6px;
+
+.artibox-slate-image {
+  display: block;
+  width: 100%;
+  user-select: none;
+
+  &__wrapper {
+    display: inline-block;
+    position: relative;
+    user-select: none;
+  }
+
+  &__boundary,
+  &__resizer {
+    position: absolute;
+    border: 2px solid var(--artibox-primary);
+    right: 0;
+    bottom: 0;
+  }
+
+  &__boundary {
+    top: 0;
+    left: 0;
+  }
+
+  &__resizer {
+    width: $resizer-size;
+    height: $resizer-size;
+    transform: translate3d(50%, 50%, 0);
+    cursor: nwse-resize;
+  }
+}

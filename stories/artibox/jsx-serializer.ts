@@ -9,6 +9,7 @@ import { createHeadingJsxSerializerRule } from '@artibox/slate-heading';
 import { createBlockquoteJsxSerializerRule } from '@artibox/slate-blockquote';
 import { createListJsxSerializerRules } from '@artibox/slate-list';
 import { createSeparationLineJsxSerializerRule } from '@artibox/slate-separation-line';
+import { createImageJsxSerializerRule } from '@artibox/slate-image';
 import { createVideoJsxSerializerRule } from '@artibox/slate-video';
 import { createInstagramJsxSerializerRule } from '@artibox/slate-instagram';
 import { createFacebookJsxSerializerRule } from '@artibox/slate-facebook';
@@ -29,7 +30,7 @@ export const jsxSerializer = createJsxSerializer({
     createInstagramJsxSerializerRule(),
     createFacebookJsxSerializerRule()
   ],
-  inlines: [createLinkJsxSerializerRule()],
+  inlines: [createLinkJsxSerializerRule(), createImageJsxSerializerRule()],
   marks: [
     createBoldJsxSerializerRule(),
     createItalicJsxSerializerRule(),
