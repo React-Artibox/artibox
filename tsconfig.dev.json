@@ -13,6 +13,7 @@
       "@artibox/slate-facebook/*": ["./packages/slate-facebook/src/*"],
       "@artibox/slate-heading/*": ["./packages/slate-heading/src/*"],
       "@artibox/slate-highlight/*": ["./packages/slate-highlight/src/*"],
+      "@artibox/slate-image/*": ["./packages/slate-image/src/*"],
       "@artibox/slate-input-block/*": ["./packages/slate-input-block/src/*"],
       "@artibox/slate-instagram/*": ["./packages/slate-instagram/src/*"],
       "@artibox/slate-italic/*": ["./packages/slate-italic/src/*"],
@@ -25,7 +26,8 @@
       "@artibox/slate-toolbar/*": ["./packages/slate-toolbar/src/*"],
       "@artibox/slate-underline/*": ["./packages/slate-underline/src/*"],
       "@artibox/slate-video/*": ["./packages/slate-video/src/*"],
-      "@artibox/theme/*": ["./packages/theme/src/*"]
+      "@artibox/theme/*": ["./packages/theme/src/*"],
+      "@artibox/utils/*": ["./packages/utils/src/*"]
     }
   }
 }

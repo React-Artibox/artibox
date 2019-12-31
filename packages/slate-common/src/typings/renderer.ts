@@ -1,5 +1,5 @@
 import { ReactHTML, ForwardRefExoticComponent } from 'react';
-import { RenderAttributes, RenderNodeProps, RenderProps } from 'slate-react';
+import { RenderAttributes, RenderNodeProps, RenderProps, Editor } from 'slate-react';
 import { NodeType } from './common';
 
 export type RendererBaseComponent<P = {}> = keyof ReactHTML | ForwardRefExoticComponent<P>;
@@ -9,9 +9,7 @@ export type RendererBaseComponent<P = {}> = keyof ReactHTML | ForwardRefExoticCo
  *
  * @typeparam P - Props of component.
  */
-export type RendererBaseComponentWithAttributes<P extends RenderAttributes = RenderAttributes> = RendererBaseComponent<
-  P
->;
+export type RendererBaseComponentWithAttributes<P = {}> = RendererBaseComponent<P & RenderAttributes>;
 
 /**
  * The configuration of common renderer of `slate-react`.
@@ -21,7 +19,7 @@ export type RendererBaseComponentWithAttributes<P extends RenderAttributes = Ren
  */
 export interface CreateCommonRendererConfig<RP, P extends RenderAttributes = RenderAttributes> extends NodeType {
   component: RendererBaseComponentWithAttributes<P>;
-  getProps?: (props: RP extends RenderNodeProps | RenderProps ? RP : never) => Partial<P>;
+  getProps?: (props: RP extends RenderNodeProps | RenderProps ? RP : never, editor: Editor) => Partial<P>;
 }
 
 export interface NodeIsVoid {
