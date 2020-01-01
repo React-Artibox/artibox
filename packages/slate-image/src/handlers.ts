@@ -2,6 +2,7 @@ import { DragEvent, ClipboardEvent } from 'react';
 import { Editor as CoreEditor, Range } from 'slate';
 import { Editor, Plugin, getEventTransfer } from 'slate-react';
 import { isImageUrl } from '@artibox/utils/is-image-url';
+import { readFileAsDataURL } from '@artibox/utils/read-file-as-data-url';
 import { ImageController } from './controller';
 
 function insertImage(editor: CoreEditor, controller: ImageController, src: string, range: Range | null) {
@@ -38,15 +39,9 @@ export function createImageHandlers(config: CreateImageHandlersConfig): Plugin {
         return next();
       }
 
-      imageFiles.forEach(imageFile => {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => {
-          if (typeof reader.result === 'string') {
-            insertImage(editor, controller, reader.result, range);
-          }
-        });
-        reader.readAsDataURL(imageFile);
-      });
+      imageFiles.forEach(imageFile =>
+        readFileAsDataURL(imageFile).then(dataURL => insertImage(editor, controller, dataURL, range))
+      );
 
       return editor;
     }
