@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-link",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -27,9 +27,9 @@
     "build:clean": "node ../../tools/build/clean.js"
   },
   "dependencies": {
-    "@artibox/components": "^0.1.2",
-    "@artibox/slate-common": "^0.1.2",
-    "@artibox/slate-jsx-serializer": "^0.1.2",
+    "@artibox/components": "^0.2.0",
+    "@artibox/slate-common": "^0.2.0",
+    "@artibox/slate-jsx-serializer": "^0.2.0",
     "@types/react": "^16.9.15",
     "@types/slate": "^0.47.5",
     "@types/slate-react": "^0.22.9"
