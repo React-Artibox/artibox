@@ -8,7 +8,7 @@ export function createImageSchema(config: CreateImageSchemaConfig): SchemaProper
   const { type, thresholds } = config;
 
   return {
-    inlines: {
+    blocks: {
       [type]: {
         isVoid: true,
         data: {

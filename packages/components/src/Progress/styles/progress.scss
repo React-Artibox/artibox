@@ -1,0 +1,30 @@
+.artibox-progress {
+  display: inline-block;
+  position: relative;
+  border-radius: 9px;
+  width: 100%;
+  height: 6px;
+  overflow: hidden;
+
+  &__backdrop,
+  &__track {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 9px;
+  }
+
+  &__backdrop {
+    background-color: var(--artibox-neutral-0);
+    opacity: 0.1;
+  }
+
+  &__track {
+    background-color: var(--artibox-primary);
+    transition: transform 0.2s linear;
+    transform-origin: left;
+  }
+}

@@ -6,7 +6,6 @@ $resizer-size: 6px;
   user-select: none;
 
   &__wrapper {
-    display: inline-block;
     position: relative;
     user-select: none;
   }
@@ -27,6 +26,7 @@ $resizer-size: 6px;
   &__resizer {
     width: $resizer-size;
     height: $resizer-size;
+    background: var(--artibox-neutral-9);
     transform: translate3d(50%, 50%, 0);
     cursor: nwse-resize;
   }
