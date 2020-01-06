@@ -1,14 +1,14 @@
-import { Inline, Editor } from 'slate';
+import { Block, Editor } from 'slate';
 import { NodeType } from '@artibox/slate-common';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
 import { WithHostingResolvers, WithThresholds } from './typings';
-import { getImageSrcFromInline } from './utils/get-image-src-from-inline';
-import { createImageInline } from './utils/create-image-inline';
+import { getImageSrcFromBlock } from './utils/get-image-src-from-block';
 
 export interface ImageController {
   /**
-   * Check if the inline is image.
+   * Check if the block is image.
    */
-  isInlineAs(inline?: Inline | null): boolean;
+  isBlockAs(block?: Block | null): block is Block;
   /**
    * Check if there are some images in the current selection.
    */
@@ -16,49 +16,64 @@ export interface ImageController {
   /**
    * Get the first image in the current selection.
    */
-  getCurrent(editor: Editor): Inline | null;
+  getCurrent(editor: Editor): Block | null;
   /**
-   * Get url of the first image in the current selection.
+   * Get src of the first image in the current selection.
    */
   getSrcOfCurrent(editor: Editor): string | undefined;
+  /**
+   * Create an image block.
+   */
+  createBlock(src: string, hostingType?: string): Block;
   /**
    * Add an image.
    */
   add(editor: Editor, src: string, hostingType?: string): Editor;
   /**
-   * Resize the first image in the current selection.
+   * Resize the specific image.
    */
-  resize(editor: Editor, width: number): Editor;
+  resize(editor: Editor, image: Block, width: number): Editor;
 }
 
 export type CreateImageControllerConfig = NodeType & Partial<WithHostingResolvers & WithThresholds>;
 
 export function createImageController(config: CreateImageControllerConfig): ImageController {
   const { type, hostingResolvers, thresholds } = config || {};
-  const isInlineAs: ImageController['isInlineAs'] = inline => inline?.type === type;
-  const isSelectionIn: ImageController['isSelectionIn'] = editor => editor.value.inlines.some(isInlineAs);
-  const getCurrent: ImageController['getCurrent'] = editor => editor.value.startInline;
+  const isBlockAs: ImageController['isBlockAs'] = (block): block is Block => block?.type === type;
+  const isSelectionIn: ImageController['isSelectionIn'] = editor => editor.value.blocks.some(isBlockAs);
+  const getCurrent: ImageController['getCurrent'] = editor => {
+    const image = editor.value.startBlock;
+    return isBlockAs(image) ? image : null;
+  };
   const getSrcOfCurrent: ImageController['getSrcOfCurrent'] = editor => {
     const image = getCurrent(editor);
-    return image ? getImageSrcFromInline(image, hostingResolvers) : undefined;
+    return image ? getImageSrcFromBlock(image, hostingResolvers) : undefined;
   };
+  const createBlock: ImageController['createBlock'] = (src, hostingType) =>
+    Block.create({
+      type,
+      data: { src, hostingType, width: 100 },
+      nodes: []
+    });
   const add: ImageController['add'] = (editor, src, hostingType) =>
-    editor.insertInline(createImageInline(type, src, hostingType, 100));
-  const resize: ImageController['resize'] = (editor, width) => {
-    const image = getCurrent(editor);
-
-    if (!image || (thresholds && !thresholds.includes(width))) {
+    editor
+      .insertBlock(createBlock(src, hostingType))
+      .insertBlock(PARAGRAPH_TYPE)
+      .moveToStartOfBlock();
+  const resize: ImageController['resize'] = (editor, image, width) => {
+    if (!isBlockAs(image) || (thresholds && !thresholds.includes(width))) {
       return editor;
     }
 
-    return editor.setInlines(image.setIn(['data', 'width'], width) as Inline);
+    return editor.setNodeByKey(image.key, image.setIn(['data', 'width'], width) as Block);
   };
 
   return {
-    isInlineAs,
+    isBlockAs,
     isSelectionIn,
     getCurrent,
     getSrcOfCurrent,
+    createBlock,
     add,
     resize
   };

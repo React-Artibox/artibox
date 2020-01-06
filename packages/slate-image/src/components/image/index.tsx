@@ -48,7 +48,7 @@ interface ImageResizeStartPoint {
 }
 
 const Image = forwardRef<HTMLImageElement, ImagePropsForRenderer>(function Image(props, ref) {
-  const { children, controller, editor, isSelected, src, style, thresholds, ...rest } = props;
+  const { children, controller, editor, isSelected, node, src, style, thresholds, ...rest } = props;
   const imageRef = useRef<HTMLImageElement>(null);
   const [startPoint, setStartPoint] = useState<ImageResizeStartPoint | undefined>(undefined);
   const onResizingStart = (event: React.MouseEvent | React.TouchEvent) => {
@@ -116,7 +116,7 @@ const Image = forwardRef<HTMLImageElement, ImagePropsForRenderer>(function Image
         percentage = adjustPercentageByThresholds(percentage, thresholds);
       }
 
-      controller.resize(editor as any, percentage);
+      controller.resize(editor as any, node, percentage);
     }
 
     function onCancelResize() {
@@ -130,10 +130,10 @@ const Image = forwardRef<HTMLImageElement, ImagePropsForRenderer>(function Image
       moveEvents.forEach(moveEvent => document.removeEventListener(moveEvent, onResize));
       endEvents.forEach(endEvent => document.removeEventListener(endEvent, onCancelResize));
     };
-  }, [startPoint, editor, controller, isSelected, thresholds]);
+  }, [startPoint, editor, controller, isSelected, node, thresholds]);
 
   return (
-    <span ref={ref} className="artibox-slate-image__wrapper" style={style} {...rest}>
+    <div ref={ref} className="artibox-slate-image__wrapper" style={style} {...rest}>
       {isSelected && (
         <>
           <span className="artibox-slate-image__boundary" />
@@ -141,7 +141,7 @@ const Image = forwardRef<HTMLImageElement, ImagePropsForRenderer>(function Image
         </>
       )}
       <img ref={imageRef} className="artibox-slate-image" src={src} />
-    </span>
+    </div>
   );
 });
 

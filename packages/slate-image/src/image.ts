@@ -3,14 +3,14 @@ import { NodeType, InputConfig, ForPlugin, ForToolHook } from '@artibox/slate-co
 import { IMAGE_TYPE } from './constants';
 import { WithHostingResolvers, WithThresholds } from './typings';
 import Image from './components/image';
-import { createImageController } from './controller';
+import { createImageController, ImageController } from './controller';
 import { CreateImageRendererConfig, createImageRenderer } from './renderer';
 import { createImageHandlers } from './handlers';
 import { createImageSchema } from './schemta';
 
 export type ImageForPluginConfig = Partial<CreateImageRendererConfig>;
 
-export type Image = NodeType & ForPlugin<ImageForPluginConfig> & ForToolHook<undefined>;
+export type Image = NodeType & ImageController & ForPlugin<ImageForPluginConfig> & ForToolHook<undefined>;
 
 export type CreateImageConfig = Partial<NodeType & WithHostingResolvers & WithThresholds>;
 

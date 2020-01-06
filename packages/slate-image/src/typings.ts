@@ -1,3 +1,4 @@
+import { Block } from 'slate';
 import { RenderAttributes, Editor } from 'slate-react';
 import { ImageController } from './controller';
 
@@ -26,4 +27,5 @@ export interface ImagePropsForRenderer extends ImageProps, Partial<WithThreshold
   controller: ImageController;
   editor: Editor;
   isSelected: boolean;
+  node: Block;
 }

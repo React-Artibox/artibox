@@ -14,6 +14,7 @@ import {
   UnorderedList,
   OrderedList,
   SeparationLine as SeparationLineIcon,
+  Image as ImageIcon,
   Video as VideoIcon,
   Facebook as FacebookIcon,
   Instagram as InstagramIcon
@@ -33,6 +34,7 @@ import { createVideo } from '@artibox/slate-video';
 import { createFacebook } from '@artibox/slate-facebook';
 import { createInstagram } from '@artibox/slate-instagram';
 import { createInputBlock } from '@artibox/slate-input-block';
+import { createFileUploader } from '@artibox/slate-file-uploader';
 import { Toolbar, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
 /**
@@ -52,11 +54,33 @@ export const Blockquote = createBlockquote();
 export const List = createList();
 export const SeparationLine = createSeparationLine();
 export const Image = createImage({
-  thresholds: [25, 50, 75]
+  thresholds: [25, 50, 75],
+  hostingResolvers: {
+    GCLOUD_STORAGE: name => `<Your Public Url>/${name}`
+  }
 });
 export const Video = createVideo();
 export const Instagram = createInstagram();
 export const Facebook = createFacebook();
+/**
+ * @example
+ * Use gcloud storage.
+ */
+export const FileUploader = createFileUploader({
+  accept: ['image/*'],
+  createNode: {
+    image: {
+      dataURL: dataURL => Image.createBlock(dataURL, 'GCLOUD_STORAGE'),
+      response: response => Image.createBlock(JSON.parse(response).name, 'GCLOUD_STORAGE')
+    }
+  },
+  headers: file => ({
+    Authorization: 'Bearer <Your OAuth2 Token>',
+    'Content-Type': file.type
+  }),
+  url: file =>
+    `https://storage.googleapis.com/upload/storage/v1/b/<Your Bucket Name>/o?uploadType=media&name=${file.name}`
+});
 
 export const plugins: Plugin[] = [
   InputBlock.forPlugin(),
@@ -74,9 +98,9 @@ export const plugins: Plugin[] = [
   Video.forPlugin(),
   Instagram.forPlugin(),
   Facebook.forPlugin(),
+  FileUploader.forPlugin(),
   Toolbar.forPlugin({
     disabledBlocks: [InputBlock.type],
-    disabledInlines: [Image.type],
     expandedTools: [
       { icon: BoldIcon, hook: Bold.forToolHook() },
       { icon: ItalicIcon, hook: Italic.forToolHook() },
@@ -95,6 +119,7 @@ export const plugins: Plugin[] = [
       { icon: OrderedList, hook: List.forToolHook({ orderedType: 'ordered' }) },
       TOOLBAR_DIVIDER,
       { icon: SeparationLineIcon, hook: SeparationLine.forToolHook() },
+      { icon: ImageIcon, hook: FileUploader.forToolHook() },
       { icon: VideoIcon, hook: Video.forToolHook({ setInputConfig: InputBlock.start }) },
       { icon: InstagramIcon, hook: Instagram.forToolHook({ setInputConfig: InputBlock.start }) },
       { icon: FacebookIcon, hook: Facebook.forToolHook({ setInputConfig: InputBlock.start }) }

@@ -26,11 +26,12 @@ export const jsxSerializer = createJsxSerializer({
     createBlockquoteJsxSerializerRule({ component: CustomBlockquote }),
     ...createListJsxSerializerRules(),
     createSeparationLineJsxSerializerRule(),
+    createImageJsxSerializerRule(),
     createVideoJsxSerializerRule(),
     createInstagramJsxSerializerRule(),
     createFacebookJsxSerializerRule()
   ],
-  inlines: [createLinkJsxSerializerRule(), createImageJsxSerializerRule()],
+  inlines: [createLinkJsxSerializerRule()],
   marks: [
     createBoldJsxSerializerRule(),
     createItalicJsxSerializerRule(),
