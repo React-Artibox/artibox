@@ -57,7 +57,7 @@ export default Editor;
 
 ```tsx
 import { createJsxSerializer } from '@artibox/slate-jsx-serializer';
-import { createBlockquoteJsxSerializerRule } from '@artibox/slate-italic';
+import { createBlockquoteJsxSerializerRule } from '@artibox/slate-blockquote';
 
 const jsxSerializer = createJsxSerializer({
   blocks: [
