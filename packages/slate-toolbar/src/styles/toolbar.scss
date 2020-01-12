@@ -20,6 +20,7 @@ $toolbar-input-cross-size: 14px;
     z-index: 1;
     padding-bottom: $toolbar-popup-gap;
     height: $toolbar-height;
+    box-sizing: content-box;
   }
 
   &__arrow {
