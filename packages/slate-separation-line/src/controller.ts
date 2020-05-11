@@ -14,10 +14,6 @@ export type CreateSeparationLineControllerConfig = NodeType;
 export function createSeparationLineController(config: CreateSeparationLineControllerConfig): SeparationLineController {
   const { type } = config;
   return {
-    add: editor =>
-      editor
-        .insertBlock(type)
-        .insertBlock(PARAGRAPH_TYPE)
-        .moveToStartOfBlock()
+    add: editor => editor.insertBlock(type).insertBlock(PARAGRAPH_TYPE).moveToStartOfBlock()
   };
 }
