@@ -56,10 +56,7 @@ export function createImageController(config: CreateImageControllerConfig): Imag
       nodes: []
     });
   const add: ImageController['add'] = (editor, src, hostingType) =>
-    editor
-      .insertBlock(createBlock(src, hostingType))
-      .insertBlock(PARAGRAPH_TYPE)
-      .moveToStartOfBlock();
+    editor.insertBlock(createBlock(src, hostingType)).insertBlock(PARAGRAPH_TYPE).moveToStartOfBlock();
   const resize: ImageController['resize'] = (editor, image, width) => {
     if (!isBlockAs(image) || (thresholds && !thresholds.includes(width))) {
       return editor;
