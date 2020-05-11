@@ -4,7 +4,7 @@
   white-space: nowrap;
 
   &__placeholder {
-    color: var(--artibox-input-block-placeholder);
+    color: var(--artibox-placeholder);
     transition: color 300ms ease-in-out;
   }
 }

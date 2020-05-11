@@ -1,4 +1,4 @@
-$resizer-size: 6px;
+$artibox-image-resizer-size: 6px;
 
 .artibox-slate-image {
   display: block;
@@ -24,9 +24,9 @@ $resizer-size: 6px;
   }
 
   &__resizer {
-    width: $resizer-size;
-    height: $resizer-size;
-    background: var(--artibox-neutral-9);
+    width: $artibox-image-resizer-size;
+    height: $artibox-image-resizer-size;
+    background: var(--artibox-surface);
     transform: translate3d(50%, 50%, 0);
     cursor: nwse-resize;
   }

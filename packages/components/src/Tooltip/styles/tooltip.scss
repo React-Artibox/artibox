@@ -1,6 +1,6 @@
-$popup-gap: 10px;
-$arrow-size: $popup-gap;
-$placement-inverse-map: (
+$artibox-tooltip-popup-gap: 10px;
+$artibox-tooltip-arrow-size: $artibox-tooltip-popup-gap;
+$artibox-tooltip-placement-inverse-map: (
   top: bottom,
   right: left,
   bottom: top,
@@ -23,17 +23,17 @@ $placement-inverse-map: (
     overflow-wrap: break-word;
     box-sizing: border-box;
 
-    @each $placement, $inverse-placement in $placement-inverse-map {
+    @each $placement, $inverse-placement in $artibox-tooltip-placement-inverse-map {
       &--#{$placement} {
-        padding-#{$inverse-placement}: $popup-gap;
+        padding-#{$inverse-placement}: $artibox-tooltip-popup-gap;
       }
     }
   }
 
   &__content {
-    background-color: var(--artibox-tooltip-background);
-    border: 1px solid var(--artibox-tooltip-border);
-    color: var(--artibox-tooltip-color);
+    background-color: var(--artibox-surface);
+    border: 1px solid var(--artibox-border);
+    color: var(--artibox-text);
     border-radius: 4px;
     padding: 16px;
     font-size: 13px;
@@ -43,14 +43,14 @@ $placement-inverse-map: (
   &__arrow {
     position: absolute;
     content: '';
-    width: $arrow-size;
-    height: $arrow-size;
-    background-color: var(--artibox-tooltip-background);
-    border: 1px solid var(--artibox-tooltip-border);
+    width: $artibox-tooltip-arrow-size;
+    height: $artibox-tooltip-arrow-size;
+    background-color: var(--artibox-surface);
+    border: 1px solid var(--artibox-border);
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
 
     &--top {
-      top: calc(100% - #{$popup-gap});
+      top: calc(100% - #{$artibox-tooltip-popup-gap});
       left: 50%;
       border-top: none;
       border-left: none;
@@ -58,20 +58,20 @@ $placement-inverse-map: (
 
     &--bottom {
       left: 50%;
-      top: #{$popup-gap};
+      top: #{$artibox-tooltip-popup-gap};
       border-bottom: none;
       border-right: none;
     }
 
     &--right {
-      left: #{$popup-gap};
+      left: #{$artibox-tooltip-popup-gap};
       top: 50%;
       border-top: none;
       border-right: none;
     }
 
     &--left {
-      left: calc(100% - #{$popup-gap});
+      left: calc(100% - #{$artibox-tooltip-popup-gap});
       top: 50%;
       border-bottom: none;
       border-left: none;
@@ -79,12 +79,12 @@ $placement-inverse-map: (
 
     &--top-left,
     &--bottom-left {
-      left: #{$popup-gap * 2};
+      left: #{$artibox-tooltip-popup-gap * 2};
     }
 
     &--top-right,
     &--bottom-right {
-      left: calc(100% - #{$popup-gap * 2});
+      left: calc(100% - #{$artibox-tooltip-popup-gap * 2});
     }
   }
 

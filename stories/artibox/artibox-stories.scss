@@ -6,7 +6,7 @@
   }
 
   a {
-    color: var(--artibox-neutral-0);
+    color: var(--artibox-text);
     transition: color 300ms ease-in-out;
   }
 
@@ -24,7 +24,7 @@
   &__blockquote {
     margin: 56px 0;
     padding: 36px 40px;
-    background-color: var(--artibox-neutral-7);
+    background-color: var(--artibox-border);
     transition: background-color 300ms ease-in-out;
 
     &__line {
