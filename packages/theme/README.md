@@ -19,7 +19,7 @@ $ yarn add @artibox/theme
 
 ## Introduction
 
-### Pre-built themes
+### Prebuilt themes
 
 - [artibox]
 - [artibox-dark]
@@ -47,36 +47,16 @@ A typical theme file will look something like this:
 @import '~@artibox/theming/register';
 
 $your-theme-palette: (
-  primary: (
-    darker: ...,
-    default: ...,
-    lighter: ...
-  ),
-  /**
-   * All neutral colors from dark to light.
-   * If you want to build an dark mode, just inverse the order.
-   */ neutral: (
-      0: ...,
-      1: ...,
-      2: ...,
-      3: ...,
-      4: ...,
-      5: ...,
-      6: ...,
-      7: ...,
-      8: ...,
-      9: ...
-    ),
-  /**
-   * You can also override the specific color of the corresponding name of component.
-   */ toolbar:
-    (
-      ...
-    ),
-  tooltip: (
-    ...
-  ),
-  ...
+  primary-light: ...,
+  primary: ...,
+  primary-dark: ...,
+  background: ...,
+  surface: ...,
+  text: ...,
+  border: ...,
+  divider: ...,
+  placeholder: ...,
+  icon: ...
 );
 
 /**
@@ -101,11 +81,14 @@ Since we use css variables to theming, the above palette will be build into:
 
 ```css
 .artibox-theme-your-theme-name {
+  --artibox-primary-light: ...;
   --artibox-primary: ...;
-  --artibox-primary-darkder: ...;
+  --artibox-primary-dark: ...;
 
   /* ... */
-  --artibox-neutral-0: ...;
+  --artibox-background: ...;
+  --artibox-surface: ...;
+  --artibox-text: ...;
 
   /* ... */
 }

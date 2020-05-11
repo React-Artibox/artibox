@@ -4,6 +4,6 @@
 
 @mixin artibox-selection {
   ::selection {
-    background-color: var(--artibox-primary-lighter);
+    background-color: var(--artibox-primary-light);
   }
 }

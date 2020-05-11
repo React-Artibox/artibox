@@ -1,29 +1,8 @@
-@import './themes/components/tooltip';
-@import './themes/editor';
-@import './themes/input-block';
-@import './themes/toolbar';
-
 @mixin artibox-theme($name, $palette) {
   .artibox-theme-#{$name} {
-    $primary: map-get($palette, primary);
-    $neutral: map-get($palette, neutral);
-
-    @each $name, $color in $primary {
-      @if $name == default {
-        --artibox-primary: #{$color};
-      } @else {
-        --artibox-primary-#{$name}: #{$color};
-      }
+    @each $name, $color in $palette {
+      --artibox-#{$name}: #{$color};
     }
-
-    @each $level, $color in $neutral {
-      --artibox-neutral-#{$level}: #{$color};
-    }
-
-    @include artibox-tooltip-theme($palette);
-    @include artibox-editor-theme($palette);
-    @include artibox-input-block-theme($palette);
-    @include artibox-toolbar-theme($palette);
 
     @content;
   }
