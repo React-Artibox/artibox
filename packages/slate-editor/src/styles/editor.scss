@@ -2,8 +2,13 @@
   background-color: var(--artibox-background);
   border: solid 1px var(--artibox-border);
   color: var(--artibox-text);
+  caret-color: var(--artibox-primary);
   transition: background-color 300ms ease-in-out, border-color 300ms ease-in-out, color 300ms ease-in-out;
   will-change: background-color, border-color, color;
+
+  ::selection {
+    background-color: var(--artibox-primary-light);
+  }
 
   &__placeholder {
     color: var(--artibox-placeholder);

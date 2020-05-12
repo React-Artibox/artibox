@@ -1,3 +1,4 @@
+import '@artibox/theme/artibox.scss';
 import React, { useState, useCallback, useMemo } from 'react';
 import { OnChangeFn } from 'slate-react';
 import { createArtiboxEditor } from '@artibox/slate-editor';
@@ -13,7 +14,7 @@ export function JsxSerializerStory() {
   const jsx = useMemo(() => jsxSerializer(value.toJSON()), [value.document]);
 
   return (
-    <div className="jsx-serializer-story">
+    <div className="artibox-theme-artibox jsx-serializer-story">
       <ArtiboxEditor
         className="artibox-stories-elements jsx-serializer-story__section"
         value={value}

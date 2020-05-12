@@ -32,6 +32,7 @@
     "@artibox/components": "^0.2.0",
     "@artibox/locale": "^0.2.0",
     "@artibox/slate-common": "^0.2.0",
+    "@artibox/theme": "^0.2.0",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.15",
     "@types/slate-react": "^0.22.9",

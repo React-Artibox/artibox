@@ -10,3 +10,16 @@ $artibox-palette-artibox: (
   placeholder: #9e9e9e,
   icon: #7d7d7d
 );
+
+$artibox-palette-artibox-dark: map-merge(
+  $artibox-palette-artibox,
+  (
+    background: #212121,
+    surface: #000,
+    text: #fff,
+    border: #4a4a4a,
+    divider: #636363,
+    placeholder: #7d7d7d,
+    icon: #9e9e9e
+  )
+);
