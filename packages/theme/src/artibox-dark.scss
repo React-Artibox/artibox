@@ -1,0 +1,4 @@
+@import '../theming/register';
+@import '../theming/palettes';
+
+@include artibox-theme('artibox-dark', $artibox-palette-artibox-dark);

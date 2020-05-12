@@ -1,3 +1,5 @@
 *.ts
 *.tsx
 *.md
+
+prebuilts/

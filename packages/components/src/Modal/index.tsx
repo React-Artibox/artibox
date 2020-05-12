@@ -4,6 +4,7 @@ import React, {
   EventHandler,
   MouseEvent,
   KeyboardEvent,
+  useContext,
   useRef,
   useCallback,
   useLayoutEffect
@@ -12,7 +13,7 @@ import cx from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
 import Portal, { PortalProps } from '../Portal';
-import { useTheme } from '../theme';
+import { ThemeContext } from '../theme';
 import './styles';
 
 export interface ModalProps {
@@ -53,7 +54,7 @@ const Modal: FC<ModalProps> = ({
   onCancel,
   title
 }) => {
-  const theme = useTheme();
+  const { props: themeProps } = useContext(ThemeContext);
   const maskRef = useRef<HTMLDivElement>(null);
   const onMaskClick = useCallback<MouseEventHandler>(
     event => {
@@ -87,10 +88,11 @@ const Modal: FC<ModalProps> = ({
       <CSSTransition in={open} classNames={transitionClassNames} timeout={maskDelay} unmountOnExit={true}>
         <div
           ref={maskRef}
-          className={cx('artibox-modal__mask', theme, maskClassName)}
+          className={cx('artibox-modal__mask', themeProps.className, maskClassName)}
           onClick={onMaskClick}
           onKeyPress={undefined}
           role="dialog"
+          style={themeProps.style}
           tabIndex={-1}
         >
           <div className={cx('artibox-modal', className)}>

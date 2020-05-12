@@ -1,9 +1,0 @@
-@mixin artibox-caret {
-  caret-color: var(--artibox-primary);
-}
-
-@mixin artibox-selection {
-  ::selection {
-    background-color: var(--artibox-primary-light);
-  }
-}

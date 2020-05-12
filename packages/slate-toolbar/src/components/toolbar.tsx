@@ -1,7 +1,7 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
+import React, { useRef, useLayoutEffect, useState, useContext } from 'react';
 import cx from 'classnames';
 import { WithEditor, InputConfig } from '@artibox/slate-common';
-import { useTheme } from '@artibox/components/theme';
+import { ThemeContext } from '@artibox/components/theme';
 import Portal from '@artibox/components/Portal';
 import { TOOLBAR_DIVIDER } from '../constants';
 import { Tool, WithTools } from '../typings';
@@ -42,7 +42,7 @@ export type ToolbarProps = WithEditor & WithTools;
 
 function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const theme = useTheme();
+  const { props: themeProps } = useContext(ThemeContext);
   const [toolInput, setToolInput] = useState<InputConfig | null>(null);
   const { fragment, selection } = editor.value;
   const { isFocused, isExpanded } = selection;
@@ -96,7 +96,7 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
 
   return (
     <Portal>
-      <div ref={ref} className={cx(`${clsPrefix}__wrapper`, theme)}>
+      <div ref={ref} className={cx(`${clsPrefix}__wrapper`, themeProps.className)} style={themeProps.style}>
         <div className={`${clsPrefix}__arrow`} />
         <div className={clsPrefix}>
           {tools.map((tool, index) => {

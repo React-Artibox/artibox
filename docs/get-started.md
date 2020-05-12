@@ -121,19 +121,25 @@ import { zhTW } from '@artibox/locale/zh-TW';
 
 ## Adding Themes
 
-We use css variables to theming so the value of theme context is just a class name string. The slate editor created by `createArtiboxEditor` has built-in theme provider.  
-You can just pass theme name to `theme` prop of editor.
+We use css variables to theming. The `theme` prop can be either a `string` or a `object`.  
+The slate editor created by `createArtiboxEditor` has built-in theme provider with theme resolver.  
+You can just pass it to `theme` prop of editor.
 
 ```tsx
-import '@artibox/theme/artibox';
-import '@artibox/theme/artibox-dark';
+import { THEME_ARTIBOX } from '@artibox/theme/artibox';
 
-// ...
+<ArtiboxEditor
+  // ...
+  theme={THEME_ARTIBOX}
+/>;
+
+// or
+
+import '@artibox/theme/prebuilts/artibox.css';
 
 <ArtiboxEditor
   // ...
   theme="artibox"
-  // theme="artibox-dark"
 />;
 ```
 

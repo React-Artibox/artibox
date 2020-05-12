@@ -3,7 +3,5 @@
     @each $name, $color in $palette {
       --artibox-#{$name}: #{$color};
     }
-
-    @content;
   }
 }
