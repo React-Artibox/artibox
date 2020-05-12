@@ -1,21 +1,21 @@
-import '@artibox/theme/artibox';
-import '@artibox/theme/artibox-dark';
+import { THEME_ARTIBOX } from '@artibox/theme/artibox';
+import { THEME_ARTIBOX_DARK } from '@artibox/theme/artibox-dark';
 
 import React, { useState, useCallback } from 'react';
 import { OnChangeFn } from 'slate-react';
-import cx from 'classnames';
 import { createArtiboxEditor } from '@artibox/slate-editor';
+import { Theme } from '@artibox/theme';
 import { LocaleDefinition } from '@artibox/locale';
 import { enUS } from '@artibox/locale/en-US';
 import { zhTW } from '@artibox/locale/zh-TW';
-import { addThemeNamePrefix } from '@artibox/components/theme';
+import { resolveThemeObjectToCSSProperties } from '@artibox/components';
 import { initialValue } from './value';
 import { plugins } from './plugins';
 import ToggleButtons from './toggle-buttons';
 
 const themes = [
-  { value: 'artibox', label: 'Light' },
-  { value: 'artibox-dark', label: 'Dark' }
+  { value: THEME_ARTIBOX, label: 'Light' },
+  { value: THEME_ARTIBOX_DARK, label: 'Dark' }
 ];
 
 const locales = [
@@ -26,7 +26,7 @@ const locales = [
 const ArtiboxEditor = createArtiboxEditor({ plugins, defaultBlockComponent: 'p' });
 
 interface ArtiboxEditorWithStateProps {
-  theme?: string;
+  theme?: Theme;
   locale?: LocaleDefinition;
 }
 
@@ -47,11 +47,11 @@ const ArtiboxEditorWithState = ({ theme, locale }: ArtiboxEditorWithStateProps) 
 
 export function ArtiboxEditorStory() {
   const [locale, setLocale] = useState(zhTW);
-  const [theme, setTheme] = useState('artibox');
+  const [theme, setTheme] = useState(THEME_ARTIBOX);
 
   return (
     <>
-      <div className={cx('artibox-editor-story__settings', addThemeNamePrefix(theme))}>
+      <div className="artibox-editor-story__settings" style={resolveThemeObjectToCSSProperties(theme)}>
         <ToggleButtons value={theme} items={themes} onChange={setTheme} />
         <ToggleButtons value={locale} items={locales} onChange={setLocale} />
       </div>

@@ -19,25 +19,54 @@ $ yarn add @artibox/theme
 
 ## Introduction
 
-### Pre-built themes
+We use `css variables` to theming.
+
+### Prebuilt themes
 
 - [artibox]
 - [artibox-dark]
 
-Just import in your js/ts file.
+#### From css file
 
 ```ts
-import '@artibox/theme/artibox';
-import '@artibox/theme/artibox-dark';
+import '@artibox/theme/prebuilts/artibox.css';
+```
+
+or
+
+```css
+@import '~@artibox/theme/prebuilts/artibox.css';
+```
+
+Then you can just pass theme name to editor.
+
+```tsx
+<ArtiboxEditor
+  // ...
+  theme="artibox"
+/>
+```
+
+#### From object
+
+```tsx
+import { THEME_ARTIBOX } from '@artibox/theme/artibox';
+
+<ArtiboxEditor
+  // ...
+  theme={THEME_ARTIBOX}
+/>;
 ```
 
 ### Define a custom theme.
 
-When you want more customization than a pre-built theme offers, you can create your own theme file.
+When you want more customization than a prebuilt theme offers, you can:
 
-A custom theme file does two things:
+#### Use sass mixin
 
-1.Imports the `artibox-theme` Sass mixin from register.
+Create your own theme file. A custom theme file does two things:
+
+1.Imports the `artibox-theme` sass mixin from register.
 
 2.Defines a palette structure as below.
 
@@ -47,65 +76,60 @@ A typical theme file will look something like this:
 @import '~@artibox/theming/register';
 
 $your-theme-palette: (
-  primary: (
-    darker: ...,
-    default: ...,
-    lighter: ...
-  ),
-  /**
-   * All neutral colors from dark to light.
-   * If you want to build an dark mode, just inverse the order.
-   */ neutral: (
-      0: ...,
-      1: ...,
-      2: ...,
-      3: ...,
-      4: ...,
-      5: ...,
-      6: ...,
-      7: ...,
-      8: ...,
-      9: ...
-    ),
-  /**
-   * You can also override the specific color of the corresponding name of component.
-   */ toolbar:
-    (
-      ...
-    ),
-  tooltip: (
-    ...
-  ),
-  ...
+  primary-light: ...,
+  primary: ...,
+  primary-dark: ...,
+  background: ...,
+  surface: ...,
+  text: ...,
+  border: ...,
+  divider: ...,
+  placeholder: ...,
+  icon: ...
 );
 
 /**
  * Register theme to the theme name.
  */
-@include artibox-theme('your-theme-name', $your-theme-palette) {
-  // ...
-}
+@include artibox-theme('your-theme-name', $your-theme-palette);
 ```
 
-You only need this single Sass file; you do not need to use Sass to style the rest of your app.
+You only need this single sass file; you do not need to use sass to style the rest of your app.
 
-You can also use any existing Sass tooling to build the file (such as gulp-sass or grunt-sass). The simplest approach is to use the node-sass CLI; you simply run:
+You can also use any existing sass tooling to build the file (such as gulp-sass or grunt-sass). The simplest approach is to use the node-sass CLI; you simply run:
 
 ```bash
 node-sass src/path/to/your/theme.scss dist/path/to/your/theme.css
 ```
 
+#### Use js object
+
+Please see the interface of [`ThemeObject`](./src/typings.ts#1).
+
+```ts
+import { ThemeObject } from '@artibox/theme';
+
+const YOUR_CUSTOMER_THEME: ThemeObject = {
+  // ...
+};
+```
+
+Then you can pass it into editor as mentioned above.
+
 ### Theming your own components for editor and serializers
 
-Since we use css variables to theming, the above palette will be build into:
+Since we use css variables to theming, the above theme will be built into:
 
 ```css
 .artibox-theme-your-theme-name {
+  --artibox-primary-light: ...;
   --artibox-primary: ...;
-  --artibox-primary-darkder: ...;
+  --artibox-primary-dark: ...;
 
   /* ... */
-  --artibox-neutral-0: ...;
+  --artibox-background: ...;
+  --artibox-surface: ...;
+  --artibox-text: ...;
 
   /* ... */
 }
@@ -127,6 +151,22 @@ const YourCustomBlockquote: FC = ({ children, ...props }) => (
     {children}
   </div>
 );
+```
+
+You can use your own theme instead of using theme system of artibox:
+
+```scss
+.your-editor {
+  .your-custom-blockquote {
+    padding-left: 10px;
+    margin-left: 0;
+    border-left: 3px solid var(--whatever);
+  }
+}
+```
+
+```tsx
+<ArtiboxEditor className="your-editor" />
 ```
 
 And the component can be used in both editor and jsx-serializer.

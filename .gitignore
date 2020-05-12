@@ -4,5 +4,6 @@ esm/
 cjs/
 lib/
 dist/
+prebuilts/
 
 *.tsbuildinfo

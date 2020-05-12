@@ -1,8 +1,0 @@
-@import '../../theming/palettes/artibox-dark';
-@import '../../theming/common';
-@import '../../theming/register';
-
-@include artibox-theme('artibox-dark', $artibox-palette-artibox-dark) {
-  @include artibox-caret;
-  @include artibox-selection;
-}

@@ -1,1 +1,0 @@
-import './artibox.scss';

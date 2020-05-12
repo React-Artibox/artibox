@@ -20,9 +20,11 @@
   },
   "scripts": {
     "clean": "npm run build:clean",
-    "prebuild": "npm run build:clean && node ../../tools/build/sync-publish-files-to-dist.js",
-    "build": "rollup --config ./rollup.config.js",
+    "prebuild": "npm run build:clean && npm run build:css && node ../../tools/build/sync-publish-files-to-dist.js",
+    "build:ts": "tsc --project ./tsconfig.app.json && tsc --project ./tsconfig.app.json -m esnext -outDir ./dist/esm",
+    "build:css": "node ./scripts/prebuilt.js",
+    "build": "npm run build:ts",
     "postbuild": "node ../../tools/build/sync-dist-to-node_modules.js",
-    "build:clean": "node ../../tools/build/clean.js"
+    "build:clean": "node ../../tools/build/clean.js && rm -rf ./prebuilts"
   }
 }

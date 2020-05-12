@@ -1,8 +1,0 @@
-@import '../../theming/palettes/artibox';
-@import '../../theming/common';
-@import '../../theming/register';
-
-@include artibox-theme('artibox', $artibox-palette-artibox) {
-  @include artibox-caret;
-  @include artibox-selection;
-}
