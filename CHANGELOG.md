@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/React-Artibox/artibox/compare/v0.2.0...v1.0.0) (2020-05-12)
+
+### Bug Fixes
+
+- **toolbar:** add fixed box-sizing prevent for inherit issue ([#55](https://github.com/React-Artibox/artibox/issues/55)) ([1f44e79](https://github.com/React-Artibox/artibox/commit/1f44e79e0adfe7ce991135f4b1e9d4bfd579bfc9))
+
+### Code Refactoring
+
+- **theme:** rename palettes ([facbbba](https://github.com/React-Artibox/artibox/commit/facbbbafebc060455d2177797408137fb55a22c7))
+
+### Features
+
+- **theme:** support theme object ([1da9c38](https://github.com/React-Artibox/artibox/commit/1da9c3804da76bfb8ffa6c9a9d24549303e5c51b))
+
+### BREAKING CHANGES
+
+- **theme:** Theme file path changed, please see migrations.
+- **theme:** css variables provided on editor changed
+
 # [0.2.0](https://github.com/React-Artibox/artibox/compare/v0.1.2...v0.2.0) (2020-01-06)
 
 ### Features
