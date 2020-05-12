@@ -20,6 +20,7 @@ $artibox-toolbar-input-cross-size: 14px;
     z-index: 1;
     padding-bottom: $artibox-toolbar-popup-gap;
     height: $artibox-toolbar-height;
+    box-sizing: content-box;
   }
 
   &__arrow {
