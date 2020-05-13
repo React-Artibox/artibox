@@ -1,6 +1,6 @@
 {
   "name": "@artibox/components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@artibox/icons": "^1.0.0",
     "@artibox/locale": "^1.0.0",
-    "@artibox/theme": "^1.0.0",
+    "@artibox/theme": "^1.0.1",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.15",
     "@types/react-dom": "^16.9.4",

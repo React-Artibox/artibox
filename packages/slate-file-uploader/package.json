@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-file-uploader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -29,7 +29,7 @@
     "build:clean": "node ../../tools/build/clean.js"
   },
   "dependencies": {
-    "@artibox/components": "^1.0.0",
+    "@artibox/components": "^1.0.1",
     "@artibox/slate-common": "^1.0.0",
     "@artibox/utils": "^1.0.0",
     "@types/react": "^16.9.15",

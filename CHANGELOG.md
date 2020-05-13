@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/React-Artibox/artibox/compare/v1.0.0...v1.0.1) (2020-05-13)
+
+### Bug Fixes
+
+- **theme:** add css, scss files to side effects ([02ef354](https://github.com/React-Artibox/artibox/commit/02ef354e4ee9aaa0c3bfb455522247baa07fc413))
+
 # [1.0.0](https://github.com/React-Artibox/artibox/compare/v0.2.0...v1.0.0) (2020-05-12)
 
 ### Bug Fixes
