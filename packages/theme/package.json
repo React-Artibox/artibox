@@ -5,7 +5,10 @@
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
   "license": "MIT",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
   "main": "./index.js",
   "module": "./index.js",
   "publishConfig": {
