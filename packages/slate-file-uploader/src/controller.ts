@@ -1,5 +1,5 @@
 import { Editor, Block, Inline } from 'slate';
-import { NodeType } from '@artibox/slate-common';
+import { NodeType, PARAGRAPH_TYPE } from '@artibox/slate-common';
 
 export interface FileUploaderController {
   /**
@@ -23,7 +23,12 @@ export function createFileUploaderController(config: CreateFileUploaderControlle
   const isBlockAs: FileUploaderController['isBlockAs'] = (block): block is Block => block?.type === type;
   const insert: FileUploaderController['insert'] = (editor, uploadingBlockOrInline) => {
     const block = Block.create({ type, data: { percentage: 0 }, nodes: [uploadingBlockOrInline] });
-    editor.insertBlock(block);
+    /**
+     * Since insert paragraph after inserting file uploader block will cause paragraph inserted into file uploader block.
+     * The workaround insert a placeholder and paragraph first and then replace the placeholder w/ file uploader block.
+     */
+    const placeholder = Block.create(PARAGRAPH_TYPE);
+    editor.insertBlock(placeholder).insertBlock(PARAGRAPH_TYPE).replaceNodeByKey(placeholder.key, block);
     return block;
   };
   const setPercentage: FileUploaderController['setPercentage'] = (editor, block, percentage) => {
