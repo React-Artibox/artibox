@@ -40,7 +40,7 @@ export function createInstagram(config?: CreateInstagramConfig): Instagram {
       const { setInputConfig } = config || {};
       const inputConfig: InputConfig = {
         getPlaceholder: locale => locale.editor.instagram.inputPlaceholder,
-        onConfirm: controller.add
+        onConfirm: controller.insert
       };
 
       return (editor, defaultSetInputConfig) => ({

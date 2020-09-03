@@ -37,7 +37,7 @@ export function createVideo(config?: CreateVideoConfig): Video {
       const { setInputConfig } = config || {};
       const inputConfig: InputConfig = {
         getPlaceholder: locale => locale.editor.video.inputPlaceholder,
-        onConfirm: contrller.add
+        onConfirm: contrller.insert
       };
 
       return (editor, defaultSetInputConfig) => ({

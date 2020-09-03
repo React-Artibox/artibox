@@ -34,7 +34,7 @@ export function createImage(config?: CreateImageConfig): Image {
     forToolHook() {
       const inputConfig: InputConfig = {
         getPlaceholder: locale => locale.editor.link.inputPlaceholder,
-        onConfirm: controller.add
+        onConfirm: controller.insert
       };
 
       return (editor, setInputConfig) => ({

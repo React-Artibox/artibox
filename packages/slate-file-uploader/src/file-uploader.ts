@@ -67,7 +67,7 @@ export function createFileUploader(config: CreateFileUploaderConfig): FileUpload
       const { dataURL: createNodeByDataURL, response: createNodeByResponse } = createNode[mime];
       const dataURL = await readFileAsDataURL(file);
       const uploadingNode = createNodeByDataURL(dataURL);
-      const block = controller.add(editor, uploadingNode);
+      const block = controller.insert(editor, uploadingNode);
 
       try {
         const response = await xhrUpload(url, {

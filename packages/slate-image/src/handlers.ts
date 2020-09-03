@@ -1,17 +1,9 @@
 import { DragEvent, ClipboardEvent } from 'react';
-import { Editor as CoreEditor, Range } from 'slate';
+import { Editor as CoreEditor } from 'slate';
 import { Editor, Plugin, getEventTransfer } from 'slate-react';
 import { isImageUrl } from '@artibox/utils/is-image-url';
 import { readFileAsDataURL } from '@artibox/utils/read-file-as-data-url';
 import { ImageController } from './controller';
-
-function insertImage(editor: CoreEditor, controller: ImageController, src: string, range: Range | null) {
-  if (range) {
-    editor.select(range);
-  }
-
-  return controller.add(editor, src);
-}
 
 export interface CreateImageHandlersConfig {
   controller: ImageController;
@@ -19,7 +11,6 @@ export interface CreateImageHandlersConfig {
 
 export function createImageHandlers(config: CreateImageHandlersConfig): Plugin {
   const { controller } = config;
-
   const onDropOrPaste = (event: DragEvent | ClipboardEvent, editorComponent: Editor, next: () => any) => {
     const editor = (editorComponent as any) as CoreEditor;
     const range = editorComponent.findEventRange(event);
@@ -28,7 +19,7 @@ export function createImageHandlers(config: CreateImageHandlersConfig): Plugin {
 
     if (['html', 'text'].includes(type)) {
       const text: string = (transfer as any).text;
-      return isImageUrl(text) ? insertImage(editor, controller, text, range) : next();
+      return isImageUrl(text) ? controller.insert(editor, text, { range }) : next();
     }
 
     if (type === 'files') {
@@ -40,7 +31,7 @@ export function createImageHandlers(config: CreateImageHandlersConfig): Plugin {
       }
 
       imageFiles.forEach(imageFile =>
-        readFileAsDataURL(imageFile).then(dataURL => insertImage(editor, controller, dataURL, range))
+        readFileAsDataURL(imageFile).then(dataURL => controller.insert(editor, dataURL, { range }))
       );
 
       return editor;

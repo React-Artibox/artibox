@@ -6,9 +6,9 @@ import { createFacebookBlock } from './utils/create-facebook-block';
 
 export interface FacebookController {
   /**
-   * Add the facebook block to editor.
+   * Insert the facebook block to editor.
    */
-  add(editor: Editor, html: string): Editor;
+  insert(editor: Editor, html: string): Editor;
 }
 
 export type CreateFacebookControllerConfig = NodeType;
@@ -16,7 +16,7 @@ export type CreateFacebookControllerConfig = NodeType;
 export function createFacebookController(config: CreateFacebookControllerConfig): FacebookController {
   const { type } = config;
 
-  const add: FacebookController['add'] = (editor, html) => {
+  const insert: FacebookController['insert'] = (editor, html) => {
     const embedData = getFacebookEmbedDataFromHtml(html);
 
     if (!embedData || !embedData.type) {
@@ -26,5 +26,5 @@ export function createFacebookController(config: CreateFacebookControllerConfig)
     return editor.insertBlock(createFacebookBlock(type, embedData)).insertBlock(PARAGRAPH_TYPE);
   };
 
-  return { add };
+  return { insert };
 }

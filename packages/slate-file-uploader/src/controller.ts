@@ -7,9 +7,9 @@ export interface FileUploaderController {
    */
   isBlockAs(block?: Block | null): block is Block;
   /**
-   * Add a file uploader placeholder block.
+   * Insert a file uploader placeholder block.
    */
-  add(editor: Editor, uploadingBlockOrInline: Block | Inline): Block;
+  insert(editor: Editor, uploadingBlockOrInline: Block | Inline): Block;
   /**
    * Set uploading percentage of the file uploader placeholder block.
    */
@@ -21,7 +21,7 @@ export type CreateFileUploaderControllerConfig = NodeType;
 export function createFileUploaderController(config: CreateFileUploaderControllerConfig): FileUploaderController {
   const { type } = config;
   const isBlockAs: FileUploaderController['isBlockAs'] = (block): block is Block => block?.type === type;
-  const add: FileUploaderController['add'] = (editor, uploadingBlockOrInline) => {
+  const insert: FileUploaderController['insert'] = (editor, uploadingBlockOrInline) => {
     const block = Block.create({ type, data: { percentage: 0 }, nodes: [uploadingBlockOrInline] });
     editor.insertBlock(block);
     return block;
@@ -36,7 +36,7 @@ export function createFileUploaderController(config: CreateFileUploaderControlle
 
   return {
     isBlockAs,
-    add,
+    insert,
     setPercentage
   };
 }

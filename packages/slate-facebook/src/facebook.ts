@@ -40,7 +40,7 @@ export function createFacebook(config?: CreateFacebookConfig): Facebook {
       const { setInputConfig } = config || {};
       const inputConfig: InputConfig = {
         getPlaceholder: locale => locale.editor.facebook.inputPlaceholder,
-        onConfirm: controller.add
+        onConfirm: controller.insert
       };
 
       return (editor, defaultSetInputConfig) => ({

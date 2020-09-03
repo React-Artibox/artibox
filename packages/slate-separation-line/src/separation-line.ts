@@ -28,7 +28,7 @@ export function createSeparationLine(config?: CreateSeparationLineConfig): Separ
       };
     },
     forToolHook: () => editor => ({
-      onClick: useCallback(() => controller.add(editor), [editor])
+      onClick: useCallback(() => controller.insert(editor), [editor])
     })
   };
 }

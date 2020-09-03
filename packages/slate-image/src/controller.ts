@@ -1,4 +1,4 @@
-import { Block, Editor } from 'slate';
+import { Block, Editor, Range } from 'slate';
 import { NodeType } from '@artibox/slate-common';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
 import { WithHostingResolvers, WithThresholds } from './typings';
@@ -26,9 +26,16 @@ export interface ImageController {
    */
   createBlock(src: string, hostingType?: string): Block;
   /**
-   * Add an image.
+   * Insert an image.
    */
-  add(editor: Editor, src: string, hostingType?: string): Editor;
+  insert(
+    editor: Editor,
+    src: string,
+    options?: {
+      hostingType?: string;
+      range?: Range | null;
+    }
+  ): Editor;
   /**
    * Resize the specific image.
    */
@@ -55,8 +62,18 @@ export function createImageController(config: CreateImageControllerConfig): Imag
       data: { src, hostingType, width: 100 },
       nodes: []
     });
-  const add: ImageController['add'] = (editor, src, hostingType) =>
-    editor.insertBlock(createBlock(src, hostingType)).insertBlock(PARAGRAPH_TYPE).moveToStartOfBlock();
+  const insert: ImageController['insert'] = (editor, src, options) => {
+    const { hostingType, range } = options || {};
+    const imageBlock = createBlock(src, hostingType);
+
+    if (range) {
+      editor.insertBlockAtRange(range, imageBlock);
+    } else {
+      editor.insertBlock(imageBlock);
+    }
+
+    return editor.insertBlock(PARAGRAPH_TYPE).moveToStartOfBlock();
+  };
   const resize: ImageController['resize'] = (editor, image, width) => {
     if (!isBlockAs(image) || (thresholds && !thresholds.includes(width))) {
       return editor;
@@ -71,7 +88,7 @@ export function createImageController(config: CreateImageControllerConfig): Imag
     getCurrent,
     getSrcOfCurrent,
     createBlock,
-    add,
+    insert,
     resize
   };
 }
