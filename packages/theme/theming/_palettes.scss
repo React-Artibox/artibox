@@ -7,7 +7,7 @@ $artibox-palette-artibox: (
   text: #000,
   border: #e0e0e0,
   divider: #c1c1c1,
-  placeholder: #9e9e9e,
+  placeholder: #4a4a4a,
   icon: #7d7d7d
 );
 
@@ -19,7 +19,7 @@ $artibox-palette-artibox-dark: map-merge(
     text: #fff,
     border: #4a4a4a,
     divider: #636363,
-    placeholder: #7d7d7d,
+    placeholder: #e0e0e0,
     icon: #9e9e9e
   )
 );

@@ -9,7 +9,7 @@ export const THEME_ARTIBOX: ThemeObject = {
   text: '#000',
   border: '#e0e0e0',
   divider: '#c1c1c1',
-  placeholder: '#9e9e9e',
+  placeholder: '#4a4a4a',
   icon: '#7d7d7d'
 };
 

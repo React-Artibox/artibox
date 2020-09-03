@@ -8,7 +8,7 @@ export const THEME_ARTIBOX_DARK: ThemeObject = {
   text: '#fff',
   border: '#4a4a4a',
   divider: '#636363',
-  placeholder: '#7d7d7d',
+  placeholder: '#e0e0e0',
   icon: '#9e9e9e'
 };
 
