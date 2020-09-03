@@ -20,30 +20,13 @@ function roundNumber(value: number, min: number, max: number) {
   return value;
 }
 
-/**
- * @todo
- * Also round top.
- */
-function calculatePosition(el: HTMLElement) {
-  const native = window.getSelection();
-  const range = native!.getRangeAt(0);
-  const rect = range.getBoundingClientRect();
-  const top = rect.top + window.pageYOffset - el.offsetHeight;
-  const left = roundNumber(
-    rect.left + window.pageXOffset - (el.offsetWidth - rect.width) / 2,
-    0,
-    window.innerWidth - el.offsetWidth
-  );
-
-  return { top, left };
-}
-
 export type ToolbarProps = WithEditor & WithTools;
 
 function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { props: themeProps } = useContext(ThemeContext);
   const [toolInput, setToolInput] = useState<InputConfig | null>(null);
+  const selectionRangeRef = useRef<Range>();
   const { fragment, selection } = editor.value;
   const { isFocused, isExpanded } = selection;
   const focusTextEmpty = fragment.text === '';
@@ -62,29 +45,47 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   }
 
   useLayoutEffect(() => {
-    if (!isFocused || toolInput) {
+    if (!isFocused) {
       return;
     }
 
+    /**
+     * @todo
+     * Also round top.
+     */
     function handler() {
-      const el = ref.current;
-
-      if (!el) {
-        return;
+      /**
+       * Editor will be blurred after getting into input process.
+       * Thus cache the last range of selection to recalculate position of toolbar.
+       */
+      if (!toolInput) {
+        const native = window.getSelection();
+        selectionRangeRef.current = native!.getRangeAt(0);
       }
 
-      const { top, left } = calculatePosition(el);
+      const el = ref.current;
+      const range = selectionRangeRef.current;
 
-      el.style.top = `${top}px`;
-      el.style.left = `${left}px`;
+      if (el && range) {
+        const rect = range.getBoundingClientRect();
+        const top = rect.top + window.pageYOffset - el.offsetHeight;
+        const left = roundNumber(
+          rect.left + window.pageXOffset - (el.offsetWidth - rect.width) / 2,
+          0,
+          window.innerWidth - el.offsetWidth
+        );
+
+        el.style.top = `${top}px`;
+        el.style.left = `${left}px`;
+      }
     }
 
     if (expanded) {
       handler();
     } else {
       /**
-       * While this effect fired, the native selection is not synchronize sometimes.
-       * To avoid the issue, we just invoke the handler on next frame.
+       * While this effect fired, the native selection is not yet synchronized.
+       * Thus invoke handler on next frame to avoid from this issue.
        */
       window.requestAnimationFrame(handler);
     }
@@ -96,7 +97,15 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
 
   return (
     <Portal>
-      <div ref={ref} className={cx(`${clsPrefix}__wrapper`, themeProps.className)} style={themeProps.style}>
+      <div
+        ref={ref}
+        className={cx(
+          `${clsPrefix}__wrapper`,
+          { [`${clsPrefix}__wrapper--inputting`]: toolInput },
+          themeProps.className
+        )}
+        style={themeProps.style}
+      >
         <div className={`${clsPrefix}__arrow`} />
         <div className={clsPrefix}>
           {tools.map((tool, index) => {

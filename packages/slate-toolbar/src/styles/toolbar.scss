@@ -21,6 +21,10 @@ $artibox-toolbar-input-cross-size: 14px;
     padding-bottom: $artibox-toolbar-popup-gap;
     height: $artibox-toolbar-height;
     box-sizing: content-box;
+
+    &--inputting {
+      min-width: 250px;
+    }
   }
 
   &__arrow {
