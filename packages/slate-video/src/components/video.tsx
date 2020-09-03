@@ -13,12 +13,18 @@ const Video = forwardRef<HTMLDivElement, VideoProps>(({ id, provider, ...props }
   const composedRef = composeRefs([ref, containerRef]);
 
   useLayoutEffect(() => {
-    const container = containerRef.current;
+    function handler() {
+      const container = containerRef.current;
 
-    if (container) {
-      const width = container.offsetWidth;
-      setSize({ width, height: Math.round(width * 0.75) });
+      if (container) {
+        const width = container.offsetWidth;
+        setSize({ width, height: Math.round(width * 0.75) });
+      }
     }
+
+    handler();
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
   }, [containerRef]);
 
   return (
