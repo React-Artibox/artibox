@@ -131,6 +131,7 @@
     min-height: 800px;
     overflow: hidden;
     overflow-wrap: break-word;
+    background-color: var(--artibox-background);
 
     &:first-child {
       margin-right: 50px;

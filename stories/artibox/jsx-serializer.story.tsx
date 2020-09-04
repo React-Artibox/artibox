@@ -14,13 +14,14 @@ export function JsxSerializerStory() {
   const jsx = useMemo(() => jsxSerializer(value.toJSON()), [value.document]);
 
   return (
-    <div className="artibox-theme-artibox jsx-serializer-story">
+    <div className="jsx-serializer-story">
       <ArtiboxEditor
         className="artibox-stories-elements jsx-serializer-story__section"
         value={value}
         onChange={onChange}
+        theme="artibox"
       />
-      <div className="artibox-stories-elements artibox-theme-artibox jsx-serializer-story__section">{jsx}</div>
+      <div className="artibox-theme-artibox artibox-stories-elements jsx-serializer-story__section">{jsx}</div>
     </div>
   );
 }
