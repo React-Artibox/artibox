@@ -19,14 +19,7 @@ export function createHeadingHandlers(config: CreateHeadingHandlersConfig): Plug
     onKeyDown(event, editorComponent, next) {
       const editor = (editorComponent as any) as Editor;
 
-      /**
-       * While enter pressed, end the heading block if current selection is in heading, or continue.
-       */
-      if (event.key === 'Enter') {
-        if (!controller.isBlockAs(editor.value.startBlock)) {
-          return next();
-        }
-
+      if (event.key === 'Enter' && !event.shiftKey && controller.isBlockAs(editor.value.startBlock)) {
         event.preventDefault();
         return controller.end(editor);
       }
