@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, cloneElement } from 'react';
+import React, { ReactNode, ReactElement, CSSProperties, cloneElement } from 'react';
 import { ValueJSON, NodeJSON, BlockJSON, InlineJSON, MarkJSON, TextJSON } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
 import { RendererBaseComponent } from '@artibox/slate-common';
@@ -6,6 +6,7 @@ import { JsxSerializerRule } from './typings';
 
 export interface CreateJsxSerializerConfig {
   defaultBlockComponent?: RendererBaseComponent;
+  diableSoftBreak?: boolean;
   blocks?: JsxSerializerRule<BlockJSON>[];
   inlines?: JsxSerializerRule<InlineJSON>[];
   marks?: JsxSerializerRule<MarkJSON>[];
@@ -47,17 +48,33 @@ function resolveRulesToMap<N>(
 }
 
 export function createJsxSerializer(config?: CreateJsxSerializerConfig) {
-  const { defaultBlockComponent = 'div', blocks = [], inlines = [], marks = [] } = config || {};
+  const { defaultBlockComponent = 'div', diableSoftBreak = false, blocks = [], inlines = [], marks = [] } =
+    config || {};
   const blocksMap = resolveRulesToMap([...blocks, createParagraphSerializerRule(defaultBlockComponent)]);
   const inlinesMap = resolveRulesToMap(inlines);
   const marksMap = resolveRulesToMap(marks);
+  const textStyle: CSSProperties = {};
+
+  if (!diableSoftBreak) {
+    textStyle.whiteSpace = 'pre-wrap';
+  }
 
   function serializeText(node: TextJSON): ReactNode {
-    const { text } = node;
-    const textOrBr = text || addKey(<>&#65279;</>);
+    let { text } = node;
+
+    if (!text) {
+      return addKey(<span>&#65279;</span>);
+    }
+
+    text = text
+      .split('\n')
+      .map(t => t || ' ')
+      .join('\n');
+
+    const textNode = addKey(<span style={textStyle}>{text}</span>);
 
     if (!node.marks) {
-      return textOrBr;
+      return textNode;
     }
 
     return node.marks.reduce<ReactNode>((element, mark) => {
@@ -69,7 +86,7 @@ export function createJsxSerializer(config?: CreateJsxSerializerConfig) {
 
       const result = rule.serialize(element, mark!);
       return result === undefined ? element : addKey(result);
-    }, textOrBr);
+    }, textNode);
   }
 
   function serializeNode(node: NodeJSON): ReactNode {
