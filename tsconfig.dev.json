@@ -22,6 +22,7 @@
       "@artibox/slate-link/*": ["./packages/slate-link/src/*"],
       "@artibox/slate-list/*": ["./packages/slate-list/src/*"],
       "@artibox/slate-separation-line/*": ["./packages/slate-separation-line/src/*"],
+      "@artibox/slate-soft-break/*": ["./packages/slate-soft-break/src/*"],
       "@artibox/slate-strikethrough/*": ["./packages/slate-strikethrough/src/*"],
       "@artibox/slate-toggle-mark/*": ["./packages/slate-toggle-mark/src/*"],
       "@artibox/slate-toolbar/*": ["./packages/slate-toolbar/src/*"],

@@ -35,6 +35,7 @@ import { createFacebook } from '@artibox/slate-facebook';
 import { createInstagram } from '@artibox/slate-instagram';
 import { createInputBlock } from '@artibox/slate-input-block';
 import { createFileUploader } from '@artibox/slate-file-uploader';
+import { SoftBreak } from '@artibox/slate-soft-break';
 import { Toolbar, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
 /**
@@ -99,6 +100,7 @@ export const plugins: Plugin[] = [
   Instagram.forPlugin(),
   Facebook.forPlugin(),
   FileUploader.forPlugin(),
+  SoftBreak.forPlugin(),
   Toolbar.forPlugin({
     disabledBlocks: [InputBlock.type],
     expandedTools: [
