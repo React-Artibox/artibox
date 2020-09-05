@@ -4,7 +4,7 @@ import { WithEditor, InputConfig } from '@artibox/slate-common';
 import { ThemeContext } from '@artibox/components/theme';
 import Portal from '@artibox/components/Portal';
 import { TOOLBAR_DIVIDER } from '../constants';
-import { Tool, WithTools } from '../typings';
+import { Tool } from '../typings';
 import Divider from './divider';
 import ToolbarIcon from './toolbar-icon';
 import ToolbarInput from './toolbar-input';
@@ -20,7 +20,10 @@ function roundNumber(value: number, min: number, max: number) {
   return value;
 }
 
-export type ToolbarProps = WithEditor & WithTools;
+export interface ToolbarProps extends WithEditor {
+  collapsedTools?: ReadonlyArray<Tool>;
+  expandedTools?: ReadonlyArray<Tool>;
+}
 
 function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -36,7 +39,7 @@ function Toolbar({ collapsedTools, expandedTools, editor }: ToolbarProps) {
    */
   const expanded = !!(((isExpanded && isFocused) || toolInput) && !focusTextEmpty && expandedTools);
   const collapsed = !!(((!isExpanded && isFocused) || toolInput) && collapsedTools);
-  let tools: Tool[] | undefined;
+  let tools: ReadonlyArray<Tool> | undefined;
 
   if (expanded) {
     tools = expandedTools;

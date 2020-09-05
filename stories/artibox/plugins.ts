@@ -36,7 +36,7 @@ import { createInstagram } from '@artibox/slate-instagram';
 import { createInputBlock } from '@artibox/slate-input-block';
 import { createFileUploader } from '@artibox/slate-file-uploader';
 import { SoftBreak } from '@artibox/slate-soft-break';
-import { Toolbar, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
+import { Tool, Toolbar, TOOLBAR_DIVIDER } from '@artibox/slate-toolbar';
 
 /**
  * custom components
@@ -83,6 +83,25 @@ export const FileUploader = createFileUploader({
     `https://storage.googleapis.com/upload/storage/v1/b/<Your Bucket Name>/o?uploadType=media&name=${file.name}`
 });
 
+const BoldTool: Tool = { icon: BoldIcon, hook: Bold.forToolHook() };
+const ItalicTool: Tool = { icon: ItalicIcon, hook: Italic.forToolHook() };
+const UnderlineTool: Tool = { icon: UnderlineIcon, hook: Underline.forToolHook() };
+const StrikethroughTool: Tool = { icon: StrikethroughIcon, hook: Strikethrough.forToolHook() };
+const HighlightTool: Tool = { icon: HighlightIcon, hook: Highlight.forToolHook() };
+const LinkTool: Tool = { icon: LinkIcon, hook: Link.forToolHook() };
+const UnlinkTool: Tool = { icon: Unlink, hook: Link.forToolHook({ command: 'remove' }) };
+const Heading1Tool: Tool = { icon: Heading1, hook: Heading.forToolHook({ level: 1 }) };
+const Heading2Tool: Tool = { icon: Heading2, hook: Heading.forToolHook({ level: 2 }) };
+const Heading3Tool: Tool = { icon: Heading3, hook: Heading.forToolHook({ level: 3 }) };
+const BlockquoteTool: Tool = { icon: BlockquoteIcon, hook: Blockquote.forToolHook() };
+const UnorderedListTool: Tool = { icon: UnorderedList, hook: List.forToolHook({ orderedType: 'unordered' }) };
+const OrderedListTool: Tool = { icon: OrderedList, hook: List.forToolHook({ orderedType: 'ordered' }) };
+const SeparationLineTool: Tool = { icon: SeparationLineIcon, hook: SeparationLine.forToolHook() };
+const ImageTool: Tool = { icon: ImageIcon, hook: FileUploader.forToolHook() };
+const VideooTool: Tool = { icon: VideoIcon, hook: Video.forToolHook({ setInputConfig: InputBlock.start }) };
+const InstagramTool: Tool = { icon: InstagramIcon, hook: Instagram.forToolHook({ setInputConfig: InputBlock.start }) };
+const FacebookTool: Tool = { icon: FacebookIcon, hook: Facebook.forToolHook({ setInputConfig: InputBlock.start }) };
+
 export const plugins: Plugin[] = [
   InputBlock.forPlugin(),
   Bold.forPlugin(),
@@ -103,28 +122,26 @@ export const plugins: Plugin[] = [
   SoftBreak.forPlugin(),
   Toolbar.forPlugin({
     disabledBlocks: [InputBlock.type],
-    expandedTools: [
-      { icon: BoldIcon, hook: Bold.forToolHook() },
-      { icon: ItalicIcon, hook: Italic.forToolHook() },
-      { icon: UnderlineIcon, hook: Underline.forToolHook() },
-      { icon: StrikethroughIcon, hook: Strikethrough.forToolHook() },
-      { icon: HighlightIcon, hook: Highlight.forToolHook() },
-      { icon: LinkIcon, hook: Link.forToolHook() },
-      { icon: Unlink, hook: Link.forToolHook({ command: 'remove' }) }
-    ],
-    collapsedTools: [
-      { icon: Heading1, hook: Heading.forToolHook({ level: 1 }) },
-      { icon: Heading2, hook: Heading.forToolHook({ level: 2 }) },
-      { icon: Heading3, hook: Heading.forToolHook({ level: 3 }) },
-      { icon: BlockquoteIcon, hook: Blockquote.forToolHook() },
-      { icon: UnorderedList, hook: List.forToolHook({ orderedType: 'unordered' }) },
-      { icon: OrderedList, hook: List.forToolHook({ orderedType: 'ordered' }) },
-      TOOLBAR_DIVIDER,
-      { icon: SeparationLineIcon, hook: SeparationLine.forToolHook() },
-      { icon: ImageIcon, hook: FileUploader.forToolHook() },
-      { icon: VideoIcon, hook: Video.forToolHook({ setInputConfig: InputBlock.start }) },
-      { icon: InstagramIcon, hook: Instagram.forToolHook({ setInputConfig: InputBlock.start }) },
-      { icon: FacebookIcon, hook: Facebook.forToolHook({ setInputConfig: InputBlock.start }) }
-    ]
+    expandedTools: [BoldTool, ItalicTool, UnderlineTool, StrikethroughTool, HighlightTool, LinkTool, UnlinkTool],
+    collapsedTools: editor => {
+      if (Blockquote.isSelectionIn(editor)) {
+        return [BlockquoteTool];
+      }
+
+      return [
+        Heading1Tool,
+        Heading2Tool,
+        Heading3Tool,
+        BlockquoteTool,
+        UnorderedListTool,
+        OrderedListTool,
+        TOOLBAR_DIVIDER,
+        SeparationLineTool,
+        ImageTool,
+        VideooTool,
+        InstagramTool,
+        FacebookTool
+      ];
+    }
   })
 ];

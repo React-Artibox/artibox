@@ -8,14 +8,3 @@ export type Tool =
       icon: IconDefinition;
       hook: ToolHook;
     };
-
-export interface WithTools {
-  /**
-   * Tools will be showed if collapsed.
-   */
-  collapsedTools?: Tool[];
-  /**
-   * Tools will be showed if expanded.
-   */
-  expandedTools?: Tool[];
-}
