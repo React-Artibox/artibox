@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/React-Artibox/artibox/compare/v1.0.1...v1.1.0) (2020-09-14)
+
+### Bug Fixes
+
+- **video:** let default video component resizable ([9e53b41](https://github.com/React-Artibox/artibox/commit/9e53b41d5933e10c539608f7869824e9ceb5e895))
+
+### Code Refactoring
+
+- rename `add` to `insert` of controllers of some packages ([da076fd](https://github.com/React-Artibox/artibox/commit/da076fd3fb8032e6d43fb893ca3a29ca82aae4a8))
+
+### BREAKING CHANGES
+
+- use `insert` method instead of `add` method
+
 ## [1.0.1](https://github.com/React-Artibox/artibox/compare/v1.0.0...v1.0.1) (2020-05-13)
 
 **Note:** Version bump only for package @artibox/slate-video

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/React-Artibox/artibox/compare/v1.0.1...v1.1.0) (2020-09-14)
+
+### Bug Fixes
+
+- **link:** set placement of tooltip to `bottom` ([52eca0b](https://github.com/React-Artibox/artibox/commit/52eca0b4af6725d07732d26149899b9728d9bef3))
+
 ## [1.0.1](https://github.com/React-Artibox/artibox/compare/v1.0.0...v1.0.1) (2020-05-13)
 
 **Note:** Version bump only for package @artibox/slate-link

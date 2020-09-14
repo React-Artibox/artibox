@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/React-Artibox/artibox/compare/v1.0.1...v1.1.0) (2020-09-14)
+
+### Features
+
+- **heading:** support soft break ([3b0f6fb](https://github.com/React-Artibox/artibox/commit/3b0f6fb61dec327faeb7b65a740f424a52bb32c9))
+
 # [1.0.0](https://github.com/React-Artibox/artibox/compare/v0.2.0...v1.0.0) (2020-05-12)
 
 **Note:** Version bump only for package @artibox/slate-heading

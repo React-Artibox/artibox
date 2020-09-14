@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/React-Artibox/artibox/compare/v1.0.1...v1.1.0) (2020-09-14)
+
+### Bug Fixes
+
+- **toolbar:** set min-width to toolbar if inputting ([20ff558](https://github.com/React-Artibox/artibox/commit/20ff558942e59039e884b84f76a358781f1a0a41))
+
+### Features
+
+- **toolbar:** support dynamic tools on toolbar ([302cb9b](https://github.com/React-Artibox/artibox/commit/302cb9baac66b6fc81ffd19a4ed2d8d21e79e9f0))
+
 ## [1.0.1](https://github.com/React-Artibox/artibox/compare/v1.0.0...v1.0.1) (2020-05-13)
 
 **Note:** Version bump only for package @artibox/slate-toolbar

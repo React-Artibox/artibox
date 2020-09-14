@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/React-Artibox/artibox/compare/v1.0.1...v1.1.0) (2020-09-14)
+
+### Bug Fixes
+
+- **file-uploader:** insert a paragraph block after file uploader block ([868c730](https://github.com/React-Artibox/artibox/commit/868c730b1339f4b1adac98508a6401b51778f9a7))
+- **link:** set placement of tooltip to `bottom` ([52eca0b](https://github.com/React-Artibox/artibox/commit/52eca0b4af6725d07732d26149899b9728d9bef3))
+- **toolbar:** set min-width to toolbar if inputting ([20ff558](https://github.com/React-Artibox/artibox/commit/20ff558942e59039e884b84f76a358781f1a0a41))
+- **video:** let default video component resizable ([9e53b41](https://github.com/React-Artibox/artibox/commit/9e53b41d5933e10c539608f7869824e9ceb5e895))
+
+### Code Refactoring
+
+- rename `add` to `insert` of controllers of some packages ([da076fd](https://github.com/React-Artibox/artibox/commit/da076fd3fb8032e6d43fb893ca3a29ca82aae4a8))
+
+### Features
+
+- **blockquote:** support soft break ([fca2c04](https://github.com/React-Artibox/artibox/commit/fca2c045c2b87ca49a5e08e7757d256ccb35e645))
+- **heading:** support soft break ([3b0f6fb](https://github.com/React-Artibox/artibox/commit/3b0f6fb61dec327faeb7b65a740f424a52bb32c9))
+- **jsx-serializer:** support soft break ([adc303d](https://github.com/React-Artibox/artibox/commit/adc303d20967dda5242ec83cc2036ec4823a36f0))
+- **soft-break:** initial commit ([61770cc](https://github.com/React-Artibox/artibox/commit/61770cc6c6991e4156f4302c7ba80cd7c39f9eb3))
+- **toolbar:** support dynamic tools on toolbar ([302cb9b](https://github.com/React-Artibox/artibox/commit/302cb9baac66b6fc81ffd19a4ed2d8d21e79e9f0))
+
+### BREAKING CHANGES
+
+- use `insert` method instead of `add` method
+
 ## [1.0.1](https://github.com/React-Artibox/artibox/compare/v1.0.0...v1.0.1) (2020-05-13)
 
 ### Bug Fixes
