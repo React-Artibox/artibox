@@ -21,6 +21,4 @@ export function AllIconsStory() {
   );
 }
 
-AllIconsStory.story = {
-  name: 'All'
-};
+AllIconsStory.storyName = 'All';

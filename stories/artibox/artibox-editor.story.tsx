@@ -60,6 +60,4 @@ export function ArtiboxEditorStory() {
   );
 }
 
-ArtiboxEditorStory.story = {
-  name: 'Artibox Editor'
-};
+ArtiboxEditorStory.storyName = 'Artibox Editor';

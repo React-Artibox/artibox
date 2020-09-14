@@ -23,7 +23,7 @@ const Facebook = forwardRef<HTMLIFrameElement, FacebookProps>(({ type, url, widt
       style={facebookStyle}
       scrolling="no"
       frameBorder="0"
-      //  eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      //  eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //  @ts-ignore
       //  eslint-disable-next-line react/no-unknown-property
       allowtransparency="true"

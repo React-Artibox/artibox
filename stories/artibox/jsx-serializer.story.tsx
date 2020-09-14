@@ -26,6 +26,4 @@ export function JsxSerializerStory() {
   );
 }
 
-JsxSerializerStory.story = {
-  name: 'Jsx Serializer'
-};
+JsxSerializerStory.storyName = 'Jsx Serializer';
