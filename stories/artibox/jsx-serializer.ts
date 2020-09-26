@@ -9,7 +9,7 @@ import { createHeadingJsxSerializerRule } from '@artibox/slate-heading';
 import { createBlockquoteJsxSerializerRule } from '@artibox/slate-blockquote';
 import { createListJsxSerializerRules } from '@artibox/slate-list';
 import { createSeparationLineJsxSerializerRule } from '@artibox/slate-separation-line';
-import { createImageJsxSerializerRule } from '@artibox/slate-image';
+import { createImageJsxSerializerRules } from '@artibox/slate-image';
 import { createVideoJsxSerializerRule } from '@artibox/slate-video';
 import { createInstagramJsxSerializerRule } from '@artibox/slate-instagram';
 import { createFacebookJsxSerializerRule } from '@artibox/slate-facebook';
@@ -26,7 +26,17 @@ export const jsxSerializer = createJsxSerializer({
     createBlockquoteJsxSerializerRule({ component: CustomBlockquote }),
     ...createListJsxSerializerRules(),
     createSeparationLineJsxSerializerRule(),
-    createImageJsxSerializerRule(),
+    ...createImageJsxSerializerRules({
+      figure: {
+        component: 'figure'
+      },
+      caption: {
+        component: 'figcaption'
+      },
+      hostingResolvers: {
+        GCLOUD_STORAGE: name => `<Your Public Url>/${name}`
+      }
+    }),
     createVideoJsxSerializerRule(),
     createInstagramJsxSerializerRule(),
     createFacebookJsxSerializerRule()

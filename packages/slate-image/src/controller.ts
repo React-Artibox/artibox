@@ -1,26 +1,24 @@
-import { Block, Editor, Range } from 'slate';
-import { NodeType } from '@artibox/slate-common';
+import { Node, Block, Editor, Range } from 'slate';
 import { PARAGRAPH_TYPE } from '@artibox/slate-common/constants/paragraph';
-import { WithHostingResolvers, WithThresholds } from './typings';
-import { getImageSrcFromBlock } from './utils/get-image-src-from-block';
+import { WithThresholds, ImageTypes } from './typings';
 
 export interface ImageController {
   /**
    * Check if the block is image.
    */
-  isBlockAs(block?: Block | null): block is Block;
+  isNodeAsImage(node?: Node | null): node is Block;
+  /**
+   * Check if the block is image caption.
+   */
+  isNodeAsCaption(node?: Node | null): node is Block;
   /**
    * Check if there are some images in the current selection.
    */
-  isSelectionIn(editor: Editor): boolean;
+  isSelectionInImage(editor: Editor): boolean;
   /**
-   * Get the first image in the current selection.
+   * Check if there are some image captions in the current selection.
    */
-  getCurrent(editor: Editor): Block | null;
-  /**
-   * Get src of the first image in the current selection.
-   */
-  getSrcOfCurrent(editor: Editor): string | undefined;
+  isSelectionInCaption(editor: Editor): boolean;
   /**
    * Create an image block.
    */
@@ -42,51 +40,77 @@ export interface ImageController {
   resize(editor: Editor, image: Block, width: number): Editor;
 }
 
-export type CreateImageControllerConfig = NodeType & Partial<WithHostingResolvers & WithThresholds>;
+export interface CreateImageControllerConfig extends Partial<WithThresholds> {
+  types: ImageTypes;
+}
 
 export function createImageController(config: CreateImageControllerConfig): ImageController {
-  const { type, hostingResolvers, thresholds } = config || {};
-  const isBlockAs: ImageController['isBlockAs'] = (block): block is Block => block?.type === type;
-  const isSelectionIn: ImageController['isSelectionIn'] = editor => editor.value.blocks.some(isBlockAs);
-  const getCurrent: ImageController['getCurrent'] = editor => {
-    const image = editor.value.startBlock;
-    return isBlockAs(image) ? image : null;
+  const { types, thresholds } = config || {};
+  const createIsNodeAs = (type: string) => (node?: Node | null): node is Block => {
+    if (!node) {
+      return false;
+    }
+
+    return node.object === 'block' && node.type === type;
   };
-  const getSrcOfCurrent: ImageController['getSrcOfCurrent'] = editor => {
-    const image = getCurrent(editor);
-    return image ? getImageSrcFromBlock(image, hostingResolvers) : undefined;
-  };
+  const createIsSelectionIn = (is: typeof isNodeAsImage | typeof isNodeAsCaption) => (editor: Editor) =>
+    editor.value.blocks.some(is);
+  const isNodeAsImage: ImageController['isNodeAsImage'] = createIsNodeAs(types.image);
+  const isNodeAsCaption: ImageController['isNodeAsCaption'] = createIsNodeAs(types.caption);
+  const isSelectionInImage: ImageController['isSelectionInImage'] = createIsSelectionIn(isNodeAsImage);
+  const isSelectionInCaption: ImageController['isSelectionInCaption'] = createIsSelectionIn(isNodeAsCaption);
   const createBlock: ImageController['createBlock'] = (src, hostingType) =>
     Block.create({
-      type,
-      data: { src, hostingType, width: 100 },
-      nodes: []
+      type: types.figure,
+      nodes: [
+        Block.create({
+          type: types.image,
+          data: { src, hostingType, width: 100 },
+          nodes: []
+        }),
+        Block.create({
+          type: types.caption,
+          text: ''
+        })
+      ]
     });
   const insert: ImageController['insert'] = (editor, src, options) => {
     const { hostingType, range } = options || {};
     const imageBlock = createBlock(src, hostingType);
+    /**
+     * Since insert paragraph after inserting file uploader block will cause paragraph inserted into file uploader block.
+     * The workaround insert a placeholder and paragraph first and then replace the placeholder w/ file uploader block.
+     */
+    const placeholder = Block.create(PARAGRAPH_TYPE);
 
     if (range) {
-      editor.insertBlockAtRange(range, imageBlock);
+      editor.insertBlockAtRange(range, placeholder);
     } else {
-      editor.insertBlock(imageBlock);
+      editor.insertBlock(placeholder);
     }
 
-    return editor.insertBlock(PARAGRAPH_TYPE).moveToStartOfBlock();
+    /**
+     * Calling `moveToStartOfPreviousBlock` one time will just move to caption not image.
+     */
+    return editor
+      .insertBlock(PARAGRAPH_TYPE)
+      .replaceNodeByKey(placeholder.key, imageBlock)
+      .moveToStartOfPreviousBlock()
+      .moveToStartOfPreviousBlock();
   };
-  const resize: ImageController['resize'] = (editor, image, width) => {
-    if (!isBlockAs(image) || (thresholds && !thresholds.includes(width))) {
+  const resize: ImageController['resize'] = (editor, node, width) => {
+    if (!isNodeAsImage(node) || (thresholds && !thresholds.includes(width))) {
       return editor;
     }
 
-    return editor.setNodeByKey(image.key, image.setIn(['data', 'width'], width) as Block);
+    return editor.setNodeByKey(node.key, node.setIn(['data', 'width'], width) as Block);
   };
 
   return {
-    isBlockAs,
-    isSelectionIn,
-    getCurrent,
-    getSrcOfCurrent,
+    isNodeAsImage,
+    isNodeAsCaption,
+    isSelectionInImage,
+    isSelectionInCaption,
     createBlock,
     insert,
     resize

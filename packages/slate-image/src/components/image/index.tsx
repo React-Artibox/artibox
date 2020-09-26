@@ -133,14 +133,14 @@ const Image = forwardRef<HTMLImageElement, ImagePropsForRenderer>(function Image
   }, [startPoint, editor, controller, isSelected, node, thresholds]);
 
   return (
-    <div ref={ref} className="artibox-slate-image__wrapper" style={style} {...rest}>
+    <div ref={ref} className="artibox-slate-image" style={style} {...rest}>
       {isSelected && (
         <>
           <span className="artibox-slate-image__boundary" />
           <span className="artibox-slate-image__resizer" onMouseDown={onResizingStart} onTouchStart={onResizingStart} />
         </>
       )}
-      <img ref={imageRef} className="artibox-slate-image" src={src} />
+      <img ref={imageRef} src={src} />
     </div>
   );
 });

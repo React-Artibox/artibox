@@ -78,11 +78,11 @@ return (
 
 - [constants](./src/constants.ts)
 - [typings](./src/typings.ts)
-- [createImage](./src/image.ts#L17)
+- [createImage](./src/image.ts#L23)
 - [createImageJsxSerializerRule](./src/jsx-serializer.ts)
-- [Image.forPlugin](./src/image.ts#L26)
-- [Image.forToolHook](./src/image.ts#L34)
-- [ImageController](./src/controller.ts#L7)
+- [Image.forPlugin](./src/image.ts#L42)
+- [Image.forToolHook](./src/image.ts#L60)
+- [ImageController](./src/controller.ts)
 
 ### Utils
 

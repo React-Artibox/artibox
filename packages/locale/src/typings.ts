@@ -5,6 +5,9 @@ export interface LocaleDefinition {
     facebook: {
       inputPlaceholder: string;
     };
+    image: {
+      captionInputPlaceholder: string;
+    };
     instagram: {
       inputPlaceholder: string;
     };
