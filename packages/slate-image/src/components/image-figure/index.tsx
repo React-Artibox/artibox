@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import cx from 'classnames';
-import { ImageFigurePropsForRenderer } from '@artibox/slate-image/typings';
+import { ImageFigurePropsForRenderer } from '../../typings';
 import '../../styles';
 
 const ImageFigure = forwardRef<HTMLImageElement, ImageFigurePropsForRenderer>(function ImageFigure(props, ref) {
