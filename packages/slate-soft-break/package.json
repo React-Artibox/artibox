@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-soft-break",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -27,7 +27,7 @@
     "build:clean": "node ../../tools/build/clean.js"
   },
   "dependencies": {
-    "@artibox/slate-common": "^1.1.0",
+    "@artibox/slate-common": "^1.2.0",
     "@types/slate": "^0.47.5",
     "is-hotkey": "^0.1.6"
   },

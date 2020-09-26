@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/React-Artibox/artibox/compare/v1.1.0...v1.2.0) (2020-09-26)
+
+### Features
+
+- **image:** caption ([#60](https://github.com/React-Artibox/artibox/issues/60)) ([1bea030](https://github.com/React-Artibox/artibox/commit/1bea030135b59ef2aff56a1b5713b65089ee8edb))
+
+### BREAKING CHANGES
+
+- **image:** Image controller methods changed
+  Jsx serializer become multiple as list's
+  Old images won't break, but new images will be wrapped by a figure
+
 # [1.1.0](https://github.com/React-Artibox/artibox/compare/v1.0.1...v1.1.0) (2020-09-14)
 
 ### Code Refactoring
