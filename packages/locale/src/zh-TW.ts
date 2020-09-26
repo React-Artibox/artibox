@@ -7,6 +7,9 @@ export const zhTW: LocaleDefinition = {
     facebook: {
       inputPlaceholder: '請在此輸入或貼上Facebook的貼文連結，並按下Enter'
     },
+    image: {
+      captionInputPlaceholder: '請輸入圖片說明（選填）'
+    },
     instagram: {
       inputPlaceholder: '請在此輸入或貼上Instagram的貼文連結，並按下Enter'
     },

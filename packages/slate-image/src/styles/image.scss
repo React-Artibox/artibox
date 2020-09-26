@@ -1,12 +1,12 @@
 $artibox-image-resizer-size: 6px;
 
 .artibox-slate-image {
-  display: block;
-  width: 100%;
+  position: relative;
   user-select: none;
 
-  &__wrapper {
-    position: relative;
+  img {
+    display: block;
+    width: 100%;
     user-select: none;
   }
 
@@ -29,5 +29,20 @@ $artibox-image-resizer-size: 6px;
     background: var(--artibox-surface);
     transform: translate3d(50%, 50%, 0);
     cursor: nwse-resize;
+  }
+
+  &__caption {
+    margin-top: 6px;
+
+    &-placeholder {
+      color: var(--artibox-placeholder);
+    }
+
+    &--empty {
+      .artibox-slate-image__figure--blurred & {
+        opacity: 0;
+        user-select: none;
+      }
+    }
   }
 }

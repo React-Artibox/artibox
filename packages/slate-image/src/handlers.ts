@@ -1,6 +1,7 @@
 import { DragEvent, ClipboardEvent } from 'react';
 import { Editor as CoreEditor } from 'slate';
 import { Editor, Plugin, getEventTransfer } from 'slate-react';
+import { isHotkey } from 'is-hotkey';
 import { isImageUrl } from '@artibox/utils/is-image-url';
 import { readFileAsDataURL } from '@artibox/utils/read-file-as-data-url';
 import { ImageController } from './controller';
@@ -40,5 +41,35 @@ export function createImageHandlers(config: CreateImageHandlersConfig): Plugin {
     return next();
   };
 
-  return { onDrop: onDropOrPaste, onPaste: onDropOrPaste };
+  return {
+    onKeyDown(event, editorComponent, next) {
+      const editor = (editorComponent as any) as Editor;
+      const { selection, startBlock } = editor.value;
+      const { isCollapsed, start } = selection;
+
+      if (controller.isNodeAsCaption(startBlock)) {
+        /**
+         * Override original behavior of select all.
+         * Only select the text in image caption if current selection is in image caption.
+         */
+        if (isCollapsed && isHotkey('mod+a', event as any)) {
+          event.preventDefault();
+          return editor.moveToRangeOfNode(startBlock);
+          /**
+           * Prevent native backspace and enter event.
+           */
+        } else if (
+          (isCollapsed && event.key === 'Backspace' && start.offset === 0) ||
+          (event.key === 'Enter' && !event.shiftKey)
+        ) {
+          event.preventDefault();
+          return editor;
+        }
+      }
+
+      return next();
+    },
+    onDrop: onDropOrPaste,
+    onPaste: onDropOrPaste
+  };
 }

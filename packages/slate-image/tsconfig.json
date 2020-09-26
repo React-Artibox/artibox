@@ -4,7 +4,12 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "references": [{ "path": "../slate-common" }, { "path": "../slate-jsx-serializer" }, { "path": "../utils" }],
+  "references": [
+    { "path": "../components" },
+    { "path": "../slate-common" },
+    { "path": "../slate-jsx-serializer" },
+    { "path": "../utils" }
+  ],
   "include": ["./src"],
   "exclude": ["node_modules", "./esm", "./dist", "./**/*.test.*"]
 }

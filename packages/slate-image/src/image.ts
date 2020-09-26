@@ -1,34 +1,60 @@
 import { useCallback } from 'react';
-import { NodeType, InputConfig, ForPlugin, ForToolHook } from '@artibox/slate-common';
-import { IMAGE_TYPE } from './constants';
-import { WithHostingResolvers, WithThresholds } from './typings';
+import { InputConfig, ForPlugin, ForToolHook } from '@artibox/slate-common';
+import { IMAGE_TYPE, IMAGE_FIGURE_TYPE, IMAGE_CAPTION_TYPE } from './constants';
+import { WithHostingResolvers, WithThresholds, ImageTypes, ImageComponents } from './typings';
 import Image from './components/image';
+import ImageFigure from './components/image-figure';
 import { createImageController, ImageController } from './controller';
 import { CreateImageRendererConfig, createImageRenderer } from './renderer';
 import { createImageHandlers } from './handlers';
-import { createImageSchema } from './schemta';
+import { createImageSchema } from './schema';
+import ImageCaption from './components/image-caption';
 
-export type ImageForPluginConfig = Partial<CreateImageRendererConfig>;
+export type ImageForPluginConfig = Partial<Pick<CreateImageRendererConfig, 'components'>>;
 
-export type Image = NodeType & ImageController & ForPlugin<ImageForPluginConfig> & ForToolHook<undefined>;
+export interface Image extends ImageController, ForPlugin<ImageForPluginConfig>, ForToolHook<undefined> {
+  types: ImageTypes;
+}
 
-export type CreateImageConfig = Partial<NodeType & WithHostingResolvers & WithThresholds>;
+export interface CreateImageConfig extends Partial<WithHostingResolvers & WithThresholds> {
+  types?: Partial<ImageTypes>;
+}
 
 export function createImage(config?: CreateImageConfig): Image {
-  const { type = IMAGE_TYPE, hostingResolvers, thresholds: unresolvedThresholds } = config || {};
+  const { types: typesConfig, hostingResolvers, thresholds: unresolvedThresholds } = config || {};
+  const {
+    image: imageType = IMAGE_TYPE,
+    figure: figureType = IMAGE_FIGURE_TYPE,
+    caption: captionType = IMAGE_CAPTION_TYPE
+  } = typesConfig || {};
+  const types: ImageTypes = {
+    image: imageType,
+    figure: figureType,
+    caption: captionType
+  };
   const thresholds = unresolvedThresholds
     ? [...unresolvedThresholds.filter(threshold => threshold > 0 && threshold < 100).sort(), 100]
     : undefined;
-  const controller = createImageController({ type, hostingResolvers, thresholds });
+  const controller = createImageController({ types, thresholds });
   return {
-    type,
+    types,
     ...controller,
     forPlugin(config) {
-      const { component = Image } = config || {};
+      const { components: componentsConfig } = config || {};
+      const {
+        image: ImageComponent = Image,
+        figure: FigureComponent = ImageFigure,
+        caption: CaptionComponent = ImageCaption
+      } = componentsConfig || {};
+      const components: ImageComponents = {
+        image: ImageComponent,
+        figure: FigureComponent,
+        caption: CaptionComponent
+      };
       return {
-        ...createImageRenderer({ type, component, controller, hostingResolvers, thresholds }),
+        ...createImageRenderer({ types, components, controller, hostingResolvers, thresholds }),
         ...createImageHandlers({ controller }),
-        schema: createImageSchema({ type, thresholds })
+        schema: createImageSchema({ types, thresholds })
       };
     },
     forToolHook() {

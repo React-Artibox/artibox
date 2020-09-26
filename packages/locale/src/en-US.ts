@@ -7,6 +7,9 @@ export const enUS: LocaleDefinition = {
     facebook: {
       inputPlaceholder: 'Please paste a link to embed content from Facebook post , and press Enter'
     },
+    image: {
+      captionInputPlaceholder: ' Type caption for image (optional)'
+    },
     instagram: {
       inputPlaceholder: 'Please paste a link to embed content from Instagram post , and press Enter'
     },

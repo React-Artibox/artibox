@@ -126,6 +126,8 @@ export const plugins: Plugin[] = [
     collapsedTools: editor => {
       if (Blockquote.isSelectionIn(editor)) {
         return [BlockquoteTool];
+      } else if (Image.isSelectionInImage(editor) || Image.isSelectionInCaption(editor)) {
+        return [];
       }
 
       return [
