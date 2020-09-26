@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/React-Artibox/artibox/compare/v1.2.0...v1.2.1) (2020-09-26)
+
+### Bug Fixes
+
+- **image:** use relative path to package itself ([9992941](https://github.com/React-Artibox/artibox/commit/9992941638bed39a5c8e9b6729fa6ddf61362009))
+
 # [1.2.0](https://github.com/React-Artibox/artibox/compare/v1.1.0...v1.2.0) (2020-09-26)
 
 ### Features
