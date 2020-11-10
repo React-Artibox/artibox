@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/React-Artibox/artibox/compare/v2.0.0...v2.0.1) (2020-11-10)
+
+### Bug Fixes
+
+- **slate-react:** add missing dependencies ([0364209](https://github.com/React-Artibox/artibox/commit/0364209c922656ee8b53043078ce1241f637cf3f))
+
 # [2.0.0](https://github.com/React-Artibox/artibox/compare/v1.2.2...v2.0.0) (2020-11-10)
 
 ### Code Refactoring
