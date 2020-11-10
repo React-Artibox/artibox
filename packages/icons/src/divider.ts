@@ -1,7 +1,7 @@
 import { IconDefinition } from './typings';
 
-export const SeparationLine: IconDefinition = {
-  name: 'separation-line',
+export const Divider: IconDefinition = {
+  name: 'divider',
   definition: {
     svg: {
       viewBox: '0 0 24 24'
