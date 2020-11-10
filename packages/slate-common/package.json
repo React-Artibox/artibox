@@ -29,9 +29,8 @@
   "dependencies": {
     "@artibox/locale": "^2.0.0",
     "@artibox/utils": "^2.0.0",
+    "slate": "^0.59.0",
+    "slate-history": "^0.59.0",
     "tslib": "^1.13.0"
-  },
-  "peerDependencies": {
-    "slate": "^0.58.4"
   }
 }
