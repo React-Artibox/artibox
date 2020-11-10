@@ -24,7 +24,7 @@
     "storybook:build": "build-storybook",
     "storybook:deploy": "storybook-to-ghpages --out ./public",
     "commit": "git-cz",
-    "release": "npm run build:clean && lerna version && npm run build && lerna publish from-package"
+    "release": "lerna version && npm run build && lerna publish from-package"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
