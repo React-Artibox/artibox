@@ -1,20 +1,21 @@
 module.exports = {
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  moduleNameMapper: {
-    /**
-     * Since `<rootDir>` will be packages/*.
-     */
-    '@artibox/(.*)$': '<rootDir>/../$1'
-  },
   transform: {
     '\\.t(s|sx)$': 'ts-jest'
   },
-  testMatch: ['**/__tests__/**/*.test.*'],
+  testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
   globals: {
     'ts-jest': {
-      tsConfig: 'tsconfig.test.json'
+      tsconfig: '<rootDir>/tsconfig.spec.json'
     }
   },
+  moduleFileExtensions: ['js', 'json', 'ts', 'tsx'],
+  moduleNameMapper: {
+    '@artibox/([a-zA-Z-]*)/(.*)$': '<rootDir>/packages/$1/src/$2',
+    '@artibox/([a-zA-Z-]*)$': '<rootDir>/packages/$1/src',
+    '\\.(css|scss)$': '<rootDir>/__mocks__/styleMock.ts'
+  },
+  testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/'],
+  collectCoverageFrom: ['packages/*/src/**/*', '!**/index.ts', '!**/*fixtures*/**', '!**/*mocks*/**', '!**/*stories*'],
   coveragePathIgnorePatterns: ['/node_modules/']
 };

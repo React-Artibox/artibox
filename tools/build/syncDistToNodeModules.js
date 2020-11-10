@@ -6,15 +6,14 @@ const { PWD, npm_package_name } = process.env;
 
 const NODE_MODULES_PATH = path.resolve(__dirname, '..', '..', 'node_modules');
 
-let packagePathPointer = NODE_MODULES_PATH;
+let packagePath = NODE_MODULES_PATH;
 
 npm_package_name.split('/').forEach(dir => {
-  const current = path.resolve(packagePathPointer, dir);
-  packagePathPointer = current;
+  packagePath = path.resolve(packagePath, dir);
 
-  if (!fs.existsSync(current)) {
-    exec(`mkdir ${current}`);
+  if (!fs.existsSync(packagePath)) {
+    exec(`mkdir ${packagePath}`);
   }
 });
 
-exec(`rsync -ar --exclude-from=${PWD}/.npmignore ${PWD}/dist/ ${packagePathPointer}`);
+exec(`rsync -ar --exclude-from=${PWD}/.npmignore ${PWD}/dist/ ${packagePath}`);

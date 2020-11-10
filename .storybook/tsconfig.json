@@ -1,7 +1,4 @@
 {
   "extends": "../tsconfig.dev.json",
-  "compilerOptions": {
-    "rootDir": "../",
-    "baseUrl": "../"
-  }
+  "exclude": ["node_modules", "**/node_modules", "../__fixtures__", "../__mocks__"]
 }
