@@ -29,6 +29,10 @@
     "postbuild": "node ../../tools/build/syncDistToNodeModules.js"
   },
   "dependencies": {
+    "@artibox/icons": "^2.0.0",
+    "@artibox/locale": "^2.0.0",
+    "@artibox/theme": "^2.0.0",
+    "@artibox/utils": "^2.0.0",
     "@artibox/slate-common": "^2.0.0",
     "clsx": "^1.1.1",
     "react-transition-group": "^4.3.0",
