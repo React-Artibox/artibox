@@ -1,52 +1,93 @@
-<h1 align="center">Artibox</h1>
+# Artibox
 
-<div align="center">
-
-A complete rich text editor based on [Slate](https://github.com/ianstormtaylor/slate) framework
+A complete rich text editor.  
+Currently based on [Slate](https://github.com/ianstormtaylor/slate) framework.
 
 [![npm package](https://img.shields.io/npm/v/@artibox/slate-editor.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/slate-editor)
 [![npm downloads](https://img.shields.io/npm/dt/@artibox/slate-editor.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/slate-editor)
 [![Licence](https://img.shields.io/github/license/React-Artibox/artibox.svg?maxAge=60)](https://github.com/React-Artibox/artibox/blob/master/LICENSE)
 
-</div>
-
-## Demo
-
-Check out the [live demo](https://react-artibox.github.io/artibox) of all of the examples!
-
-## Examples
-
-- [Rich Editor](./stories/rich-editor/index.tsx) — showing the features you'd expect from a basic editor.
+[Try out our plugins](https://react-artibox.github.io/artibox/?path=/story/examples-playgroud--all).
 
 ## Documentation
 
-- [Get Started](./docs/get-started.md)
-- [Module Factories](./docs/module-factories.md)
+- [Getting Started](https://react-artibox.github.io/artibox/?path=/story/docs-getting-started--page)
+- [Theme](https://react-artibox.github.io/artibox/?path=/story/docs-theme--page)
+- [Locale](https://react-artibox.github.io/artibox/?path=/story/docs-locale--page)
+- [Icons](https://react-artibox.github.io/artibox/?path=/story/docs-icons--page)
 
-## Packages
+## Features
 
-Artibox's codebase is monorepo managed with Lerna. It consists of a handful of packages—although you won't always use all of them. They are:
+| Elements                                              |                                                                       |
+| :---------------------------------------------------- | :-------------------------------------------------------------------- |
+| [Blockquote](https://react-artibox.github.io/artibox) | Enables support for block quotes.                                     |
+| [Embed](https://react-artibox.github.io/artibox)      | Enables support for embeddable media such as YouTube or Vimeo videos. |
+| [Divider](https://react-artibox.github.io/artibox)    | Enables support for dividers.                                         |
+| [Heading](https://react-artibox.github.io/artibox)    | Enables support for headings (from 1 to 6).                           |
+| [Image](https://react-artibox.github.io/artibox)      | Enables support for images.                                           |
+| [Link](https://react-artibox.github.io/artibox)       | Enables support for hyperlinks.                                       |
+| [List](https://react-artibox.github.io/artibox)       | Enables support for bulleted, numbered lists.                         |
+| [Paragraph](https://react-artibox.github.io/artibox)  | Enables support for paragraphs.                                       |
+| [ReadMore](https://react-artibox.github.io/artibox)   | Enables support for read more dividers. Commonly used in CMS.         |
 
-- [`@artibox/components`](./packages/components/README.md)
-- [`@artibox/icons`](./packages/icons/README.md)
-- [`@artibox/locale`](./packages/locale/README.md)
-- [`@artibox/slate-blockquote`](./packages/slate-blockquote/README.md)
-- [`@artibox/slate-bold`](./packages/slate-bold/README.md)
-- [`@artibox/slate-common`](./packages/slate-common/README.md)
-- [`@artibox/slate-editor`](./packages/slate-editor/README.md)
-- [`@artibox/slate-facebook`](./packages/slate-facebook/README.md)
-- [`@artibox/slate-heading`](./packages/slate-heading/README.md)
-- [`@artibox/slate-highlight`](./packages/slate-highlight/README.md)
-- [`@artibox/slate-input-block`](./packages/slate-input-block/README.md)
-- [`@artibox/slate-instagram`](./packages/slate-instagram/README.md)
-- [`@artibox/slate-italic`](./packages/slate-italic/README.md)
-- [`@artibox/slate-jsx-serializer`](./packages/slate-jsx-serializer/README.md)
-- [`@artibox/slate-link`](./packages/slate-link/README.md)
-- [`@artibox/slate-list`](./packages/slate-list/README.md)
-- [`@artibox/slate-separation-line`](./packages/slate-separation-line/README.md)
-- [`@artibox/slate-strikethrough`](./packages/slate-strikethrough/README.md)
-- [`@artibox/slate-toggle-mark`](./packages/slate-toggle-mark/README.md)
-- [`@artibox/slate-toolbar`](./packages/slate-toolbar/README.md)
-- [`@artibox/slate-underline`](./packages/slate-underline/README.md)
-- [`@artibox/slate-video`](./packages/slate-video/README.md)
-- [`@artibox/theme`](./packages/theme/README.md)
+| Marks                                                    |                                               |
+| :------------------------------------------------------- | :-------------------------------------------- |
+| [Bold](https://react-artibox.github.io/artibox)          | Enables support for bold formatting.          |
+| [Highlight](https://react-artibox.github.io/artibox)     | Enables support for highlights.               |
+| [Italic](https://react-artibox.github.io/artibox)        | Enables support for italic formatting.        |
+| [Strikethrough](https://react-artibox.github.io/artibox) | Enables support for strikethrough formatting. |
+| [Underline](https://react-artibox.github.io/artibox)     | Enables support for underline formatting.     |
+
+| Handlers                                         |                                                     |
+| :----------------------------------------------- | :-------------------------------------------------- |
+| [Break](https://react-artibox.github.io/artibox) | Enables support for inserting exit and soft breaks. |
+
+| Widgets                                                 |                                                                       |
+| :------------------------------------------------------ | :-------------------------------------------------------------------- |
+| [FileUploader](https://react-artibox.github.io/artibox) | Enables support for embeddable media such as YouTube or Vimeo videos. |
+| [InputBlock](https://react-artibox.github.io/artibox)   | Provides a toolbar with buttons.                                      |
+| [Toolbar](https://react-artibox.github.io/artibox)      | Provides a toolbar with buttons.                                      |
+
+| Serializers                                              |                                                                             |
+| :------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| [JsxSerializer](https://react-artibox.github.io/artibox) | Enables support for deserializing content from HTML format to Slate format. |
+
+## Development scripts
+
+Useful scripts include:
+
+```bash
+yarn
+```
+
+> Installs package dependencies
+
+```bash
+yarn build
+```
+
+> Build the local packages.
+
+```bash
+yarn storybook:start
+```
+
+> Starts storybook dev (after building).
+
+```bash
+yarn lint
+```
+
+> Lint ts/js files w/ [eslint](https://eslint.org/) and scss files w/ [stylelint](https://stylelint.io/).
+
+```bash
+yarn test
+```
+
+> Test w/ [jest](https://jestjs.io/).
+
+```bash
+yarn release
+```
+
+> Using lerna to bump package versions, build and publish to npm via [conventional changelog](https://github.com/conventional-changelog).

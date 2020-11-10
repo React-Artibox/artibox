@@ -1,0 +1,13 @@
+.stories__icons {
+  &__built-ins {
+    &__all {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-gap: 50px;
+
+      &__container {
+        text-align: center;
+      }
+    }
+  }
+}

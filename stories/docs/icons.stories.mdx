@@ -1,0 +1,74 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import Icon from '@artibox/slate-react/components/Icon';
+import * as icons from '@artibox/icons';
+import './icons-stories.scss';
+
+<Meta title="Docs/Icons" />
+
+# @artibox/icons
+
+[![npm package](https://img.shields.io/npm/v/@artibox/icons.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/icons)
+[![npm downloads](https://img.shields.io/npm/dt/@artibox/icons.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/icons)
+
+## Introduction
+
+This package just only includes `all icons for artibox` and the interface `IconDefinition`.
+
+Please see the [definition](https://github.com/React-Artibox/artibox/tree/master/packages/icons/src/typings.ts) first.  
+All icons are restricted in this definition.
+
+## Installation
+
+```bash
+npm install @artibox/icons --save
+```
+
+or
+
+```bash
+yarn add @artibox/icons
+```
+
+## Usage
+
+```ts
+import { AlignLeft } from '@artibox/icons';
+```
+
+or
+
+```ts
+import { AlignLeft } from '@artibox/icons/align-left';
+```
+
+### For React
+
+You can use the icon definition to render the svg by yourself.eg.
+
+```tsx
+...
+
+return (
+  <svg>
+    <path {...icon.definition.path} />
+  </svg>
+);
+```
+
+Or use the built in component [Icon](https://github.com/React-Artibox/artibox/tree/master/packages/slate-react/src/components/Icon/index.tsx) of artibox.
+
+## Built Ins Icons
+
+<div className="stories__icons__built-ins__all">
+  {Object.keys(icons)
+    .sort()
+    .map(key => icons[key])
+    .map(icon => (
+      <div key={icon.name} className="stories__icons__built-ins__all__container">
+        <div style={{ fontSize: 32 }}>
+          <Icon icon={icon} />
+        </div>
+        {icon.name}
+      </div>
+    ))}
+</div>
