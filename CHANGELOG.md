@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/React-Artibox/artibox/compare/v1.2.2...v2.0.0) (2020-11-10)
+
+### Code Refactoring
+
+- move plugins/widgets to slate-common and slate-react packages ([24035ae](https://github.com/React-Artibox/artibox/commit/24035aee1d973a9b36ec39f2f02220569b104039))
+
+### Features
+
+- **icons:** add read-more and twitter icons ([1f38313](https://github.com/React-Artibox/artibox/commit/1f383138697270a05534c594852409a207a322b8))
+- **locale:** add locale for readMore and twitter ([c8f2eb2](https://github.com/React-Artibox/artibox/commit/c8f2eb291a1674139014b06ecad85b901a6cfca9))
+- **utils:** add convertCamelToKebab and pipe ([2924d10](https://github.com/React-Artibox/artibox/commit/2924d107758c5cfe2c81b3318b7495072cad9af6))
+
+### BREAKING CHANGES
+
+- migrate slate/slate-react to ^0.50.0, please see both docs of slate and artibox
+
 ## [1.2.2](https://github.com/React-Artibox/artibox/compare/v1.2.1...v1.2.2) (2020-09-26)
 
 ### Bug Fixes

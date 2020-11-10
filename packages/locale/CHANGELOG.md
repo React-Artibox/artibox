@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/React-Artibox/artibox/compare/v1.2.2...v2.0.0) (2020-11-10)
+
+### Features
+
+- **locale:** add locale for readMore and twitter ([c8f2eb2](https://github.com/React-Artibox/artibox/commit/c8f2eb291a1674139014b06ecad85b901a6cfca9))
+
 # [1.2.0](https://github.com/React-Artibox/artibox/compare/v1.1.0...v1.2.0) (2020-09-26)
 
 ### Features

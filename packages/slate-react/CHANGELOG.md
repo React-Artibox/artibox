@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/React-Artibox/artibox/compare/v1.2.2...v2.0.0) (2020-11-10)
+
+### Code Refactoring
+
+- move plugins/widgets to slate-common and slate-react packages ([24035ae](https://github.com/React-Artibox/artibox/commit/24035aee1d973a9b36ec39f2f02220569b104039))
+
+### BREAKING CHANGES
+
+- migrate slate/slate-react to ^0.50.0, please see both docs of slate and artibox
+
 # [1.2.0](https://github.com/React-Artibox/artibox/compare/v1.1.0...v1.2.0) (2020-09-26)
 
 **Note:** Version bump only for package @artibox/slate-editor

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/React-Artibox/artibox/compare/v1.2.2...v2.0.0) (2020-11-10)
+
+### Features
+
+- **utils:** add convertCamelToKebab and pipe ([2924d10](https://github.com/React-Artibox/artibox/commit/2924d107758c5cfe2c81b3318b7495072cad9af6))
+
 # [1.0.0](https://github.com/React-Artibox/artibox/compare/v0.2.0...v1.0.0) (2020-05-12)
 
 **Note:** Version bump only for package @artibox/utils

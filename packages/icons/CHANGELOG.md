@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/React-Artibox/artibox/compare/v1.2.2...v2.0.0) (2020-11-10)
+
+### Features
+
+- **icons:** add read-more and twitter icons ([1f38313](https://github.com/React-Artibox/artibox/commit/1f383138697270a05534c594852409a207a322b8))
+
 # [1.0.0](https://github.com/React-Artibox/artibox/compare/v0.2.0...v1.0.0) (2020-05-12)
 
 **Note:** Version bump only for package @artibox/icons
