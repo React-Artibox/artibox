@@ -36,11 +36,11 @@
     "@artibox/utils": "^2.0.0",
     "clsx": "^1.1.1",
     "react-transition-group": "^4.3.0",
+    "slate-react": "^0.58.4",
     "tslib": "^1.13.0"
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "slate-react": "^0.58.4"
+    "react-dom": "^16.8.6"
   }
 }
