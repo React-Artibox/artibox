@@ -1,35 +1,15 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "@artibox/*": ["./packages/*/src"],
-      "@artibox/components/*": ["./packages/components/src/*"],
-      "@artibox/icons/*": ["./packages/icons/src/*"],
-      "@artibox/locale/*": ["./packages/locale/src/*"],
-      "@artibox/slate-blockquote/*": ["./packages/slate-blockquote/src/*"],
-      "@artibox/slate-bold/*": ["./packages/slate-bold/src/*"],
-      "@artibox/slate-common/*": ["./packages/slate-common/src/*"],
-      "@artibox/slate-editor/*": ["./packages/slate-editor/src/*"],
-      "@artibox/slate-facebook/*": ["./packages/slate-facebook/src/*"],
-      "@artibox/slate-file-uploader/*": ["./packages/slate-file-uploader/src/*"],
-      "@artibox/slate-heading/*": ["./packages/slate-heading/src/*"],
-      "@artibox/slate-highlight/*": ["./packages/slate-highlight/src/*"],
-      "@artibox/slate-image/*": ["./packages/slate-image/src/*"],
-      "@artibox/slate-input-block/*": ["./packages/slate-input-block/src/*"],
-      "@artibox/slate-instagram/*": ["./packages/slate-instagram/src/*"],
-      "@artibox/slate-italic/*": ["./packages/slate-italic/src/*"],
-      "@artibox/slate-jsx-serializer/*": ["./packages/slate-jsx-serializer/src/*"],
-      "@artibox/slate-link/*": ["./packages/slate-link/src/*"],
-      "@artibox/slate-list/*": ["./packages/slate-list/src/*"],
-      "@artibox/slate-separation-line/*": ["./packages/slate-separation-line/src/*"],
-      "@artibox/slate-soft-break/*": ["./packages/slate-soft-break/src/*"],
-      "@artibox/slate-strikethrough/*": ["./packages/slate-strikethrough/src/*"],
-      "@artibox/slate-toggle-mark/*": ["./packages/slate-toggle-mark/src/*"],
-      "@artibox/slate-toolbar/*": ["./packages/slate-toolbar/src/*"],
-      "@artibox/slate-underline/*": ["./packages/slate-underline/src/*"],
-      "@artibox/slate-video/*": ["./packages/slate-video/src/*"],
-      "@artibox/theme/*": ["./packages/theme/src/*"],
-      "@artibox/utils/*": ["./packages/utils/src/*"]
+      "@artibox/*": ["packages/*/src"],
+      "@artibox/icons/*": ["packages/icons/src/*"],
+      "@artibox/locale/*": ["packages/locale/src/*"],
+      "@artibox/slate-common/*": ["packages/slate-common/src/*"],
+      "@artibox/slate-react/*": ["packages/slate-react/src/*"],
+      "@artibox/theme/*": ["packages/theme/src/*"],
+      "@artibox/utils/*": ["packages/utils/src/*"]
     }
   }
 }

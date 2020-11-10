@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.dev.json",
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "outDir": "./dist"
+  },
+  "references": [
+    {
+      "path": "__fixtures__"
+    },
+    {
+      "path": "__mocks__"
+    }
+  ],
+  "include": ["./packages", "**/*.spec.*"]
+}

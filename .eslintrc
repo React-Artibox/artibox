@@ -7,12 +7,10 @@
 	},
 	"extends": [
 		"eslint:recommended",
-		"plugin:react/recommended",
 		"plugin:prettier/recommended"
 	],
 	"plugins": [
-		"import",
-		"react-hooks"
+		"import"
 	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
@@ -23,19 +21,10 @@
 			"legacyDecorators": true
 		}
 	},
-	"settings": {
-		"react": {
-			"pragma": "React",
-			"version": "detect"
-		}
-	},
-	"rules": {
-		"react/prop-types": 0
-	},
 	"overrides": [
 		{
 			"files": [
-				"./**/*{.js,.jsx}"
+				"./**/*.js"
 			],
 			"rules": {
 				"no-unused-vars": [
@@ -50,7 +39,7 @@
 		},
 		{
 			"files": [
-				"./**/*{.ts,.tsx}"
+				"./**/*.{ts,tsx}"
 			],
 			"extends": [
 				"prettier/@typescript-eslint",
@@ -60,11 +49,9 @@
 				"@typescript-eslint"
 			],
 			"parserOptions": {
-				"project": "./tsconfig.json"
+				"project": "./tsconfig.*?.json"
 			},
 			"rules": {
-				"react/display-name": 0,
-				"react/jsx-no-target-blank": 0,
 				"@typescript-eslint/explicit-function-return-type": 0,
 				"@typescript-eslint/explicit-module-boundary-types": 0,
 				"@typescript-eslint/no-empty-function": 0,
@@ -82,11 +69,45 @@
 		},
 		{
 			"files": [
-				"./**/*.test{.ts,.tsx}"
+				"./{packages,stories}/**/*.tsx"
+			],
+			"extends": [
+				"plugin:react/recommended"
+			],
+			"plugins": [
+				"react",
+				"react-hooks"
+			],
+			"settings": {
+				"react": {
+					"pragma": "React",
+					"version": "detect"
+				}
+			},
+			"rules": {
+				"react/display-name": 0,
+				"react/jsx-no-target-blank": 0,
+				"react/prop-types": 0
+			}
+		},
+		{
+			"files": [
+				"./**/*.spec.{ts,tsx}"
 			],
 			"rules": {
 				"@typescript-eslint/ban-ts-ignore": 0
 			}
+		},
+		{
+			"files": [
+				"./**/*.mdx"
+			],
+			"extends": [
+				"plugin:mdx/recommended"
+			],
+			"rules": {
+				"no-unused-vars": 0
+      }
 		}
 	]
 }
