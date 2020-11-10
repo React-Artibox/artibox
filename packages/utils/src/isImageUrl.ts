@@ -1,4 +1,4 @@
-import { isUrl } from './is-url';
+import { isUrl } from './isUrl';
 
 const imageExtensions = [
   'ase',
