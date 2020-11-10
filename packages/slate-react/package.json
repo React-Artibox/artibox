@@ -1,6 +1,6 @@
 {
   "name": "@artibox/slate-react",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "author": "Rytass",
   "homepage": "https://github.com/React-Artibox/artibox#readme",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@artibox/icons": "^2.0.0",
     "@artibox/locale": "^2.0.0",
-    "@artibox/slate-common": "^2.0.0",
+    "@artibox/slate-common": "^2.0.2",
     "@artibox/theme": "^2.0.0",
     "@artibox/utils": "^2.0.0",
     "clsx": "^1.1.1",

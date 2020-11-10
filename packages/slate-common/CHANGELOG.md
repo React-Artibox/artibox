@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/React-Artibox/artibox/compare/v2.0.1...v2.0.2) (2020-11-10)
+
+### Bug Fixes
+
+- **slate-common:** move slate and slate-history to dependencies ([41ee4ef](https://github.com/React-Artibox/artibox/commit/41ee4ef2c7b07904c9e637c8bdd17bd6b2fe1043))
+
 # [2.0.0](https://github.com/React-Artibox/artibox/compare/v1.2.2...v2.0.0) (2020-11-10)
 
 ### Code Refactoring
