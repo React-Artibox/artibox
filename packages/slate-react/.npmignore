@@ -1,0 +1,4 @@
+*.log
+*.tsbuildinfo
+*.config.js
+tsconfig.*
