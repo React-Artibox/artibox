@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const PACKAGE_PATH = path.resolve(__dirname, '..');
 const SRC_PATH = path.resolve(PACKAGE_PATH, 'src');
 
-fs.readdirSync(SRC_PATH).filter(file => {
+fs.readdirSync(SRC_PATH).forEach(file => {
   const result = /(.*)\.scss/g.exec(file);
 
   if (!result) {

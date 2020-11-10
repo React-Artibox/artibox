@@ -1,7 +1,5 @@
-src/
 scripts/
 
 *.log
 *.tsbuildinfo
 *.config.js
-tsconfig.*
