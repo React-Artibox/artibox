@@ -5,5 +5,5 @@
     "outDir": "./dist"
   },
   "exclude": ["../../__fixtures__", "../../__mocks__", "**/*.spec.*"],
-  "include": ["**/*.ts"]
+  "include": ["./src"]
 }
