@@ -16,6 +16,12 @@ export const zhTW: LocaleDefinition = {
     link: {
       inputPlaceholder: '請在此貼上或輸入連結...'
     },
+    readMore: '繼續閱讀',
+    twitter: {
+      tweet: {
+        inputPlaceholder: '請在此輸入或貼上Twitter的貼文連結，並按下Enter'
+      }
+    },
     video: {
       inputPlaceholder: '請在此輸入或貼上Youtube、Vimeo 或其他影片連結，並按下 Enter'
     }

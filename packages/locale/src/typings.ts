@@ -14,6 +14,12 @@ export interface LocaleDefinition {
     link: {
       inputPlaceholder: string;
     };
+    readMore: string;
+    twitter: {
+      tweet: {
+        inputPlaceholder: string;
+      };
+    };
     video: {
       inputPlaceholder: string;
     };

@@ -16,6 +16,12 @@ export const enUS: LocaleDefinition = {
     link: {
       inputPlaceholder: 'Paste or type a link...'
     },
+    readMore: 'READ MORE',
+    twitter: {
+      tweet: {
+        inputPlaceholder: 'Please paste a link to embed content from Twitter tweet, and press Enter'
+      }
+    },
     video: {
       inputPlaceholder: 'Please paste a Youtube, Vimeo, or other video link, and press Enter'
     }
