@@ -1,0 +1,33 @@
+$playgroud-editor-padding: 32px 40px;
+
+.stories__examples {
+  &__playgroud {
+    &__editor {
+      padding: $playgroud-editor-padding;
+      width: 100%;
+      min-height: 800px;
+      box-sizing: border-box;
+
+      &.artibox-editable__placeholder {
+        &::before {
+          margin-top: 1em;
+        }
+      }
+    }
+
+    &__serializer-jsx {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 50px;
+      overflow: hidden;
+
+      > * {
+        background-color: var(--artibox-background);
+        padding: $playgroud-editor-padding;
+        min-height: 800px;
+        overflow: hidden;
+        overflow-wrap: break-word;
+      }
+    }
+  }
+}

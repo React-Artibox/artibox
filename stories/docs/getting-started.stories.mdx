@@ -1,0 +1,207 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Getting Started" />
+
+# Getting Started
+
+1. [Installing](#installing)
+1. [Setup Basic Editor](#setup-basic-editor)
+1. [Adding Plugins](#adding-plugins)
+1. [Adding Toolbar or Others](#adding-toolbar-or-others)
+1. [Adding Themes](#adding-theme)
+1. [Applying Locale](#applying-locale)
+1. [Saving To a Database](#saving-to-a-database)
+1. [Rendering Via Jsx Serializer](#rendering-via-jsx-serializer)
+1. [Customizing Renderers](#customizing-renderers)
+
+## Installing
+
+```bash
+npm install react react-dom slate slate-react @artibox/slate-react --save
+```
+
+or
+
+```
+yarn add react react-dom slate slate-react @artibox/slate-editor
+```
+
+## Setup Basic Editor
+
+```tsx
+import React, { useState, useMemo } from 'react';
+import { Node } from 'slate';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/paragraph';
+import { Artibox, Editable, createReactEditor } from '@artibox/slate-react';
+
+const initialValue: Node[] = [
+  {
+    type: PARAGRAPH_TYPE,
+    children: [{ text: '' }]
+  }
+];
+
+const YourEditor = () => {
+  const [value, setValue] = useState(initialValue);
+  const editor = useMemo(() => createReactEditor(), []);
+
+  return (
+    <Artibox editor={editor} onChange={setValue} value={value}>
+      <Editable />
+    </Artibox>
+  );
+};
+```
+
+## Adding Plugins
+
+After your editor rendered, but you want to do more than just type a plaintext string. Let's just add some plugins on your editor.  
+You can use [pre-built features of artibox](https://react-artibox.github.io/artibox/?path=/story/docs-intro--page#packages) or create a customize plugin of `slate-react`.
+
+We use bold for example:
+
+```tsx
+import React, { useState, useMemo } from 'react';
+import { Node } from 'slate';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/paragraph';
+import { Artibox, Editable, createReactEditor, composeRenderLeafs, composeHandlers } from '@artibox/slate-react';
+import { createReactBold } from '@artibox/slate-react/bold';
+
+const initialValue: Node[] = [
+  {
+    type: PARAGRAPH_TYPE,
+    children: [{ text: '' }]
+  }
+];
+
+const bold = createReactBold();
+
+const createHandlers = composeHandlers([bold.createHandlers()]);
+
+const renderLeaf = composeRenderLeafs([bold.createRenderLeaf()]);
+
+const YourEditor = () => {
+  const [value, setValue] = useState(initialValue);
+  const editor = useMemo(() => bold.with(createReactEditor()), []);
+  const handlers = useMemo(() => createHandlers(editor), [editor]);
+
+  return (
+    <Artibox editor={editor} onChange={setValue} value={value}>
+      <Editable {...handlers} renderLeaf={renderLeaf} />
+    </Artibox>
+  );
+};
+```
+
+Now you can use the default hotkey of bold, <kbd>⌘</kbd>+<kbd>b</kbd> on Mac or <kbd>ctrl</kbd>+<kbd>b</kbd> on Windows, to toggle text between bold.
+
+## Adding Toolbar or Others
+
+Eventhough you can use hotkey to control the bold, but you want user can just click a button to control it. Let's just add a toolbar, menu, ...etc.
+
+```tsx
+import React, { useState, useMemo } from 'react';
+import { Node } from 'slate';
+import { Bold as BoldIcon } from '@artibox/icons';
+import { PARAGRAPH_TYPE } from '@artibox/slate-common/paragraph';
+import { Artibox, Editable, createReactEditor, composeRenderLeafs, composeHandlers } from '@artibox/slate-react';
+import { createReactBold } from '@artibox/slate-react/bold';
+import { Toolbar } from '@artibox/slate-react/toolbar';
+import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
+
+const initialValue: Node[] = [
+  {
+    type: PARAGRAPH_TYPE,
+    children: [{ text: '' }]
+  }
+];
+
+const bold = createReactBold();
+
+const createHandlers = composeHandlers([bold.createHandlers()]);
+
+const renderLeaf = composeRenderLeafs([bold.createRenderLeaf()]);
+
+const YourEditor = () => {
+  const [value, setValue] = useState(initialValue);
+  const editor = useMemo(() => bold.with(createReactEditor()), []);
+  const handlers = useMemo(() => createHandlers(editor), [editor]);
+
+  return (
+    <Artibox editor={editor} onChange={setValue} value={value}>
+      <Toolbar>{expanded => <ToggleMarkToolbarIcon icon={BoldIcon} controller={bold} />}</Toolbar>
+      <Editable {...handlers} renderLeaf={renderLeaf} />
+    </Artibox>
+  );
+};
+```
+
+## Adding Theme
+
+We use css variables to theming. The `theme` prop can be either a `string` or a `object`.  
+You can just pass it to `theme` prop of component `Artibox`.
+
+Please see the docs of [Theme](https://react-artibox.github.io/artibox/?path=/story/docs-theme--page) to learn more.
+
+## Applying Locale
+
+Let's delete all texts on the editor first, and then you can see the built-in placeholder provided by locale.  
+You can just pass it to `locale` prop of component `Artibox`.
+
+Please see the docs of [Locale](https://react-artibox.github.io/artibox/?path=/story/docs-locale--page) to learn more.
+
+## Saving To a Database
+
+It's very easy to save the value of slate to database since it's just a json object.
+
+```ts
+import { Node } from 'slate';
+
+const value: Node[] = [
+  {
+    type: PARAGRAPH_TYPE,
+    children: [{ text: '' }]
+  }
+];
+const valueString = JSON.stringify(value);
+```
+
+## Rendering Via Jsx Serializer
+
+If you want to render the value stored in your database as what you see in the editor. Just use [JsxSerializer](https://react-artibox.github.io/artibox).  
+It's a quick and easy way to reuse your custom component on both editor and anywhere you want to render the json of value.
+
+```tsx
+import { createJsxSerializer } from '@artibox/slate-react/jsx-serializer';
+import { createJsxSerializeBold } from '@artibox/slate-react/bold/jsx-serializer';
+
+const jsxSerializer = createJsxSerializer({
+  leafs: [createJsxSerializeBold()]
+});
+
+// ...
+
+return <div>{jsxSerializer.serialize(json)}</div>;
+```
+
+## Customizing Renderers
+
+The default component of `Bold` is `<strong>` tag of HTML. If you want to override it, just create your custom component and then pass it to both editor and jsx-serializer:
+
+```tsx
+const renderYourBold = ({ children }) => <span style={{ fontWeight: 'bold' }}>{children}</span>;
+
+// ...
+import { createReactBold } from '@artibox/slate-react/bold';
+
+const bold = createReactBold();
+const renderBold = bold.createRenderLeaf({ render: renderYourBold });
+
+// ...
+
+const jsxSerializer = createJsxSerializer({
+  leafs: [createJsxSerializeBold({ render: renderYourBold })]
+});
+```
+
+Please see [JsxSerializer](https://react-artibox.github.io/artibox) to learn more.
