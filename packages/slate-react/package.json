@@ -1,0 +1,42 @@
+{
+  "name": "@artibox/slate-react",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Rytass",
+  "homepage": "https://github.com/React-Artibox/artibox#readme",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./index.js",
+  "module": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/React-Artibox/artibox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/React-Artibox/artibox/issues"
+  },
+  "scripts": {
+    "clean": "npm run build:clean",
+    "build:clean": "node ../../tools/build/clean.js",
+    "build:css": "rollup --config rollup.config.js",
+    "build:ts": "tsc --project ./tsconfig.app.json && tsc --project ./tsconfig.app.json -m esnext -outDir ./dist/esm",
+    "build": "npm run build:ts && npm run build:css",
+    "prebuild": "npm run build:clean && node ../../tools/build/syncPublishFilesToDist.js",
+    "postbuild": "node ../../tools/build/syncDistToNodeModules.js"
+  },
+  "dependencies": {
+    "@artibox/slate-common": "^1.2.0",
+    "clsx": "^1.1.1",
+    "react-transition-group": "^4.3.0",
+    "tslib": "^1.13.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "slate-react": "^0.58.4"
+  }
+}

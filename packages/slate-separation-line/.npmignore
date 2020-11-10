@@ -1,6 +1,0 @@
-src/
-
-*.log
-*.tsbuildinfo
-*.config.js
-tsconfig.*
