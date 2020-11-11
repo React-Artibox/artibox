@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/React-Artibox/artibox/compare/v2.0.2...v2.0.3) (2020-11-11)
+
+### Bug Fixes
+
+- **slate-react:** extract correctly EventHandlers from DOMAttributes ([75ff832](https://github.com/React-Artibox/artibox/commit/75ff832868e77988e8f4ebc5a60cc3d2e088cb11))
+- **slate-react/toggle-mark:** remove redundant keys of CreateReactToggleMarkOptions ([2f18388](https://github.com/React-Artibox/artibox/commit/2f18388e8060bc3a380e621c2a708738856654d6))
+
 ## [2.0.2](https://github.com/React-Artibox/artibox/compare/v2.0.1...v2.0.2) (2020-11-10)
 
 ### Bug Fixes
