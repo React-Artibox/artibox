@@ -12,10 +12,8 @@ import './icons-stories.scss';
 
 ## Introduction
 
-This package just only includes `all icons for artibox` and the interface `IconDefinition`.
-
-Please see the [definition](https://github.com/React-Artibox/artibox/tree/master/packages/icons/src/typings.ts) first.  
-All icons are restricted in this definition.
+This package just only includes `all icons for artibox` and the interface [IconDefinition](https://github.com/React-Artibox/artibox/tree/master/packages/icons/src/typings.ts).  
+All icons are restricted in the definition.
 
 ## Installation
 
@@ -46,8 +44,6 @@ import { AlignLeft } from '@artibox/icons/align-left';
 You can use the icon definition to render the svg by yourself.eg.
 
 ```tsx
-...
-
 return (
   <svg>
     <path {...icon.definition.path} />
@@ -55,10 +51,11 @@ return (
 );
 ```
 
-Or use the built in component [Icon](https://github.com/React-Artibox/artibox/tree/master/packages/slate-react/src/components/Icon/index.tsx) of artibox.
+Or use the built in component [Icon](https://github.com/React-Artibox/artibox/tree/master/packages/slate-react/src/components/Icon/index.tsx).
 
-## Built Ins Icons
+## Built-in Icons
 
+<br />
 <div className="stories__icons__built-ins__all">
   {Object.keys(icons)
     .sort()

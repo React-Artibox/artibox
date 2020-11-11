@@ -19,10 +19,8 @@ yarn add @artibox/locale
 
 ## Introduction
 
-This package just only includes `all locales for artibox` and the interface `LocaleDefinition`.
-
-Please see the [definition](https://github.com/React-Artibox/artibox/tree/master/packages/locale/src/typings.ts) first.  
-All locales are restricted in this definition and each locale is just an object.
+This package just only includes `all locales for artibox` and the interface [LocaleDefinition](https://github.com/React-Artibox/artibox/tree/master/packages/locale/src/typings.ts).  
+All locales are restricted in the definition and each locale is just an object.
 
 ## Usage
 
@@ -31,32 +29,4 @@ Please import each locale since there is no root file.
 ```ts
 import { enUS } from '@artibox/locale/en-US';
 import { zhTW } from '@artibox/locale/zh-TW';
-```
-
-### For React
-
-Provide locale by using `ConfigsProvider`.
-
-```tsx
-import { ConfigsProvider } from '@artibox/slate-react/configs';
-import { enUS } from '@artibox/locale/en-US';
-
-...
-
-<ConfigsProvider locale={enUS}>
-  ...
-</ConfigsProvider>
-```
-
-For editor, just use the `Artibox` component built w/ `ConfigsProvider`.
-
-```tsx
-import { Artibox } from '@artibox/slate-react';
-import { enUS } from '@artibox/locale/en-US';
-
-...
-
-<Artibox locale={enUS}>
-  ...
-</Artibox>
 ```

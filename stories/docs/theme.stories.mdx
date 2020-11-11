@@ -32,7 +32,7 @@ Artibox use [css variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Usi
 
 <br />
 
-### From Css
+### Using Css
 
 ```ts
 import '@artibox/theme/prebuilts/artibox.css';
@@ -47,28 +47,22 @@ or
 Then you can just pass theme name to editor.
 
 ```tsx
-<Artibox
-  // ...
-  theme="artibox"
-/>
+<Artibox theme="artibox" />
 ```
 
-### From JavaScript
+### Using Js
 
 ```tsx
 import { THEME_ARTIBOX } from '@artibox/theme/artibox';
 
-<Artibox
-  // ...
-  theme={THEME_ARTIBOX}
-/>;
+<Artibox theme={THEME_ARTIBOX} />;
 ```
 
-### Define a custom theme.
+## Define a custom theme.
 
 When you want more customization than a prebuilt theme offers, you can:
 
-#### Using `Sass/Scss mixin`
+### Using Sass/Scss mixin
 
 Create your own theme file. A custom theme file does two things:
 
@@ -108,9 +102,9 @@ You can also use any existing sass tooling to build the file (such as gulp-sass 
 node-sass src/path/to/your/theme.scss dist/path/to/your/theme.css
 ```
 
-#### Using Js object
+### Using Js
 
-Please see the interface of [`ThemeObject`](https://github.com/React-Artibox/artibox/tree/master/packages/theme/src/typings.ts).
+Please see the interface of [ThemeObject](https://github.com/React-Artibox/artibox/tree/master/packages/theme/src/typings.ts).
 
 ```ts
 import { ThemeObject } from '@artibox/theme';
@@ -122,7 +116,7 @@ const YOUR_CUSTOMER_THEME: ThemeObject = {
 
 Then you can pass it into editor as mentioned above.
 
-### Theming your own components for editor and serializers
+## Theming your own components for editor and serializers
 
 Since we use css variables to theming, the above theme will be built into:
 
@@ -172,7 +166,9 @@ You can also use your own theme instead of using theme system of artibox:
 ```
 
 ```tsx
-<ArtiboxEditor className="your-editor" />
+import { Editable } from '@artibox/slate-react';
+
+<Editable className="your-editor" />;
 ```
 
 And the component can be used in both editor and jsx-serializer.
