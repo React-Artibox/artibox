@@ -1,2 +1,6 @@
 export * from './typings';
-export { CreateReactToggleMarkOptions, createReactToggleMarkCreator } from './createReactToggleMarkCreator';
+export {
+  CreateReactToggleMarkCreatorOptions,
+  CreateReactToggleMarkOptions,
+  createReactToggleMarkCreator
+} from './createReactToggleMarkCreator';

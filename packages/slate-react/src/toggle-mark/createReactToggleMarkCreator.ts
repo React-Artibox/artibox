@@ -1,15 +1,17 @@
 import isHotkey from 'is-hotkey';
-import { createToggleMarkCreator } from '@artibox/slate-common/toggle-mark';
+import { createToggleMarkCreator, CreateToggleMarkOptions } from '@artibox/slate-common/toggle-mark';
 import { createRenderMark, CreateRenderMarkOptions } from '../core';
-import { ReactToggleMark } from './typings';
+import { ReactToggleMark, ReactToggleMarkCreateHandlersOptions } from './typings';
 
-export interface CreateReactToggleMarkOptions extends Partial<CreateRenderMarkOptions<boolean>> {
-  hotkey?: string;
-}
+export type CreateReactToggleMarkCreatorOptions = Required<
+  ReactToggleMarkCreateHandlersOptions & Omit<CreateRenderMarkOptions<boolean>, 'type'>
+>;
+
+export type CreateReactToggleMarkOptions = CreateToggleMarkOptions;
 
 export function createReactToggleMarkCreator(
   createCore: ReturnType<typeof createToggleMarkCreator>,
-  defaults: Required<Omit<CreateReactToggleMarkOptions, 'type'>>
+  defaults: CreateReactToggleMarkCreatorOptions
 ) {
   return ({ type }: CreateReactToggleMarkOptions = {}): ReactToggleMark => {
     const core = createCore({ type });
