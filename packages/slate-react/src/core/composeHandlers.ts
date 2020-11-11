@@ -7,8 +7,12 @@ function createEventHandler(
   handlers: Handler<any>[]
 ): (event: GetEventByName<any>) => void {
   const [handler, ...restHandlers] = handlers;
-  const next = restHandlers.length > 0 ? createEventHandler(editor, restHandlers) : () => {};
-  return event => handler(event, editor, () => next(event));
+
+  return event =>
+    handler(event, editor, () => {
+      const next = restHandlers.length > 0 ? createEventHandler(editor, restHandlers) : () => {};
+      next(event);
+    });
 }
 
 export function composeHandlers<H extends EventHandlerName>(
