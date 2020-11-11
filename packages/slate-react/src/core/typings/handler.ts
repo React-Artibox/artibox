@@ -1,10 +1,16 @@
-import { DOMAttributes } from 'react';
+import { DOMAttributes, EventHandler } from 'react';
 import { ReactEditor } from 'slate-react';
 import { HistoryEditor } from 'slate-history';
 
-export type EventHandlers = Omit<DOMAttributes<HTMLElement>, 'children' | 'dangerouslySetInnerHTML'>;
+export type EventHandlerName = {
+  [K in keyof Required<DOMAttributes<HTMLElement>>]: NonNullable<DOMAttributes<HTMLElement>[K]> extends EventHandler<
+    any
+  >
+    ? K
+    : never;
+}[keyof DOMAttributes<HTMLElement>];
 
-export type EventHandlerName = keyof EventHandlers;
+export type EventHandlers = Pick<DOMAttributes<HTMLElement>, EventHandlerName>;
 
 export type GetEventHandlerByName<H extends EventHandlerName> = NonNullable<EventHandlers[H]>;
 
