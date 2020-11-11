@@ -1,6 +1,11 @@
 import { DocsPage } from '@storybook/addon-docs/blocks';
-import { addDecorator, addParameters } from '@storybook/react';
+import '../stories/stories.scss';
 
-addParameters({
-  docs: { page: DocsPage }
-});
+export const parameters = {
+  docs: { page: DocsPage },
+  options: {
+    storySort: {
+      order: ['Docs', ['Intro', 'Getting Started', 'Theme', 'Locale', 'Icons', 'Utils'], 'Examples', 'Marks']
+    }
+  }
+};

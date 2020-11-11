@@ -3,54 +3,54 @@
 A complete rich text editor.  
 Currently based on [Slate](https://github.com/ianstormtaylor/slate) framework.
 
-[![npm package](https://img.shields.io/npm/v/@artibox/slate-editor.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/slate-editor)
-[![npm downloads](https://img.shields.io/npm/dt/@artibox/slate-editor.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/slate-editor)
+[![npm package](https://img.shields.io/npm/v/@artibox/slate-common.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/slate-common)
+[![npm downloads](https://img.shields.io/npm/dt/@artibox/slate-common.svg?maxAge=60)](https://www.npmjs.com/package/@artibox/slate-common)
 [![Licence](https://img.shields.io/github/license/React-Artibox/artibox.svg?maxAge=60)](https://github.com/React-Artibox/artibox/blob/master/LICENSE)
 
-[Try out our plugins](https://react-artibox.github.io/artibox/?path=/story/examples-playgroud--all).
+[Try out our plugins](./?path=/story/examples-playgroud--all).
 
 ## Documentation
 
-- [Getting Started](https://react-artibox.github.io/artibox/?path=/story/docs-getting-started--page)
-- [Theme](https://react-artibox.github.io/artibox/?path=/story/docs-theme--page)
-- [Locale](https://react-artibox.github.io/artibox/?path=/story/docs-locale--page)
-- [Icons](https://react-artibox.github.io/artibox/?path=/story/docs-icons--page)
+- [Getting Started](./?path=/story/docs-getting-started--page)
+- [Theme](./?path=/story/docs-theme--page)
+- [Locale](./?path=/story/docs-locale--page)
+- [Icons](./?path=/story/docs-icons--page)
 
 ## Features
 
-| Elements                                              |                                                                       |
-| :---------------------------------------------------- | :-------------------------------------------------------------------- |
-| [Blockquote](https://react-artibox.github.io/artibox) | Enables support for block quotes.                                     |
-| [Embed](https://react-artibox.github.io/artibox)      | Enables support for embeddable media such as YouTube or Vimeo videos. |
-| [Divider](https://react-artibox.github.io/artibox)    | Enables support for dividers.                                         |
-| [Heading](https://react-artibox.github.io/artibox)    | Enables support for headings (from 1 to 6).                           |
-| [Image](https://react-artibox.github.io/artibox)      | Enables support for images.                                           |
-| [Link](https://react-artibox.github.io/artibox)       | Enables support for hyperlinks.                                       |
-| [List](https://react-artibox.github.io/artibox)       | Enables support for bulleted, numbered lists.                         |
-| [Paragraph](https://react-artibox.github.io/artibox)  | Enables support for paragraphs.                                       |
-| [ReadMore](https://react-artibox.github.io/artibox)   | Enables support for read more dividers. Commonly used in CMS.         |
+| Elements         |                                                                       |
+| :--------------- | :-------------------------------------------------------------------- |
+| [Blockquote](./) | Enables support for block quotes.                                     |
+| [Embed](./)      | Enables support for embeddable media such as YouTube or Vimeo videos. |
+| [Divider](./)    | Enables support for dividers.                                         |
+| [Heading](./)    | Enables support for headings (from 1 to 6).                           |
+| [Image](./)      | Enables support for images.                                           |
+| [Link](./)       | Enables support for hyperlinks.                                       |
+| [List](./)       | Enables support for bulleted, numbered lists.                         |
+| [Paragraph](./)  | Enables support for paragraphs.                                       |
+| [ReadMore](./)   | Enables support for read more dividers. Commonly used in CMS.         |
 
-| Marks                                                    |                                               |
-| :------------------------------------------------------- | :-------------------------------------------- |
-| [Bold](https://react-artibox.github.io/artibox)          | Enables support for bold formatting.          |
-| [Highlight](https://react-artibox.github.io/artibox)     | Enables support for highlights.               |
-| [Italic](https://react-artibox.github.io/artibox)        | Enables support for italic formatting.        |
-| [Strikethrough](https://react-artibox.github.io/artibox) | Enables support for strikethrough formatting. |
-| [Underline](https://react-artibox.github.io/artibox)     | Enables support for underline formatting.     |
+| Marks                                                        |                                               |
+| :----------------------------------------------------------- | :-------------------------------------------- |
+| [Bold](./?path=/story/marks-bold--example)                   | Enables support for bold formatting.          |
+| [Highlight](./?path=/story/marks-highlight--example)         | Enables support for highlights.               |
+| [Italic](./?path=/story/marks-italic--example)               | Enables support for italic formatting.        |
+| [Strikethrough](./?path=/story/marks-strikethrough--example) | Enables support for strikethrough formatting. |
+| [Underline](./?path=/story/marks-underline--example)         | Enables support for underline formatting.     |
 
-| Handlers                                         |                                                     |
-| :----------------------------------------------- | :-------------------------------------------------- |
-| [Break](https://react-artibox.github.io/artibox) | Enables support for inserting exit and soft breaks. |
+| Handlers    |                                                     |
+| :---------- | :-------------------------------------------------- |
+| [Break](./) | Enables support for inserting exit and soft breaks. |
 
-| Widgets                                                 |                                                                       |
-| :------------------------------------------------------ | :-------------------------------------------------------------------- |
-| [FileUploader](https://react-artibox.github.io/artibox) | Enables support for embeddable media such as YouTube or Vimeo videos. |
-| [InputBlock](https://react-artibox.github.io/artibox)   | Provides a toolbar with buttons.                                      |
-| [Toolbar](https://react-artibox.github.io/artibox)      | Provides a toolbar with buttons.                                      |
+| Widgets            |                                                                       |
+| :----------------- | :-------------------------------------------------------------------- |
+| [FileUploader](./) | Enables support for embeddable media such as YouTube or Vimeo videos. |
+| [InputBlock](./)   | Provides a toolbar with buttons.                                      |
+| [Toolbar](./)      | Provides a toolbar with buttons.                                      |
 
-| Serializers                                              |                                                                             |
-| :------------------------------------------------------- | :-------------------------------------------------------------------------- |
-| [JsxSerializer](https://react-artibox.github.io/artibox) | Enables support for deserializing content from HTML format to Slate format. |
+| Serializers         |                                                                             |
+| :------------------ | :-------------------------------------------------------------------------- |
+| [JsxSerializer](./) | Enables support for deserializing content from HTML format to Slate format. |
 
 ## Development scripts
 

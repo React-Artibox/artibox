@@ -97,7 +97,6 @@ import { createJsxSerializeList } from '@artibox/slate-react/list/jsx-serializer
 import { createJsxSerializeReadMore } from '@artibox/slate-react/read-more/jsx-serializer';
 
 import { customRenderBlockquote } from '../custom-elements';
-import './examples-stories.scss';
 
 export default {
   title: 'Examples/Playgroud'
@@ -311,7 +310,7 @@ function PlaygroudEditor(props: PlaygroudEditorProps) {
       </Toolbar>
       <Editable
         {...handlers}
-        className="stories__custom-elements stories__examples__playgroud__editor"
+        className="stories__custom-elements stories__editable"
         renderElement={renderElement}
         renderLeaf={renderLeaf}
       />

@@ -14,19 +14,8 @@ const packagesAlias = packages.reduce((acc, package) => {
 const alias = { ...packagesAlias };
 
 module.exports = {
-  stories: [
-    '../stories/docs/intro.stories.mdx',
-    '../stories/docs/getting-started.stories.mdx',
-    '../stories/docs/guide.stories.mdx',
-    '../stories/docs/theme.stories.mdx',
-    '../stories/docs/locale.stories.mdx',
-    '../stories/docs/icons.stories.mdx',
-    '../stories/docs/utils/intro.stories.mdx',
-    '../stories/docs/utils/*.stories.mdx',
-    '../stories/examples/playground.stories.tsx',
-    '../stories/**/*.stories.(tsx|mdx)'
-  ],
-  addons: ['@storybook/addon-knobs', '@storybook/addon-docs/preset'],
+  stories: ['../stories/**/*.@(tsx|mdx)'],
+  addons: ['@storybook/addon-knobs', '@storybook/addon-docs/preset', '@storybook/addon-storysource'],
   webpackFinal: config => {
     config.module.rules.push(
       {
