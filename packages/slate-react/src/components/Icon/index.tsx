@@ -9,7 +9,14 @@ const svgBaseProps: SVGProps<SVGSVGElement> = {
 };
 
 export interface IconProps extends SVGProps<SVGSVGElement> {
+  /**
+   * The `IconDefinition` will be rendered.
+   */
   icon: IconDefinition;
+  /**
+   * Provide `fontSize` by `em` to control size of icon.
+   * @default 1
+   */
   size?: number;
 }
 
