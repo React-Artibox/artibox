@@ -40,8 +40,7 @@ function setPosition(el: HTMLElement, range: Range) {
 
 export interface ToolbarProps {
   /**
-   * The blacklist of nodes.
-   * If some nodes in the current selection is in the blacklist, toolbar will hide.
+   * If there are any nodes which type match it, toolbar will hide.
    */
   disabledElementTypes?: string[];
   children: (expanded: boolean) => JSX.Element | null | undefined;
