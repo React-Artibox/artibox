@@ -3585,9 +3585,9 @@
     source-map "^0.7.3"
 
 "@types/webpack@^4.41.8":
-  version "4.41.24"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.24.tgz#75b664abe3d5bcfe54e64313ca3b43e498550422"
-  integrity sha512-1A0MXPwZiMOD3DPMuOKUKcpkdPo8Lq33UGggZ7xio6wJ/jV1dAu5cXDrOfGDnldUroPIRLsr/DT43/GqOA4RFQ==
+  version "4.41.25"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.25.tgz#4d3b5aecc4e44117b376280fbfd2dc36697968c4"
+  integrity sha512-cr6kZ+4m9lp86ytQc1jPOJXgINQyz3kLLunZ57jznW+WIAL0JqZbGubQk4GlD42MuQL5JGOABrxdpqqWeovlVQ==
   dependencies:
     "@types/anymatch" "*"
     "@types/node" "*"
@@ -4740,9 +4740,9 @@ balanced-match@^1.0.0:
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
 base64-js@^1.0.2:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.0.tgz#2d03045876d9e2b68a7a0f87d6bd163595e3b6af"
-  integrity sha512-Jrdy04F2EKcNggUDfubMUPNAZg2vMquLQSm8sKLYJvz40ClFL1S8GKyDshGkNsbNNE5Z+fQavzU7nSK1I9JUGA==
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
+  integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
 base@^0.11.1:
   version "0.11.2"
@@ -6195,9 +6195,9 @@ css-tree@1.0.0-alpha.37:
     source-map "^0.6.1"
 
 css-tree@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0.tgz#21993fa270d742642a90409a2c0cb3ac0298adf6"
-  integrity sha512-CdVYz/Yuqw0VdKhXPBIgi8DO3NicJVYZNWeX9XcIuSp9ZoFT5IcleVRW07O5rMjdcx1mb+MEJPknTTEW7DdsYw==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.1.tgz#7726678dfe2a57993a018d9dce519bf1760e3b6d"
+  integrity sha512-WroX+2MvsYcRGP8QA0p+rxzOniT/zpAoQ/DTKDSJzh5T3IQKUkFHeIIfgIapm2uaP178GWY3Mime1qbk8GO/tA==
   dependencies:
     mdn-data "2.0.12"
     source-map "^0.6.1"
@@ -6844,9 +6844,9 @@ ejs@^3.1.2:
     jake "^10.6.1"
 
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.591:
-  version "1.3.592"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.592.tgz#4621521b223bf6e5469373528321e185d3c24670"
-  integrity sha512-kGNowksvqQiPb1pUSQKpd8JFoGPLxYOwduNRCqCxGh/2Q1qE2JdmwouCW41lUzDxOb/2RIV4lR0tVIfboWlO9A==
+  version "1.3.593"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.593.tgz#947ccf6dc8e013e2b053d2463ecd1043c164fcef"
+  integrity sha512-GvO7G1ZxvffnMvPCr4A7+iQPVuvpyqMrx2VWSERAjG+pHK6tmO9XqYdBfMIq9corRyi4bNImSDEiDvIoDb8HrA==
 
 element-resize-detector@^1.2.1:
   version "1.2.1"
@@ -14398,9 +14398,9 @@ sass-graph@2.2.5:
     yargs "^13.3.2"
 
 sass-loader@^10.0.5:
-  version "10.0.5"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-10.0.5.tgz#f53505b5ddbedf43797470ceb34066ded82bb769"
-  integrity sha512-2LqoNPtKkZq/XbXNQ4C64GFEleSEHKv6NPSI+bMC/l+jpEXGJhiRYkAQToO24MR7NU4JRY2RpLpJ/gjo2Uf13w==
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-10.1.0.tgz#1727fcc0c32ab3eb197cda61d78adf4e9174a4b3"
+  integrity sha512-ZCKAlczLBbFd3aGAhowpYEy69Te3Z68cg8bnHHl6WnSCvnKpbM6pQrz957HWMa8LKVuhnD9uMplmMAHwGQtHeg==
   dependencies:
     klona "^2.0.4"
     loader-utils "^2.0.0"
@@ -14716,19 +14716,6 @@ slate-hyperscript@^0.59.0:
   integrity sha512-HvZLA5RSAs27ZznD2r5sy2RP114K7+I/jOt3glFtQLFKEptxsIFTgTsEyxMhD6864tOPqs56m6IyA0tX/jhzjA==
   dependencies:
     is-plain-object "^3.0.0"
-
-slate-react@^0.58.4:
-  version "0.58.4"
-  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.58.4.tgz#ecde34dd322af8413c2f23f0f0a577fed2422f46"
-  integrity sha512-3JXWHVPmYrR/EMcH1qtmwXZtYxxCtuokQg+r/4wD1Ab9J3zRmW4UGLoaRP9/uQrZOAOvr8mMh4IgmrxV2dQskw==
-  dependencies:
-    "@types/is-hotkey" "^0.1.1"
-    "@types/lodash" "^4.14.149"
-    direction "^1.0.3"
-    is-hotkey "^0.1.6"
-    is-plain-object "^3.0.0"
-    lodash "^4.17.4"
-    scroll-into-view-if-needed "^2.2.20"
 
 slate-react@^0.59.0:
   version "0.59.0"
@@ -15588,9 +15575,9 @@ tar@^6.0.2:
     yallist "^4.0.0"
 
 telejson@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/telejson/-/telejson-5.0.2.tgz#ed1e64be250cc1c757a53c19e1740b49832b3d51"
-  integrity sha512-XCrDHGbinczsscs8LXFr9jDhvy37yBk9piB7FJrCfxE8oP66WDkolNMpaBkWYgQqB9dQGBGtTDzGQPedc9KJmw==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/telejson/-/telejson-5.1.0.tgz#cc04e4c2a355f9eb6af557e37acd6449feb1d146"
+  integrity sha512-Yy0N2OV0mosmr1SCZEm3Ezhu/oi5Dbao5RqauZu4+VI5I/XtVBHXajRk0txuqbFYtKdzzWGDZFGSif9ovVLjEA==
   dependencies:
     "@types/is-function" "^1.0.0"
     global "^4.4.0"
@@ -15598,7 +15585,7 @@ telejson@^5.0.2:
     is-regex "^1.1.1"
     is-symbol "^1.0.3"
     isobject "^4.0.0"
-    lodash "^4.17.19"
+    lodash "^4.17.20"
     memoizerific "^1.11.3"
 
 temp-dir@^1.0.0:
