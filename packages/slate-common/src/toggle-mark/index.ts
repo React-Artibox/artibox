@@ -1,2 +1,2 @@
 export * from './typings';
-export { CreateToggleMarkOptions, createToggleMarkCreator } from './createToggleMarkCreator';
+export * from './createToggleMarkCreator';
