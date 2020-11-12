@@ -18,17 +18,17 @@ Currently based on [Slate](https://github.com/ianstormtaylor/slate) framework.
 
 ## Features
 
-| Elements         |                                                                       |
-| :--------------- | :-------------------------------------------------------------------- |
-| [Blockquote](./) | Enables support for block quotes.                                     |
-| [Embed](./)      | Enables support for embeddable media such as YouTube or Vimeo videos. |
-| [Divider](./)    | Enables support for dividers.                                         |
-| [Heading](./)    | Enables support for headings (from 1 to 6).                           |
-| [Image](./)      | Enables support for images.                                           |
-| [Link](./)       | Enables support for hyperlinks.                                       |
-| [List](./)       | Enables support for bulleted, numbered lists.                         |
-| [Paragraph](./)  | Enables support for paragraphs.                                       |
-| [ReadMore](./)   | Enables support for read more dividers. Commonly used in CMS.         |
+| Elements                                                  |                                                                       |
+| :-------------------------------------------------------- | :-------------------------------------------------------------------- |
+| [Blockquote](./?path=/story/elements-blockquote--example) | Enables support for block quotes.                                     |
+| [Embed](./?path=/story/elements-embed--example)           | Enables support for embeddable media such as YouTube or Vimeo videos. |
+| [Divider](./?path=/story/elements-divider--example)       | Enables support for dividers.                                         |
+| [Heading](./?path=/story/elements-heading--example)       | Enables support for headings (from 1 to 6).                           |
+| [Image](./?path=/story/elements-image--example)           | Enables support for images.                                           |
+| [Link](./?path=/story/elements-link--example)             | Enables support for hyperlinks.                                       |
+| [List](./?path=/story/elements-list--example)             | Enables support for bulleted, numbered lists.                         |
+| [Paragraph](./?path=/story/elements-paragraph--example)   | Enables support for paragraphs.                                       |
+| [ReadMore](./?path=/story/elements-readmore--example)     | Enables support for read more dividers. Commonly used in CMS.         |
 
 | Marks                                                        |                                               |
 | :----------------------------------------------------------- | :-------------------------------------------- |
@@ -38,19 +38,19 @@ Currently based on [Slate](https://github.com/ianstormtaylor/slate) framework.
 | [Strikethrough](./?path=/story/marks-strikethrough--example) | Enables support for strikethrough formatting. |
 | [Underline](./?path=/story/marks-underline--example)         | Enables support for underline formatting.     |
 
-| Handlers    |                                                     |
-| :---------- | :-------------------------------------------------- |
-| [Break](./) | Enables support for inserting exit and soft breaks. |
+| Handlers                                        |                                                     |
+| :---------------------------------------------- | :-------------------------------------------------- |
+| [Break](./?path=/story/handlers-break--example) | Enables support for inserting exit and soft breaks. |
 
-| Widgets            |                                                                       |
-| :----------------- | :-------------------------------------------------------------------- |
-| [FileUploader](./) | Enables support for embeddable media such as YouTube or Vimeo videos. |
-| [InputBlock](./)   | Provides a toolbar with buttons.                                      |
-| [Toolbar](./)      | Provides a toolbar with buttons.                                      |
+| Widgets                                                      |                                           |
+| :----------------------------------------------------------- | :---------------------------------------- |
+| [FileUploader](./?path=/story/widgets-fileuploader--example) | Enables support for uploading files.      |
+| [InputBlock](./?path=/story/widgets-inputblock--example)     | Enables support for inputting processing. |
+| [Toolbar](./?path=/story/widgets-toolbar--example)           | Provides a toolbar with tools.            |
 
-| Serializers         |                                                                             |
-| :------------------ | :-------------------------------------------------------------------------- |
-| [JsxSerializer](./) | Enables support for deserializing content from HTML format to Slate format. |
+| Serializers                                              |                                        |
+| :------------------------------------------------------- | :------------------------------------- |
+| [JsxSerializer](./?path=/story/serializers-jsx--example) | Provides serializer for rendering jsx. |
 
 ## Development scripts
 

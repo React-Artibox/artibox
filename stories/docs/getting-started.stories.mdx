@@ -203,7 +203,7 @@ const valueString = JSON.stringify(value);
 
 ## Rendering Via Jsx Serializer
 
-If you want to render the value stored in your database as what you see in the editor. Just use [JsxSerializer](./).  
+If you want to render the value stored in your database as what you see in the editor. Just use [JsxSerializer](./?path=/story/serializers-jsx--example).  
 It's a quick and easy way to reuse your custom component on both editor and anywhere you want to render the json of value.
 
 ```tsx
@@ -219,7 +219,7 @@ const jsxSerializer = createJsxSerializer({
 return <div>{jsxSerializer.serialize(json)}</div>;
 ```
 
-Please see [JsxSerializer](./) to learn more.
+Please see [JsxSerializer](./?path=/story/serializers-jsx--example) to learn more.
 
 ## Customizing Renderers
 
