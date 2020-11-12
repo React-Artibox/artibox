@@ -9,9 +9,11 @@ import { PARAGRAPH_TYPE } from '@artibox/slate-react/paragraph';
 import { createReactUnderline, UNDERLINE_HOTKEY, UNDERLINE_TYPE } from '@artibox/slate-react/underline';
 import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
 import { Toolbar } from '@artibox/slate-react/toolbar';
+import { underlineDocgen } from './underline.docgen';
 
 export default {
-  title: 'Marks/Underline'
+  title: 'Marks/Underline',
+  subcomponents: underlineDocgen
 };
 
 export const Example = () => {

@@ -5,7 +5,13 @@ export const parameters = {
   docs: { page: DocsPage },
   options: {
     storySort: {
-      order: ['Docs', ['Intro', 'Getting Started', 'Theme', 'Locale', 'Icons', 'Utils'], 'Examples', 'Marks']
+      order: [
+        'Docs',
+        ['Intro', 'Getting Started', 'Theme', 'Locale', 'Icons', 'Utils'],
+        'Examples',
+        'Elements',
+        'Marks'
+      ]
     }
   }
 };

@@ -9,9 +9,11 @@ import { PARAGRAPH_TYPE } from '@artibox/slate-react/paragraph';
 import { createReactItalic, ITALIC_HOTKEY, ITALIC_TYPE } from '@artibox/slate-react/italic';
 import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
 import { Toolbar } from '@artibox/slate-react/toolbar';
+import { italicDocgen } from './italic.docgen';
 
 export default {
-  title: 'Marks/Italic'
+  title: 'Marks/Italic',
+  subcomponents: italicDocgen
 };
 
 export const Example = () => {

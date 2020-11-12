@@ -9,9 +9,11 @@ import { PARAGRAPH_TYPE } from '@artibox/slate-react/paragraph';
 import { createReactHighlight, HIGHLIGHT_HOTKEY, HIGHLIGHT_TYPE } from '@artibox/slate-react/highlight';
 import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
 import { Toolbar } from '@artibox/slate-react/toolbar';
+import { highlightDocgen } from './highlight.docgen';
 
 export default {
-  title: 'Marks/Highlight'
+  title: 'Marks/Highlight',
+  subcomponents: highlightDocgen
 };
 
 export const Example = () => {

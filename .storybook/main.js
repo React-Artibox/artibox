@@ -29,7 +29,10 @@ module.exports = {
             }
           },
           {
-            loader: 'react-docgen-typescript-loader'
+            loader: 'react-docgen-typescript-loader',
+            options: {
+              tsconfigPath: path.resolve(STORIES_PATH, 'tsconfig.json')
+            }
           }
         ]
       },

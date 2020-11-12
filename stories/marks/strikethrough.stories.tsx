@@ -9,9 +9,11 @@ import { PARAGRAPH_TYPE } from '@artibox/slate-react/paragraph';
 import { createReactStrikethrough, STRIKETHROUGH_HOTKEY, STRIKETHROUGH_TYPE } from '@artibox/slate-react/strikethrough';
 import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
 import { Toolbar } from '@artibox/slate-react/toolbar';
+import { strikethroughDocgen } from './strikethrough.docgen';
 
 export default {
-  title: 'Marks/Strikethrough'
+  title: 'Marks/Strikethrough',
+  subcomponents: strikethroughDocgen
 };
 
 export const Example = () => {

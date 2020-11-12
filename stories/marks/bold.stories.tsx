@@ -9,9 +9,11 @@ import { PARAGRAPH_TYPE } from '@artibox/slate-react/paragraph';
 import { createReactBold, BOLD_HOTKEY, BOLD_TYPE } from '@artibox/slate-react/bold';
 import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
 import { Toolbar } from '@artibox/slate-react/toolbar';
+import { boldDocgen } from './bold.docgen';
 
 export default {
-  title: 'Marks/Bold'
+  title: 'Marks/Bold',
+  subcomponents: boldDocgen
 };
 
 export const Example = () => {
