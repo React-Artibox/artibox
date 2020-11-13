@@ -10,6 +10,7 @@ export const parameters = {
         ['Intro', 'Getting Started', 'Theme', 'Locale', 'Icons', 'Utils'],
         'Examples',
         'Elements',
+        ['Paragraph'],
         'Marks'
       ]
     }

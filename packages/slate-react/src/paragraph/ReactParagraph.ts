@@ -10,7 +10,9 @@ export interface ReactParagraphCreateRenderElementOptions {
   render?: RenderParagraphElement;
 }
 
-export type ReactParagraph = Paragraph & WithCreateRenderElement<[ReactParagraphCreateRenderElementOptions?]>;
+export interface ReactParagraph
+  extends Paragraph,
+    WithCreateRenderElement<[ReactParagraphCreateRenderElementOptions?]> {}
 
 export const ReactParagraph: ReactParagraph = {
   ...Paragraph,

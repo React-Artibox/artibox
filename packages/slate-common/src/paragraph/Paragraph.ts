@@ -1,8 +1,7 @@
 import { Descendant } from 'slate';
-import { ParagraphElement, PARAGRAPH_TYPE } from './common';
+import { ParagraphElement, PARAGRAPH_TYPE, WithParagraphElementType } from './common';
 
-export interface Paragraph {
-  type: 'p';
+export interface Paragraph extends WithParagraphElementType {
   createParagraphElement(children?: Descendant[]): ParagraphElement;
 }
 
