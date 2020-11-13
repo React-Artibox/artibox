@@ -1,14 +1,12 @@
 import { Element, Transforms } from 'slate';
+import { WithElementType } from '../typings/element';
 import { getNodes } from '../queries/getNodes';
 import { normalizeOnlyInlineOrTextInChildren } from '../normalizers/normalizeOnlyInlineOrTextInChildren';
 import { PARAGRAPH_TYPE } from '../paragraph';
 import { HEADING_TYPE, HEADING_LEVELS, HeadingElement, HeadingLevel } from './common';
-import { Heading } from './typings';
+import { Heading, WithEnabledHeadingLevels } from './typings';
 
-export interface CreateHeadingOptions<L extends HeadingLevel> {
-  type?: string;
-  enabledLevels?: ReadonlyArray<L>;
-}
+export type CreateHeadingOptions<L extends HeadingLevel> = Partial<WithElementType & WithEnabledHeadingLevels<L>>;
 
 export function createHeading<L extends HeadingLevel = HeadingLevel>({
   type = HEADING_TYPE,

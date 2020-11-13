@@ -21,5 +21,10 @@ export const defaultRenderHeadingElement = ({
   element: HeadingElement;
 }) => {
   const Component = HEADING_COMPONENTS[element.level];
+
+  if (!Component) {
+    return null;
+  }
+
   return <Component {...attributes}>{children}</Component>;
 };

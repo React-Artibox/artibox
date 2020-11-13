@@ -4,13 +4,15 @@ import { ToolbarIcon, ToolbarIconProps } from '../../toolbar';
 import { ReactHeading } from '../typings';
 import { useToggleHeadingTool } from './useToggleHeadingTool';
 
-export interface HeadingToolbarIconProps<L extends HeadingLevel, VL extends L>
+export interface HeadingToolbarIconProps<Level extends HeadingLevel, ValidLevel extends Level>
   extends Omit<ToolbarIconProps, 'active' | 'onClick'> {
-  controller: ReactHeading<L>;
-  level: VL;
+  controller: ReactHeading<Level>;
+  level: ValidLevel;
 }
 
-function HeadingToolbarIcon<L extends HeadingLevel, VL extends L>(props: HeadingToolbarIconProps<L, VL>) {
+function HeadingToolbarIcon<Level extends HeadingLevel, ValidLevel extends Level>(
+  props: HeadingToolbarIconProps<Level, ValidLevel>
+) {
   const { controller, level, ...rest } = props;
   const { active, onClick } = useToggleHeadingTool(controller, level);
 
