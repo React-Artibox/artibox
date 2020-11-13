@@ -9,4 +9,4 @@ export interface ReactReadMoreCreateRenderElementOptions {
   render?: RenderReadMoreElement;
 }
 
-export type ReactReadMore = ReadMore & WithCreateRenderElement<[ReactReadMoreCreateRenderElementOptions?]>;
+export interface ReactReadMore extends ReadMore, WithCreateRenderElement<[ReactReadMoreCreateRenderElementOptions?]> {}

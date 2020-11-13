@@ -1,4 +1,5 @@
 import { Editor, Element, Path, Transforms } from 'slate';
+import { WithElementType } from '../typings/element';
 import { normalizeOnlyAtRoot } from '../normalizers/normalizeOnlyAtRoot';
 import { normalizeVoidElementChildren } from '../normalizers/normalizeVoidElementChildren';
 import { getNodesByTypes } from '../queries/getNodesByTypes';
@@ -7,9 +8,7 @@ import { Paragraph } from '../paragraph';
 import { READ_MORE_TYPE } from './common';
 import { ReadMore } from './typings';
 
-export interface CreateReadMoreOptions {
-  type?: string;
-}
+export type CreateReadMoreOptions = Partial<WithElementType>;
 
 export function createReadMore(options: CreateReadMoreOptions = {}): ReadMore {
   const { type = READ_MORE_TYPE } = options;
