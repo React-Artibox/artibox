@@ -20,6 +20,7 @@ Currently based on [Slate](https://github.com/ianstormtaylor/slate) framework.
 
 | Elements                                                  |                                                                       |
 | :-------------------------------------------------------- | :-------------------------------------------------------------------- |
+| [Paragraph](./?path=/story/elements-paragraph--example)   | Enables support for paragraphs.                                       |
 | [Blockquote](./?path=/story/elements-blockquote--example) | Enables support for block quotes.                                     |
 | [Embed](./?path=/story/elements-embed--example)           | Enables support for embeddable media such as YouTube or Vimeo videos. |
 | [Divider](./?path=/story/elements-divider--example)       | Enables support for dividers.                                         |
@@ -27,7 +28,6 @@ Currently based on [Slate](https://github.com/ianstormtaylor/slate) framework.
 | [Image](./?path=/story/elements-image--example)           | Enables support for images.                                           |
 | [Link](./?path=/story/elements-link--example)             | Enables support for hyperlinks.                                       |
 | [List](./?path=/story/elements-list--example)             | Enables support for bulleted, numbered lists.                         |
-| [Paragraph](./?path=/story/elements-paragraph--example)   | Enables support for paragraphs.                                       |
 | [ReadMore](./?path=/story/elements-readmore--example)     | Enables support for read more dividers. Commonly used in CMS.         |
 
 | Marks                                                        |                                               |
