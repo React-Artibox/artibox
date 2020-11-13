@@ -1,5 +1,6 @@
 import { Editor, Element, Range, Text, Transforms } from 'slate';
 import { isUrl as defaultIsUrl } from '@artibox/utils/isUrl';
+import { WithElementType } from '../typings/element';
 import { isNodesTypeIn } from '../queries/isNodesTypeIn';
 import { getRangeBeforeFromAboveBlockStart } from '../queries/getRangeBeforeFromAboveBlockStart';
 import { getRangeBefore } from '../queries/getRangeBefore';
@@ -9,8 +10,7 @@ import { wrapNodesWithUnhangRange } from '../transforms/wrapNodesWithUnhangRange
 import { LinkElement, LINK_TYPE } from './common';
 import { Link } from './typings';
 
-export interface CreateLinkOptions {
-  type?: string;
+export interface CreateLinkOptions extends Partial<WithElementType> {
   isUrl?: (value: string) => boolean;
   /**
    * If `true`, transform previous url text to link after entering a space.

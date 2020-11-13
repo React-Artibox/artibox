@@ -1,6 +1,5 @@
 import { Link, LinkElement } from '@artibox/slate-common/link';
-import { WithCreateRenderElement, RenderElementProps } from '../core';
-import { ReactWithable } from '../core';
+import { RenderElementProps, ReactWithable, WithCreateRenderElement } from '../core';
 
 export interface RenderLinkElementProps extends RenderElementProps<LinkElement> {
   placement?: 'top' | 'bottom';
@@ -13,6 +12,7 @@ export interface ReactLinkCreateRenderElementOptions {
   render?: RenderLinkElement;
 }
 
-export type ReactLink = Omit<Link, 'with'> &
-  WithCreateRenderElement<[ReactLinkCreateRenderElementOptions?]> &
-  ReactWithable;
+export interface ReactLink
+  extends Omit<Link, 'with'>,
+    WithCreateRenderElement<[ReactLinkCreateRenderElementOptions?]>,
+    ReactWithable {}

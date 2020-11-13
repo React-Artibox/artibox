@@ -1,4 +1,5 @@
 import { Editor, Location, Range } from 'slate';
+import { WithElementType } from '../typings/element';
 import { Withable } from '../typings/with';
 import { TransformsInsertNodesOptions, TransformsWrapNodesOptions } from '../typings/transforms';
 import { UnwrapNodeByTypesOptions } from '../transforms/unwrapNodesByTypes';
@@ -15,9 +16,11 @@ export interface LinkUpsertLinkOptions {
   at?: Range;
 }
 
-export interface Link extends Withable {
-  type: string;
-  isUrl: (value: string) => boolean;
+export interface Link extends WithElementType, Withable {
+  isUrl(value: string): boolean;
+  /**
+   * To get the first previous text which is url and its range.
+   */
   getFirstPrevTextAsUrlAndRange(editor: Editor, at: Location): { url: string; at: Range } | undefined;
   isSelectionInLink(editor: Editor): boolean;
   insertLink(editor: Editor, url: string, options?: LinkInsertLinkOptions): void;
