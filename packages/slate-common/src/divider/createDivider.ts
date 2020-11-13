@@ -1,12 +1,11 @@
 import { Element, Transforms } from 'slate';
+import { WithElementType } from '../typings/element';
 import { normalizeVoidElementChildren } from '../normalizers/normalizeVoidElementChildren';
 import { Paragraph } from '../paragraph';
 import { DIVIDER_TYPE } from './common';
 import { Divider } from './typings';
 
-export interface CreateDividerOptions {
-  type?: string;
-}
+export type CreateDividerOptions = Partial<WithElementType>;
 
 export function createDivider(options: CreateDividerOptions = {}): Divider {
   const { type = DIVIDER_TYPE } = options;

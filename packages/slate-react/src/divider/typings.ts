@@ -9,4 +9,4 @@ export interface ReactDividerCreateRenderElementOptions {
   render?: RenderDividerElement;
 }
 
-export type ReactDivider = Divider & WithCreateRenderElement<[ReactDividerCreateRenderElementOptions?]>;
+export interface ReactDivider extends Divider, WithCreateRenderElement<[ReactDividerCreateRenderElementOptions?]> {}
