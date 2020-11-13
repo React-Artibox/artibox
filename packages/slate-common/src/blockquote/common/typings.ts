@@ -1,5 +1,4 @@
 import { Element } from 'slate';
+import { WithElementType } from '../../typings/element';
 
-export interface BlockquoteElement extends Element {
-  type: string;
-}
+export type BlockquoteElement = Element & WithElementType;

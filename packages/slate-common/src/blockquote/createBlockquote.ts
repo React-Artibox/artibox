@@ -1,13 +1,12 @@
 import { Element } from 'slate';
+import { WithElementType } from '../typings/element';
 import { isNodesTypeIn } from '../queries/isNodesTypeIn';
 import { toggleNodesType } from '../transforms/toggleNodesType';
 import { normalizeOnlyInlineOrTextInChildren } from '../normalizers/normalizeOnlyInlineOrTextInChildren';
 import { BLOCKQUOTE_TYPE } from './common';
 import { Blockquote } from './typings';
 
-export interface CreateBlockquoteOptions {
-  type?: string;
-}
+export type CreateBlockquoteOptions = Partial<WithElementType>;
 
 export function createBlockquote({ type = BLOCKQUOTE_TYPE }: CreateBlockquoteOptions = {}): Blockquote {
   return {
