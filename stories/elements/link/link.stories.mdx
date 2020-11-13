@@ -1,0 +1,43 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactLink, LinkLevel } from '@artibox/slate-react/link';
+import { LinkToolbarIcon } from '@artibox/slate-react/link/toolbar';
+import { createJsxSerializeLink } from '@artibox/slate-react/link/jsx-serializer';
+import { ReactLinkDocgen, LinkElementDocgen, createRenderElementDocgen } from './docgen';
+
+<Meta title="Elements/Link/Docs" />
+
+# Factories
+
+## createReactLink
+
+<ArgsTable of={createReactLink} />
+
+## createRenderElement
+
+<ArgsTable of={createRenderElementDocgen} />
+
+# Interfaces
+
+## ReactLink
+
+<ArgsTable of={ReactLinkDocgen} />
+
+## LinkElement
+
+<ArgsTable of={LinkElementDocgen} />
+
+# Widgets
+
+## Toolbar
+
+### LinkToolbarIcon
+
+<ArgsTable of={LinkToolbarIcon} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeLink
+
+<ArgsTable of={createJsxSerializeLink} />

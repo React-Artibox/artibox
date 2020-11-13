@@ -1,0 +1,43 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactUnderline } from '@artibox/slate-react/underline';
+import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
+import { createJsxSerializeUnderline } from '@artibox/slate-react/underline/jsx-serializer';
+import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } from './docgen';
+
+<Meta title="Marks/Underline/Docs" />
+
+# Factories
+
+## createReactUnderline
+
+<ArgsTable of={createReactUnderline} />
+
+## createHandlersDocgen
+
+<ArgsTable of={createHandlersDocgen} />
+
+## createRenderElement
+
+<ArgsTable of={createRenderLeafDocgen} />
+
+# Interfaces
+
+## ReactToggleMark
+
+<ArgsTable of={ReactToggleMarkDocgen} />
+
+# Widgets
+
+## Toolbar
+
+### ToggleMarkToolbarIcon
+
+<ArgsTable of={ToggleMarkToolbarIcon} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeUnderline
+
+<ArgsTable of={createJsxSerializeUnderline} />

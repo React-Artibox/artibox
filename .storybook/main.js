@@ -14,7 +14,7 @@ const packagesAlias = packages.reduce((acc, package) => {
 const alias = { ...packagesAlias };
 
 module.exports = {
-  stories: ['../stories/**/*.@(tsx|mdx)'],
+  stories: ['../stories/**/*.stories.@(tsx|mdx)'],
   addons: ['@storybook/addon-knobs', '@storybook/addon-docs/preset', '@storybook/addon-storysource'],
   webpackFinal: config => {
     config.module.rules.push(

@@ -1,0 +1,53 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactImage, ImageLevel } from '@artibox/slate-react/image';
+import { createJsxSerializeImage } from '@artibox/slate-react/image/jsx-serializer';
+import {
+  ReactImageDocgen,
+  createHandlersDocgen,
+  createRenderElementDocgen,
+  ImageFigureElementDocgen,
+  ImageElementDocgen,
+  ImageCaptionElementDocgen
+} from './docgen';
+
+<Meta title="Elements/Image/Docs" />
+
+# Factories
+
+## createReactImage
+
+<ArgsTable of={createReactImage} />
+
+## createHandlers
+
+<ArgsTable of={createHandlersDocgen} />
+
+## createRenderElement
+
+<ArgsTable of={createRenderElementDocgen} />
+
+# Interfaces
+
+## ReactImage
+
+<ArgsTable of={ReactImageDocgen} />
+
+## ImageFigureElement
+
+<ArgsTable of={ImageFigureElementDocgen} />
+
+## ImageElement
+
+<ArgsTable of={ImageElementDocgen} />
+
+## ImageCaptionElement
+
+<ArgsTable of={ImageCaptionElementDocgen} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeImage
+
+<ArgsTable of={createJsxSerializeImage} />

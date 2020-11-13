@@ -1,0 +1,43 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactStrikethrough } from '@artibox/slate-react/strikethrough';
+import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
+import { createJsxSerializeStrikethrough } from '@artibox/slate-react/strikethrough/jsx-serializer';
+import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } from './docgen';
+
+<Meta title="Marks/Strikethrough/Docs" />
+
+# Factories
+
+## createReactStrikethrough
+
+<ArgsTable of={createReactStrikethrough} />
+
+## createHandlersDocgen
+
+<ArgsTable of={createHandlersDocgen} />
+
+## createRenderElement
+
+<ArgsTable of={createRenderLeafDocgen} />
+
+# Interfaces
+
+## ReactToggleMark
+
+<ArgsTable of={ReactToggleMarkDocgen} />
+
+# Widgets
+
+## Toolbar
+
+### ToggleMarkToolbarIcon
+
+<ArgsTable of={ToggleMarkToolbarIcon} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeStrikethrough
+
+<ArgsTable of={createJsxSerializeStrikethrough} />

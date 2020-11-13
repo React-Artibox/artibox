@@ -1,0 +1,30 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { ParagraphLevel } from '@artibox/slate-react/paragraph';
+import { createJsxSerializeParagraph } from '@artibox/slate-react/paragraph/jsx-serializer';
+import { ReactParagraphDocgen, ParagraphElementDocgen, createRenderElementDocgen } from './docgen';
+
+<Meta title="Elements/Paragraph/Docs" />
+
+# Factories
+
+## createRenderElement
+
+<ArgsTable of={createRenderElementDocgen} />
+
+# Interfaces
+
+## ReactParagraph
+
+<ArgsTable of={ReactParagraphDocgen} />
+
+## ParagraphElement
+
+<ArgsTable of={ParagraphElementDocgen} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeParagraph
+
+<ArgsTable of={createJsxSerializeParagraph} />

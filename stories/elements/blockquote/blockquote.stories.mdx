@@ -1,0 +1,52 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactBlockquote } from '@artibox/slate-react/blockquote';
+import { BlockquoteToolbarIcon } from '@artibox/slate-react/blockquote/toolbar';
+import { createJsxSerializeBlockquote } from '@artibox/slate-react/blockquote/jsx-serializer';
+import {
+  ReactBlockquoteDocgen,
+  BlockquoteElementDocgen,
+  createHandlersDocgen,
+  createRenderElementDocgen
+} from './docgen';
+
+<Meta title="Elements/Blockquote/Docs" />
+
+# Factories
+
+## createReactBlockquote
+
+<ArgsTable of={createReactBlockquote} />
+
+## createHandlers
+
+<ArgsTable of={createHandlersDocgen} />
+
+## createRenderElement
+
+<ArgsTable of={createRenderElementDocgen} />
+
+# Interfaces
+
+## ReactBlockquote
+
+<ArgsTable of={ReactBlockquoteDocgen} />
+
+## BlockquoteElement
+
+<ArgsTable of={BlockquoteElementDocgen} />
+
+# Widgets
+
+## Toolbar
+
+### BlockquoteToolbarIcon
+
+<ArgsTable of={BlockquoteToolbarIcon} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeBlockquote
+
+<ArgsTable of={createJsxSerializeBlockquote} />

@@ -1,0 +1,43 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactReadMore } from '@artibox/slate-react/read-more';
+import { ReadMoreToolbarIcon } from '@artibox/slate-react/read-more/toolbar';
+import { createJsxSerializeReadMore } from '@artibox/slate-react/read-more/jsx-serializer';
+import { ReactReadMoreDocgen, ReadMoreElementDocgen, createRenderElementDocgen } from './docgen';
+
+<Meta title="Elements/ReadMore/Docs" />
+
+# Factories
+
+## createReactReadMore
+
+<ArgsTable of={createReactReadMore} />
+
+## createRenderElement
+
+<ArgsTable of={createRenderElementDocgen} />
+
+# Interfaces
+
+## ReactReadMore
+
+<ArgsTable of={ReactReadMoreDocgen} />
+
+## ReadMoreElement
+
+<ArgsTable of={ReadMoreElementDocgen} />
+
+# Widgets
+
+## Toolbar
+
+### ReadMoreToolbarIcon
+
+<ArgsTable of={ReadMoreToolbarIcon} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeReadMore
+
+<ArgsTable of={createJsxSerializeReadMore} />

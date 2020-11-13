@@ -1,0 +1,43 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactDivider } from '@artibox/slate-react/divider';
+import { DividerToolbarIcon } from '@artibox/slate-react/divider/toolbar';
+import { createJsxSerializeDivider } from '@artibox/slate-react/divider/jsx-serializer';
+import { ReactDividerDocgen, DividerElementDocgen, createRenderElementDocgen } from './docgen';
+
+<Meta title="Elements/Divider/Docs" />
+
+# Factories
+
+## createReactDivider
+
+<ArgsTable of={createReactDivider} />
+
+## createRenderElement
+
+<ArgsTable of={createRenderElementDocgen} />
+
+# Interfaces
+
+## ReactDivider
+
+<ArgsTable of={ReactDividerDocgen} />
+
+## DividerElement
+
+<ArgsTable of={DividerElementDocgen} />
+
+# Widgets
+
+## Toolbar
+
+### DividerToolbarIcon
+
+<ArgsTable of={DividerToolbarIcon} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeDivider
+
+<ArgsTable of={createJsxSerializeDivider} />

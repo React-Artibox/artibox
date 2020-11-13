@@ -1,0 +1,47 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactHeading, HeadingLevel } from '@artibox/slate-react/heading';
+import { HeadingToolbarIcon } from '@artibox/slate-react/heading/toolbar';
+import { createJsxSerializeHeading } from '@artibox/slate-react/heading/jsx-serializer';
+import { ReactHeadingDocgen, HeadingElementDocgen, createHandlersDocgen, createRenderElementDocgen } from './docgen';
+
+<Meta title="Elements/Heading/Docs" />
+
+# Factories
+
+## createReactHeading
+
+<ArgsTable of={createReactHeading} />
+
+## createHandlers
+
+<ArgsTable of={createHandlersDocgen} />
+
+## createRenderElement
+
+<ArgsTable of={createRenderElementDocgen} />
+
+# Interfaces
+
+## ReactHeading
+
+<ArgsTable of={ReactHeadingDocgen} />
+
+## HeadingElement
+
+<ArgsTable of={HeadingElementDocgen} />
+
+# Widgets
+
+## Toolbar
+
+### HeadingToolbarIcon
+
+<ArgsTable of={HeadingToolbarIcon} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeHeading
+
+<ArgsTable of={createJsxSerializeHeading} />

@@ -1,0 +1,43 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactList, ListLevel } from '@artibox/slate-react/list';
+import { ListToolbarIcon } from '@artibox/slate-react/list/toolbar';
+import { createJsxSerializeList } from '@artibox/slate-react/list/jsx-serializer';
+import { ReactListDocgen, createHandlersDocgen, createRenderElementDocgen } from './docgen';
+
+<Meta title="Elements/List/Docs" />
+
+# Factories
+
+## createReactList
+
+<ArgsTable of={createReactList} />
+
+## createHandlers
+
+<ArgsTable of={createHandlersDocgen} />
+
+## createRenderElement
+
+<ArgsTable of={createRenderElementDocgen} />
+
+# Interfaces
+
+## ReactList
+
+<ArgsTable of={ReactListDocgen} />
+
+# Widgets
+
+## Toolbar
+
+### ListToolbarIcon
+
+<ArgsTable of={ListToolbarIcon} />
+
+# Serializers
+
+## Jsx
+
+### createJsxSerializeList
+
+<ArgsTable of={createJsxSerializeList} />
