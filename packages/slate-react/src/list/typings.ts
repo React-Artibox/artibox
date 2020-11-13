@@ -5,4 +5,7 @@ export type ReactListCreateRenderElementOptions = {
   [key in ListTypeKey]?: (props: RenderElementProps) => JSX.Element | null | undefined;
 };
 
-export type ReactList = List & WithCreateHandlers & WithCreateRenderElement<[ReactListCreateRenderElementOptions?]>;
+export interface ReactList
+  extends List,
+    WithCreateHandlers,
+    WithCreateRenderElement<[ReactListCreateRenderElementOptions?]> {}

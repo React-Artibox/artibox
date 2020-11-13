@@ -12,6 +12,9 @@ export interface ListGetAboveListEntriesOptions {
 }
 
 export interface List extends Withable {
+  /**
+   * An object which keys are `ul`, `ol`, `li` and values are the corresponding element types.
+   */
   types: ListTypes;
   isListElement(node: Node): node is Element;
   isListItemElement(node: Node): node is Element;
@@ -24,16 +27,10 @@ export interface List extends Withable {
   toggleList(editor: Editor, listTypeKey: ListRootTypeKey, defaultType?: string): void;
   /**
    * Increase the depth of the first item in the location if increasable.
-   *
-   * @returns
-   * Indicate if increased.
    */
   increaseListItemDepth(editor: Editor, entries: ListAboveListAndItem): void;
   /**
    * Decrease the depth of the first item in the location if decreasable.
-   *
-   * @returns
-   * Indicate if decreased.
    */
   decreaseListItemDepth(editor: Editor, entries: ListAboveListAndItem): void;
   /**
