@@ -13,9 +13,11 @@ import { createRenderElements, RenderElementProps } from '../core';
 import { ReactImage } from './typings';
 import { defaultRenderImageElements } from './defaultRenderImageElements';
 
-export type CreateReactImageOptions<H extends string> = CreateImageOptions<H>;
+export type CreateReactImageOptions<Hosting extends string> = CreateImageOptions<Hosting>;
 
-export function createReactImage<H extends string>(options: CreateReactImageOptions<H> = {}): ReactImage<H> {
+export function createReactImage<Hosting extends string>(
+  options: CreateReactImageOptions<Hosting> = {}
+): ReactImage<Hosting> {
   const core = createImage(options);
   const { types } = core;
 
@@ -95,6 +97,9 @@ export function createReactImage<H extends string>(options: CreateReactImageOpti
         const text = data.getData('text');
         const { files } = data;
 
+        /**
+         * Insert image if inserted text is image url.
+         */
         if (text) {
           if (core.isImageUrl(text)) {
             core.insertImage(editor, text);
@@ -102,6 +107,9 @@ export function createReactImage<H extends string>(options: CreateReactImageOpti
           }
         }
 
+        /**
+         * Insert each image which is image.
+         */
         if (files.length) {
           [...files]
             .filter(file => {

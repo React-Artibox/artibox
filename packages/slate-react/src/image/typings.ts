@@ -33,7 +33,8 @@ export type ReactImageCreateRenderElementOptions = {
   [K in ImageFigureTypeKey | ImageTypeKey | ImageCaptionTypeKey]?: ImageRenderElements[K];
 };
 
-export type ReactImage<H extends string> = Omit<Image<H>, 'with'> &
-  WithCreateHandlers &
-  WithCreateRenderElement<[ReactImageCreateRenderElementOptions?]> &
-  ReactWithable;
+export interface ReactImage<Hosting extends string>
+  extends Omit<Image<Hosting>, 'with'>,
+    WithCreateHandlers,
+    WithCreateRenderElement<[ReactImageCreateRenderElementOptions?]>,
+    ReactWithable {}

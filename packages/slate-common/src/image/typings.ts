@@ -6,9 +6,18 @@ import { ImageCaptionElement, ImageFigureElement, ImageHostingResolvers, ImageSi
 export type ImageGetAboveImageFigureOptions = GetAboveByTypesOptions;
 export type ImageGetAboveImageCaptionOptions = GetAboveByTypesOptions;
 
-export interface Image<H extends string> extends Withable {
+export interface Image<Hosting extends string> extends Withable {
+  /**
+   * An object which keys are `figure`, `image`, 'caption` and values are the corresponding element types.
+   */
   types: ImageTypes;
-  hostingResolvers?: ImageHostingResolvers<H>;
+  /**
+   * @see {ImageHostingResolvers<Hosting>}
+   */
+  hostingResolvers?: ImageHostingResolvers<Hosting>;
+  /**
+   * @see {ImageSizeSteps}
+   */
   sizeSteps?: ImageSizeSteps;
   isImageUrl(url: string): boolean;
   getAboveImageFigure(
@@ -22,12 +31,12 @@ export interface Image<H extends string> extends Withable {
   isSelectionInImage(editor: Editor): boolean;
   isSelectionInImageCaption(editor: Editor): boolean;
   isCollapsedOnImage(editor: Editor): boolean;
-  createImageElement(src: string, hosting?: H): ImageFigureElement;
+  createImageElement(src: string, hosting?: Hosting): ImageFigureElement;
   insertImage(
     editor: Editor,
     src: string,
     options?: {
-      hosting?: H;
+      hosting?: Hosting;
       at?: Location;
     }
   ): void;

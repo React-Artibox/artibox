@@ -9,7 +9,6 @@ import {
   ImageCaptionElement,
   ImageElement,
   ImageFigureElement,
-  ImageHostingResolvers,
   ImageSizeSteps,
   ImageTypes,
   IMAGE_TYPES
@@ -26,14 +25,12 @@ function resolveSizeSteps(steps: ImageSizeSteps): ImageSizeSteps {
   return sortedSteps;
 }
 
-export interface CreateImageOptions<H extends string> {
+export interface CreateImageOptions<Hosting extends string>
+  extends Partial<Pick<Image<Hosting>, 'hostingResolvers' | 'sizeSteps' | 'isImageUrl'>> {
   types?: Partial<ImageTypes>;
-  hostingResolvers?: ImageHostingResolvers<H>;
-  sizeSteps?: ImageSizeSteps;
-  isImageUrl?: (url: string) => boolean;
 }
 
-export function createImage<H extends string>(options: CreateImageOptions<H> = {}): Image<H> {
+export function createImage<Hosting extends string>(options: CreateImageOptions<Hosting> = {}): Image<Hosting> {
   const {
     types: typesOptions,
     hostingResolvers,
@@ -42,18 +39,20 @@ export function createImage<H extends string>(options: CreateImageOptions<H> = {
   } = options;
   const types: ImageTypes = { ...IMAGE_TYPES, ...typesOptions };
   const sizeSteps = unresolvedSizeSteps && resolveSizeSteps(unresolvedSizeSteps);
-  const getAboveImageFigure: Image<H>['getAboveImageFigure'] = (editor: Editor, options?: GetAboveByTypesOptions) =>
-    getAboveByTypes<ImageFigureElement>(editor, [types.figure], options);
-  const getAboveImageCaption: Image<H>['getAboveImageCaption'] = (editor, options) =>
+  const getAboveImageFigure: Image<Hosting>['getAboveImageFigure'] = (
+    editor: Editor,
+    options?: GetAboveByTypesOptions
+  ) => getAboveByTypes<ImageFigureElement>(editor, [types.figure], options);
+  const getAboveImageCaption: Image<Hosting>['getAboveImageCaption'] = (editor, options) =>
     getAboveByTypes(editor, [types.caption], options);
   const isNodesInImage = (editor: Editor, options?: IsNodesTypeInOptions) =>
     isNodesTypeIn(editor, [types.image], options);
-  const isSelectionInImage: Image<H>['isSelectionInImage'] = editor => isNodesInImage(editor);
-  const isSelectionInImageCaption: Image<H>['isSelectionInImageCaption'] = editor =>
+  const isSelectionInImage: Image<Hosting>['isSelectionInImage'] = editor => isNodesInImage(editor);
+  const isSelectionInImageCaption: Image<Hosting>['isSelectionInImageCaption'] = editor =>
     isNodesTypeIn(editor, [types.caption]);
-  const isCollapsedOnImage: Image<H>['isCollapsedOnImage'] = editor =>
+  const isCollapsedOnImage: Image<Hosting>['isCollapsedOnImage'] = editor =>
     !!editor.selection && Range.isCollapsed(editor.selection) && isSelectionInImage(editor);
-  const createImageElement: Image<H>['createImageElement'] = (src, hosting) => {
+  const createImageElement: Image<Hosting>['createImageElement'] = (src, hosting) => {
     const imageElement: ImageElement = {
       type: types.image,
       src,
@@ -71,7 +70,7 @@ export function createImage<H extends string>(options: CreateImageOptions<H> = {
       children: [imageElement, captionElement]
     };
   };
-  const insertImage: Image<H>['insertImage'] = (editor, src, options = {}) => {
+  const insertImage: Image<Hosting>['insertImage'] = (editor, src, options = {}) => {
     const { hosting, at } = options;
     const imageElement = createImageElement(src, hosting);
 
@@ -105,7 +104,7 @@ export function createImage<H extends string>(options: CreateImageOptions<H> = {
 
     return Math.abs(percentage - lower) <= Math.abs(upper - percentage) ? lower : upper;
   };
-  const resizeImage: Image<H>['resizeImage'] = (editor, [, path], width) => {
+  const resizeImage: Image<Hosting>['resizeImage'] = (editor, [, path], width) => {
     const [figure, figurePath] = getAboveImageFigure(editor, { at: path }) || [];
 
     if (figure) {
@@ -142,6 +141,9 @@ export function createImage<H extends string>(options: CreateImageOptions<H> = {
       const deleteCollapsed = (origin: VoidFunction, isEdgeMethodName: 'isStart' | 'isEnd') => {
         const { selection } = editor;
 
+        /**
+         * Avoid from delete fragment outside caption while collapsed in caption.
+         */
         if (selection && Range.isCollapsed(selection)) {
           const [, captionPath] = getAboveImageCaption(editor) || [];
 
@@ -162,6 +164,9 @@ export function createImage<H extends string>(options: CreateImageOptions<H> = {
       editor.insertBreak = () => {
         const captionEntry = getAboveImageCaption(editor);
 
+        /**
+         * Avoid from splitting children of caption.
+         */
         if (captionEntry) {
           return;
         }
