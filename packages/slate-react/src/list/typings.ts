@@ -1,8 +1,10 @@
-import { List, ListTypeKey } from '@artibox/slate-common/list';
+import { List, ListElement, ListTypeKey } from '@artibox/slate-common/list';
 import { WithCreateHandlers, WithCreateRenderElement, RenderElementProps } from '../core';
 
+export type RenderListElementProps = RenderElementProps<ListElement>;
+
 export type ReactListCreateRenderElementOptions = {
-  [key in ListTypeKey]?: (props: RenderElementProps) => JSX.Element | null | undefined;
+  [key in ListTypeKey]?: (props: RenderListElementProps) => JSX.Element | null | undefined;
 };
 
 export interface ReactList

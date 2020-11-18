@@ -2,7 +2,14 @@ import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
 import { createReactList, ListLevel } from '@artibox/slate-react/list';
 import { ListToolbarIcon } from '@artibox/slate-react/list/toolbar';
 import { createJsxSerializeList } from '@artibox/slate-react/list/jsx-serializer';
-import { ReactListDocgen, createHandlersDocgen, createRenderElementDocgen } from './docgen';
+import {
+  createHandlersDocgen,
+  createRenderElementDocgen,
+  ReactListDocgen,
+  ListElementDocgen,
+  RenderListElementPropsDocgen,
+  JsxSerializeListElementPropsDocgen
+} from './docgen';
 
 <Meta title="Elements/List/Docs" />
 
@@ -12,11 +19,11 @@ import { ReactListDocgen, createHandlersDocgen, createRenderElementDocgen } from
 
 <ArgsTable of={createReactList} />
 
-## createHandlers
+## .createHandlers
 
 <ArgsTable of={createHandlersDocgen} />
 
-## createRenderElement
+## .createRenderElement
 
 <ArgsTable of={createRenderElementDocgen} />
 
@@ -25,6 +32,14 @@ import { ReactListDocgen, createHandlersDocgen, createRenderElementDocgen } from
 ## ReactList
 
 <ArgsTable of={ReactListDocgen} />
+
+## ListElement
+
+<ArgsTable of={ListElementDocgen} />
+
+## RenderListElementProps
+
+<ArgsTable of={RenderListElementPropsDocgen} />
 
 # Widgets
 
@@ -38,6 +53,14 @@ import { ReactListDocgen, createHandlersDocgen, createRenderElementDocgen } from
 
 ## Jsx
 
-### createJsxSerializeList
+### Factories
+
+#### createJsxSerializeList
 
 <ArgsTable of={createJsxSerializeList} />
+
+### Interfaces
+
+#### JsxSerializeListElementProps
+
+<ArgsTable of={JsxSerializeListElementPropsDocgen} />

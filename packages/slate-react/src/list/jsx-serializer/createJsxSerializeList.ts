@@ -8,7 +8,7 @@ export type CreateJsxSerializeListOptions = {
 };
 
 export function createJsxSerializeList(options: CreateJsxSerializeListOptions = {}) {
-  return createJsxSerializeElements(
+  return createJsxSerializeElements<JsxSerializeListElementProps>(
     (['ol', 'ul', 'li'] as ListTypeKey[]).map(key => {
       const { type = LIST_TYPES[key], render = defaultRenderListElements[key] } = options[key] || {};
 
