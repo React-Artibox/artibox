@@ -1,15 +1,10 @@
 import { Link, LinkElement } from '@artibox/slate-common/link';
 import { RenderElementProps, ReactWithable, WithCreateRenderElement } from '../core';
 
-export interface RenderLinkElementProps extends RenderElementProps<LinkElement> {
-  placement?: 'top' | 'bottom';
-  target?: string;
-}
-
-export type RenderLinkElement = (props: RenderLinkElementProps) => JSX.Element | null | undefined;
+export type RenderLinkElementProps = RenderElementProps<LinkElement>;
 
 export interface ReactLinkCreateRenderElementOptions {
-  render?: RenderLinkElement;
+  render?: (props: RenderLinkElementProps) => JSX.Element | null | undefined;
 }
 
 export interface ReactLink

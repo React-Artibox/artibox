@@ -2,7 +2,13 @@ import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
 import { createReactLink, LinkLevel } from '@artibox/slate-react/link';
 import { LinkToolbarIcon } from '@artibox/slate-react/link/toolbar';
 import { createJsxSerializeLink } from '@artibox/slate-react/link/jsx-serializer';
-import { ReactLinkDocgen, LinkElementDocgen, createRenderElementDocgen } from './docgen';
+import {
+  createRenderElementDocgen,
+  ReactLinkDocgen,
+  LinkElementDocgen,
+  RenderLinkElementPropsDocgen,
+  JsxSerializeLinkElementPropsDocgen
+} from './docgen';
 
 <Meta title="Elements/Link/Docs" />
 
@@ -12,7 +18,7 @@ import { ReactLinkDocgen, LinkElementDocgen, createRenderElementDocgen } from '.
 
 <ArgsTable of={createReactLink} />
 
-## createRenderElement
+## .createRenderElement
 
 <ArgsTable of={createRenderElementDocgen} />
 
@@ -26,6 +32,10 @@ import { ReactLinkDocgen, LinkElementDocgen, createRenderElementDocgen } from '.
 
 <ArgsTable of={LinkElementDocgen} />
 
+## RenderLinkElementProps
+
+<ArgsTable of={RenderLinkElementPropsDocgen} />
+
 # Widgets
 
 ## Toolbar
@@ -38,6 +48,14 @@ import { ReactLinkDocgen, LinkElementDocgen, createRenderElementDocgen } from '.
 
 ## Jsx
 
-### createJsxSerializeLink
+### Factories
+
+#### createJsxSerializeLink
 
 <ArgsTable of={createJsxSerializeLink} />
+
+### Interfaces
+
+#### JsxSerializeLinkElementProps
+
+<ArgsTable of={JsxSerializeLinkElementPropsDocgen} />
