@@ -1,9 +1,10 @@
 import { deserializeEmbedElementToData, EmbedElement, EmbedStrategies } from '@artibox/slate-common/embed/common';
 import { RenderElementPropsBase } from '../../../_internal/renderer/typings';
+import { WithEmbedRenderData } from './typings';
 
 export function createRenderEmbedElementBase<
   P extends string,
-  RP extends RenderElementPropsBase<EmbedElement> & { data: any }
+  RP extends RenderElementPropsBase<EmbedElement> & WithEmbedRenderData<any>
 >({
   strategies,
   renderers

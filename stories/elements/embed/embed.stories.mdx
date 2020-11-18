@@ -1,0 +1,79 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { createReactEmbed } from '@artibox/slate-react/embed';
+import { EmbedToolbarIcon } from '@artibox/slate-react/embed/toolbar';
+import { createJsxSerializeEmbed } from '@artibox/slate-react/embed/jsx-serializer';
+import {
+  createRenderElementDocgen,
+  ReactEmbedDocgen,
+  EmbedElementDocgen,
+  EmbedStrategyDocgen,
+  RenderEmbedElementPropsDocgen,
+  JsxSerializeEmbedElementPropsDocgen
+} from './docgen';
+
+<Meta title="Elements/Embed/Docs" />
+
+# Factories
+
+## createReactEmbed
+
+<ArgsTable of={createReactEmbed} />
+
+## .createRenderElement
+
+<ArgsTable of={createRenderElementDocgen} />
+
+# Interfaces
+
+## ReactEmbed
+
+<ArgsTable of={ReactEmbedDocgen} />
+
+## EmbedElement
+
+<ArgsTable of={EmbedElementDocgen} />
+
+## EmbedStrategy
+
+<ArgsTable of={EmbedStrategyDocgen} />
+
+### Built Ins
+
+- facebook
+- instagram
+- twitter
+- vimeo
+- youtube
+
+```ts
+import { ... } from '@artibox/slate-common/embed/strategies/<stategy name>';
+import { ... } from '@artibox/slate-react/embed/renderers/<stategy name>';
+```
+
+## RenderEmbedElementProps
+
+<ArgsTable of={RenderEmbedElementPropsDocgen} />
+
+# Widgets
+
+## Toolbar
+
+### EmbedToolbarIcon
+
+<ArgsTable of={EmbedToolbarIcon} />
+
+# Serializers
+
+## Jsx
+
+### Factories
+
+#### createJsxSerializeEmbed
+
+<ArgsTable of={createJsxSerializeEmbed} />
+
+### Interfaces
+
+#### JsxSerializeEmbedElementProps
+
+<ArgsTable of={JsxSerializeEmbedElementPropsDocgen} />

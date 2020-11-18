@@ -1,11 +1,7 @@
 import { EmbedElement } from '@artibox/slate-common/embed/common';
 import { JsxSerializeElementProps } from '../../jsx-serializer';
+import { WithEmbedRenderData } from '../_internal/renderer/typings';
 
-export interface JsxSerializeEmbedElementProps<ED extends Record<string, unknown>, D>
-  extends JsxSerializeElementProps<EmbedElement & ED> {
-  data: D;
-}
-
-export type JsxSerializeEmbedElement<ED extends Record<string, unknown>, D> = (
-  props: JsxSerializeEmbedElementProps<ED, D>
-) => JSX.Element | null | undefined;
+export interface JsxSerializeEmbedElementProps<EmbedData extends Record<string, unknown>, RenderData>
+  extends JsxSerializeElementProps<EmbedElement & EmbedData>,
+    WithEmbedRenderData<RenderData> {}

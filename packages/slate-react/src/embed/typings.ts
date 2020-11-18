@@ -1,15 +1,16 @@
 import { Embed, EmbedElement } from '@artibox/slate-common/embed';
 import { WithCreateRenderElement, RenderElementProps } from '../core';
+import { WithEmbedRenderData } from './_internal/renderer/typings';
 
-export interface RenderEmbedElementProps<ED extends Record<string, unknown>, D>
-  extends RenderElementProps<EmbedElement & ED> {
-  data: D;
-}
+export interface RenderEmbedElementProps<EmbedData extends Record<string, unknown>, RenderData>
+  extends RenderElementProps<EmbedElement & EmbedData>,
+    WithEmbedRenderData<RenderData> {}
 
-export type RenderEmbedElement<ED extends Record<string, unknown>, D> = (
-  props: RenderEmbedElementProps<ED, D>
-) => JSX.Element | null | undefined;
+export type ReactEmbedCreateRenderElementOptions<Provider extends string> = Record<
+  Provider,
+  (props: RenderEmbedElementProps<any, any>) => JSX.Element | null | undefined
+>;
 
-export type ReactEmbedForRenderElememntOptions<P extends string> = Record<P, RenderEmbedElement<any, any>>;
-
-export type ReactEmbed<P extends string> = Embed<P> & WithCreateRenderElement<[ReactEmbedForRenderElememntOptions<P>]>;
+export interface ReactEmbed<Provider extends string>
+  extends Embed<Provider>,
+    WithCreateRenderElement<[ReactEmbedCreateRenderElementOptions<Provider>]> {}

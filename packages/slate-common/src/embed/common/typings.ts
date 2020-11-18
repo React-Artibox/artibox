@@ -1,17 +1,26 @@
 import { Element, Text } from 'slate';
+import { WithElementType } from '../../typings/element';
 
-export interface EmbedElement extends Element {
-  type: string;
+export interface EmbedElement extends Element, WithElementType {
+  /**
+   * The embed provider.
+   *
+   * e.g. If you embed a youtube video, then you can use `youtube` as provider.
+   */
   provider: string;
   children: [Text];
 }
 
-export interface EmbedStrategy<ED extends Record<string, unknown>, RD> {
-  readonly serialize: (embedCode: string) => ED | undefined;
-  readonly deserialize: (element: EmbedElement & ED) => RD;
-  readonly isElementDataValid: (data: Record<keyof ED, unknown>) => boolean;
+export interface EmbedStrategy<EmbedData extends Record<string, unknown>, RenderData> {
+  /**
+   * To serialize embed code to element data.
+   */
+  readonly serialize: (embedCode: string) => EmbedData | undefined;
+  /**
+   * To deserialize element to data for rendering.
+   */
+  readonly deserialize: (element: EmbedElement & EmbedData) => RenderData;
+  readonly isElementDataValid: (data: Record<keyof EmbedData, unknown>) => boolean;
 }
 
-export type EmbedStrategies<P extends string> = {
-  [provider in P]: EmbedStrategy<any, any>;
-};
+export type EmbedStrategies<Provider extends string> = Record<Provider, EmbedStrategy<any, any>>;

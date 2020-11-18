@@ -5,15 +5,18 @@ import { ToolbarIcon, ToolbarIconProps } from '../../toolbar';
 import { ReactEmbed } from '../typings';
 import { useEmbedTool } from './useEmbedTool';
 
-export interface EmbedToolbarIconProps<P extends string>
+export interface EmbedToolbarIconProps<Provider extends string>
   extends Omit<ToolbarIconProps, 'active' | 'onClick'>,
     Pick<InputWidgetConfig, 'getPlaceholder'> {
-  controller: ReactEmbed<P>;
-  providers: P[];
+  controller: ReactEmbed<Provider>;
+  /**
+   * The providers supported by this icon.
+   */
+  providers: Provider[];
   startToolInput?: (editor: Editor, inputConfig: InputWidgetConfig) => void;
 }
 
-function EmbedToolbarIcon<P extends string>(props: EmbedToolbarIconProps<P>) {
+function EmbedToolbarIcon<Provider extends string>(props: EmbedToolbarIconProps<Provider>) {
   const { controller, providers, getPlaceholder, startToolInput, ...rest } = props;
   const { onClick } = useEmbedTool(controller, providers, getPlaceholder, startToolInput);
 
