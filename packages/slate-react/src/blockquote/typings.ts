@@ -3,8 +3,6 @@ import { WithCreateHandlers, WithCreateRenderElement, RenderElementProps } from 
 
 export type RenderBlockquoteElementProps = RenderElementProps<BlockquoteElement>;
 
-export type RenderBlockquoteElement = (props: RenderBlockquoteElementProps) => JSX.Element | null | undefined;
-
 export interface ReactBlockquoteCreateHandlersOptions {
   /**
    * The hotkey to toggle blockquote.
@@ -13,7 +11,7 @@ export interface ReactBlockquoteCreateHandlersOptions {
 }
 
 export interface ReactBlockquoteCreateRenderElementOptions {
-  render?: RenderBlockquoteElement;
+  render?: (props: RenderBlockquoteElementProps) => JSX.Element | null | undefined;
 }
 
 export interface ReactBlockquote

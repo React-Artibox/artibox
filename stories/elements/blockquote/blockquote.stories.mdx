@@ -3,10 +3,12 @@ import { createReactBlockquote } from '@artibox/slate-react/blockquote';
 import { BlockquoteToolbarIcon } from '@artibox/slate-react/blockquote/toolbar';
 import { createJsxSerializeBlockquote } from '@artibox/slate-react/blockquote/jsx-serializer';
 import {
+  createHandlersDocgen,
+  createRenderElementDocgen,
   ReactBlockquoteDocgen,
   BlockquoteElementDocgen,
-  createHandlersDocgen,
-  createRenderElementDocgen
+  RenderBlockquoteElementPropsDocgen,
+  JsxSerializeBlockquoteElementPropsDocgen
 } from './docgen';
 
 <Meta title="Elements/Blockquote/Docs" />
@@ -17,11 +19,11 @@ import {
 
 <ArgsTable of={createReactBlockquote} />
 
-## createHandlers
+## .createHandlers
 
 <ArgsTable of={createHandlersDocgen} />
 
-## createRenderElement
+## .createRenderElement
 
 <ArgsTable of={createRenderElementDocgen} />
 
@@ -35,6 +37,10 @@ import {
 
 <ArgsTable of={BlockquoteElementDocgen} />
 
+## RenderBlockquoteElementProps
+
+<ArgsTable of={RenderBlockquoteElementPropsDocgen} />
+
 # Widgets
 
 ## Toolbar
@@ -47,6 +53,14 @@ import {
 
 ## Jsx
 
-### createJsxSerializeBlockquote
+### Factories
+
+#### createJsxSerializeBlockquote
 
 <ArgsTable of={createJsxSerializeBlockquote} />
+
+### Interfaces
+
+#### JsxSerializeBlockquoteElementProps
+
+<ArgsTable of={JsxSerializeBlockquoteElementPropsDocgen} />
