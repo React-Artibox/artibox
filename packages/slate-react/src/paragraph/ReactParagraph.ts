@@ -4,10 +4,8 @@ import { defaultRenderParagraphElement } from './defaultRenderParagraphElement';
 
 export type RenderParagraphElementProps = RenderElementProps<ParagraphElement>;
 
-export type RenderParagraphElement = (props: RenderParagraphElementProps) => JSX.Element | null | undefined;
-
 export interface ReactParagraphCreateRenderElementOptions {
-  render?: RenderParagraphElement;
+  render?: (props: RenderParagraphElementProps) => JSX.Element | null | undefined;
 }
 
 export interface ReactParagraph

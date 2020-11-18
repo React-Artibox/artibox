@@ -3,9 +3,11 @@ import { createJsxSerializeElement, CreateJsxSerializeElementOptions } from '../
 import { defaultRenderParagraphElement } from '../defaultRenderParagraphElement';
 import { JsxSerializeParagraphProps } from './typings';
 
-export type CreateJsxSerializeParagraphOptions = Partial<CreateJsxSerializeElementOptions<JsxSerializeParagraphProps>>;
+export type CreateJsxSerializeParagraphOptions = Partial<
+  Omit<CreateJsxSerializeElementOptions<JsxSerializeParagraphProps>, 'type'>
+>;
 
 export function createJsxSerializeParagraph(options: CreateJsxSerializeParagraphOptions = {}) {
-  const { type = PARAGRAPH_TYPE, render = defaultRenderParagraphElement } = options;
-  return createJsxSerializeElement<JsxSerializeParagraphProps>({ type, render });
+  const { render = defaultRenderParagraphElement } = options;
+  return createJsxSerializeElement<JsxSerializeParagraphProps>({ type: PARAGRAPH_TYPE, render });
 }
