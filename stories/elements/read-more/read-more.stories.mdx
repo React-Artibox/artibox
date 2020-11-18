@@ -2,7 +2,13 @@ import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
 import { createReactReadMore } from '@artibox/slate-react/read-more';
 import { ReadMoreToolbarIcon } from '@artibox/slate-react/read-more/toolbar';
 import { createJsxSerializeReadMore } from '@artibox/slate-react/read-more/jsx-serializer';
-import { ReactReadMoreDocgen, ReadMoreElementDocgen, createRenderElementDocgen } from './docgen';
+import {
+  createRenderElementDocgen,
+  ReactReadMoreDocgen,
+  ReadMoreElementDocgen,
+  RenderReadMoreElementPropsDocgen,
+  JsxSerializeReadMorePropsDocgen
+} from './docgen';
 
 <Meta title="Elements/ReadMore/Docs" />
 
@@ -12,7 +18,7 @@ import { ReactReadMoreDocgen, ReadMoreElementDocgen, createRenderElementDocgen }
 
 <ArgsTable of={createReactReadMore} />
 
-## createRenderElement
+## .createRenderElement
 
 <ArgsTable of={createRenderElementDocgen} />
 
@@ -26,6 +32,10 @@ import { ReactReadMoreDocgen, ReadMoreElementDocgen, createRenderElementDocgen }
 
 <ArgsTable of={ReadMoreElementDocgen} />
 
+## RenderReadMoreElementProps
+
+<ArgsTable of={RenderReadMoreElementPropsDocgen} />
+
 # Widgets
 
 ## Toolbar
@@ -38,6 +48,14 @@ import { ReactReadMoreDocgen, ReadMoreElementDocgen, createRenderElementDocgen }
 
 ## Jsx
 
-### createJsxSerializeReadMore
+### Factories
+
+#### createJsxSerializeReadMore
 
 <ArgsTable of={createJsxSerializeReadMore} />
+
+### Interfaces
+
+#### JsxSerializeReadMoreProps
+
+<ArgsTable of={JsxSerializeReadMorePropsDocgen} />
