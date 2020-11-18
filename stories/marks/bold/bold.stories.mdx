@@ -2,7 +2,13 @@ import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
 import { createReactBold } from '@artibox/slate-react/bold';
 import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
 import { createJsxSerializeBold } from '@artibox/slate-react/bold/jsx-serializer';
-import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } from './docgen';
+import {
+  createHandlersDocgen,
+  createRenderLeafDocgen,
+  ReactToggleMarkDocgen,
+  RenderToggleMarkPropsDocgen,
+  JsxSerializeToggleMarkPropsDocgen
+} from './docgen';
 
 <Meta title="Marks/Bold/Docs" />
 
@@ -12,11 +18,11 @@ import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } f
 
 <ArgsTable of={createReactBold} />
 
-## createHandlersDocgen
+## .createHandlers
 
 <ArgsTable of={createHandlersDocgen} />
 
-## createRenderElement
+## .createRenderLeaf
 
 <ArgsTable of={createRenderLeafDocgen} />
 
@@ -25,6 +31,10 @@ import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } f
 ## ReactToggleMark
 
 <ArgsTable of={ReactToggleMarkDocgen} />
+
+## RenderToggleMarkProps
+
+<ArgsTable of={RenderToggleMarkPropsDocgen} />
 
 # Widgets
 
@@ -38,6 +48,14 @@ import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } f
 
 ## Jsx
 
-### createJsxSerializeBold
+### Factories
+
+#### createJsxSerializeBold
 
 <ArgsTable of={createJsxSerializeBold} />
+
+### Interfaces
+
+#### JsxSerializeToggleMarkProps
+
+<ArgsTable of={JsxSerializeToggleMarkPropsDocgen} />

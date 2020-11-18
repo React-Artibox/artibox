@@ -2,7 +2,13 @@ import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
 import { createReactUnderline } from '@artibox/slate-react/underline';
 import { ToggleMarkToolbarIcon } from '@artibox/slate-react/toggle-mark/toolbar';
 import { createJsxSerializeUnderline } from '@artibox/slate-react/underline/jsx-serializer';
-import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } from './docgen';
+import {
+  createHandlersDocgen,
+  createRenderLeafDocgen,
+  ReactToggleMarkDocgen,
+  RenderToggleMarkPropsDocgen,
+  JsxSerializeToggleMarkPropsDocgen
+} from './docgen';
 
 <Meta title="Marks/Underline/Docs" />
 
@@ -12,11 +18,11 @@ import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } f
 
 <ArgsTable of={createReactUnderline} />
 
-## createHandlersDocgen
+## .createHandlers
 
 <ArgsTable of={createHandlersDocgen} />
 
-## createRenderElement
+## .createRenderLeaf
 
 <ArgsTable of={createRenderLeafDocgen} />
 
@@ -25,6 +31,10 @@ import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } f
 ## ReactToggleMark
 
 <ArgsTable of={ReactToggleMarkDocgen} />
+
+## RenderToggleMarkProps
+
+<ArgsTable of={RenderToggleMarkPropsDocgen} />
 
 # Widgets
 
@@ -38,6 +48,14 @@ import { ReactToggleMarkDocgen, createHandlersDocgen, createRenderLeafDocgen } f
 
 ## Jsx
 
-### createJsxSerializeUnderline
+### Factories
+
+#### createJsxSerializeUnderline
 
 <ArgsTable of={createJsxSerializeUnderline} />
+
+### Interfaces
+
+#### JsxSerializeToggleMarkProps
+
+<ArgsTable of={JsxSerializeToggleMarkPropsDocgen} />
