@@ -2,7 +2,13 @@ import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
 import { createReactDivider } from '@artibox/slate-react/divider';
 import { DividerToolbarIcon } from '@artibox/slate-react/divider/toolbar';
 import { createJsxSerializeDivider } from '@artibox/slate-react/divider/jsx-serializer';
-import { ReactDividerDocgen, DividerElementDocgen, createRenderElementDocgen } from './docgen';
+import {
+  createRenderElementDocgen,
+  ReactDividerDocgen,
+  DividerElementDocgen,
+  RenderDividerElementPropsDocgen,
+  JsxSerializeDividerPropsDocgen
+} from './docgen';
 
 <Meta title="Elements/Divider/Docs" />
 
@@ -12,7 +18,7 @@ import { ReactDividerDocgen, DividerElementDocgen, createRenderElementDocgen } f
 
 <ArgsTable of={createReactDivider} />
 
-## createRenderElement
+## .createRenderElement
 
 <ArgsTable of={createRenderElementDocgen} />
 
@@ -26,6 +32,10 @@ import { ReactDividerDocgen, DividerElementDocgen, createRenderElementDocgen } f
 
 <ArgsTable of={DividerElementDocgen} />
 
+## RenderDividerElementProps
+
+<ArgsTable of={RenderDividerElementPropsDocgen} />
+
 # Widgets
 
 ## Toolbar
@@ -38,6 +48,14 @@ import { ReactDividerDocgen, DividerElementDocgen, createRenderElementDocgen } f
 
 ## Jsx
 
-### createJsxSerializeDivider
+### Factories
+
+#### createJsxSerializeDivider
 
 <ArgsTable of={createJsxSerializeDivider} />
+
+### Interfaces
+
+#### JsxSerializeDividerProps
+
+<ArgsTable of={JsxSerializeDividerPropsDocgen} />

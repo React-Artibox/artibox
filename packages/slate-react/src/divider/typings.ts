@@ -3,10 +3,8 @@ import { WithCreateRenderElement, RenderElementProps } from '../core';
 
 export type RenderDividerElementProps = RenderElementProps<DividerElement>;
 
-export type RenderDividerElement = (props: RenderDividerElementProps) => JSX.Element | null | undefined;
-
 export interface ReactDividerCreateRenderElementOptions {
-  render?: RenderDividerElement;
+  render?: (props: RenderDividerElementProps) => JSX.Element | null | undefined;
 }
 
 export interface ReactDivider extends Divider, WithCreateRenderElement<[ReactDividerCreateRenderElementOptions?]> {}

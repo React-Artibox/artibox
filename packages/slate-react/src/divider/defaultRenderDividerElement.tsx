@@ -1,7 +1,7 @@
 import React from 'react';
-import { RenderDividerElement } from './typings';
+import { RenderDividerElementProps } from './typings';
 
-export const defaultRenderDividerElement: RenderDividerElement = ({ attributes, children }) => (
+export const defaultRenderDividerElement = ({ attributes, children }: RenderDividerElementProps) => (
   <div {...attributes} contentEditable={false}>
     <hr />
     {children}
