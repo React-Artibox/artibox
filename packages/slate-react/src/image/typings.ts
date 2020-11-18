@@ -14,20 +14,20 @@ export interface RenderImageFigureElementProps extends RenderElementProps<ImageF
     width: string;
   };
 }
-export type RenderImageFigureElement = (props: RenderImageFigureElementProps) => JSX.Element | null | undefined;
 
 export interface RenderImageElementProps extends RenderElementProps<ImageElement> {
   resizeImage: ReactImage<any>['resizeImage'];
   src: string;
 }
-export type RenderImageElement = (props: RenderImageElementProps) => JSX.Element | null | undefined;
 
 export type RenderImageCaptionElementProps = RenderElementProps<ImageCaptionElement>;
-export type RenderImageCaptionElement = (props: RenderImageCaptionElementProps) => JSX.Element | null | undefined;
 
-export type ImageRenderElements = Record<ImageFigureTypeKey, RenderImageFigureElement> &
-  Record<ImageTypeKey, RenderImageElement> &
-  Record<ImageCaptionTypeKey, RenderImageCaptionElement>;
+export type ImageRenderElements = Record<
+  ImageFigureTypeKey,
+  (props: RenderImageFigureElementProps) => JSX.Element | null | undefined
+> &
+  Record<ImageTypeKey, (props: RenderImageElementProps) => JSX.Element | null | undefined> &
+  Record<ImageCaptionTypeKey, (props: RenderImageCaptionElementProps) => JSX.Element | null | undefined>;
 
 export type ReactImageCreateRenderElementOptions = {
   [K in ImageFigureTypeKey | ImageTypeKey | ImageCaptionTypeKey]?: ImageRenderElements[K];

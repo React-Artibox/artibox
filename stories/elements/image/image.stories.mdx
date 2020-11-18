@@ -2,12 +2,18 @@ import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
 import { createReactImage, ImageLevel } from '@artibox/slate-react/image';
 import { createJsxSerializeImage } from '@artibox/slate-react/image/jsx-serializer';
 import {
-  ReactImageDocgen,
   createHandlersDocgen,
   createRenderElementDocgen,
+  ReactImageDocgen,
   ImageFigureElementDocgen,
   ImageElementDocgen,
-  ImageCaptionElementDocgen
+  ImageCaptionElementDocgen,
+  RenderImageFigureElementPropsDocgen,
+  RenderImageElementPropsDocgen,
+  RenderImageCaptionElementPropsDocgen,
+  JsxSerializeImageFigureElementPropsDocgen,
+  JsxSerializeImageElementPropsDocgen,
+  JsxSerializeImageCaptionElementPropsDocgen
 } from './docgen';
 
 <Meta title="Elements/Image/Docs" />
@@ -18,11 +24,11 @@ import {
 
 <ArgsTable of={createReactImage} />
 
-## createHandlers
+## .createHandlers
 
 <ArgsTable of={createHandlersDocgen} />
 
-## createRenderElement
+## .createRenderElement
 
 <ArgsTable of={createRenderElementDocgen} />
 
@@ -44,10 +50,38 @@ import {
 
 <ArgsTable of={ImageCaptionElementDocgen} />
 
+## RenderImageFigureElementProps
+
+<ArgsTable of={RenderImageFigureElementPropsDocgen} />
+
+## RenderImageElementProps
+
+<ArgsTable of={RenderImageElementPropsDocgen} />
+
+## RenderImageCaptionElementProps
+
+<ArgsTable of={RenderImageCaptionElementPropsDocgen} />
+
 # Serializers
 
 ## Jsx
 
-### createJsxSerializeImage
+### Factories
+
+#### createJsxSerializeImage
 
 <ArgsTable of={createJsxSerializeImage} />
+
+### Interfaces
+
+#### JsxSerializeImageFigureElementProps
+
+<ArgsTable of={JsxSerializeImageFigureElementPropsDocgen} />
+
+#### JsxSerializeImageElementProps
+
+<ArgsTable of={JsxSerializeImageElementPropsDocgen} />
+
+#### JsxSerializeImageCaptionElementProps
+
+<ArgsTable of={JsxSerializeImageCaptionElementPropsDocgen} />
