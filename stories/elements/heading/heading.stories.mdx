@@ -2,7 +2,14 @@ import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
 import { createReactHeading, HeadingLevel } from '@artibox/slate-react/heading';
 import { HeadingToolbarIcon } from '@artibox/slate-react/heading/toolbar';
 import { createJsxSerializeHeading } from '@artibox/slate-react/heading/jsx-serializer';
-import { ReactHeadingDocgen, HeadingElementDocgen, createHandlersDocgen, createRenderElementDocgen } from './docgen';
+import {
+  createHandlersDocgen,
+  createRenderElementDocgen,
+  ReactHeadingDocgen,
+  HeadingElementDocgen,
+  RenderHeadingElementPropsDocgen,
+  JsxSerializeHeadingElementPropsDocgen
+} from './docgen';
 
 <Meta title="Elements/Heading/Docs" />
 
@@ -12,11 +19,11 @@ import { ReactHeadingDocgen, HeadingElementDocgen, createHandlersDocgen, createR
 
 <ArgsTable of={createReactHeading} />
 
-## createHandlers
+## .createHandlers
 
 <ArgsTable of={createHandlersDocgen} />
 
-## createRenderElement
+## .createRenderElement
 
 <ArgsTable of={createRenderElementDocgen} />
 
@@ -30,6 +37,10 @@ import { ReactHeadingDocgen, HeadingElementDocgen, createHandlersDocgen, createR
 
 <ArgsTable of={HeadingElementDocgen} />
 
+## RenderHeadingElementProps
+
+<ArgsTable of={RenderHeadingElementPropsDocgen} />
+
 # Widgets
 
 ## Toolbar
@@ -42,6 +53,14 @@ import { ReactHeadingDocgen, HeadingElementDocgen, createHandlersDocgen, createR
 
 ## Jsx
 
-### createJsxSerializeHeading
+### Factories
+
+#### createJsxSerializeHeading
 
 <ArgsTable of={createJsxSerializeHeading} />
+
+### Interfaces
+
+#### JsxSerializeHeadingElementProps
+
+<ArgsTable of={JsxSerializeHeadingElementPropsDocgen} />

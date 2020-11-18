@@ -3,8 +3,6 @@ import { WithCreateHandlers, WithCreateRenderElement, RenderElementProps } from 
 
 export type RenderHeadingElementProps = RenderElementProps<HeadingElement>;
 
-export type RenderHeadingElement = (props: RenderHeadingElementProps) => JSX.Element | null | undefined;
-
 export interface ReactHeadingCreateHandlersOptions {
   /**
    * The hotkey to toggle heading w/ specific level.
@@ -13,7 +11,7 @@ export interface ReactHeadingCreateHandlersOptions {
 }
 
 export interface ReactHeadingCreateRenderElementOptions {
-  render?: RenderHeadingElement;
+  render?: (props: RenderHeadingElementProps) => JSX.Element | null | undefined;
 }
 
 export interface ReactHeading<Level extends HeadingLevel>
