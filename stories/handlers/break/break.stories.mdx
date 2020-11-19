@@ -1,0 +1,75 @@
+import { Meta, ArgsTable, Description } from '@storybook/addon-docs/blocks';
+import { COMMON_ON_KEY_DOWN_BREAK, createOnKeyDownBreak } from '@artibox/slate-react/break';
+import { ExitBreakRuleDocgen, SoftBreakRuleDocgen } from './docgen';
+
+<Meta title="Handlers/Break/Docs" />
+
+# Intro
+
+Provide a factory `createOnKeyDownBreak` to create an `onKeyDown` handler which supporting both `exit break` and `soft break`. Please see below:
+
+```tsx
+import { composeHandlers, createReactEditor, Artibox, Editable } from '@artibox/slate-react';
+import { createOnKeyDownBreak } from '@artibox/slate-react/break';
+
+const createHandlers = composeHandlers([
+  {
+    onKeyDown: createOnKeyDownBreak({
+      exitBreak: {
+        rules: [
+          // ...
+        ]
+      },
+      softBreak: {
+        rules: [
+          // ...
+        ]
+      }
+    })
+  }
+]);
+
+const MyEditor = () => {
+  const [value, setValue] = useState<Node[]>([]);
+  const editor = useMemo(() => createReactEditor(), []);
+  const handlers = useMemo(() => createHandlers(editor), [editor]);
+
+  return (
+    <Artibox editor={editor} onChange={setValue} value={value}>
+      <Editable {...handlers} />
+    </Artibox>
+  );
+};
+```
+
+# Factories
+
+## createOnKeyDownBreak
+
+<ArgsTable of={createOnKeyDownBreak} />
+
+# Interfaces
+
+## ExitBreakRule
+
+<ArgsTable of={ExitBreakRuleDocgen} />
+
+## SoftBreakRule
+
+<ArgsTable of={ExitBreakRuleDocgen} />
+
+# Constants
+
+## COMMON_ON_KEY_DOWN_BREAK
+
+<Description of={COMMON_ON_KEY_DOWN_BREAK} />
+
+```ts
+import { composeHandlers } from '@artibox/slate-react';
+
+const createHandlers = composeHandlers([
+  {
+    onKeyDown: COMMON_ON_KEY_DOWN_BREAK
+  }
+]);
+```

@@ -17,6 +17,11 @@ export const COMMON_SOFT_BREAK_RULE: SoftBreakRule = {
   hotkey: COMMON_SOFT_BREAK_HOTKEY
 };
 
+/**
+ * Common behavior of exit.
+ *
+ * Using `shift+enter` for soft break and `mod+enter` for exit break.
+ */
 export const COMMON_ON_KEY_DOWN_BREAK = createOnKeyDownBreak({
   exitBreak: {
     rules: COMMON_EXIT_BREAK_RULES

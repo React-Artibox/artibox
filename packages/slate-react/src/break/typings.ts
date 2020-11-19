@@ -3,7 +3,7 @@ import { IsNodeMatchOptions } from '@artibox/slate-common/queries/isNodeMatch';
 export interface ExitBreakRule {
   hotkey: string;
   /**
-   * @default DEFAULT_ELEMENT_TYPE
+   * @default ParagraphType
    */
   defaultType?: string;
   match?: IsNodeMatchOptions & {
