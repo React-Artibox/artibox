@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/React-Artibox/artibox/compare/v2.0.3...v2.0.4) (2020-11-20)
+
+### Bug Fixes
+
+- **slate-react:** update slate-react to ^0.59.0 ([1f16dd5](https://github.com/React-Artibox/artibox/commit/1f16dd54638e78ab008137ae210fca04fd25bb4d))
+- **slate-react/image:** apply style on figure instead of img, add props to docgen ([df51fd0](https://github.com/React-Artibox/artibox/commit/df51fd06b1bb87271f71c1c960e291f07033bed1))
+
 ## [2.0.3](https://github.com/React-Artibox/artibox/compare/v2.0.2...v2.0.3) (2020-11-11)
 
 ### Bug Fixes
