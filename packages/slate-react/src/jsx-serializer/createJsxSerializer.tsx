@@ -13,7 +13,13 @@ function addKey(element: ReactElement) {
 }
 
 export interface CreateJsxSerializerOptioons {
+  /**
+   * Invoked while no any `elements` matching.
+   */
   defaultElement?: (props: JsxSerializeElementProps) => JSX.Element;
+  /**
+   * Invoked while no any `leafs` matching.
+   */
   defaultLeaf?: (props: JsxSerializeLeafProps) => JSX.Element;
   elements?: ((props: JsxSerializeElementProps) => JSX.Element | null | undefined)[];
   leafs?: ((props: JsxSerializeLeafProps) => JSX.Element)[];

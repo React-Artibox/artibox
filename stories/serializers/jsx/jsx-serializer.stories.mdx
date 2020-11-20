@@ -1,0 +1,64 @@
+import { Meta, ArgsTable, Description } from '@storybook/addon-docs/blocks';
+import {
+  createJsxSerializer,
+  createJsxSerializeElement,
+  createJsxSerializeElements,
+  createJsxSerializeMark
+} from '@artibox/slate-react/jsx-serializer';
+import { JsxSerializeElementPropsDocgen, JsxSerializeLeafPropsDocgen, JsxSerializeMarkPropsDocgen } from './docgen';
+
+<Meta title="Serializers/Jsx/Docs" />
+
+# Intro
+
+Provide a factory `createJsxSerializer` to create an serializer which can render json object. Please see below:
+
+```tsx
+import { createJsxSerializer } from '@artibox/slate-react/jsx-serializer';
+import { createJsxSerializeBold } from '@artibox/slate-react/bold/jsx-serializer';
+
+const jsxSerializer = createJsxSerializer({
+  leafs: [
+    // ...
+  ],
+  elements: [
+    // ...
+  ]
+});
+
+// ...
+
+return <div>{jsxSerializer.serialize(json)}</div>;
+```
+
+# Factories
+
+## createJsxSerializer
+
+<ArgsTable of={createJsxSerializer} />
+
+## createJsxSerializeElement
+
+<ArgsTable of={createJsxSerializeElement} />
+
+## createJsxSerializeElements
+
+<ArgsTable of={createJsxSerializeElements} />
+
+## createJsxSerializeMark
+
+<ArgsTable of={createJsxSerializeMark} />
+
+# Interfaces
+
+## JsxSerializeElementProps
+
+<ArgsTable of={JsxSerializeElementPropsDocgen} />
+
+## JsxSerializeLeafProps
+
+<ArgsTable of={JsxSerializeLeafPropsDocgen} />
+
+## JsxSerializeMarkPropsDocgen
+
+<ArgsTable of={JsxSerializeMarkPropsDocgen} />
