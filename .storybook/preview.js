@@ -12,7 +12,10 @@ export const parameters = {
         'React',
         'Elements',
         ['Paragraph'],
-        'Marks'
+        'Marks',
+        'Handlers',
+        'Widgets',
+        'Serializers'
       ]
     }
   }

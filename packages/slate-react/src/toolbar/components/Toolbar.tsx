@@ -43,6 +43,9 @@ export interface ToolbarProps {
    * If there are any nodes which type match it, toolbar will hide.
    */
   disabledElementTypes?: string[];
+  /**
+   * A render props which provide a flag `expanded` which useful for rendering different things between collapsed and expanded.
+   */
   children: (expanded: boolean) => JSX.Element | null | undefined;
 }
 
