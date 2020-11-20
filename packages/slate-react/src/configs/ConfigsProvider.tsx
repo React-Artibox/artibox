@@ -13,6 +13,9 @@ export interface ConfigsProviderRenderProps {
 export interface ConfigsProviderProps {
   theme?: Theme;
   locale?: LocaleDefinition;
+  /**
+   * Can pass any react elements or a render props which provide the resolved result.
+   */
   children: ReactNode | ((props: ConfigsProviderRenderProps) => ReactNode);
 }
 

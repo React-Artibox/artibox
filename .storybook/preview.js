@@ -9,6 +9,7 @@ export const parameters = {
         'Docs',
         ['Intro', 'Getting Started', 'Theme', 'Locale', 'Icons', 'Utils'],
         'Examples',
+        'React',
         'Elements',
         ['Paragraph'],
         'Marks'

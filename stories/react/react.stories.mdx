@@ -1,0 +1,98 @@
+import { Meta, ArgsTable, Description } from '@storybook/addon-docs/blocks';
+import {
+  Artibox,
+  Editable,
+  ConfigsProvider,
+  createReactEditor,
+  composeRenderElements,
+  composeRenderLeafs,
+  composeHandlers
+} from '@artibox/slate-react';
+
+<Meta title="React/Docs" />
+
+# Factories
+
+## createReactEditor
+
+<Description of={createReactEditor} />
+
+```ts
+import { createReactEditor } from '@artibox/slate-react';
+
+const editor = createReactEditor();
+```
+
+# Components
+
+## Artibox
+
+<Description of={Artibox} />
+<ArgsTable of={Artibox} />
+
+## Editable
+
+<ArgsTable of={Editable} />
+
+## ConfigsProvider
+
+<ArgsTable of={ConfigsProvider} />
+
+# Handlers
+
+## composeHandlers
+
+<Description of={composeHandlers} />
+
+If the `next` function provided by handler called, it will trigger the next handler, or not.
+
+```tsx
+import { composeHandlers } from '@artibox/slate-react';
+
+const createHandlers = composeHandlers([
+  {
+    onKeyDown(event, editor, next) {
+      // ...
+    }
+  }
+  // ...
+]);
+
+// ...
+
+const handlers = createHandlers(editor);
+
+// ...
+
+<Editable {...handlers} />;
+```
+
+# Renderers
+
+## composeRenderElements
+
+<Description of={composeRenderElements} />
+
+```tsx
+import { composeRenderElements } from '@artibox/slate-react';
+
+const renderElement = composeRenderElements([({ attributes, children }) => <div {...attributes}>{children}</div>]);
+
+// ...
+
+<Editable renderElement={renderElement} />;
+```
+
+## composeRenderLeafs
+
+<Description of={composeRenderLeafs} />
+
+```tsx
+import { composeRenderLeafs } from '@artibox/slate-react';
+
+const renderLeaf = composeRenderLeafs([({ children }) => <div>{children}</div>]);
+
+// ...
+
+<Editable renderLeaf={renderLeaf} />;
+```

@@ -15,6 +15,9 @@ function createEventHandler(
     });
 }
 
+/**
+ * To compose sequential `event handlers` to single for each event types.
+ */
 export function composeHandlers<H extends EventHandlerName>(
   handlersList: {
     [HH in H]?: Handler<HH>;
